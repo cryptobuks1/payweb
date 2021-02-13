@@ -17,7 +17,7 @@ pipeline
     {
         stage('Cloning Git') {
             steps {
-            git credentialsId: 'vxso45rfLLxZSG-cPufa', url: 'https://git.incrivelsoft.com/incrivelsoft/Pay_Web.git', branch: 'develop'
+           git credentialsId: 'f8758d06-5bf8-4572-9b9f-e7998e9adba2', url: 'https://github.com/sharathjadala/payweb.git'', branch: 'master'
             }
         }
         stage('Build preparations')
