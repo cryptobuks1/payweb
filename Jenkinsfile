@@ -17,7 +17,7 @@ pipeline
     {
         stage('Cloning Git') {
             steps {
-           git credentialsId: 'f8758d06-5bf8-4572-9b9f-e7998e9adba2', url: 'https://github.com/sharathjadala/payweb.git'', branch: 'master'
+           git credentialsId: 'f8758d06-5bf8-4572-9b9f-e7998e9adba2', url: 'https://github.com/sharathjadala/payweb.git'
             }
         }
         stage('Build preparations')
