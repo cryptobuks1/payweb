@@ -1,0 +1,262 @@
+@import "../../../../../variables";
+.page_container {
+    padding: 15px 25px;
+  }
+  .page_header {
+    display: inline-block;
+  }
+  .acc_navbar {
+    margin-bottom: 20px;
+    padding: 0px;
+    border-bottom: 1px solid $color-primary;
+  
+    li.nav-item {
+      &:focus {
+        outline: none;
+        user-select: none;
+      }
+      a.nav-link {
+        border-radius: 0px;
+        &.active,
+        &:hover,
+        &:focus {
+          //background: #ffffff;
+          border-bottom: 2px solid $color-secondary;
+          opacity: 1;
+          outline: none;
+          color: $font-color-active;
+        }
+      }
+      a {
+        color: $font-color;
+        background: none;
+        margin-bottom: -1px;
+        opacity: 0.6;
+        padding: 10px 30px;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        &:focus,
+        &:hover {
+          border-bottom: 2px solid $color-secondary;
+          outline: none;
+          //opacity: 1;
+        }
+      }
+    }
+  }
+  .m-t-10 {
+      margin-top: 20px;
+  }
+  .allCards {
+    width: 140px;
+  }
+  .card {
+    padding: 30px 20px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    display: block;
+    .card_header {
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+  }
+  .cardMedium {
+    padding: 6px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+    border: none;
+    border-radius: 4px;
+    width: 78%;
+    display: block;
+    margin-left: 10px;
+    .card_header_m {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #42424c;
+      cursor: pointer;
+    }
+  }
+  .left {
+      margin-left: 60px;
+      max-width: 90%;
+  }
+  .right {
+      margin-right: -29px;
+      max-width: 90%;
+  }
+  .subtext {
+    color: #AAAABB;
+    font-size: 12px;
+  }
+  #freeze {
+    color: #2323a4;
+    cursor: pointer;
+  }
+  .linkClr {
+    color: #2323a4;
+    cursor: pointer;
+  }
+  .cardImg {
+    margin-top: 3px;
+    margin-bottom: -20px;
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  .attempt {
+    margin-top: 50px;
+  }
+  .view {
+    margin-bottom: 60px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  .float-left {
+    margin-bottom: -25px;
+  }
+  .spendLimit {
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+  .nameCrd {
+    padding-bottom: 100px;
+    padding-top: 30px;
+  }
+  .row1 {
+    padding-bottom: 50px;
+    padding-top: 80px;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+  .row2 {
+    padding-left: 45px;
+    padding-right: 45px;
+    margin-bottom: 30px;
+  }
+  input {
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: #2A3477;
+    margin-left: -40px;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 53px;
+    height: 14px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    left: 2px;
+    right: -1px;
+    bottom: -4px;
+    background-color: #b7b2ae;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 5px;
+    bottom: -1.5px;
+    background-color: #f88121;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #f8c499;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #f8c499;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .search {
+    width: 388px;
+    margin-left: -2px;
+  }
+  .spendLimit {
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+  .nameCrd {
+    padding-bottom: 100px;
+    padding-top: 30px;
+  }
+  .cardMedium1 {
+    padding: 6px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+    border: none;
+    border-radius: 4px;
+    width: 42%;
+    display: block;
+    margin-left: 260px;
+    margin-top: -60px;
+    .card_header_m1 {
+      font-size: 12px;
+      font-weight: 500;
+      color: #42424c;
+    }
+  }
+  .group {
+    width: 40px;
+  }
+  .neverShare {
+    margin-top: 125px;
+    width: 420px;
+  }
+  @media (max-width: 767px){
+    .group {
+      width: 40px;
+    }
+    .left {
+      margin-left: 23px;
+      max-width: 90%;
+  }
+  .right {
+      //margin-right: -32px;
+      max-width: 90%;
+      margin-left: 23px;
+  }
+  .neverShare {
+    margin-top: 125px;
+    width: 344px;
+  }
+  .cardMedium1 {
+    padding: 6px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+    border: none;
+    border-radius: 4px;
+    width: 42%;
+    display: block;
+    margin-left: 177px;
+    margin-top: -60px;
+}
+   }

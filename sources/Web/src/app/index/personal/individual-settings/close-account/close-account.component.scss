@@ -1,0 +1,26 @@
+@import "../../../../../variables";
+.page_ht_crd1 {
+  box-shadow: 0px 3px 6px #00000029;
+  width: 35%;
+  padding: 20px 10px 20px 10px;
+  margin-left: 27%;
+}
+.editptext {
+  color: $font-color-active;
+  font-weight: 500;
+  font-size: 24px;
+  margin: 30px 0 20px 0px;
+}
+// .settingsimg {
+//   width: 70px;
+//   height: 70px;
+// }
+
+@media (max-width: 576px) {
+  .page_ht_crd1 {
+    box-shadow: 0px 3px 6px #00000029;
+    width: 100%;
+    padding: 20px 10px 20px 10px;
+    margin-left: 0%;
+  }
+}

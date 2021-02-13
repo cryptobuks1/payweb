@@ -1,0 +1,32 @@
+<div class="pull-right d-inline back_btn">
+  <div *ngIf="!isPersonal">
+    <a routerLink="/business/payments" (click)="setCSVFlag()"><i class="fa fa-arrow-left"></i> Back</a>
+    </div>
+ <div *ngIf="isPersonal">
+    <a routerLink="/personal/payments" (click)="setCSVFlag()"><i class="fa fa-arrow-left"></i> Back</a>
+    </div>
+
+</div>
+<div class="card page_ht_crd" *ngIf="true">
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li *ngIf="accountType == 'personal'" class="nav-itemP">
+          <a  data-target="#single" data-toggle="tab" class="nav-link active">Single payment</a>
+        </li>
+        <li *ngIf="accountType == 'business'" class="nav-item">
+          <a  data-target="#single" data-toggle="tab" class="nav-link active">Single payment</a>
+        </li>
+        <li *ngIf="accountType == 'business'"  class="nav-item">
+          <a data-target="#bulk" data-toggle="tab" class="nav-link">Bulk payment</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="single">
+        <app-singlepayments></app-singlepayments>
+      </div>
+      <div class="tab-pane fade" id="bulk">
+        <app-bulkpayments></app-bulkpayments>
+      </div>
+    </div>
+</div>

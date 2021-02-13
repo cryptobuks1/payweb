@@ -1,0 +1,98 @@
+@import "../../../../../variables";
+
+.mrgn-btm {
+  margin-top: 0;
+  margin-bottom: -6px;
+  color: $font-color-active;
+}
+.lyt-color {
+  color: $font-color;
+}
+.clr {
+  color: $color-secondary;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+td {
+  padding: 0.5rem;
+  vertical-align: middle;
+ border-bottom: 1px solid #ddd;
+}
+th {
+  font-weight: 200;
+  padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.mt-8{
+  margin: 4px 2px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-block {
+  display: block;
+  width: 90%;
+}
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.page_ht_crd {
+  box-shadow: 0px 3px 6px #00000029;
+  width: 50%;
+  padding: 10px 10px 20px 70px;
+  background-color: #ffffff;
+  margin-top: 60px;
+}
+.vertline::before {
+  position: absolute;
+  content: " ";
+  height: 90%;
+  width: 1px;
+  top: 5%;
+  left: 50px;
+  background-color: $font-teritary;
+}
+@media (max-width: 576px) {
+  .vertline::before {
+    position: absolute;
+    content: " ";
+    height: 1px;
+    width: 90%;
+    left: 15px;
+    top: 0px;
+    background-color: $font-teritary;
+  }
+  .vertline {
+    margin-top: 20px;
+  }
+  .mrg_top {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .btn-block {
+    width: 123%;
+  }
+}
+@media (max-width: 576px) {
+  .page_ht_crd {
+    box-shadow: 0px 3px 6px #00000029;
+    width: 90%;
+    padding: 10px 80px 25px 54px;
+    background-color: #ffffff;
+    margin-top: 60px;
+  }
+  h5 {
+    padding-left: 107px;
+  }
+}

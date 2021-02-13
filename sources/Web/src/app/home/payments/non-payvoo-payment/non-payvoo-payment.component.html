@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-12 col-md-6 pt-3 pb-5 bullet-points-section">
+    <div class="ml-7 mt-5 conatiner-with-padding">
+      <h4>Fair and fast international payments</h4>
+
+      <div class="benefits-list mt-5">
+        <h6>Fully digital onboarding</h6>
+        <ul>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> eKYC</li>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> eKYB</li>
+        </ul>
+      </div>
+
+      <div class="benefits-list">
+        <h6>Accounts</h6>
+        <ul>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Multiple currency accounts</li>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Currency exchanges</li>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Add money with a card or bank transfer</li>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Transaction history</li>
+        </ul>
+      </div>
+
+      <div class="benefits-list">
+        <h6>Analytics</h6>
+        <ul>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Categorization of spending per currency account, spending
+            category, country, merchant, etc.</li>
+        </ul>
+      </div>
+
+      <div class="benefits-list">
+        <h6>Payments</h6>
+        <ul>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Sending and Requesting money</li>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Sending bulk payments</li>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Sending money to bank accounts</li>
+        </ul>
+      </div>
+
+      <div class="benefits-list">
+        <h6>Analytics</h6>
+        <ul>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Ordering physical and virtual cards</li>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Freezing / unfreezing of physical and virtual cards</li>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Modifying cards' PIN and Security options</li>
+          <li> <i class="fa fa-check pr-2" aria-hidden="true"></i> Other settings - spending limits, removing cards, etc</li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="col-12 col-md-6 pt-3 pb-5 logo">
+    <div class="co-12 sender-info">
+      <div class="content2">
+        <div class="input_element1">
+          <img width="100%" style="margin-bottom: 100px; width:135%"src="../../../../assets/images/logo2.png">
+          <!-- <p class="mb-5" style="font-size: 3rem; margin-bottom: 100px;">
+            <span style="color:#2A3477;font-weight: 600;">Pay</span>
+            <span style="color: #F37221;font-weight: 600;">Voo</span>
+          </p> -->
+          <!-- <div class="itm_crcl1 mb-5">{{ transaction?.sender_name | slice:0:1| titlecase }}</div> -->
+          
+      </div>
+    </div>
+    <div align="center">
+      <div class="mb-4" style="color: #42424c;font-size: 20px;">
+        <!-- <span>{{ transaction?.sender_name | titlecase}}</span> --> <span>{{ transaction?.amount | currency: transaction?.currency}} are awaiting you.</span>
+        <br/>Join PayVoo in order<br> to receive money!
+      </div>
+      <p style="margin-bottom: 80px;">{{ transaction?.receiver_email }}</p>
+
+      <a class="btn btn-primary mt-4" style="color: white;padding-right: 35px;padding-left: 35px;padding-top: 2px;padding-bottom: 2px;" (click)="joinUs()">Join us and you will<br> receive {{ transaction?.amount | currency: transaction?.currency}}</a>
+    </div>
+  </div>
+</div>

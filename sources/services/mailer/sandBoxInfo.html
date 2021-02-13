@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    .bridge{
+      font-size:12px;
+      font-weight: 800;
+      width:330px;
+      color:#1776BA;
+    }
+    .info{
+      font-size:25px;
+      font-weight: 800;
+      width:330px;
+      color:black;
+    }
+  </style>
+</head>
+
+<body>
+  <table style="margin-top:30px;">
+    <tr style="padding-top:60px;">
+      <td style="border-top-style:none;border-right-style:none;border-left-style:none;" colspan="2">
+        <center>
+          <img style="width:280px" src="cid:logo">
+          <!-- <h1 style="font-size:50px;font-weight: 600;"><span style="color:#2a3477">Pay</span><span
+              style="color:#f37221">Voo</span></h1><span
+            style="font-size:15px;position:relative;top:-31px;left:-5px;color:#2A3477;">Bridge the world to value of
+            ownership</span> -->
+        </center>
+        <center>
+          <!-- <p> 
+           <span class="bridge">Bridge the world to value of ownership</span>
+         </p>   -->
+       </center>
+        <br><br>
+
+        <center>
+          <p> 
+           <span class="info">eWallet Sandbox Information</span>
+         </p>  
+       </center>
+       <br><br><br>
+      </td>
+    </tr>
+    <tr>
+
+      <td><b>URL </b></td>
+      <td>{{sandboxObj.url}}</td>
+    </tr>
+    <tr>
+      <td><b>API key </b></td>
+      <td>{{sandboxObj.api_key}}</td>
+    </tr>
+    <tr>
+      <td><b>Sandbox documentation </b></td>
+      <td>{{docUrl}}</td>
+    </tr>
+
+
+  </table>
+
+
+
+</body>
+
+</html>

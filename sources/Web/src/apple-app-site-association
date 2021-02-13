@@ -1,0 +1,15 @@
+{
+      "applinks": {
+          "apps": [],
+          "details": [
+              {
+                  "appID": "QC8N4Z86R5.com.sepamuse.payvoobusiness",
+                  "paths": ["*"]
+              },
+              {
+                "appID": "QC8N4Z86R5.com.sepamuse.payvoo",
+                "paths": ["*"]
+            }
+          ]
+      }
+}

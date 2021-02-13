@@ -1,0 +1,51 @@
+<div class="card page_ht_crd mx-auto text-center">
+
+    <div class="logo_cnt">
+        <img class="img-fluid" src="../../../assets/payvoo_logo.png">
+    </div>
+
+
+    <p class="p1">Login to your PayVoo</p>
+    <p class="p2"><i class="fa fa-lock"></i> Your details are saved securely</p>
+
+    <form [formGroup]="userForm" class="login_form">
+        <div>
+            <input type="text" class="form-control input_field" formControlName="userId" placeholder="E-mail">
+            <div class="error_text " *ngIf="userForm.controls['userId'].invalid && userForm.controls['userId'].touched">
+                Please,
+                Enter a valid e-mail.<div class="text icon_error inpt_icn"></div>
+            </div>
+        </div>
+        <div>
+            <input type="password" class="form-control input_field" formControlName="password" placeholder="Password">
+        </div>
+        <button class="btn btn-primary btn-block" [disabled]="userForm.invalid" (click)="loginForm(userForm.value)">Log
+            in</button>
+    </form>
+   
+
+        
+
+        <div class="modal fade" id="kycwarnhome" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body body_popup">
+                  <div class="add_money">
+                    <!-- <img src="../../../../../assets/images/addicon.png" alt="path not correct" /> -->
+                    <!-- <h4 style="text-align: center;">KYC Alert</h4> -->
+                    <p style="text-align: center;">You haven't completed your KYC. Please, visit payVoo.in to complete KYC and use the payments functionalities of PayVoo.</p>
+                    <div class="row">
+                      <!-- <div class="col-md-6">
+                        <button class="btn btn-outline-primary btn-block"  data-dismiss="modal">I'll do it later</button>
+                      </div> -->
+                      <div class="col-md-6 offset-md-3">
+                        <button class="btn btn-primary btn-block"   data-dismiss="modal">Ok</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+</div>

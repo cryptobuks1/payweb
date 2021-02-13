@@ -1,0 +1,271 @@
+@import "../../../../variables";
+
+.card_info {
+  list-style: none;
+  padding-left: 0px;
+  li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px 15px;
+
+    span {
+      font-size: 1rem;
+      color: $font-color;
+    }
+    .right {
+      float: right;
+      text-align: right;
+      font-size: 1rem;
+      color: $font-color-active;
+    }
+  }
+}
+
+.page_header {
+  padding-top: 15px;
+  .header {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  ul {
+    list-style: none;
+    padding: 0px;
+    li {
+      font-size: 0.825rem;
+      display: inline-block;
+      opacity: 0.8;
+      &:after {
+        content: " / ";
+      }
+      &:last-child {
+        opacity: 1;
+        color: $font-color-active;
+        &:after {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+.card {
+  padding: 30px 20px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+  border: none;
+  border-radius: 4px;
+  width: 108%;
+  display: block;
+  .card_header {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+}
+.addcard {
+  color: $color-secondary;
+  padding: 15px 10px;
+  cursor: pointer;
+  .addcard_icn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $color-secondary;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 40px;
+    margin-right: 20px;
+  }
+  border-bottom: 1px solid #dadada;
+}
+.addcardActive {
+  color: #ffffff;
+  background-color: $color-secondary;
+  .addcard_icn {
+    color: $color-secondary;
+    background: #ffffff;
+  }
+}
+.transfer_Bank {
+  color: $font-color-active;
+  padding: 15px 10px;
+  cursor: pointer;
+  .addcard_icn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $font-color;
+    // color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 40px;
+    margin-right: 20px;
+  }
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 20px;
+}
+.add_money_card {
+  min-height: calc(100vh - 200px);
+  padding-left: 10px;
+}
+
+.crd_card {
+  display: block;
+  position: relative;
+  background: #ffffff;
+  padding: 20px 70px 15px 20px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+
+  .info_btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 1.5rem;
+    color: $color-secondary;
+  }
+  .crd_num_title {
+    font-size: 0.825rem;
+    color: $font-color;
+  }
+  .crd_num {
+    font-size: 1rem;
+    color: $font-color-active;
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  .card_type_cnt {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    width: 35px;
+    height: 35px;
+    background: url("../../../../assets/images/icons/iconsprite.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+
+    &.card_master {
+      background-position: -266px 0px;
+    }
+    &.card_visa {
+      background-position: -137px 0px;
+    }
+    &.card_jcb {
+      background-position: -95px 0px;
+    }
+    &.card_dci {
+      background-position: -177px 0px;
+    }
+    &.card_unionpay {
+      background-position: -219px 0px;
+    }
+  }
+  img {
+    max-width: 45px;
+    max-height: 45px;
+  }
+
+  &.active,
+  &:hover,
+  &:focus {
+    background: $color-secondary;
+    outline: none;
+    .info_btn,
+    .crd_num_title,
+    .crd_num {
+      color: #ffffff;
+      opacity: 1;
+    }
+  }
+}
+
+.card_details_cont {
+  color: $font-color;
+  padding: 15px 10px;
+  margin-top: 20px;
+  border-top: 1px solid #dadada;
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 20px;
+
+  .addcard_icn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $font-color;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 40px;
+    margin-right: 20px;
+    vertical-align: middle;
+  }
+  .crd_det {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.825rem;
+    font-weight: 400;
+    p {
+      margin-bottom: 0px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+  .crd_change_rt {
+    padding-top: 10px;
+    vertical-align: middle;
+    float: right;
+    color: $color-secondary;
+    cursor: pointer;
+  }
+}
+
+.form-control-feedback {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  z-index: 2;
+  display: block;
+  text-align: center;
+  pointer-events: none;
+  img {
+    max-width: 40px;
+    max-height: 20px;
+  }
+}
+
+.bank_details {
+  background: linear-gradient($color-secondary, #00c8c8);
+  margin: -30px -20px 20px -20px;
+  color: #ffffff;
+  padding: 30px 20px;
+  text-align: center;
+
+  .bank_icn_cont {
+    width: 80px;
+    height: 80px;
+    background: #ffffff;
+    border-radius: 50%;
+    color: $font-color-active;
+    text-align: center;
+    font-size: 30px;
+    line-height: 75px;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+  .bank_det_cont {
+    border-top: 1px solid #dadada99;
+    padding-top: 20px;
+    font-size: 0.825rem;
+    font-weight: 400;
+    p {
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin-bottom: 0px;
+    }
+  }
+}

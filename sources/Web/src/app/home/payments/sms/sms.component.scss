@@ -1,0 +1,168 @@
+@import "../../../../variables";
+
+.disabled-pointer {
+  pointer-events: none;
+  color: #dcdce3 !important;
+}
+
+.page_ht_crd {
+  height: 100%;
+  width: 35%;
+  padding: 20px 10px 20px 10px;
+  margin-left: 30%;
+  box-shadow: 0px 3px 6px #00000029;
+  ul {
+    a {
+      border: none;
+    }
+  }
+}
+
+.check_div {
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 12px;
+  img {
+    max-width: 100px;
+  }
+}
+
+.header_bar {
+  text-align: center;
+  position: relative;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: $font-color-active;
+}
+
+.header_para {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: $font-color;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+
+
+
+
+  //SMS CONFIRMATIONS
+
+  .header_bar {
+      margin-top: 20px;
+    position: relative;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: $font-color-active;
+  }
+
+.txt_link {
+    color: $color-secondary;
+    cursor: pointer;
+    font-weight: 300;
+  }
+
+.otp {
+    display: block;
+    border: none;
+    width: 300px;
+    background: repeating-linear-gradient(90deg, #000 0, #000 35px, transparent 0, transparent 45px) 0 100%/260px 1px
+      no-repeat;
+    font: 40px droid sans mono, consolas, monospace;
+    letter-spacing: 23px;
+    padding: 6px;
+    margin: auto;
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+  .spac{
+      padding-top: 20px;
+  }
+
+  .mrgin_btm{
+      margin-bottom: 30px;
+  }
+
+
+  //modal
+
+  .alin{
+    margin:20px;
+  }
+  .content_dis{
+    margin-top: 15%;
+    margin-left: 0%;
+  }
+.fnt_color{
+  color: #42424c;
+
+}
+.inpt_color{
+color:#2a3477;
+font-weight: 600;
+}
+.prsn{
+  color:#42424c;
+  font-weight: 600;
+}
+.bal{
+  color:#AAAABB;
+  font-size: 14px;
+}
+
+//success display 1
+
+.check_div {
+  margin-top: 30px;
+  text-align: center;
+  margin-bottom: 12px;
+  img {
+    max-width: 100px;
+  }
+}
+
+
+.header_para {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: $font-color;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.header_para1 {
+  text-align: center;
+  font-size: 1rem;
+ // margin-bottom: 20px;
+  color: $font-color;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+.content_dis1{
+  margin-top:50%;
+  margin-left: 0%;
+}
+.modal_size{
+  //width:350px;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+
+//payment created
+
+
+@media (max-width: 576px) {
+  .page_ht_crd {
+    width: 100%;
+    margin-left: 0%;
+  }
+}
+.wip-img{
+  width: 100px;
+  margin-bottom: 10px;
+}

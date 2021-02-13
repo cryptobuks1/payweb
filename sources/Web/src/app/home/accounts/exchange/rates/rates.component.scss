@@ -1,0 +1,104 @@
+@import "../../../../../variables";
+
+.page_container {
+  padding: 15px 25px;
+}
+.additm {
+  color: $color-secondary;
+  padding: 15px 10px;
+  cursor: pointer;
+  pointer-events: none;
+  .additm_icn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $color-secondary;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 40px;
+    margin-right: 20px;
+    pointer-events: auto;
+  }
+
+  // border-bottom: 1px solid #dadada;
+}
+
+@media (max-width: 576px) {
+  .additm {
+    padding: 15px 0px;
+  }
+  .additm_icn {
+    margin-right: 10px;
+  }
+}
+.additm span{
+  pointer-events: auto;
+}
+.ctry_cnt {
+  padding: 20px;
+}
+
+.rates_cntr {
+  display: block;
+  padding: 15px 10px;
+  border-bottom: 1px solid #dadada;
+  font-size: 1.125rem;
+  font-weight: 500;
+  .frm_cncy {
+    display: inline-block;
+    vertical-align: middle;
+    color: $font-color-active;
+    span {
+      display: block;
+      font-size: 0.725rem;
+      color: $font-color;
+      text-align: right;
+      font-weight: 400;
+    }
+  }
+  .to_cncy {
+    float: right;
+    color: $font-color-active;
+    span {
+      display: block;
+      font-size: 0.725rem;
+      color: $font-color;
+      text-align: right;
+      font-weight: 400;
+    }
+  }
+}
+@media (max-width: 700px){
+  .justify-content-between {
+    margin-left: 154px;
+    margin-top: -198px;
+  }
+}
+.del_cntr {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dc3545;
+  text-align: center;
+  border-radius: 50%;
+  padding: 5px;
+  padding-right: 4px;
+  cursor: pointer;
+  margin-top:11px;
+  margin-left: 54px;
+  position: absolute;
+}
+
+.exchnge_bdr {
+  padding: 10px 5px;
+  border-bottom: 1px solid #dadada;
+}
+
+.exchn_content {
+  .paginationControl {
+    float: right;
+    top: 20px;
+    position: relative;
+  }
+}

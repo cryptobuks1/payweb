@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="210px" height="172px" viewBox="0 0 210 172" enable-background="new 0 0 210 172" xml:space="preserve">
+<g>
+	<path fill="none" stroke="#DEDEE3" stroke-dasharray="6,8" d="M63,159c33.14,0,60-26.86,60-60S96.14,39,63,39S3,65.86,3,99
+		S29.86,159,63,159z"/>
+	<path fill="none" stroke="#DEDEE3" stroke-dasharray="6,8" d="M138,120c33.14,0,60-26.86,60-60S171.14,0,138,0S78,26.86,78,60
+		S104.86,120,138,120z"/>
+	<g transform="translate(39 20)">
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="0" y="0.43" width="132.57" height="132.57">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="0" y="0.43" width="132.57" height="132.57" id="b_1_">
+			<g filter="url(#Adobe_OpacityMaskFilter)">
+				<path id="a_1_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,0.43h132.57V133H0V0.43z"/>
+			</g>
+		</mask>
+		<path mask="url(#b_1_)" fill-rule="evenodd" clip-rule="evenodd" fill="#C6DEF4" d="M66.28,133C29.83,133,0,103.17,0,66.72
+			C0,30.26,29.83,0.43,66.28,0.43c36.46,0,66.28,29.83,66.28,66.28C132.57,103.17,102.74,133,66.28,133"/>
+	</g>
+	<g transform="translate(39 20)">
+		<path fill-rule="evenodd" clip-rule="evenodd" fill="#192E2D" d="M42.94,114.3c-1.59,0-2.88-1.29-2.88-2.88V22.77
+			c0-1.59,1.29-2.88,2.88-2.88c0,0,0,0,0,0h46.09c1.59,0,2.88,1.29,2.88,2.88v88.65c0,1.59-1.29,2.88-2.88,2.88L42.94,114.3
+			L42.94,114.3z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_1_" filterUnits="userSpaceOnUse" x="43.67" y="32.47" width="44.6" height="68.48">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="43.67" y="32.47" width="44.6" height="68.48" id="d_1_">
+			<g filter="url(#Adobe_OpacityMaskFilter_1_)">
+				<path id="c_1_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_1_)" fill-rule="evenodd" clip-rule="evenodd" fill="#E5E5E5" d="M43.67,100.96h44.6V32.47h-44.6V100.96z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_2_" filterUnits="userSpaceOnUse" x="63.53" y="25.29" width="4.9" height="84.59">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="63.53" y="25.29" width="4.9" height="84.59" id="d_2_">
+			<g filter="url(#Adobe_OpacityMaskFilter_2_)">
+				<path id="c_2_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_2_)" fill-rule="evenodd" clip-rule="evenodd" fill="#92ADBF" d="M63.53,109.88h4.9v-4.89h-4.9V109.88z
+			 M64.79,27.66h2.38v-2.37h-2.38V27.66z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_3_" filterUnits="userSpaceOnUse" x="43.06" y="80.46" width="41.68" height="6.44">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="43.06" y="80.46" width="41.68" height="6.44" id="d_3_">
+			<g filter="url(#Adobe_OpacityMaskFilter_3_)">
+				<path id="c_3_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_3_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M84.74,86.76h-1.28V85.9h0.43v-0.43h0.86
+			L84.74,86.76z M46.04,86.9h1.7v-1h-1.7V86.9z M49.45,86.9h1.7v-1h-1.7V86.9z M52.85,86.9h1.7v-1h-1.7V86.9z M56.25,86.9h1.7v-1
+			h-1.7V86.9z M59.65,86.9h1.7v-1h-1.7V86.9z M63.05,86.9h1.7v-1h-1.7C63.05,85.9,63.05,86.9,63.05,86.9z M66.45,86.9h1.7v-1h-1.7
+			V86.9z M69.85,86.9h1.7v-1h-1.7V86.9z M73.25,86.9h1.7v-1h-1.7V86.9z M76.65,86.9h1.7v-1h-1.7L76.65,86.9L76.65,86.9z M80.05,86.9
+			h1.7v-1h-1.7L80.05,86.9L80.05,86.9z M44.35,86.76h-1.29v-1.28h0.86v0.43h0.43L44.35,86.76z M43.06,84.23h0.86v-1.24h-0.86V84.23z
+			 M43.92,81.75h-0.86v-1.29h1.28v0.86h-0.43V81.75z M46.04,81.46h1.7v-1h-1.7V81.46z M49.45,81.46h1.7v-1h-1.7L49.45,81.46
+			L49.45,81.46z M52.85,81.46h1.7v-1h-1.7V81.46z M56.25,81.46h1.7v-1h-1.7V81.46z M59.65,81.46h1.7v-1h-1.7V81.46z M63.05,81.46
+			h1.7v-1h-1.7C63.05,80.46,63.05,81.46,63.05,81.46z M66.45,81.46h1.7v-1h-1.7V81.46z M69.85,81.46h1.7v-1h-1.7L69.85,81.46
+			L69.85,81.46z M73.25,81.46h1.7v-1h-1.7V81.46z M76.65,81.46h1.7v-1h-1.7V81.46z M80.05,81.46h1.7v-1h-1.7L80.05,81.46
+			L80.05,81.46z M84.74,81.75h-0.86v-0.43h-0.43v-0.86h1.28L84.74,81.75z M83.88,84.23h0.86v-1.24h-0.86V84.23z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_4_" filterUnits="userSpaceOnUse" x="23.64" y="80.34" width="48.06" height="6.41">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="23.64" y="80.34" width="48.06" height="6.41" id="d_4_">
+			<g filter="url(#Adobe_OpacityMaskFilter_4_)">
+				<path id="c_4_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_4_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M23.64,86.75H71.7v-6.41H23.64L23.64,86.75z"
+			/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_5_" filterUnits="userSpaceOnUse" x="26.81" y="81.55" width="0.78" height="4.18">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="26.81" y="81.55" width="0.78" height="4.18" id="d_5_">
+			<g filter="url(#Adobe_OpacityMaskFilter_5_)">
+				<path id="c_5_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_5_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M26.81,85.73h0.78v-4.18h-0.78V85.73z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_6_" filterUnits="userSpaceOnUse" x="25.45" y="81.89" width="3.51" height="3.51">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="25.45" y="81.89" width="3.51" height="3.51" id="d_6_">
+			<g filter="url(#Adobe_OpacityMaskFilter_6_)">
+				<path id="c_6_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_6_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M26,85.39l-0.55-0.55l2.96-2.96l0.55,0.55
+			L26,85.39z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_7_" filterUnits="userSpaceOnUse" x="25.45" y="81.89" width="3.51" height="3.51">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="25.45" y="81.89" width="3.51" height="3.51" id="d_7_">
+			<g filter="url(#Adobe_OpacityMaskFilter_7_)">
+				<path id="c_7_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_7_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M25.45,82.43L26,81.89l2.96,2.96l-0.55,0.55
+			L25.45,82.43z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_8_" filterUnits="userSpaceOnUse" x="25.11" y="81.55" width="9.03" height="4.18">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="25.11" y="81.55" width="9.03" height="4.18" id="d_8_">
+			<g filter="url(#Adobe_OpacityMaskFilter_8_)">
+				<path id="c_8_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_8_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M25.11,84.03h4.18v-0.78h-4.18V84.03z
+			 M33.36,85.73h0.78v-4.18h-0.78V85.73z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_9_" filterUnits="userSpaceOnUse" x="32" y="81.89" width="3.51" height="3.51">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="32" y="81.89" width="3.51" height="3.51" id="d_9_">
+			<g filter="url(#Adobe_OpacityMaskFilter_9_)">
+				<path id="c_9_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_9_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M32.55,85.39L32,84.84l2.96-2.96l0.55,0.55
+			L32.55,85.39z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_10_" filterUnits="userSpaceOnUse" x="32" y="81.89" width="3.51" height="3.51">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="32" y="81.89" width="3.51" height="3.51" id="d_10_">
+			<g filter="url(#Adobe_OpacityMaskFilter_10_)">
+				<path id="c_10_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_10_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M32,82.43l0.55-0.55l2.96,2.96l-0.55,0.55
+			L32,82.43z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_11_" filterUnits="userSpaceOnUse" x="31.66" y="81.55" width="9.03" height="4.18">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="31.66" y="81.55" width="9.03" height="4.18" id="d_11_">
+			<g filter="url(#Adobe_OpacityMaskFilter_11_)">
+				<path id="c_11_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_11_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M31.66,84.03h4.18v-0.78h-4.18L31.66,84.03z
+			 M39.91,85.73h0.78v-4.18h-0.78V85.73z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_12_" filterUnits="userSpaceOnUse" x="38.54" y="81.89" width="3.51" height="3.51">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="38.54" y="81.89" width="3.51" height="3.51" id="d_12_">
+			<g filter="url(#Adobe_OpacityMaskFilter_12_)">
+				<path id="c_12_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_12_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M39.09,85.39l-0.55-0.55l2.96-2.96l0.55,0.55
+			L39.09,85.39z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_13_" filterUnits="userSpaceOnUse" x="38.54" y="81.89" width="3.51" height="3.51">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="38.54" y="81.89" width="3.51" height="3.51" id="d_13_">
+			<g filter="url(#Adobe_OpacityMaskFilter_13_)">
+				<path id="c_13_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_13_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M38.54,82.43l0.55-0.55l2.96,2.96l-0.55,0.55
+			L38.54,82.43z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_14_" filterUnits="userSpaceOnUse" x="38.21" y="81.55" width="9.03" height="4.18">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="38.21" y="81.55" width="9.03" height="4.18" id="d_14_">
+			<g filter="url(#Adobe_OpacityMaskFilter_14_)">
+				<path id="c_14_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_14_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M38.21,84.03h4.18v-0.78h-4.18V84.03z
+			 M46.46,85.73h0.78v-4.18h-0.78V85.73z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_15_" filterUnits="userSpaceOnUse" x="45.09" y="81.89" width="3.51" height="3.51">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="45.09" y="81.89" width="3.51" height="3.51" id="d_15_">
+			<g filter="url(#Adobe_OpacityMaskFilter_15_)">
+				<path id="c_15_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_15_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.64,85.39l-0.55-0.55l2.96-2.96l0.55,0.55
+			L45.64,85.39z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_16_" filterUnits="userSpaceOnUse" x="45.09" y="81.89" width="3.51" height="3.51">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="45.09" y="81.89" width="3.51" height="3.51" id="d_16_">
+			<g filter="url(#Adobe_OpacityMaskFilter_16_)">
+				<path id="c_16_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_16_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M45.09,82.43l0.55-0.55l2.96,2.96l-0.55,0.55
+			L45.09,82.43z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_17_" filterUnits="userSpaceOnUse" x="44.76" y="83.25" width="4.18" height="0.78">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="44.76" y="83.25" width="4.18" height="0.78" id="d_17_">
+			<g filter="url(#Adobe_OpacityMaskFilter_17_)">
+				<path id="c_17_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_17_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M44.76,84.03h4.18v-0.78h-4.18V84.03z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_18_" filterUnits="userSpaceOnUse" x="49.43" y="60.54" width="41.68" height="6.44">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="49.43" y="60.54" width="41.68" height="6.44" id="d_18_">
+			<g filter="url(#Adobe_OpacityMaskFilter_18_)">
+				<path id="c_18_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_18_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M91.11,66.84h-1.28v-0.86h0.43v-0.43h0.86
+			L91.11,66.84z M52.42,66.98h1.7v-1h-1.7V66.98z M55.82,66.98h1.7v-1h-1.7V66.98z M59.22,66.98h1.7v-1h-1.7L59.22,66.98
+			L59.22,66.98z M62.62,66.98h1.7v-1h-1.7C62.62,65.98,62.62,66.98,62.62,66.98z M66.02,66.98h1.7v-1h-1.7L66.02,66.98L66.02,66.98z
+			 M69.42,66.98h1.7v-1h-1.7V66.98z M72.82,66.98h1.7v-1h-1.7V66.98z M76.22,66.98h1.7v-1h-1.7V66.98z M79.62,66.98h1.7v-1h-1.7
+			V66.98z M83.02,66.98h1.7v-1h-1.7V66.98z M86.42,66.98h1.7v-1h-1.7V66.98z M50.71,66.84h-1.28v-1.28h0.86v0.43h0.43L50.71,66.84z
+			 M49.43,64.31h0.86v-1.24h-0.86V64.31z M50.29,61.83h-0.86v-1.28h1.28v0.86h-0.43V61.83z M52.42,61.54h1.7v-1h-1.7V61.54z
+			 M55.82,61.54h1.7v-1h-1.7V61.54z M59.22,61.54h1.7v-1h-1.7L59.22,61.54L59.22,61.54z M62.62,61.54h1.7v-1h-1.7
+			C62.62,60.54,62.62,61.54,62.62,61.54z M66.02,61.54h1.7v-1h-1.7L66.02,61.54L66.02,61.54z M69.42,61.54h1.7v-1h-1.7V61.54z
+			 M72.82,61.54h1.7v-1h-1.7V61.54z M76.22,61.54h1.7v-1h-1.7V61.54z M79.62,61.54h1.7v-1h-1.7V61.54z M83.02,61.54h1.7v-1h-1.7
+			L83.02,61.54L83.02,61.54z M86.42,61.54h1.7v-1h-1.7V61.54z M91.11,61.83h-0.86V61.4h-0.43v-0.86h1.28L91.11,61.83z M90.25,64.31
+			h0.86v-1.24h-0.86L90.25,64.31z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_19_" filterUnits="userSpaceOnUse" x="62.54" y="60.49" width="48.06" height="6.41">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="62.54" y="60.49" width="48.06" height="6.41" id="d_19_">
+			<g filter="url(#Adobe_OpacityMaskFilter_19_)">
+				<path id="c_19_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_19_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M62.54,66.89h48.06v-6.41H62.54V66.89z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_20_" filterUnits="userSpaceOnUse" x="64.05" y="61.81" width="26.95" height="3.97">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="64.05" y="61.81" width="26.95" height="3.97" id="d_20_">
+			<g filter="url(#Adobe_OpacityMaskFilter_20_)">
+				<path id="c_20_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_20_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M64.05,65.78h2.74v-3.97h-2.74V65.78z
+			 M68.89,65.78h2.74v-3.97h-2.74V65.78z M73.73,65.78h2.74v-3.97h-2.74V65.78z M78.57,65.78h2.74v-3.97h-2.74V65.78z M83.42,65.78
+			h2.74v-3.97h-2.74V65.78z M88.26,65.78H91v-3.97h-2.74L88.26,65.78z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_21_" filterUnits="userSpaceOnUse" x="72.91" y="90.82" width="12.07" height="6.7">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="72.91" y="90.82" width="12.07" height="6.7" id="d_21_">
+			<g filter="url(#Adobe_OpacityMaskFilter_21_)">
+				<path id="c_21_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_21_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M84.99,94.18c0,1.85-1.5,3.35-3.35,3.35
+			h-5.37c-1.85,0-3.35-1.5-3.35-3.35s1.5-3.35,3.35-3.35h5.37C83.49,90.82,84.99,92.33,84.99,94.18"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_22_" filterUnits="userSpaceOnUse" x="78.76" y="91.26" width="5.65" height="5.65">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="78.76" y="91.26" width="5.65" height="5.65" id="d_22_">
+			<g filter="url(#Adobe_OpacityMaskFilter_22_)">
+				<path id="c_22_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_22_)" fill-rule="evenodd" clip-rule="evenodd" fill="#C4D2DE" d="M84.41,94.08c0,1.56-1.26,2.82-2.82,2.83
+			c-1.56,0-2.83-1.26-2.83-2.83l0,0c0-1.56,1.26-2.82,2.82-2.82C83.15,91.26,84.41,92.52,84.41,94.08"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_23_" filterUnits="userSpaceOnUse" x="43.11" y="36.87" width="41.68" height="6.44">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="43.11" y="36.87" width="41.68" height="6.44" id="d_23_">
+			<g filter="url(#Adobe_OpacityMaskFilter_23_)">
+				<path id="c_23_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_23_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M43.11,36.87h1.28v0.86h-0.43v0.43h-0.86
+			V36.87z M80.1,37.87h1.7v-1h-1.7V37.87z M76.7,37.87h1.7v-1h-1.7V37.87z M73.3,37.87H75v-1h-1.7V37.87z M69.9,37.87h1.7v-1h-1.7
+			V37.87z M66.49,37.87h1.7v-1h-1.7V37.87z M63.09,37.87h1.7v-1h-1.7C63.09,36.87,63.09,37.87,63.09,37.87z M59.69,37.87h1.7v-1
+			h-1.7V37.87z M56.29,37.87h1.7v-1h-1.7V37.87z M52.89,37.87h1.7v-1h-1.7V37.87z M49.49,37.87h1.7v-1h-1.7V37.87z M46.09,37.87h1.7
+			v-1h-1.7V37.87z M83.5,36.87h1.28v1.28h-0.86v-0.43H83.5V36.87z M83.93,40.64h0.86v-1.24h-0.86V40.64z M83.93,41.88h0.86v1.28
+			H83.5v-0.86h0.43L83.93,41.88z M80.1,43.31h1.7v-1h-1.7V43.31z M76.7,43.31h1.7v-1h-1.7V43.31z M73.3,43.31H75v-1h-1.7L73.3,43.31
+			L73.3,43.31z M69.9,43.31h1.7v-1h-1.7V43.31z M66.49,43.31h1.7v-1h-1.7V43.31z M63.09,43.31h1.7v-1h-1.7
+			C63.09,42.31,63.09,43.31,63.09,43.31z M59.69,43.31h1.7v-1h-1.7V43.31z M56.29,43.31h1.7v-1h-1.7V43.31z M52.89,43.31h1.7v-1
+			h-1.7V43.31z M49.49,43.31h1.7v-1h-1.7V43.31z M46.09,43.31h1.7v-1h-1.7V43.31z M43.11,41.88h0.86v0.43h0.43v0.86h-1.28V41.88z
+			 M43.11,40.64h0.86v-1.24h-0.86V40.64z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_24_" filterUnits="userSpaceOnUse" x="23.57" y="36.76" width="48.06" height="6.41">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="23.57" y="36.76" width="48.06" height="6.41" id="d_24_">
+			<g filter="url(#Adobe_OpacityMaskFilter_24_)">
+				<path id="c_24_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_24_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M23.57,43.17h48.06v-6.41H23.57L23.57,43.17z
+			"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_25_" filterUnits="userSpaceOnUse" x="66.45" y="37.69" width="3.59" height="3.65">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="66.45" y="37.69" width="3.59" height="3.65" id="d_25_">
+			<g filter="url(#Adobe_OpacityMaskFilter_25_)">
+				<path id="c_25_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_25_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M66.84,39.51c0.04,0.79,0.71,1.41,1.5,1.37
+			c0.74-0.03,1.34-0.63,1.37-1.37c0-0.79-0.64-1.44-1.44-1.44C67.48,38.08,66.84,38.72,66.84,39.51 M66.45,39.51
+			c0-1.01,0.82-1.82,1.82-1.82c1.01,0.03,1.8,0.88,1.76,1.88c-0.03,0.96-0.8,1.73-1.76,1.76C67.27,41.33,66.46,40.52,66.45,39.51"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_26_" filterUnits="userSpaceOnUse" x="65.79" y="40.62" width="1.69" height="1.68">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="65.79" y="40.62" width="1.69" height="1.68" id="d_26_">
+			<g filter="url(#Adobe_OpacityMaskFilter_26_)">
+				<path id="c_26_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_26_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M66.06,42.31l1.41-1.41l-0.27-0.27
+			l-1.41,1.41L66.06,42.31z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_27_" filterUnits="userSpaceOnUse" x="46.97" y="90.03" width="21.02" height="7.92">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="46.97" y="90.03" width="21.02" height="7.92" id="d_27_">
+			<g filter="url(#Adobe_OpacityMaskFilter_27_)">
+				<path id="c_27_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_27_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFF5A9" d="M67.99,96.66c0,0.71-0.58,1.29-1.29,1.29
+			H48.26c-0.71,0-1.29-0.58-1.29-1.29v-5.34c0-0.71,0.58-1.29,1.29-1.29H66.7c0.71,0,1.29,0.58,1.29,1.29V96.66L67.99,96.66z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_28_" filterUnits="userSpaceOnUse" x="49.18" y="45.51" width="15.21" height="11.97">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="49.18" y="45.51" width="15.21" height="11.97" id="d_28_">
+			<g filter="url(#Adobe_OpacityMaskFilter_28_)">
+				<path id="c_28_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_28_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M49.18,45.51v11.97h15.21V45.51H49.18z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_29_" filterUnits="userSpaceOnUse" x="49.18" y="45.51" width="15.21" height="11.97">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="49.18" y="45.51" width="15.21" height="11.97" id="d_29_">
+			<g filter="url(#Adobe_OpacityMaskFilter_29_)">
+				<path id="c_29_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_29_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M49.18,45.51v11.97h15.21V45.51H49.18z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_30_" filterUnits="userSpaceOnUse" x="49.18" y="49.94" width="15.21" height="7.5">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="49.18" y="49.94" width="15.21" height="7.5" id="d_30_">
+			<g filter="url(#Adobe_OpacityMaskFilter_30_)">
+				<path id="c_30_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_30_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M60.2,52.35l-1.4,1.67l-3.52-4.08l-6.11,7.5
+			h15.21L60.2,52.35z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_31_" filterUnits="userSpaceOnUse" x="49.26" y="49.96" width="10.96" height="7.46">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="49.26" y="49.96" width="10.96" height="7.46" id="d_31_">
+			<g filter="url(#Adobe_OpacityMaskFilter_31_)">
+				<path id="c_31_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_31_)" fill-rule="evenodd" clip-rule="evenodd" fill="#576672" d="M55.36,57.42l-0.02-7.46l-6.07,7.46
+			L55.36,57.42z M60.23,55.7v-3.34l-1.39,1.66L60.23,55.7z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_32_" filterUnits="userSpaceOnUse" x="57.07" y="47.54" width="3.91" height="3.91">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="57.07" y="47.54" width="3.91" height="3.91" id="d_32_">
+			<g filter="url(#Adobe_OpacityMaskFilter_32_)">
+				<path id="c_32_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_32_)" fill-rule="evenodd" clip-rule="evenodd" fill="#E6FFFF" d="M60.98,49.5c0,1.08-0.87,1.96-1.95,1.96
+			c-1.08,0-1.96-0.87-1.96-1.95c0,0,0,0,0,0c0-1.08,0.88-1.95,1.96-1.95C60.1,47.54,60.98,48.42,60.98,49.5"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_33_" filterUnits="userSpaceOnUse" x="77.07" y="69.5" width="8.13" height="7.91">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="77.07" y="69.5" width="8.13" height="7.91" id="d_33_">
+			<g filter="url(#Adobe_OpacityMaskFilter_33_)">
+				<path id="c_33_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_33_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M85.2,76.12c0,0.71-0.58,1.29-1.29,1.29
+			h-5.56c-0.71,0-1.29-0.58-1.29-1.29v-5.34c0-0.71,0.58-1.29,1.29-1.29h5.56c0.71,0,1.29,0.58,1.29,1.29V76.12z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_34_" filterUnits="userSpaceOnUse" x="79.04" y="71.35" width="4.3" height="4.3">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="79.04" y="71.35" width="4.3" height="4.3" id="d_34_">
+			<g filter="url(#Adobe_OpacityMaskFilter_34_)">
+				<path id="c_34_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_34_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M83.34,72.84h-1.5v-1.5h-1.31v1.5h-1.5v1.31
+			h1.5v1.5h1.31v-1.5h1.5V72.84z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_35_" filterUnits="userSpaceOnUse" x="23.78" y="69.5" width="28.45" height="7.91">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="23.78" y="69.5" width="28.45" height="7.91" id="d_35_">
+			<g filter="url(#Adobe_OpacityMaskFilter_35_)">
+				<path id="c_35_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_35_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M52.24,76.12c0,0.71-0.58,1.29-1.29,1.29
+			H25.07c-0.71,0-1.29-0.58-1.29-1.29v-5.34c0-0.71,0.58-1.29,1.29-1.29h25.88c0.71,0,1.29,0.58,1.29,1.29V76.12z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_36_" filterUnits="userSpaceOnUse" x="47.94" y="69.5" width="8.13" height="7.91">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="47.94" y="69.5" width="8.13" height="7.91" id="d_36_">
+			<g filter="url(#Adobe_OpacityMaskFilter_36_)">
+				<path id="c_36_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_36_)" fill-rule="evenodd" clip-rule="evenodd" fill="#45525B" d="M56.08,76.12c0,0.71-0.58,1.29-1.29,1.29
+			h-5.56c-0.71,0-1.29-0.58-1.29-1.29v-5.34c0-0.71,0.58-1.29,1.29-1.29h5.56c0.71,0,1.29,0.58,1.29,1.29V76.12z"/>
+		<defs>
+			<filter id="Adobe_OpacityMaskFilter_37_" filterUnits="userSpaceOnUse" x="50.14" y="72.29" width="3.92" height="2.9">
+				<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+			</filter>
+		</defs>
+		<mask maskUnits="userSpaceOnUse" x="50.14" y="72.29" width="3.92" height="2.9" id="d_37_">
+			<g filter="url(#Adobe_OpacityMaskFilter_37_)">
+				<path id="c_37_" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M0,133h132.57V0.43H0V133z"/>
+			</g>
+		</mask>
+		<path mask="url(#d_37_)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M52.09,75.19l-1.96-2.9h3.92L52.09,75.19z"/>
+	</g>
+	<circle fill-rule="evenodd" clip-rule="evenodd" fill="#F7F7FF" cx="13" cy="132" r="13"/>
+	<circle fill-rule="evenodd" clip-rule="evenodd" fill="#F7F7FF" cx="44.5" cy="43.5" r="9.5"/>
+	<circle fill-rule="evenodd" clip-rule="evenodd" fill="#F7F7FF" cx="97.5" cy="151.5" r="9.5"/>
+</g>
+</svg>

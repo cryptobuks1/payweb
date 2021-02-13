@@ -1,0 +1,161 @@
+<ng-template [ngIf]="busAddrTemp">
+  <div class="content_card">
+    <div class="dot_bar">
+      <ul>
+        <li class="current"></li>
+
+        <li></li>
+
+      </ul>
+    </div>
+    <div class="header_txt">Enter your registered business address</div>
+    <div class="d_cont">
+      <form [formGroup]="busAddrForm">
+        <div class="form-group float_label">
+          <select [(ngModel)]="contryname" class="form-control" formControlName="country_id" id="contryname">
+            <option [ngValue]= "undefined"disabled selected hidden >Choose country</option>
+            <option *ngFor="let item of countryData" [ngValue]="item.country_id">{{item.country_name}}</option>
+          </select>
+          <label >Country</label>        
+          <div class="text text-danger error_mesg"
+            *ngIf="busAddrForm.controls['country_id'].invalid && busAddrForm.controls['country_id'].dirty">Country
+            is required</div>
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" formControlName="postal_code" (click)="noSpace()" name="postal_code" placeholder="&nbsp;" autocomplete="off" 
+          maxlength="9" minlength="4">
+          <label for="postal_code">Postal code</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="busAddrForm.controls['postal_code'].invalid && busAddrForm.controls['postal_code'].dirty">
+            Please, make sure that the postal code contains minimum 4 characters and they are digits and letters only.</div>
+
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" formControlName="address_line1"  (click)="noSpace()" name="addressline1"
+            placeholder="&nbsp;" autocomplete="off" >
+          <label  for="addressline1">Address line 1</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="busAddrForm.controls['address_line1'].invalid && busAddrForm.controls['address_line1'].dirty">
+            Please, make sure that Address line 1 contains only letters, numbers, apostrophe, hyphen and comma.
+          </div>
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" formControlName="address_line2"  (click)="noSpace()" name="addressline2"
+            placeholder="&nbsp;" autocomplete="off" >
+          <label for="addressline2">Address line 2 (Optional)</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="busAddrForm.controls['address_line2'].invalid && busAddrForm.controls['address_line2'].dirty">
+            Please, make sure that Address line 2 contains only letters, numbers, apostrophe, hyphen and comma.
+          </div>
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" formControlName="city" name="town_city" (click)="noSpace()" placeholder="&nbsp;" autocomplete="off" >
+          <label  for="town_city">Town / City</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="busAddrForm.controls['city'].dirty && busAddrForm.controls['city'].invalid">Please, make sure
+            that you have used only letters, hyphen and apostrophe</div>
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" formControlName="region" (click)="noSpace()" name="region" placeholder="&nbsp;" autocomplete="off" >
+          <label  for="region">Region</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="busAddrForm.controls['region'].invalid && busAddrForm.controls['region'].dirty">
+            Please, make sure that you are using letters only.</div>
+          </div>
+
+        <div class="row">
+          <div class="col-md-6 offset-md-6">
+            <button class="btn btn-primary btn-block" (click)="submitBusAddr(busAddrForm.value)"
+              [disabled]="busAddrForm.invalid">Continue</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</ng-template>
+<ng-template [ngIf]="operatingAddrTemp">
+  <div class="content_card">
+    <div class="dot_bar">
+      <ul>
+        <li class="completed"></li>
+
+        <li class="current"></li>
+
+      </ul>
+    </div>
+    <div class="header_txt">Enter your operating address</div>
+    <div class="d_cont">
+      <form [formGroup]="operatingAddrForm">
+        <div class="form-group">
+          <div class="form-check pd-0">
+            <input class="form-check-input ipt_ckbx" type="checkbox" value="" id="reg_chkbx" (change)="setBusAddr($event)">
+            <label class="form-check-label" for="reg_chkbx">
+              Same as registered address
+            </label>
+          </div>
+        </div>
+        <div class="form-group float_label">
+          <select class="custom-select" formControlName="country_id" id="contryname">
+            <option *ngFor="let x of countryData" [ngValue]="x.country_id">{{x.country_name}}</option>
+          </select>
+          <label for="Country">Country</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="operatingAddrForm.controls['country_id'].invalid && operatingAddrForm.controls['country_id'].dirty">
+            Country is required</div>
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" formControlName="postal_code" name="postal_code"
+          minlength="4" maxlength="9" placeholder="&nbsp;" autocomplete="off" >
+          <label  for="postal_code ">Postal code</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="operatingAddrForm.controls['postal_code'].invalid && operatingAddrForm.controls['postal_code'].dirty">
+            Please, make sure that the postal code contains minimum 4 characters and they are digits and letters only.</div>
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" name="addressline1" formControlName="address_line1"
+            placeholder="&nbsp;" autocomplete="off" >
+          <label for="addressline1" >Address line 1</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="operatingAddrForm.controls['address_line1'].invalid && operatingAddrForm.controls['address_line1'].dirty">
+            Please, make sure that Address line 1 contains only letters, numbers, apostrophe, hyphen and comma.
+          </div>
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" name="addressline2" formControlName="address_line2"
+            placeholder="&nbsp;" autocomplete="off" >
+          <label  for="addressline2">Address line 2 (Optional)</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="operatingAddrForm.controls['address_line2'].invalid && operatingAddrForm.controls['address_line2'].dirty">
+            Please, make sure that Address line 2 contains only letters, numbers, apostrophe, hyphen and comma.
+          </div>
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" name="town_city" formControlName="city" placeholder="&nbsp;" autocomplete="off" >
+          <label  for="town_city">Town / City</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="operatingAddrForm.controls['city'].invalid && operatingAddrForm.controls['city'].dirty">Please,
+            make sure that you have used only letters, hyphen and apostrophe</div>
+        </div>
+        <div class="form-group float_label ">
+          <input type="text" class="form-control address-align" (click)="noSpace()" name="region" formControlName="region" placeholder="&nbsp;" autocomplete="off" >
+          <label for="region" >Region</label>
+          <div class="text text-danger error_mesg"
+            *ngIf="operatingAddrForm.controls['region'].invalid && operatingAddrForm.controls['region'].dirty">
+            Please, make sure that you are using letters only.
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block" (click)="personalTemplate()">Previous</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" (click)="submitOperatingAddr(operatingAddrForm.value)"
+              [disabled]="operatingAddrForm.invalid">Continue</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+<!-- <div class="loading" *ngIf=apploader></div> -->

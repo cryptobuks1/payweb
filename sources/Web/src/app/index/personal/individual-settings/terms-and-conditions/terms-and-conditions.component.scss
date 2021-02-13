@@ -1,0 +1,36 @@
+.navbar{
+    background-color:#2a3477;
+    size:20px;
+    min-height: 80px;
+}
+.close{
+     color:white
+}
+.fa{
+    color:white
+}
+nav a.nav {
+    text-align: left;
+  }
+
+
+  iframe {
+    border: 0px none;
+    position: relative;
+    overflow-x: scroll !important;
+    overflow-y: scroll !important;
+    height: 100vh;
+    width: 100%;
+  }
+
+  @media (min-width: 1026px) {
+    iframe {
+    margin-top: -230px;
+    }
+  }
+
+  @media (min-width: 1834px) {
+    iframe {
+    margin-top: -190px;
+    }
+  }

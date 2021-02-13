@@ -1,0 +1,124 @@
+<!-- Personal -->
+<ng-template [ngIf]="acc_type === 'personal'">
+
+    <div *ngIf="counterParties; else find">
+      <div class="float_label row searchbar">
+         <div>
+            <input type="text" name="search" [(ngModel)]="searchText" class="form-control d-inline" placeholder="Name" autocomplete="off">
+            <label></label>
+            <i class="fa fa-search pull-right search_icn fa-lg"></i>
+            <ul class="add_itm">
+               <li><span [routerLink]="['/personal/payments/add-counterparty']">
+                  <i class="fa fa-plus"></i>Add new counterparty</span>
+               </li>
+            </ul>
+         </div>
+      </div>
+       <div class="cntry_par" *ngIf="(counterParties | filter: {full_name: searchText, email: searchText,mobile: searchText}).length != 0">
+          Your counterparties
+       </div>
+       <table class="bulk_list_view table-responsive table-padding" style="max-height: 204px;overflow-y: auto;overflow-x: hidden;">
+          <tr class="sendUser" *ngFor="let counterParty of counterParties | filter: {full_name: searchText, email: searchText,mobile: searchText}; let i=index;" (click)="selectUser(counterParty)" [class.active]="counterParty == selectedRow">
+          <td style="width:10%"><span class="itm_crcl" [class.crcle]="counterParty == selectedRow">{{ getShortName(counterParty.full_name) }}</span></td>
+          <td style="width:60%">
+             <span class="lists" [class.full_name]="counterParty == selectedRow">{{ counterParty.full_name| titlecase }}</span>
+             <!-- <div class="mrg-ngtv"><span class="fnt-sze-clr">{{ counterParty.email }} - &nbsp;</span>
+                <span class="fnt-sze-clr"> +{{ counterParty.mobile }}</span>
+             </div> -->
+             <div class="mrg-ngtv"><span class="fnt-sze-clr">{{ counterParty.email }} <span *ngIf="counterParty.email && counterParty.mobile">-</span> </span>
+               <span class="fnt-sze-clr"> {{ counterParty.mobile }}</span>
+            </div>
+          </td>
+          <td style="width:30%">
+             {{ counterParty.country_name | titlecase }}
+          </td>
+          <td style="width:10%;">
+             <span *ngIf="counterParty.is_non_payvoo_user && counterParty.is_non_payvoo_user == 1" class="non" [class.active]="counterParty == selectedRow">
+                <img style="width: 80px;" src="assets/images/non_payvoo_beta1.png"></span>
+                <span *ngIf="!counterParty.is_non_payvoo_user && counterParty.is_non_payvoo_user != 1" class="non" [class.active]="counterParty == selectedRow">
+                  <img style="width: 80px;" src="assets/images/PayVoo BETA_small.png"></span>
+                <!-- <span class="pay" [class.active]="counterParty == selectedRow">Pay<span class="voo">Voo</span></span> -->
+          </td>
+          </tr>
+       </table>
+       <div *ngIf="(counterParties | filter: {full_name: searchText, email: searchText,mobile: searchText}).length === 0">
+          <h4 class="text-center mb-5 pb-3">No data found</h4>
+       </div>
+       <div class="text-center btn_counterparty">
+          <div class="form-group">
+             <button class="btn btn-primary continue" (click)="continueAfterSelectingCounterParty()" [disabled]="!this.selectedRow">Continue</button>
+          </div>
+       </div>
+    </div>
+    <ng-template #find>
+      <div class="float_label row searchbar">
+         <div>
+            <ul class="add_itm">              
+               <li><span [routerLink]="['/personal/payments/add-counterparty']">
+                  <i class="fa fa-plus"></i>Add new counterparty</span>
+               </li>
+            </ul>
+         </div>
+      </div>
+       <p class="text-center dsply">Find a counterparty or add new one</p>
+    </ng-template>
+ </ng-template>
+ <!-- Business -->
+ <ng-template [ngIf]="acc_type === 'business'">
+
+    <div *ngIf="counterParties; else find">
+      <div class="float_label row searchbar">
+         <div>
+            <input type="text" name="search" [(ngModel)]="searchText" class="form-control d-inline" placeholder="Search by name" autocomplete="off">
+            <i class="fa fa-search pull-right search_icn fa-lg"></i>
+            <ul class="add_itm">
+               <li><span [routerLink]="['/business/payments_tab/add-counterparty']">
+                  <i class="fa fa-plus"></i>Add new counterparty</span>
+               </li>
+            </ul>
+         </div>
+      </div>
+       <div class="cntry_par" *ngIf="(counterParties | filter: {full_name: searchText, email: searchText,mobile: searchText}).length != 0">
+          Your counterparties
+       </div>
+       <table class="bulk_list_view table-responsive table-padding" style="max-height: 204px;overflow-y: auto;overflow-x: hidden;">
+          <tr class="sendUser" *ngFor="let counterParty of counterParties | filter: {full_name: searchText, email: searchText,mobile: searchText}; let i=index;" (click)="selectUser(counterParty)" [class.active]="counterParty == selectedRow">
+          <td style="width:10%"><span class="itm_crcl" [class.crcle]="counterParty == selectedRow">{{ getShortName(counterParty.full_name) }}</span></td>
+          <td style="width:60%">
+             <span class="lists" [class.full_name]="counterParty == selectedRow">{{ counterParty.full_name| titlecase}}</span>
+             <!-- <div class="mrg-ngtv"><span class="fnt-sze-clr">{{ counterParty.email }} - +{{ counterParty.mobile }}</span> -->
+               <div class="mrg-ngtv"><span class="fnt-sze-clr">{{ counterParty.email }} <span *ngIf="counterParty.email && counterParty.mobile">-</span> </span>
+                  <span class="fnt-sze-clr"> {{ counterParty.mobile }}</span>
+               </div>
+          </td>
+          <td style="width:30%">{{ counterParty.country_name | titlecase }}</td>
+          <td style="width:10%;">
+            <span *ngIf="counterParty.is_non_payvoo_user && counterParty.is_non_payvoo_user == 1" class="non" [class.active]="counterParty == selectedRow">
+               <img style="width: 80px;" src="assets/images/non_payvoo_beta1.png"></span>
+               <span *ngIf="!counterParty.is_non_payvoo_user && counterParty.is_non_payvoo_user != 1" class="non" [class.active]="counterParty == selectedRow">
+                 <img style="width: 80px;" src="assets/images/PayVoo BETA_small.png"></span>
+          </td>
+          </tr>
+       </table>
+       <div *ngIf="(counterParties | filter: {full_name: searchText, email: searchText,mobile: searchText}).length === 0">
+          <h4 class="text-center mb-5 pb-3">No data found</h4>
+       </div>
+       <div class="text-center btn_counterparty">
+          <div class="form-group">
+             <button class="btn btn-primary continue" (click)="continueAfterSelectingCounterParty()" [disabled]="!this.selectedRow">Continue</button>
+          </div>
+       </div>
+    </div>
+    <ng-template #find>
+      <div class="float_label row searchbar">
+         <div>
+            <ul class="add_itm">
+               <li><span [routerLink]="['/business/payments_tab/add-counterparty']" [queryParams]="{ name: 'counterParty'}">
+                  <i class="fa fa-plus"></i>Add new counterparty</span>
+               </li>
+            </ul>
+         </div>
+      </div>
+       <p class="text-center dsply">Find a counterparty or add new one</p>
+    </ng-template>
+ </ng-template>

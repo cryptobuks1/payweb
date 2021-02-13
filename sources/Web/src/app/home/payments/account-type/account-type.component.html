@@ -1,0 +1,69 @@
+<div class="pull-right d-inline back_btn">
+  <a routerLink="/personal/accounts/getaccount" (click)="setCSVFlag()"><i class="fa fa-arrow-left"></i> Back</a>
+</div>
+<div class="pt-5">
+  <div class="acc_navbar">
+    <ul class="nav nav-pills" role="tablist">
+      <li class="nav-item">
+        <a data-target="#payvoo_account" data-toggle="tab" class="nav-link active"
+          (click)="emitAccountType('PayVoo account')">PayVoo account</a>
+      </li>
+      <li class="nav-item">
+        <a data-target="#external_account" data-toggle="tab" class="nav-link"
+          (click)="emitAccountType('External account')">External account</a>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="payvoo_account">
+
+      <div class="row my-5">
+        <div class="col-12">
+          <span style="color:#42424c; font-weight: 500;">Choose PayVoo account to</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="account-action mr-5" (click)="goTo()">
+            <mat-card>Send&nbsp;funds</mat-card>
+          </div>
+
+          <div class="account-action" (click)="requestFunds()">
+            <mat-card>Request&nbsp;funds</mat-card>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tab-pane fade" id="external_account">
+      <div class="row my-5">
+        <div class="col-12">
+          <span style="color:#42424c; font-weight: 500;">Choose External account to</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="account-action mr-5" (click)="getApp()">
+            <mat-card>Send funds</mat-card>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="appWarn" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+    <div class="modal-content">
+      <div class="modal-body body_popup">
+      <div class="wip-container text-center bg-white">
+          <img class="wip-img" src="assets/images/payvoo-wip.png" />
+          <p style="color:black"><strong>We are getting this feature ready. We will notify you when it is done.</strong></p>
+          <button style="border-radius:4px" class="btn btn-primary btn-block" data-dismiss="modal">OK </button>
+          </div>
+          </div>
+        </div>
+  </div>
+</div>

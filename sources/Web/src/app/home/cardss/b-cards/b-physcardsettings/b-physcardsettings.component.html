@@ -1,0 +1,661 @@
+<div *ngIf="closePhys">
+  <div class="pull-right d-inline m-t-10" style="margin-right: 30px;" (click)="clickBack()">
+    <a routerLink="/business/bcards"><i class="fa fa-arrow-left"></i> Back</a>
+  </div>
+  <div class="container-fluid page_container">
+    <div class="page_header">
+      <div class="header">
+        Cards
+      </div>
+      <ul>
+        <!-- <li>Accounts/cards</li> -->
+        <li>Cards/Physical cards</li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <img class="allCards" src="../../../assets/images/cards/bblack.PNG">
+      </div>
+      <div class="col-md-3">
+        <h3>Laura Johnson</h3>
+        ** 7852 &nbsp; 10/2026
+      </div>
+      <div class="col-md-2" style="text-align: center;margin-left: -60px;">
+        <i class="fa fa-eye" style="color: #2323a4;" aria-hidden="true"></i><br>
+        <h6 style="cursor: pointer;" data-backdrop="static" data-toggle="modal" data-target="#view">View details</h6>
+      </div>
+      <div class="col-md-2" *ngIf="forFrozen" style="text-align: center;margin-left: -55px;margin-bottom: auto;">
+        <i class="fa fa-key" style="font-size:18px"></i><br>
+        <h6 style="cursor: pointer;" data-backdrop="static" data-toggle="modal" data-target="#resend"
+          (click)="onResend()">Resend PIN</h6>
+      </div>
+    </div>
+    <div class="cardSmall" *ngIf="onRes">
+      <div class="content_cnt">
+        <span style="cursor: pointer;" (click)="onSms()">SMS</span><br>
+        <span style="cursor: pointer;" (click)="onEmail()">Email</span>
+      </div>
+    </div>
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <a data-target="" data-toggle="tab" class="nav-link active" (click)="getStatement()">Transactions</a>
+        </li>
+        <li class="nav-item">
+          <a data-target="#Physical" data-toggle="tab" class="nav-link" (click)="onSettings()">Settings</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="state">
+    <span style="color: #424263;padding-left: 25px;">All transactions from start of account activity</span>
+    <span class="pull-right" style="padding-right: 25px;color: #2a3477;">Get statement</span><br><br>
+    <div align="center">
+      <img width="6%" src="../../../../assets/images/exchanges icon orange.png"><br><br>
+      <h6>No transactions found</h6>
+      <span>You haven't made any transactions yet.</span>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="cardSettings">
+    <div class="col-md-6">
+      <div class="card add_money_card left">
+        <h3 class="card_header">Card settings</h3><br>
+        <div>
+          <div class="cardMedium1" *ngIf="forFrozen1">
+                <span class="card_header_m1">Card is frozen.<br>Unfreeze it to allow payments</span>
+          </div>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td class="float-left">Card is active
+                  <p class="subtext">Freeze the card to restrict the employee from <br> making transactions</p>
+                </td>
+                <td (click)="swap()" id="freeze">Freeze</td>
+              </tr><br>
+              <tr>
+                <td class="float-left">Monthly limit
+                  <p class="subtext">Renews every first day of the month</p>
+                </td>
+                <td style="color:#AAAABB;cursor: pointer;">$ 200</td>
+              </tr><br>
+              <tr>
+                <td class="float-left">Card name</td>
+                <td style="color:#AAAABB;cursor: pointer;">My Virtual Card 1</td>
+              </tr><br>
+              <tr>
+                <td class="float-left">Expense Reporting
+                  <p class="subtext">Attach receipts,categorise and review card<br> transactions using Expenses</p>
+                </td>
+                <td style="color:#AAAABB;">
+                  <label class="switch">
+                    <input type="checkbox" (change)="onChange1()">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr><br>
+              <tr>
+                <td data-toggle="modal" data-target="#terminate" class="float-left" style="color: red;cursor: pointer;">Terminate card <br>
+                  <p class="subtext">This action is irreversible.Freeze the card if you want to temporary disable it.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card add_money_card right">
+        <h3 class="card_header">Accounts and security</h3><br>
+        <div class="cardMedium">
+          <div class="row">
+            <div class="col-md-2" style="margin-top: 5px;margin-left: 10px">
+              <img class="group" src="../../../../assets/images/Group 1796.png" />
+            </div>
+            <div class="col-md-8" data-toggle="modal" data-target="#linked">
+              <span class="card_header_m">Linked accounts</span><br>
+              <span style="font-size: 12px;">1 linked</span>
+            </div>
+          </div>
+        </div><br>
+        <div class="cardMedium" *ngIf="forFrozen">
+          <div class="row">
+            <div class="col-md-2" style="margin-top: 5px;margin-left: 10px">
+              <img class="group" src="../../../../assets/images/Group 1796.png" />
+            </div>
+            <div class="col-md-8" data-toggle="modal" data-target="#cardSecurity">
+              <span class="card_header_m">Security options</span><br>
+              <span style="font-size: 12px;">1 disabled</span>
+            </div>
+          </div>
+        </div><br>
+        <div class="cardMedium">
+          <div class="row">
+            <div class="col-md-2" style="margin-top: 5px;margin-left: 10px">
+              <img class="group" src="../../../../assets/images/Group 1796.png" />
+            </div>
+            <div class="col-md-8" data-toggle="modal" data-target="#allowedCntry">
+              <span class="card_header_m">Allowed countries</span><br>
+              <span style="font-size: 12px;">All countries are allowed</span>
+            </div>
+          </div>
+        </div><br>
+        <h3 class="card_header">Cardholder</h3><br>
+        <div class="cardMedium">
+          <div class="row">
+            <div class="col-md-2" style="margin-top: 5px;margin-left: 10px">
+              <img class="group" src="../../../../assets/images/Group 1796.png" />
+            </div>
+            <div class="col-md-8">
+              <span class="card_header_m">Laura Johnson</span><br>
+              <span style="font-size: 12px;">2 Cards</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal hide" id="view">
+  <div class="modal-dialog neverShare" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <img width="240px" style="margin-top: 35px;" src="../../../assets/images/cards/bblack.PNG">
+        </div><br>
+        <p class="cardImg" align="center">Never share or take screenshots of card images</p><br><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal model_top" id="spendLimit">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content">
+      <div class="modal-body ">
+        <h4 class="spendLimit" align="center">Set spending limit</h4>
+      </div>
+      <div class="form-group float_label col-md-4">
+        <select class="form-control" style="border-bottom: none;width: 85px;margin-left: 70px;"
+          formControlName="country_id" id="contryname">
+          <option value="" disabled selected hidden>BGN</option>
+        </select>
+        <label for="contryname"></label>
+      </div>
+      <div style="margin-left: 250px;margin-top: -65px;" class="float_label col-md-6">
+        <input type="text" #month>
+        <label>Monthly limit</label>
+      </div>
+      <div class="panel-footer">
+        <div class="row1">
+          <div class="col-xs-6 col-md-6">
+            <div>
+              <button style="border-radius:4px" class="btn btn-primary btn-block" data-dismiss="modal"
+                (click)="onConfirm(month.value)">Confirm</button>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6 pull-right" style="margin-top: -37px;">
+            <div>
+              <button style="margin-top: -13px;border-radius:4px" class="btn btn-outline-primary btn-block"
+                data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal model_top" id="removeCrd">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content" style="width: 500px;">
+      <div class="modal-body" align="center">
+        <img src="../../../../assets/images/icons/delete_icon.png" alt=""> <br><br>
+        <h4>Are you sure you want to<br>remove this card?</h4>
+      </div>
+      <div>
+        <p style="color:#AAAABB;">This action is irreversible. If you want to just<br>temporary disable
+          this card, you can freeze it in<br>settings.</p><br><br>
+      </div>
+      <div class="panel-footer">
+        <div class="row2">
+          <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+              <button  class="btn btn-primary btn-block" data-backdrop="static" data-toggle="modal"
+                data-target="#removed" (click)="closeRemove()">Remove</button>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="removed">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content" align="center">
+      <div class="modal-body ">
+        <div class="text-center">
+          <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png">
+        </div><br><br>
+        <h4>Card was removed</h4><br>
+      </div>
+      <div class="panel-footer">
+        <div class="form-group col-md-4">
+          <button class="btn btn-primary btn-block" style="margin-bottom: 30px;" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="block">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content" style="width: 500px;">
+      <div class="modal-body" align="center" style="margin-top: 15px;">
+        <h4>Block your card</h4>
+      </div>
+      <div>
+        <p style="color:#AAAABB;padding-left: 20px; padding-right: 20px;" align="center">A representative will block
+          your card and notify your bank immediately.</p><br><br>
+      </div>
+      <div class="panel-footer">
+        <div class="row2">
+          <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+              <button style="border-radius:4px" class="btn btn-primary btn-block" data-backdrop="static" data-toggle="modal"
+                data-target="#reported" (click)="closeReport()">Report & Deactivate</button>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6 pull-right">
+            <div class="form-group">
+              <button class="btn btn-outline-primary btn-block" style="margin-top: -53px;border-radius:4px" data-dismiss="modal">Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="reported">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content" align="center">
+      <div class="modal-body ">
+        <div class="text-center">
+          <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png">
+        </div><br><br>
+        <h5>Your card was reported!</h5><br>
+      </div>
+      <div class="panel-footer">
+        <div class="form-group col-md-4">
+          <button class="btn btn-primary btn-block" style="margin-bottom: 30px;" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal model_top" id="pinCode">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="margin-top: 100px;">
+      <div class="modal-body">
+        <div class="text-center">
+          <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png">
+        </div><br><br>
+        <div align="center" style="margin-top: -25px;margin-bottom: 25px;">
+          <h6>We've sent a PIN code to<br>+356 887 45 86 96</h6>
+          <span> Your code should arrive in 0:56</span><br>
+        </div>
+        <div class="footer">
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block ">Resend</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="onDone1()">Done</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="emailCode">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="margin-top: 100px;">
+      <div class="modal-body">
+        <div class="text-center">
+          <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png">
+        </div><br><br>
+        <div align="center" style="margin-top: -25px;margin-bottom: 25px;">
+          <h6>We've sent a PIN code to<br>v.grozeva@sepa-cyber.com</h6>
+          <span> Your code should arrive in 0:56</span><br>
+        </div>
+        <div class="footer">
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block ">Resend</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="onDone2()">Done</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="linked">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content link">
+      <div class="modal-body ">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button> <br><br>   
+        <div class="container" style="text-align: center;">
+          <h3 class="card_header">Link Accounts to the card</h3><br>
+          <p style="font-size: 12px;">If there is more than 1 account linked to this card, the currency of the card <br>
+            transaction will determine which of the linked accounts will be changed.</p>                
+      </div>
+      <div class="acc_navbar">
+        <ul class="nav nav-pills" role="tablist">
+          <li class="nav-item col-md-6">
+            <a  data-toggle="tab" class="nav-link active">Currency</a>
+          </li>
+          <li class="nav-item col-md-6">
+            <a data-toggle="tab" class="nav-link">Balance</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex flexborder">
+          <div class="p-2  align-self-center">
+              <span><img src="../../../../assets/images/euro.png"></span>
+          </div>
+          <div class="p-2">
+              <p class="m-b-0">EURO</p>
+              <small>Bal : EUR 0</small>
+          </div>
+          <div class="ml-auto p-2  align-self-center">
+              <div class="switch_box box_1">
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+          </div>
+      </div>   
+      <div class="d-flex flexborder">
+          <div class="p-2  align-self-center">
+              <span><img src="../../../../assets/images/euro.png"></span>
+          </div>
+          <div class="p-2">
+              <p class="m-b-0">EURO</p>
+              <small>Bal : EUR 0</small>
+          </div>
+          <div class="ml-auto p-2  align-self-center">
+              <div class="switch_box box_1">
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+          </div>
+      </div>
+
+      <div class="d-flex flexborder">
+          <div class="p-2  align-self-center">
+              <span><img src="../../../../assets/images/euro.png"></span>
+          </div>
+          <div class="p-2">
+              <p class="m-b-0">EURO</p>
+              <small>Bal : EUR 0</small>
+          </div>
+          <div class="ml-auto p-2  align-self-center">
+            <div class="switch_box box_1">
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+      </div>
+      <div class="footer" style="margin-top: 20px; margin-bottom: 10px;">
+        <div class="row" >
+          <div class="col-md-6" >
+              <button 
+                  class="btn btn-outline-primary btn-block" data-dismiss="modal" >Previous</button>
+          </div>
+          <div class="col-md-6">
+              <button class="btn btn-primary btn-block" data-dismiss="modal">Continue</button>
+          </div>
+      </div>
+    </div>    
+      </div>    
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="cardSecurity">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content secSett">
+      <div class="modal-body ">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button> <br><br>
+        <div style="text-align: center">
+          <h4>Card security settings</h4>
+          <img style="width:5%;" src="../../../../assets/images/cards/mastercard.png" /><span
+            style="padding-left: 10px;">**7852 10/2026</span>
+        </div><br>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td class="float-left">Location-based security
+                <p class="subtext">We'll use your location to help prevent fraudulent transactions if your card is ever
+                  compromised.GPS
+                  must be turned on.</p>
+              </td>
+              <td>
+                <label class="switch">
+                  <input type="checkbox" >
+                  <span class="slider1 round1"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Swipe payments
+                <p class="subtext">Sometimes cards can be cloned.Switch off the magnetic stripe for extra security.</p>
+              </td>
+              <td>
+                <label class="switch">
+                  <input type="checkbox" >
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Contactless payments
+                <p class="subtext">If you do not use contactless payments,you can switch them off for extra security.
+                </p>
+              </td>
+              <td>
+                <label class="switch">
+                  <input type="checkbox" >
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">ATM withdrawals
+                <p class="subtext">If you do not plan to withdraw cash,you can switch ATM withdrwals off.</p>
+              </td>
+              <td>
+                <label class="switch">
+                  <input type="checkbox" >
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Online transactions
+                <p class="subtext">Internet based transactions are generally high-risk. You can switch them off for
+                  extra
+                  security.</p>
+              </td>
+              <td>
+                <label class="switch">
+                  <input type="checkbox" >
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+          </tbody>
+        </table><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal model_top" id="allowedCntry">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content allCntry">
+      <div class="modal-body" style="margin-left: 25px;">
+        <div style="text-align: center">
+          <h4>Allowed Countries</h4>
+          <span>Allow or restrict perchases in selected countries</span>
+        </div><br>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td>
+                <input class="search" type="text" placeholder="Search by Country name">
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Aland Island</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Albania</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">American Samoa</td>
+              <td>
+                <input type="checkbox">
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Andorra</td>
+              <td>
+                <input type="checkbox">
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Anguilla</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Antarctica</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Antigua and Barbuda</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Argentina</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Argentina</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Armeina</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Aruba</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Australia</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Astria</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+          </tbody>
+        </table><br>
+      </div>
+      <div class="panel-footer" align="center">
+        <div class="form-group col-md-6">
+          <button class="btn btn-primary btn-block" style="margin-bottom: 30px;" data-dismiss="modal">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="terminate">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <img src="../../../../assets/images/icons/delete_icon.png" alt=""> <br><br>
+        <h5 >Are you sure you want to<br>terminate this card?</h5>
+        <div>
+          <h6 style="color:#808080;">This action is irreversible.If you want to just<br>temporary
+            disable this card,you can freeze it in<br>settings.</h6><br><br>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-6 col-md-6">
+              <div class="form-group">
+                <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="remove()">Terminate</button>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+              <div class="form-group">
+                <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

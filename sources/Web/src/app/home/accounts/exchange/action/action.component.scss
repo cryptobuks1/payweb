@@ -1,0 +1,225 @@
+@import "../../../../../variables";
+
+.page_container {
+  padding: 15px 25px;
+}
+
+.additm {
+  color: $color-secondary;
+  padding: 15px 10px;
+  pointer-events: none;
+  cursor: pointer;
+  .additm_icn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $color-secondary;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 40px;
+    margin-right: 20px;
+    pointer-events: auto;
+  }
+  // border-bottom: 1px solid $font-teritary;
+}
+.additm span{
+  pointer-events: auto;
+}
+#ser {
+  width: 226px;
+  margin-left: 42px;
+  border-radius: 16px;
+}
+
+.modal-dialog {
+  top: 60px;
+  position: relative;
+}
+
+.form-control {
+  margin-left: 10px;
+}
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  margin-left: 10px;
+  bottom: 12px;
+  position: relative;
+}
+
+//action list styles
+
+.action_itm_cnt {
+  display: block;
+  border-bottom: 1px solid #dadada;
+  padding: 15px 10px;
+  .lft_itm {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .rt_itm {
+    float: right;
+    width: 30px;
+    height: 30px;
+    border: 1px solid $color-danger;
+    color: $color-danger;
+    text-align: center;
+    line-height: 27px;
+    font-size: 16px;
+    border-radius: 50%;
+    padding: 0px;
+    cursor: pointer;
+  }
+  .action_icn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    background: $font-color;
+    color: #ffffff;
+    border-radius: 50%;
+    line-height: 34px;
+    font-size: 1rem;
+    text-align: center;
+    margin-right: 20px;
+  }
+  .action_itm {
+    display: inline-block;
+    vertical-align: middle;
+    h5 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0px;
+    }
+    p {
+      font-size: 0.825rem;
+      color: $font-color;
+      margin: 0px;
+    }
+  }
+}
+.autoex-heading {
+  margin-left: 100px;
+}
+.val_inpt {
+  float: right;
+  input {
+    border: none;
+    border-bottom: 2px solid $font-color;
+    border-radius: 0px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+.modal-title {
+  text-align: center;
+}
+
+.exchng_act_cnt {
+  position: relative;
+  text-align: center;
+  border: none;
+  padding: 30px 40px;
+  cursor: pointer;
+  .img_cnt {
+    margin-bottom: 20px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+  .content_cnt {
+    h5 {
+      color: $font-color-active;
+      font-weight: 500;
+    }
+    p {
+      color: $font-color;
+    }
+  }
+}
+
+.alrt_itm_lne::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 70%;
+  background: $font-teritary;
+  left: 0;
+  top: 15%;
+}
+
+@media (max-width: 768px) {
+  .action_itm_cnt {
+    padding: 0px 0px;
+    .action_icn {
+      display: inline-block;
+      width: 21px;
+      height: 21px;
+      line-height: 20px;
+      font-size: 16px;
+      border-radius: 50%;
+      padding: 0px;
+      cursor: pointer;
+      margin-right: 3px;
+    }
+    .rt_itm {
+      float: right;
+      width: 20px;
+      height: 20px;
+
+      line-height: 17px;
+      font-size: 16px;
+      border-radius: 50%;
+      padding: 0px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+  }
+  .alrt_itm_lne::after {
+    width: 70%;
+    height: 1px;
+    background: $font-teritary;
+    left: 15%;
+    top: 0;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .action_itm_cnt {
+    padding: 0px 0px;
+    .action_icn {
+      display: inline-block;
+      width: 21px;
+      height: 21px;
+      line-height: 20px;
+      font-size: 16px;
+      border-radius: 50%;
+      padding: 0px;
+      cursor: pointer;
+      margin-right: 3px;
+    }
+    .rt_itm {
+      float: right;
+      width: 30px;
+      height: 30px;
+
+      line-height: 27px;
+      font-size: 16px;
+      border-radius: 50%;
+      padding: 0px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+  }
+  .additm {
+    padding: 15px 0px;
+  }
+}

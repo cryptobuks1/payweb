@@ -1,0 +1,154 @@
+<div class="pull-right d-inline back_btn">
+  <div *ngIf="isPersonal">
+  <a routerLink="/personal/payments/payment-type"><i class="fa fa-arrow-left"></i> Back</a>
+  </div>
+  <div *ngIf="!isPersonal">
+    <a routerLink="/business/payments/payment-type"><i class="fa fa-arrow-left"></i> Back</a>
+    </div>
+</div>
+<div class="card page_ht_crd">
+
+  <div class="acc_navbar">
+    <ul class="nav nav-pills" role="tablist">
+      <li *ngIf="accountType == 'business'" class="nav-item w-100">
+        <a data-target="#bulk" data-toggle="tab" class="nav-link active">Bulk payment</a>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="!csvPayment">
+    <div class="tab-content px-4 py-3">
+      <div class="tab-pane fade" id="single">
+        <app-singlepayments></app-singlepayments>
+      </div>
+      <div class="tab-pane fade show active" id="bulk">
+        <div class="abovetable">
+          <span>{{CounterPartyList?.length}} Payments</span>
+        </div>
+        <table *ngIf="CounterPartyList.length > 0" class="bulk_list_view table-responsive"
+          style="max-height: 244px;overflow-y: auto;overflow-x: hidden;">
+          <tr style="line-height:2">
+            <td class="dark" colspan="2" style="width:40%"><span>Name and account</span></td>
+            <td class="dark"><span>Currency</span></td>
+            <td class="dark"><span>Reference</span></td>
+            <td class="dark"><span> Amount</span></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr id="item{{i}}" *ngFor="let counterParty of CounterPartyList | filter:searchText; let i = index;">
+            <td style="width:6%"><span class="itm_crcl">{{getShortName(counterParty.full_name )}}</span></td>
+            <td style="width:31%">
+              <span class="lists">{{counterParty.full_name | titlecase}}</span>
+              <p class="para1">{{counterParty.currency}} - {{counterParty.account_no}}</p>
+            </td>
+            <td style="width:35%">
+              <div class="form-group float_label amount_table_data ">
+                <select formControlName="selectedOption" class="form-control" (change)="changeAcc($event)">
+                  <option *ngFor="let acc of accountData">{{ acc.currency }}</option>
+               </select>
+              </div>
+            </td>
+            <td style="width:30%">
+              <div class="form-group float_label reference_table_data ">
+                <textarea class="form-control" maxlength="30" minlength="1" autocomplete="off"
+                  [(ngModel)]="counterParty.referenceText" name="id{{i}}" id="id{{i}}" placeholder=""></textarea>
+              </div>
+            </td>
+            <td style="width:35%">
+              <div class="form-group float_label amount_table_data ">
+                <input step="0.01" (keyup)="totalBalance($event)" maxlength="10" minlength="1" autocomplete="off"
+                  [(ngModel)]="counterParty.balance" name="bal{{i}}" id="bal{{i}}" (keypress)="onlyNumberKey($event)"
+                  class="form-control amount" style="width: 117px;" placeholder="">
+              </div>
+            </td>
+            <td style="width:5%">
+              <div class="tooltip1">
+                <img (click)="copyObject(counterParty)" src="../../../../assets/images/copy-content.png"
+                  style="padding-right:30px;">
+                <span class="tooltiptext">Copy</span>
+              </div>
+            </td>
+            <td style="width:5%">
+              <div class="tooltip2">
+                <img (click)="confirmRemveObj(counterParty)" src="../../../../assets/images/Group 743.png"
+                  style="padding-right:10px;">
+                <span class="tooltiptext">Delete</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <button [disabled]='!check_bal || (count?.length!=CounterPartyList?.length)' (click)="continue($event)"
+            class="btn btn-primary col-4 offset-4">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="csvPayment">
+    <div class="tab-content px-4 py-3">
+      <div class="tab-pane fade" id="single">
+        <app-singlepayments></app-singlepayments>
+      </div>
+      <div class="tab-pane fade show active" id="bulk">
+        <div class="abovetable">
+          <span>{{bulkData?.length}} Payments</span>
+        </div>
+
+        <table class="bulk_list_view table-responsive" style="max-height: 244px;overflow-y: auto;overflow-x: hidden;">
+          <tr style="line-height:2">
+            <td class="dark" colspan="2" style="width:40%"><span>Name and account</span></td>
+            <td class="dark"><span>Reference</span></td>
+            <td class="dark"><span> Amount</span></td>
+          </tr>
+
+          <tr id="item{{i}}" *ngFor="let bulk of bulkData | filter:searchText; let i = index;">
+            <td style="width:6%"><span class="itm_crcl">{{getShortName(bulk['Name of counterparty'])}}</span></td>
+            <td style="width:31%">
+              <span class="lists">{{bulk['Name of counterparty'] | titlecase}}</span>
+              <p class="para1">{{bulk['Recipient account currency']}}</p>
+            </td>
+            <td style="width:30%">
+              <div class="form-group float_label reference_table_data ">
+                <input readonly class="form-control" autocomplete="off" [(ngModel)]="bulk['Reference']" name="id{{i}}"
+                  id="id{{i}}" placeholder="">
+              </div>
+            </td>
+            <td style="width:22%">
+              <div class="form-group float_label amount_table_data ">
+                <input readonly autocomplete="off" [(ngModel)]="bulk['Amount']" name="bal{{i}}" id="bal{{i}}"
+                  (keypress)="onlyNumberKey($event)" class="form-control" placeholder="">
+              </div>
+            </td>
+
+          </tr>
+        </table>
+        <div>
+          <button (click)="continue($event)" class="btn btn-primary col-4 offset-4">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="confirmalert" role="dialog">
+  <div class="modal-dialog modal-sm modal-dialog-centered" style="margin-left: 38%; margin-top: -5%">
+    <div class="modal-content">
+      <div class="modal-body body_popup">
+        <div class="add_money">
+          <h4 style="text-align: center;">Alert</h4><br>
+          <p style="text-align: center;">Are you sure, do you want to delete this counter party?</p><br>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">No</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block" (click)="removeObject(counterpartyObj)"
+                data-dismiss="modal">Yes</button>
+            </div>
+          </div><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

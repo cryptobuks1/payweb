@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="additm" id="AddNew" data-toggle="modal" data-target="#createCurrency" (click)="getCountrydetails()">
+    <div class="additm_icn">
+      <i class="fa fa-plus"></i>
+    </div>
+    <span>Add currency pair</span>
+  </div>
+  <div class="exchn_content">
+    <div class="row exchnge_bdr" *ngFor="let curr of ratesData; let i = index">
+      <div class="col-md-2">
+        <span>1</span><br>
+        <span>{{curr.from_currency}}</span>
+      </div>
+      <div class="col-md-8">
+        <!-- <span><img src="../../../../../assets/images/rates.png" width="70" height="30"></span> -->
+        <highcharts-chart *ngIf = "fixerDetails && curr.chartOptions?.series[0].data.length > 0"
+        [Highcharts]="highcharts"
+        [options]=curr.chartOptions
+        style="display: block;">
+        </highcharts-chart>
+      </div>
+      <div class="col-md-2">
+        <div class="d-flex justify-content-between one">
+          <div class="two">
+            <!-- <span>{{curr.rates.toFixed(2)}}</span><br> -->
+            <span *ngIf="curr.rates && curr.rates.length > 0">{{curr.rates[curr.rates.length - 1].currency.toFixed(4)}}</span><br>
+            <span>{{curr.to_currency}}</span>
+          </div>
+          <div style="margin-top: 20px;" class="del_cntr" (click)="deleteRate(curr.check_rates_id, i)">
+            <span><i class="fa fa-trash-o cursor_pointer text-danger " aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="rates_cntr" *ngFor="let curr of ratesData">
+      <div class="frm_cncy">
+        1
+        <span>{{curr.from_currency}}</span>
+      </div>
+      <div style="margin-left: 45%;">
+        <span><img src="../../../../../assets/images/rates.png" width="70" height="30"></span>
+      </div>
+      <div class="del_cntr" (click)="deleteRate(curr.check_rates_id)">
+        <i class="fa fa-trash-o cursor_pointer text-danger " aria-hidden="true"></i>
+      </div>
+      <div class="to_cncy" >
+        {{curr.rates.toFixed(4)}}
+        <span>{{curr.to_currency}}</span>
+      </div>
+
+    </div> -->
+
+    <!-- <div class="paginationControl" >
+      <pagination-controls (pageChange)="currentPage=$event" autoHide="true"></pagination-controls>
+    </div> -->
+  </div>
+
+</div>
+<!--Create currency -->
+<div class="modal fade" id="createCurrency" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-slideout modal-sm" role="document">
+  <div class="modal-content ov_y_auto">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Choose a currency to add</h5>
+      <button type="button" class="close" data-dismiss="modal" (click)="clear_Details()" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="ctry_cnt">
+      <form [formGroup]="currencyFB">
+        <div class="form-group float_label">
+          <label for="sel1">From currency</label>
+          <select *ngIf="showSelects" formControlName="from_currency" class="form-control">
+            <option *ngFor="let country of CountryDetails" [selected]="country.currency.toUpperCase() =='EUR'">
+              {{country.currency}}
+            </option>
+          </select>
+
+        </div>
+        <div class="form-group float_label ">
+          <label for="sel1">To currency</label>
+          <select *ngIf="showSelects" formControlName="to_currency" class="form-control">
+            <option *ngFor="let country1 of CountryDetails" [selected]="country1.currency.toUpperCase() =='USD'">
+              {{country1.currency}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" type="button"  data-dismiss="modal"
+          (click)="CreateRates()"> Add currency pair </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

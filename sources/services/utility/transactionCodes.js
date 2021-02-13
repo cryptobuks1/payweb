@@ -1,0 +1,31 @@
+export const transactionCodes = {
+    codes:{
+        TransactionApproved:11,
+        RefertoIssuer:1,
+        RefertoIssuerSpecial:2,
+        NoMerchant:3,
+        PickUpCard:4,
+        DoNotHonour:5,
+        Error:6,
+        HonourwithIdentification:8,
+        RequestinProgress:9,
+        ApprovedforPartialAmount:10,
+        InvalidTransaction:12,
+        InvalidAmount:13,
+        InvalidCardNumber:14,
+        NoIssuer:15,
+        ReEnterLastTransaction:19,
+        NoActionTaken:21,
+        SuspectedMalfunction:22,
+        UnacceptableTransactionFee:23,
+        UnabletoLocateRecordonFile:25,
+        FormatError:30,
+        BankNotSupportedbySwitch:31,
+        ExpiredCardCapture:33,
+        SuspectedFraudRetainCard:34,
+        CardAcceptorContactAcquirerRetainCard:35,
+        RestrictedCardRetainCard:36,
+        ContactAcquirerSecurityDepartmentRetainCard:37,
+        PINTriesExceededCapture:38
+    }
+}

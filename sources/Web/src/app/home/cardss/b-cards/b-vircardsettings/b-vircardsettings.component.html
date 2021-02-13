@@ -1,0 +1,513 @@
+<div *ngIf="closeVir">
+  <div class="pull-right d-inline m-t-10" style="margin-right: 30px;" (click)="clickBack()">
+    <a routerLink="/business/bcards"><i class="fa fa-arrow-left"></i> Back</a>
+  </div>
+  <div class="container-fluid page_container">
+    <div class="page_header">
+      <div class="header">
+        Cards
+      </div>
+      <ul>
+        <!-- <li>Accounts/cards</li> -->
+        <li>Cards/Virtual cards</li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <img class="allCards" src="../../../assets/images/cards/EasyVoo_v.PNG">
+      </div>
+      <div class="col-md-3">
+        <h3>Vanya Grozeva</h3>
+        ** 7852 &nbsp; 10/2026
+      </div>
+      <div class="col-md-2" style="text-align: center;">
+        <i class="fa fa-eye" style="color: #2323a4;" aria-hidden="true"></i><br>
+        <h6 style="cursor: pointer;" data-backdrop="static" data-toggle="modal" data-target="#view">View details</h6>
+      </div>
+    </div>
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <a data-target="" data-toggle="tab" class="nav-link active" (click)="getStatement()">Transactions</a>
+        </li>
+        <li class="nav-item">
+          <a data-target="" data-toggle="tab" class="nav-link" (click)="onSettings()">Settings</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="state">
+    <span style="color: #424263;padding-left: 25px;">All transactions from start of account activity</span>
+    <span class="pull-right" style="padding-right: 25px;color: #2a3477;">Get statement</span><br><br>
+    <div align="center">
+      <img width="6%" src="../../../../assets/images/exchanges icon orange.png"><br><br>
+      <h6>No transactions found</h6>
+      <span>You haven't made any transactions yet.</span>
+    </div>
+  </div>
+
+
+  <div class="row" *ngIf="cardSettings">
+    <div class="col-md-6">
+      <div class="card add_money_card left">
+        <h3 class="card_header">Card settings</h3><br>
+        <div>
+          <div class="cardMedium1" *ngIf="forFrozen1">
+            <span class="card_header_m1">Card is frozen.<br>Unfreeze it to allow payments</span>
+          </div>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td class="float-left">Card is active
+                  <p class="subtext">Freeze the card to restrict the employee from <br> making transactions</p>
+                </td>
+                <td (click)="swap()" id="freeze">Freeze</td>
+              </tr><br>
+              <tr>
+                <td class="float-left">Monthly limit
+                  <p class="subtext">Renews every first day of the month</p>
+                </td>
+            <td style="color:#AAAABB;cursor: pointer;" data-toggle="modal" data-target="#monthlyLimit">{{limit}}</td>
+              </tr><br>
+              <tr>
+                <td class="float-left">Card name
+                </td>
+                <td style="cursor: pointer;" data-toggle="modal" data-target="#nameCard">{{nameInput}}</td>
+              </tr><br>
+              <tr>
+                <td class="float-left">Expense Reporting
+                  <p class="subtext">Attach receipts,categorise and review card<br> transactions using Expenses</p>
+                </td>
+                <td style="color:#AAAABB;">
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr><br>
+              <tr data-toggle="modal" data-target="#removeCrd">
+                <td class="float-left" style="color: red;cursor: pointer;">Terminate card <br>
+                  <p class="subtext">This action is irreversible.Freeze the card if you want to temporary disable it.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card add_money_card right">
+        <h3 class="card_header">Accounts </h3><br>
+        <div class="cardMedium">
+          <div class="row">
+            <div class="col-md-2" style="margin-top: 7px;margin-left: 10px">
+              <img group src="../../../../assets/images/Group 1796.png" />
+            </div>
+            <div class="col-md-8" data-toggle="modal" data-target="#linked">
+              <span class="card_header_m">Linked accounts</span><br>
+              <span style="font-size: 12px;">1 linked</span>
+            </div>
+          </div>
+        </div><br>
+        <div class="cardMedium">
+          <div class="row">
+            <div class="col-md-2" style="margin-top: 7px;margin-left: 10px">
+              <img group src="../../../../assets/images/Group 1796.png" />
+            </div>
+            <div class="col-md-8" data-toggle="modal" data-target="#allowedCntry">
+              <span class="card_header_m">Allowed countries</span><br>
+              <span style="font-size: 12px;">All countries are allowed</span>
+            </div>
+          </div>
+        </div><br>
+        <h3 class="card_header">Cardholder</h3><br>
+        <div class="cardMedium">
+          <div class="row">
+            <div class="col-md-2" style="margin-top: 7px;margin-left: 10px">
+              <img group src="../../../../assets/images/Group 1796.png" />
+            </div>
+            <div class="col-md-8">
+              <span class="card_header_m">Laura Johnson</span><br>
+              <span style="font-size: 12px;">2 Cards</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="linked">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content link">
+      <div class="modal-body ">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button> <br><br>   
+        <div class="container" style="text-align: center;">
+          <h3 class="card_header">Link Accounts to the card</h3><br>
+          <p style="font-size: 12px;">If there is more than 1 account linked to this card, the currency of the card <br>
+            transaction will determine which of the linked accounts will be changed.</p>                
+      </div>
+      <div class="acc_navbar">
+        <ul class="nav nav-pills" role="tablist">
+          <li class="nav-item col-md-6">
+            <a  data-toggle="tab" class="nav-link active">Currency</a>
+          </li>
+          <li class="nav-item col-md-6">
+            <a data-toggle="tab" class="nav-link">Balance</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex flexborder">
+          <div class="p-2  align-self-center">
+              <span><img src="../../../../assets/images/euro.png"></span>
+          </div>
+          <div class="p-2">
+              <p class="m-b-0">EURO</p>
+              <small>Bal : EUR 0</small>
+          </div>
+          <div class="ml-auto p-2  align-self-center">
+              <div class="switch_box box_1">
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+          </div>
+      </div>   
+      <div class="d-flex flexborder">
+          <div class="p-2  align-self-center">
+              <span><img src="../../../../assets/images/euro.png"></span>
+          </div>
+          <div class="p-2">
+              <p class="m-b-0">EURO</p>
+              <small>Bal : EUR 0</small>
+          </div>
+          <div class="ml-auto p-2  align-self-center">
+              <div class="switch_box box_1">
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+          </div>
+      </div>
+
+      <div class="d-flex flexborder">
+          <div class="p-2  align-self-center">
+              <span><img src="../../../../assets/images/euro.png"></span>
+          </div>
+          <div class="p-2">
+              <p class="m-b-0">EURO</p>
+              <small>Bal : EUR 0</small>
+          </div>
+          <div class="ml-auto p-2  align-self-center">
+            <div class="switch_box box_1">
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+      </div>
+      <div class="footer" style="margin-top: 20px; margin-bottom: 10px;">
+        <div class="row" >
+          <div class="col-md-6" >
+              <button 
+                  class="btn btn-outline-primary btn-block" data-dismiss="modal" >Previous</button>
+          </div>
+          <div class="col-md-6">
+              <button class="btn btn-primary btn-block" data-dismiss="modal">Continue</button>
+          </div>
+      </div>
+    </div>    
+      </div>    
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="allowedCntry">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content allCntry">
+      <div class="modal-body" style="margin-left: 25px;">
+        <div style="text-align: center">
+          <h4>Allowed Countries</h4>
+          <span>Allow or restrict perchases in selected countries</span>
+        </div><br>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td>
+                <input class="search" type="text" placeholder="Search by Country name">
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Aland Island</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Albania</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">American Samoa</td>
+              <td>
+                <input type="checkbox">
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Andorra</td>
+              <td>
+                <input type="checkbox">
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Anguilla</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Antarctica</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Antigua and Barbuda</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Argentina</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Argentina</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Armeina</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Aruba</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Australia</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+            <tr>
+              <td class="float-left">Astria</td>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+            </tr>
+          </tbody>
+        </table><br>
+      </div>
+      <div class="panel-footer" align="center">
+        <div class="form-group col-md-6">
+          <button class="btn btn-primary btn-block" style="margin-bottom: 30px;" data-dismiss="modal">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="cardsback">
+  <app-b-newvirtual></app-b-newvirtual>
+</div>
+<div class="modal hide" id="view">
+  <div class="modal-dialog neverShare" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <img width="240px" style="margin-top: 35px;" src="../../../assets/images/cards/EasyVoo_v.PNG">
+        </div><br>
+        <p class="cardImg" align="center">Never share or take screenshots of card images</p><br><br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="unblockCVV" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body body_popup"><br><br><br>
+        <h5 align="center">Unblock CVV code?</h5><br><br><br>
+        <div class="row" style="padding-top:10px; padding-bottom: 20px;">
+          <div class="col-md-6 pull-right">
+            <button class="btn btn-outline-primary btn-block" style="margin-left: -15px; width: 113%;border-radius:4px"
+              data-backdrop="static" data-toggle="modal" data-target="#attempts3" (click)="threeTimes()">I want three
+              more tries</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" style="margin-left: 5px;border-radius:4px" data-toggle="modal"
+              data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="attempts3" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body body_popup" align="center">
+        <h5 class="attempt">You have 3 more attempts for CVV code</h5>
+        <p class="view">You can view your CVV code in your PayVoo App.</p>
+        <div class="panel-footer">
+          <div class="form-group col-md-4">
+            <button style="width: 180%; margin-left: -50px;" class="btn btn-primary btn-block" data-dismiss="modal"
+              data-backdrop="static">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal model_top" id="monthlyLimit">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <h4 class="spendLimit">Monthly limit</h4>
+        <div class="row">
+          <div class="form-group float_label col-md-3" style="margin-left: 35px;padding-right: 2px;">
+            <select class="form-control" formControlName="country_id"
+              id="contryname">
+              <option value="" disabled selected hidden>BGN</option>
+            </select>
+            <label for="contryname"></label>
+          </div>
+          <div class="float_label col-md-6" style="margin-top: 14px;">
+            <input type="text" #month>
+            <label>Monthly limit</label>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer" style="padding: 20px;">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <div>
+              <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="onConfirm(month.value)">Set
+                monthly limit</button>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <div>
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal model_top" id="nameCard">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <h4 class="spendLimit">Card Name</h4>
+        <div class="float_label col-md-12">
+          <input type="text" #name>
+          <label style="margin-left: 87px;">Card Name</label>
+        </div>
+      </div>
+      <div class="panel-footer" style="padding: 20px;">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <div>
+              <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="onName(name.value)">Confirm</button>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <div>
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="removeCrd">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content" style="padding-left: 10px;padding-right: 10px;">
+      <div class="modal-body" align="center">
+        <img src="../../../../assets/images/icons/delete_icon.png" alt=""> <br><br>
+        <h4>Are you sure you want to<br>remove this card?</h4>
+      </div>
+      <div>
+        <p style="color:#AAAABB;" align="center">This action is irreversible. If you want to just<br>temporary disable
+          this card, you can freeze it in<br>settings.</p><br>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" data-backdrop="static" data-toggle="modal"
+                (click)="remove()">Remove</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="removed">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content" align="center">
+      <div class="modal-body ">
+        <div class="text-center">
+          <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png">
+        </div><br><br>
+        <h4>Card was removed</h4><br>
+      </div>
+      <div class="panel-footer">
+        <div class="form-group col-md-4">
+          <button class="btn btn-primary btn-block" style="margin-bottom: 30px;" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="exampleModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body ">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button> <br><br>
+        <div align="center">
+          <img src="../../../../assets/images/cards/black.png"><br><br>
+          <span>Never share or take screenshots <br> of card images</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

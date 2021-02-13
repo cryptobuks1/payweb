@@ -1,0 +1,103 @@
+.bullet-points-section {
+    background-color: #fafafa !important;
+  }
+  
+  .ml-7 {
+    margin-left: 7rem;
+    margin-right: 3rem;
+  }
+  
+  .benefits-list {
+    color: black;
+    margin-top: 2rem;
+  
+    h6 {
+      color: #0a0a82;
+    }
+  
+    ul {
+      list-style-type: none;
+      padding-left: 0px !important;
+  
+      li {
+        font-size: 0.8rem !important;
+        i {
+          color: #f05812 !important;
+        }
+      }
+    }
+  }
+  
+  .sender-info {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content1 {
+  
+    .input_element {
+      text-align: center;
+      margin-top: 60%;
+      font-size: 52px;
+      height: calc(4.5rem + 4px)
+    }
+  }
+  
+  .content2 {
+    max-width: 200px;
+    margin: auto;
+    margin-bottom: -20px;
+  }
+  
+  .input_element1 {
+    text-align: center;
+    margin-top: 20%;
+  }
+  
+  .itm_crcl1 {
+    width: 63px;
+    height: 63px;
+    text-align: center;
+    line-height: 60px;
+    padding: 3px;
+    background: #42424c;
+    color: #ffffff;
+    border-radius: 53%;
+    display: inline-block;
+    font-size: 30px;
+  }
+  .amount {
+    font-size: 25px;
+    color: #38383f;
+    font-weight: 500;
+    margin-bottom: 50px;
+  }
+  .whatNext {
+    font-size: 18px;
+    color: #38383f;
+    padding-left: 80px;
+    font-weight: 400;
+  }
+  @media(max-width: 600px) {
+    .row {
+      margin-left: -70px;
+    }
+    .logo {
+      margin-left: 20px;
+    }
+    .amount {
+      font-size: 20px;
+      color: #38383f;
+      font-weight: 500;
+      margin-bottom: 50px;
+    }
+    .whatNext {
+      font-size: 18px;
+      color: #38383f;
+      padding-left: 80px;
+      font-weight: 400;
+      padding-right: 40px;
+    }
+  }

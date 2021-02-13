@@ -1,0 +1,572 @@
+<!-- Persoanl Profile Start -->
+
+<div class="card page_ht_crd " *ngIf=personalForm>
+    <div class="card main_card">
+        <div class="cnv_cntr">
+            <div class="lft_itm ctry_img">
+                <span class="itm_crcl">{{fullname | slice:0:1| titlecase}}</span>
+            </div>
+            <div class="data_cnt">
+                <div class="currency_dta">{{fullname}}</div>
+                <p>{{role_name}} - {{status}}</p>
+            </div>
+        </div>
+        <div class="acc_navbar">
+            <ul class="nav nav-pills col-md-12 text-center" role="tablist">
+                <li class="nav-item col-md-6 col-sm-6">
+                    <a data-target="#personal" data-toggle="tab" class="nav-link active">Personal profile</a>
+                </li>
+                <li class="nav-item col-md-6 col-sm-6">
+                    <a data-target="#settings" data-toggle="tab" class="nav-link">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content pad-bt-10">
+            <div class="panel-body tab-pane fade show active custom_padding" id="personal">
+                <div class="form-group float_label">
+                    <input type="text" class="form-control" disabled value={{fullname}}>
+                    <label for="last_name">Name</label>
+                </div>
+                <div class="form-group float_label">
+                    <input type="text" class="form-control  datepicker" disabled value={{dob}}>
+                    <label for="last_name">Date of birth</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group float_label">
+                            <input type="text" class="form-control" disabled value={{fullAddress}}>
+                            <label for="last_name">Address</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group float_label">
+                            <input type="text" value={{mobile}} class="form-control" maxlength="13"
+                                minlength="10" disabled>
+                            <label for="last_name">Phone number</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group float_label">
+                            <input type="email" class="form-control" id="user_id" name="email"
+                                value={{user_id}} disabled>
+                            <label for="email">E-mail</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group float_label">
+                            <input type="text" class="form-control" id="place_of_birth" name="place_of_birth"
+                                value={{place_of_birth}} disabled>
+                            <label for="place_of_birth">Place of birth</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group float_label">
+                            <select class="form-control" id="nationality" disabled name="nationality">
+                                <option value="null" hidden selected> {{nationality}} </option>
+                                <option *ngFor="let item of countryData" [ngValue]="item.country_name">{{item.country_name}}</option>
+                            </select>
+                            <label for="nationality">Nationality</label>
+                        </div>
+                    </div>
+                    <div class="col-md-5" (click)="showOtp()" routerLink="/business/settings/personal-profile/change-password">
+                        <p class="blue1"> Change password</p>
+                    </div>
+                    <!-- <div>
+                        <button style="margin-right: 10px;padding-right: 40px;padding-left: 40px;" routerLink="/business/settings/personal-profile"
+                     class="btn btn-outline-primary">Back</button>
+                    </div> -->
+                    <div >
+                        <button style="padding-right: 25px;padding-left: 25px;margin-left: 135px;" class="btn btn-primary" (click)="editDetails()">Edit details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settings" class="tab-pane fade pad-bt-10">
+
+                <div class="border-line">
+                    <small>Role</small>
+                    <p>Admin</p>
+                </div>
+
+                <div class="border-line">
+                    <div class="d-flex ">
+                        <div class="p-2 flex-grow-1 main_colr">Business Mangement</div>
+                        <div class="p-2 ">View</div>
+                        <div class="p-2 ">Manage</div>
+                    </div>
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1">Business Profile and billing</div>
+                        <div *ngIf="business_can_view == true" class="p-2 flex-fill"><i class="fa fa-eye eye_colr" aria-hidden="true"></i></div>
+                        <div *ngIf="business_can_manage == true" class="p-2 flex-fill"><i class="fa fa-pencil eye_colr" aria-hidden="true"></i></div>
+
+                        <div *ngIf="business_can_view == false" class="p-2 flex-fill"><i class="fa fa-eye " aria-hidden="true"></i></div>
+                        <div *ngIf="business_can_manage == false" class="p-2 flex-fill"><i class="fa fa-pencil " aria-hidden="true"></i></div>
+                    </div>
+
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1">User Mangement</div>
+                        <div *ngIf="user_can_view == true" class="p-2 flex-fill"><i class="fa fa-eye eye_colr" aria-hidden="true"></i></div>
+                        <div *ngIf="user_can_manage == true" class="p-2 flex-fill"><i class="fa fa-pencil eye_colr" aria-hidden="true"></i></div>
+
+                        <div *ngIf="user_can_view == false" class="p-2 flex-fill"><i class="fa fa-eye " aria-hidden="true"></i></div>
+                        <div *ngIf="user_can_manage == false" class="p-2 flex-fill"><i class="fa fa-pencil " aria-hidden="true"></i></div>
+                    </div>
+                </div>
+
+                <div class="border-line">
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1 main_colr">Accounts and statements</div>
+                    </div>
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1">Accounts</div>
+                        <div *ngIf="acc_can_view == true" class="p-2 flex-fill"><i class="fa fa-eye  eye_colr" aria-hidden="true"></i></div>
+                        <div *ngIf="user_can_manage == true" class="p-2 flex-fill"><i class="fa fa-pencil eye_colr" aria-hidden="true"></i></div>
+
+                        <div *ngIf="acc_can_view == false" class="p-2 flex-fill"><i class="fa fa-eye  " aria-hidden="true"></i></div>
+                        <div *ngIf="user_can_manage == false" class="p-2 flex-fill"><i class="fa fa-pencil " aria-hidden="true"></i></div>
+                    </div>
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1">Transactions</div>
+                        <div *ngIf="transactions_can_view == true" class="p-2 flex-fill"><i class="fa fa-eye eye_colr" aria-hidden="true"></i></div>
+                        <div *ngIf="transactions_can_view == false" class="p-2 flex-fill"><i class="fa fa-eye" aria-hidden="true"></i></div>
+                        <!-- <div class="p-2 flex-fill"><i class="fa fa-pencil-square-o eye_colr" aria-hidden="true"></i> </div> -->
+
+
+                        <div class="p-2 flex-fill"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+
+                <div class="border-line">
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1 main_colr">Operations with funds</div>
+                    </div>
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1">Exchange</div>
+                        <!-- <div class="p-2 flex-fill"><i class="fa fa-eye" aria-hidden="true"></i></div> -->
+                        <div *ngIf="exchange_can_manage == true" class="p-2 pen_width"><i class="fa fa-pencil eye_colr" aria-hidden="true"></i></div>
+                        <div *ngIf="exchange_can_manage == false" class="p-2 pen_width"><i class="fa fa-pencil " aria-hidden="true"></i></div>
+                    </div>
+
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1">Payments</div>
+                        <div *ngIf="payments_can_view == true" class="p-2 flex-fill"><i class="fa fa-eye  eye_colr" aria-hidden="true"></i></div>
+                        <div *ngIf="payments_can_manage == true" class="p-2 flex-fill"><i class="fa fa-pencil eye_colr" aria-hidden="true"></i></div>
+
+                        <div *ngIf="payments_can_view == false" class="p-2 flex-fill"><i class="fa fa-eye  " aria-hidden="true"></i></div>
+                        <div *ngIf="payments_can_manage == false"  class="p-2 flex-fill"><i class="fa fa-pencil " aria-hidden="true"></i></div>
+                    </div>
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1">CounterParties</div>
+                        <div *ngIf="counterparties_can_view == true" class="p-2 flex-fill"><i class="fa fa-eye  eye_colr" aria-hidden="true"></i></div>
+                        <div *ngIf="counterparties_can_manage == true" class="p-2 flex-fill"><i class="fa fa-pencil eye_colr" aria-hidden="true"></i></div>
+
+                        <div *ngIf="counterparties_can_view == false" class="p-2 flex-fill"><i class="fa fa-eye  " aria-hidden="true"></i></div>
+                        <div *ngIf="counterparties_can_manage == false" class="p-2 flex-fill"><i class="fa fa-pencil " aria-hidden="true"></i></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1 main_colr">Cards and employess</div>
+                    </div>
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1">Physical cards</div>
+                        <div *ngIf="cards_can_view == true" class="p-2 flex-fill"><i class="fa fa-eye eye_colr" aria-hidden="true"></i></div>
+                        <div *ngIf="cards_can_manage == true" class="p-2 flex-fill"><i class="fa fa-pencil eye_colr" aria-hidden="true"></i></div>
+
+                        <div *ngIf="cards_can_view == false" class="p-2 flex-fill"><i class="fa fa-eye " aria-hidden="true"></i></div>
+                        <div *ngIf="cards_can_manage == false" class="p-2 flex-fill"><i class="fa fa-pencil " aria-hidden="true"></i></div>
+                    </div>
+                    <div class="d-flex ">
+                        <div class="p-2 w-100 flex-grow-1">Virtual cards</div>
+                        <div *ngIf="virtual_can_view == true" class="p-2 flex-fill"><i class="fa fa-eye eye_colr" aria-hidden="true"></i></div>
+                        <div *ngIf="virtual_can_manage == true" class="p-2 flex-fill"><i class="fa fa-pencil eye_colr" aria-hidden="true"></i></div>
+
+                        <div *ngIf="virtual_can_view == false" class="p-2 flex-fill"><i class="fa fa-eye" aria-hidden="true"></i></div>
+                        <div *ngIf="virtual_can_manage == false" class="p-2 flex-fill"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="editForm">
+  <form [formGroup]="editGroup" *ngIf="show">
+      <div>
+          <div class="page_ht_crd3 mx-auto">
+
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="upld_cnt" style="margin-left: 25px;margin-right: 25px;">
+                          <!-- <p class="hdng-center">Personal details</p> -->
+                          <div class="dot_bar">
+                              <ul>
+
+                                <li class="current"></li>
+                                <li></li>
+
+                              </ul>
+                            </div>
+                          <h5 id="heading">Personal details &nbsp;<i class="fa">&#xf040;</i></h5>
+                          <div class="panel-body" (change)="removeSpace()">
+                              <div class="form-group float_label">
+                                  <label for="first_name"> First name</label>
+                                  <input type="text" oninput="this.value = this.value.replace(/[^a-z]/g,'').replace(/(\..*)\./g, '$1');" formControlName="first_name" name="first_name" [(ngModel)]="first_name"
+                                      class="form-control">
+                              </div>
+                              <div class="form-group float_label">
+                                  <input type="text" oninput="this.value = this.value.replace(/[^a-z]/g,'').replace(/(\..*)\./g, '$1');" formControlName="last_name" name="last_name" [(ngModel)]="last_name"
+                                      class="form-control ">
+                                  <label for="last_name">Last name</label>
+
+                                  </div>
+                                  <div class="form-group float_label">
+                                      <input type="text" formControlName="dob" [(ngModel)]="dob" class="form-control" mask="00/00/0000" bsDatepicker>
+                                      <label>Date of birth</label>
+
+                              </div>
+                              <div class="form-group float_label">
+                                  <input type="text" readonly formControlName="mobile" [(ngModel)]="mobile"
+                                      class="form-control">
+                                  <label>Phone number</label>
+                              </div>
+                              <div class="form-group float_label">
+                                  <input type="email" readonly formControlName="user_id" [(ngModel)]="user_id" class="form-control">
+                                  <label>Email</label>
+                              </div>
+                              <div class="form-group float_label">
+                                  <input type="text" formControlName="place_of_birth" [(ngModel)]="place_of_birth"
+                                      class="form-control">
+                                  <label>Place of Birth</label>
+                              </div>
+                              <div  class="form-group float_label">
+                              <select class="form-control" formControlName="nationality" id="nationality" [(ngModel)]="nationality" name="nationality">
+                                  <option value="null" hidden selected> Select nationality </option>
+                                  <option class="option" *ngFor='let option1 of countryData'  [value]="option1.country_name">
+                                 {{option1.country_name}}
+                                  </option>
+
+                                 <!---->
+                              </select>
+                              <label>Nationality</label>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row" style="margin-left: 20px;margin-right: 20px;">
+                  <div class="col-md-6">
+                      <button  style="border-radius:4px"  type="button" class="btn btn-outline-primary btn-block" data-dismiss="modal"
+                          (click)="getPersonaldetails()">Cancel</button>
+                  </div>
+                  <div class="col-md-6">
+                      <button  style="border-radius:4px"  type="button" class="btn btn-primary  btn-block" [disabled] = "editGroup.invalid"
+                          (click)="personalDetails(editGroup.value)">Continue</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </form>
+  <form [formGroup]="addressGroup" *ngIf="hide">
+      <div>
+          <div class="page_ht_crd3 mx-auto">
+
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="upld_cnt" style="margin-left: 10px;margin-right: 10px;">
+                          <!-- <p class="hdng-center mb-2">Address details</p> -->
+                          <div class="dot_bar" style="margin-left: 15px;">
+                              <ul>
+
+                                <li class="completed"></li>
+                                <li class="current"></li>
+
+                              </ul>
+                            </div>
+                          <h5 id="heading" style="margin-left: 15px;">Address details &nbsp;<i class="fa">&#xf040;</i></h5>
+                          <div class="panel-body" (change)="removeSpace()">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div  class="form-group float_label" style="margin-left: 15px;margin-right: 15px;">
+
+
+                                          <select class="form-control" formControlName="country" id="country" [(ngModel)]="country" name="country"  (change)='changeUserCity(country)'>
+                                              <option value="null" hidden selected> Select country </option>
+                                              <option class="option" *ngFor='let option1 of countryData'  [value]="option1.country_name">
+                                             {{option1.country_name}}
+                                              </option>
+                                          </select>
+
+                                              <label >Country</label>
+
+                                  </div>
+                                  <div class="col-md-12">
+                                      <div class="form-group float_label">
+                                          <input type="text" formControlName="postalcode" [(ngModel)]="postalcode"
+                                              class="form-control" >
+                                          <label for="Postal code">Postal code</label>
+
+                                      </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                      <div class="form-group float_label">
+                                          <input type="text" formControlName="address_line1"
+                                              [(ngModel)]="address_line1" class="form-control">
+                                          <label for="Address line 1">Address line 1</label>
+                                      </div>
+                                  </div>
+
+                                  <div class="col-md-12">
+                                      <div class="form-group float_label">
+                                          <input type="text" formControlName="address_line2"
+                                              [(ngModel)]="address_line2" class="form-control" >
+                                          <label for="Address line 2">Address line 2</label>
+                                      </div>
+                                  </div>
+
+
+                                  <div class="col-md-12">
+                                      <div class="form-group float_label">
+                                          <input type="text" formControlName="city" [(ngModel)]="city"
+                                              class="form-control" >
+                                          <label for="city">town/city</label>
+                                      </div>
+                                  </div>
+
+                                  <div class="col-md-12">
+                                      <div class="form-group float_label">
+                                          <input type="text" formControlName="region" [(ngModel)]="region"
+                                              class="form-control">
+                                          <label for="region">Region</label>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+      </div> 
+      <div class="row" style="margin-left: 20px;margin-right: 20px;">
+        <div class="col-md-6" >
+            <button type="button" class="btn btn-outline-primary btn-block" data-dismiss="modal"
+                (click)="canceladdressDetails()">Back</button>
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary  btn-block" (click)="updateEditedDetails(addressGroup.value)"
+                data-toggle="modal">Update</button>
+        </div>
+    </div>
+    </div>  
+      </div>
+  </form>
+</div>
+
+              <div class="modal fade" id="kycwarn1" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="margin-left: 83px">
+                      <div class="modal-body body_popup" style="width: 500px;">
+                        <div class="add_money">
+                          <!-- <img src="../../../../../assets/images/addicon.png" alt="path not correct" /> -->
+                          <h4 style="text-align: center;">Verify your identity</h4>
+                          <p style="text-align: center;">Please, verify your identity in order to update the personal profile details</p>
+                          <div class="row">
+                            <div style="padding-bottom: 8px;" class="col-md-6">
+                              <button class="btn btn-outline-primary btn-block"  data-dismiss="modal">I'll do it later</button>
+                            </div>
+                            <div class="col-md-6">
+                              <button class="btn btn-primary btn-block" onclick="cameraIdentification()" (click)="getKyc()">OK</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal invitemodal" id="myModalNew" data-backdrop="static" data-keyboard="false">
+                  <div class="modal-dialog modal_size">
+                    <div class="modal-content" style="width: 175%;margin-left: -50px;">
+                      <div class="modal-body">
+                
+                        <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+                          <h4 class="modal-title header_txt text-center">Please, choose how to complete your identity verification</h4>
+                          <div class="d-flex flexborder">
+                            <div class="p-2  align-self-center">
+                              <span class="itm_crcl2"><img src="../../../../assets/images/webcam.png"></span>
+                            </div>
+                            <div class="p-2" (click)="webCamera()" data-dismiss="modal">
+                              <p class="m-b-0 kyc_process">Use webcam</p>
+                              <small>Make sure it supports high resolution</small>
+                            </div>
+                          </div>
+                          <div class="d-flex flexborder">
+                            <div class="p-2  align-self-center">
+                              <span class="itm_crcl2"><img src="../../../../assets/images/smartphone.png"></span>
+                            </div>
+                            <div class="p-2">
+                              <p class="m-b-0 kyc_process">Use mobile camera through browser</p>
+                              <small>You will receive a link on your registered e-mail</small>
+                              <div id="demo" class="collapse">
+                                <button (click)="KYClinkToMobile('android')" data-dismiss="modal"><img
+                                    src="../../assets/images/androidicon.png" style=width:35px;;></button> or
+                                <button (click)="KYClinkToMobile('ios')" data-dismiss="modal"><img src="../../assets/images/iosicon.png"
+                                    style=width:35px;;></button>
+                              </div>
+                            </div>
+                            <div class="ml-auto p-2  align-self-center" data-toggle="collapse" data-target="#demo">
+                              <i class="fa fa-angle-right kyc_process" style="font-size: 1.5rem;"></i>
+                            </div>
+                          </div>
+                          <div class="d-flex   flexborder">
+                            <div class="p-2  align-self-center">
+                              <span class="itm_crcl2"><img src="../../../../assets/images/smartphonedwnld.png"></span>
+                            </div>
+                            <div class="p-2 ">
+                              <p class="m-b-0 kyc_process">Install PayVoo app</p>
+                              <small>Think long term. Download PayVoo app now on your Android/iOS device</small>
+                            </div>
+                          </div>
+                
+                          <div class="row justify-content-center m-t-10">
+                            <div style="padding-bottom: 8px;" class="col-md-6 col-sm-6">
+                              <div (mouseover)="gplay=true" *ngIf="!gplay"><button type="button" class="btn btn-block btn-primary">
+                                  <span style="margin-left: -15px;"><img style="padding-bottom: 2px;"
+                                      src="../../../../assets/images/google-play.png"></span>&nbsp;Get it on Google Play</button></div>
+                              <div (mouseout)="gplay=false" *ngIf="gplay"><button type="button"
+                                  class="btn btn-block btn-outline-primary1">
+                                  <span style="margin-left: -15px;"><img style="padding-bottom: 2px; height: 27px; width:23px"
+                                      src="../../../../assets/images/playstore.png"></span>&nbsp;Get it on Google Play</button></div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                              <div (mouseover)="ios=true" *ngIf="!ios"><button type="button" class="btn btn-block btn-primary">
+                                  <span style="margin-left: -15px;"><img style="padding-bottom: 2px;"
+                                      src="../../../../assets/images/app-store.png"></span>&nbsp;Get it on App Store
+                                </button></div>
+                              <div (mouseout)="ios=false" *ngIf="ios"><button type="button" class="btn btn-block btn-outline-primary1">
+                                  <span style="margin-left: -15px;"><img style="padding-bottom: 2px;"
+                                      src="../../../../assets/images/app-store_1.png"></span>&nbsp;Get it on App Store
+                                </button></div>
+                
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal" id="kycpopupNew" data-backdrop="static" data-keyboard="false">
+                  <div class="modal-dialog  modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">KYC Verification Steps</h4>
+                            <button type="button"  class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <iframe *ngIf="kycIframe"  [src]="urlSafe" allow="geolocation; microphone; camera" height='730px' width="100%"></iframe>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="appWarn" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+                    <div class="modal-content">
+                      <div class="modal-body body_popup">
+                      <div class="wip-container text-center bg-white">
+                          <img class="wip-img" src="assets/images/payvoo-wip.png" />
+                          <p style="color:black"><strong>We are getting this feature ready. We will notify you when it is done.</strong></p>
+                          <button style="border-radius:4px" class="btn btn-primary btn-block" data-dismiss="modal" >OK </button>
+                          </div>
+                          </div>
+                        </div>
+                </div>
+                </div>
+
+<div class="modal model_top" id="editDetails">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="margin-top: 150px;margin-left: 90px; width:80%">
+        <div class="modal-body ">
+          <div class="text-center">
+            <p align="center" style="color: #42424c;margin-top: 15px;font-weight: 500;font-family: Roboto, sans-serif">Please, be informed that upon change of<br>
+            personal information, you shall repeat the<br>
+            verification process</p>
+            <span align="center" style="font-size: 0.825rem;">Would you still like to proceed with edit?</span>
+          </div><br>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                  <button  style="border-radius:4px"  class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+              <div class="col-xs-6 col-md-6 pull-right">
+                <div class="form-group">
+                  <button  style="border-radius:4px"  type="submit" class="btn btn-primary btn-block" data-dismiss="modal" (click)="editDetailsForm()">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="kycwarn1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="margin-left: 83px">
+        <div class="modal-body body_popup">
+          <div class="add_money">
+            <!-- <img src="../../../../../assets/images/addicon.png" alt="path not correct" /> -->
+            <h4 style="text-align: center;">Verify your identity</h4>
+            <p style="text-align: center;">Please, verify your identity in order to be able to use the payments functionalities of PayVoo</p>
+            <div class="row">
+              <div style="padding-bottom: 8px;" class="col-md-6">
+                <button class="btn btn-outline-primary btn-block"  data-dismiss="modal">I'll do it later</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-primary btn-block" (click)="getKyc()">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="appWarn" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+      <div class="modal-content">
+        <div class="modal-body body_popup">
+        <div class="wip-container text-center bg-white">
+            <img class="wip-img" src="assets/images/payvoo-wip.png" />
+            <p style="color:black"><strong>We are getting this feature ready. We will notify you when it is done.</strong></p>
+            <button  style="border-radius:4px" class="btn btn-primary btn-block" data-dismiss="modal" >OK </button>
+            </div>
+            </div>
+          </div>
+  </div>
+  </div>
+  <div class="modal" id="success">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="col-lg-12" class="text-center">
+                    <img src="../../../../assets/images/success.png" *ngIf="updateSuccess">
+                    <img src="../../../../assets/images/cancel.png" *ngIf="updateFail">
+
+                    <h5 class="modal-text"><br>{{statusMessage}}</h5><br>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-block btn-primary col-8 mx-auto"
+                            style="margin-bottom: 10px;" data-dismiss="modal" >Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal poup end -->
+<app-change-password *ngIf= "change_password"></app-change-password>
+<!-- <div>
+    <router-outlet></router-outlet>
+    </div> -->

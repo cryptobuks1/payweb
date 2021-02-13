@@ -1,0 +1,100 @@
+<div id="About">
+  <div class="row" style="margin-top: 10px;">
+      <div class="col-md-6">
+          <div class="card page_ht_crd ">
+              <div class="card">
+
+                  <div class="addcard" >
+                      About us
+                  </div>
+                  <div class="addcard" (click)="selectTab('privacy_policy')" [ngClass]="{'activeclr':privacyPolicyActive}">
+                      <div class="addcard_icn">
+                          <img src="../../../assets/images/iconfinder_shield_256138.png" *ngIf="!selectedTab.privacy_policy">
+                          <img src="../../../assets/images/iconfinder_shield_2561385.png" *ngIf="selectedTab.privacy_policy">
+                      </div>
+                      <span class="font-clr">Privacy policy</span>
+                      <div class="rt_itm pull-right">
+                          <i class="fa fa-angle-right angle_right"></i>
+                      </div>
+                  </div>
+                  <div class="addcard" (click)="selectTab('terms_and_conditions')" [ngClass]="{'activeclr':termsConditions}">
+                      <div class="addcard_icn">
+                          <img src="../../../assets/images/Layer 9.png" *ngIf="!selectedTab.terms_and_conditions">
+                          <img src="../../../assets/images/Layer 91.png" *ngIf="selectedTab.terms_and_conditions">
+                      </div>
+                      <span class="font-clr">Terms & conditions</span>
+                      <div class="rt_itm pull-right">
+                          <i class="fa fa-angle-right angle_right"></i>
+                      </div>
+                  </div>
+                  <div class="addcard" (click)="selectTab('close_account')" [ngClass]="{'activeclr':closeAccountActive}">
+                      <div class="addcard_icn">
+                          <img src="../../../assets/images/Layer_1.png" *ngIf="!selectedTab.close_account">
+                          <img src="../../../assets/images/Layer_111.png" *ngIf="selectedTab.close_account">
+                      </div>
+                      <span class="font-clr">Close Profile</span>
+                      <div class="rt_itm pull-right">
+                          <i class="fa fa-angle-right angle_right"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="card page_ht_crd19">
+              <div class="card policies">
+
+
+                <!-- Close account-->
+                <div *ngIf="selectedTab.close_account" id="close-account">
+                  <div class="text-center" style="margin-top: 10%;">
+                    <div>
+                        <img style="width: 100px;" src="../../../../assets/images/close_account_menu.png">
+                    </div><br>
+
+                    <p class="editptext">Are you sure you want to close your account? It's free to keep our basic plan</p><br><br>
+                    <div class="row mx-3">
+
+                        <div class="col-md-6" (click)="closeBusinessUserAccount(0)">
+                            <button type="button" class="btn btn-block btn-outline-primary" style="margin-bottom: 10px;">Close
+                                profile</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-block btn-primary" style="margin-bottom: 10px;" (click)="keepAccount()">Keep profile</button>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+
+                <!-- Privacy policy-->
+                <div class="policies">
+                    <div *ngIf="selectedTab.privacy_policy">
+                        <h1 style="z-index:9;position:relative;background:white;">Privacy policy</h1>
+      
+                        <div id="privacy-policy">
+                          <iframe frameBorder="0" style="height: 50vh; margin-top: -50px; width: 100%; " sandbox="allow-scripts" src="https://payvoo.com/privacy-policy/"></iframe>
+                        </div>
+                      </div>
+      
+      
+                        <!-- Terms & conditions-->
+                        <div class="terms" *ngIf="selectedTab.terms_and_conditions">
+                          <h1 style="z-index:9;position:relative;background:white;">Terms & conditions</h1>
+                          <div id="terms-and-conditions">
+                            <iframe frameBorder="0" style="height: 50vh; margin-top: -50px; width: 100%;" sandbox="allow-scripts" src="https://payvoo.com/terms-and-conditions/"></iframe>
+                          </div>
+                          <!-- <div id="app-cookies-policy">
+                            <iframe src="https://www.payvoo.com/cookies-policy/" frameborder="0" height="500"
+                              width="600"></iframe>
+                          </div> -->
+                        </div>
+                </div>
+                
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

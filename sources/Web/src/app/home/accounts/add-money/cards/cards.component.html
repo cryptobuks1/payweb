@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card add_money_card">
+      <form [formGroup]="cardDetailsForm">
+        <h3 class="card_header">Enter card details</h3>
+        <p><i class="fa fa-lock"></i><span style="padding-left: 15px;">Card details are saved securely</span></p>
+        <div class="panel-body">
+          <div class="form-group float_label">
+            <input type="text" onkeypress="return /[a-z]/i.test(event.key)" class="form-control" autocomplete="off" formControlName="name_on_card"
+             placeholder="&nbsp;">
+            <label>Name on card</label>
+          </div>
+          <div class="form-group float_label">
+              <input type='text' class="form-control" maxlength="23" minlength="19" 
+                [(ngModel)]='cardNumber' formControlName="card_number" (keydown)="getCardType(cardNumber)"
+                [dropSpecialCharacters]="false" [validation]="false"  mask="0000 0000 0000 0000 000"
+                placeholder="&nbsp;" autocomplete="off">
+            <label>16-19 digit card number</label>
+            <i *ngIf="type=='visa'" class="card_type_cnt card_visa"></i>
+            <i *ngIf="type=='mastercard'" class="card_type_cnt card_master"></i>
+            <i *ngIf="type=='american-express'" class="card_type_cnt card_amex"></i>
+            <i *ngIf="type=='jcb'" class="card_type_cnt card_jcb"></i>
+            <i *ngIf="type=='diners-club'" class="card_type_cnt card_dci"></i>
+            <i *ngIf="type=='unionpay'" class="card_type_cnt card_unionpay"></i>
+          </div>
+          <div class="row">
+            <div class="col-xs-4 col-md-6">
+              <div class="form-group float_label">
+                <select formControlName="card_month" class="form-control expiryMonth" placeholder="&nbsp;">
+                  <option [ngValue]= "0" hidden selected>Expiry month</option>                 
+                  <option *ngFor="let month of months" [ngValue]="month">{{month}}</option>
+                </select> 
+              </div>
+              
+             <div style="margin-top: -20px;">
+                <span style="color: red; font-size: 12px;" *ngIf="monthValidation">Please, enter a valid expiry month.</span>
+              </div>
+            </div>
+            <div class="col-xs-4 col-md-6">
+              <div class="form-group float_label">             
+                <!-- <select [(ngModel)]="card_year" class="form-control"
+                 #month="ngModel">
+                <option [ngValue]= "undefined" selected>Expiry year</option>
+                <option *ngFor="let month of year" [ngValue]="month">{{year}}</option>
+              </select>             -->
+              <input type="text" class="form-control" formControlName="card_year" placeholder="&nbsp;"
+              mask="0000" minlength="4" maxlength="4" autocomplete="off">
+              <label>Expiry year</label>
+              </div>
+              <div style="margin-top: -20px;">
+                <span style="color: red; font-size: 12px;display:block;" *ngIf="(cardDetailsForm.controls['card_year'].touched) && yearValidation">Please, provide a valid year</span>
+              </div>
+            </div>
+
+            <!-- <div class="form-group float_label">
+              <input type="text" class="form-control" formControlName="card_exp" placeholder="&nbsp;"
+               [validation]="true"  mask="0000" autocomplete="off">
+                <label>Expiry year</label>
+              </div> -->
+            <div class="col-xs-4 col-md-4 pull-right" style="margin-top: 1em;">
+              <div class="form-group float_label">
+                <input type="text" class="form-control" id='cvv' maxlength="3" minlength="3"
+                 formControlName="card_cvv" autocomplete="off" placeholder="&nbsp;">
+                <label>CVV</label><div class="popup" (click)="myFunction()" (mouseout)="hideInfoPopup()"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                  <span class="popuptext" style="font-size: small;" id="myPopup">Turn your card over and look for the 3-digit code which is your CVV number / Card Security Code</span>
+                </div>
+              </div>
+              <div style="margin-top: -20px; ">
+                <span style="color: red; font-size: 12px;display:block;" *ngIf="cvvValidation">Please, provide a valid CVV</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer" style="margin-top: 15px;">
+          <div class="row">
+            <div class="col-xs-6 col-md-6">
+              <div class="form-group"  *ngIf="authService.accountMatch(['personal'])">
+                <button style="font-size: 13.2px;border-radius:4px" class="btn btn-outline-primary btn-block" routerLink="/personal/add-money">Cancel</button>
+              </div>
+              <div class="form-group"  *ngIf="authService.accountMatch(['business'])">
+                  <button style="font-size: 13.2px;border-radius:4px"class="btn btn-outline-primary btn-block" routerLink="/business/add-money">Cancel</button>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-6 pull-right">
+              <div class="form-group">
+                <button style="font-size: 13.2px;border-radius:4px"class="btn btn-primary btn-block" [disabled]="cardDetailsForm.invalid || cardValidate || ((cardDetailsForm.controls['card_year'].touched) && yearValidation)"
+                  (click)="submitCard(cardDetailsForm.value)">Save card</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+</div>
+<!-- <div class="loading" *ngIf=apploader></div> -->

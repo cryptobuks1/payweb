@@ -1,0 +1,128 @@
+<div class="container-fluid">
+  <h4 class="p_t_20 font_colour_active m-b-0"><b>Activate your account</b></h4>
+  <p>Complete them in any order as you wish </p>
+  <div class="row">
+    <div class="col-md-4 hover_items" [ngClass]="{'disabled-contenct': industrStatus==1}">
+      <div class="content_card" routerLink="/business/application/typesbusiness" routerLinkActive="active"
+        [ngClass]="{'pointer-event': KYBStatus?.type_of_business==1 || KYBStatus?.type_of_business==2}">
+        <div class="card_header_title">Type of business</div>
+        <div class='step-progress-bar-container'>
+          <div class='step-progress-bar'>
+            <div class='step'
+              [ngClass]="KYBStatus?.type_of_business==2 || KYBStatus?.type_of_business==1 ? 'complete' : 'current'">
+            </div>
+            <div class='step' [ngClass]="{'complete':KYBStatus?.type_of_business==2 || KYBStatus?.type_of_business==1 || KYBStatus?.isRestricted==1}">
+            </div>
+            <div class='step' [ngClass]="{'complete':KYBStatus?.type_of_business==2}"></div>
+          </div>
+          <div class='step-headers'>
+            <div class='step-header'>Pending</div>
+            <div class='step-header'>Submitted</div>
+            <div class='step-header'>Verified</div>
+          </div>
+        </div>
+      </div>
+      <div class="content_card" routerLink="/business/application/businessadd" routerLinkActive="active"
+        [ngClass]="{'pointer-event': KYBStatus?.business_address==1 || KYBStatus?.business_address==2 || KYBStatus?.isRestricted==1}">
+        <div class="card_header_title">Business address</div>
+        <div class='step-progress-bar-container'>
+          <div class='step-progress-bar'>
+            <div class='step'
+              [ngClass]="KYBStatus?.business_address==2 || KYBStatus?.business_address==1 ? 'complete' : 'current'">
+            </div>
+            <div class='step' [ngClass]="{'complete':KYBStatus?.business_address==2|| KYBStatus?.business_address==1}">
+            </div>
+            <div class='step' [ngClass]="{'complete':KYBStatus?.business_address==2}"></div>
+          </div>
+          <div class='step-headers'>
+            <div class='step-header'>Pending</div>
+            <div class='step-header'>Submitted</div>
+            <div class='step-header'>Verified</div>
+          </div>
+        </div>
+      </div>
+      <div class="content_card " routerLink="/business/application/personal" routerLinkActive="active"
+        [ngClass]="{'pointer-event': KYBStatus?.personal_profile==1 || KYBStatus?.personal_profile==2 || KYBStatus?.isRestricted==1}">
+        <div class="card_header_title">Personal profile</div>
+        <div class='step-progress-bar-container'>
+          <div class='step-progress-bar'>
+            <div class='step'
+              [ngClass]="KYBStatus?.personal_profile==2 || KYBStatus?.personal_profile==1 ? 'complete' : 'current'">
+            </div>
+            <div class='step' [ngClass]="{'complete':KYBStatus?.personal_profile==2 || KYBStatus?.personal_profile==1}">
+            </div>
+            <div class='step' [ngClass]="{'complete':KYBStatus?.personal_profile==2}"></div>
+          </div>
+          <div class='step-headers'>
+            <div class='step-header'>Pending</div>
+            <div class='step-header'>Submitted</div>
+            <div class='step-header'>Verified</div>
+          </div>
+        </div>
+      </div>
+      <div class="content_card " routerLink="/business/application/businessOwner" routerLinkActive="active"
+        [ngClass]="{'pointer-event': KYBStatus?.business_owner_details==1 || KYBStatus?.business_owner_details==2 || KYBStatus?.isRestricted==1}">
+        <div class="card_header_title">Business owner details</div>
+        <div class='step-progress-bar-container'>
+          <div class='step-progress-bar'>
+            <div class='step'
+              [ngClass]="KYBStatus?.business_owner_details==2 || KYBStatus?.business_owner_details==1 ? 'complete' : 'current'">
+            </div>
+            <div class='step'
+              [ngClass]="{'complete':KYBStatus?.business_owner_details==2 || KYBStatus?.business_owner_details==1}">
+            </div>
+            <div class='step' [ngClass]="{'complete':KYBStatus?.business_owner_details==2}"></div>
+          </div>
+          <div class='step-headers'>
+            <div class='step-header'>Pending</div>
+            <div class='step-header'>Submitted</div>
+            <div class='step-header'>Verified</div>
+          </div>
+        </div>
+      </div>
+      <div class="content_card " routerLink="/business/application/supportingdocument" routerLinkActive="active"
+        [ngClass]="{'pointer-event': KYBStatus?.isRestricted==1}">
+        <div class="card_header_title">Supporting documentation</div>
+        <!-- <p class="supp-doc">We need a little bit more information</p> -->
+        <div class="crd_icn_cont">
+          <img src="../../../../assets/images/doc_file.png">
+        </div>
+        <!-- <div class='step-progress-bar-container'>
+                    <div class='step-progress-bar'>
+                      <div class='step'
+                        [ngClass]="KYBStatus?.isDocsUploaded==2 || KYBStatus?.isDocsUploaded==1 ? 'complete' : 'current'">
+                      </div>
+                      <div class='step'
+                        [ngClass]="{'complete':KYBStatus?.isDocsUploaded==2 || KYBStatus?.isDocsUploaded==1}">
+                      </div>
+                      <div class='step' [ngClass]="{'complete':KYBStatus?.isDocsUploaded==2}"></div>
+                    </div>
+                    <div class='step-headers'>
+                      <div class='step-header'>Pending</div>
+                      <div class='step-header'>Submited</div>
+                      <div class='step-header'>Verified</div>
+                    </div>
+                  </div> -->
+      </div>
+     
+      <div class="content_card" [ngClass]="{'disabled': !isAllVerified}" (click)="moveToAccounts()" routerLinkActive="active">
+        <div class="card_header_title">Finish your application</div>
+        <!-- <p class="finsh-app">Last step to open your account</p> -->
+        <div class="crd_icn_cont">
+          <img src="../../../../assets/images/doc_pencil.png">
+        </div>
+        <div class='step-progress-bar-container'>
+
+        </div>
+      </div>
+     
+    </div>
+    <div class="col-md-8">
+      <ng-template [ngIf]="loadContent">
+        <h4>Please, click on any category of information from the left side and provide us with additional details in
+          order to activate your business account</h4>
+      </ng-template>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

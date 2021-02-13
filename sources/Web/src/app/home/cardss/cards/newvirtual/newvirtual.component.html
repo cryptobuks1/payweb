@@ -1,0 +1,132 @@
+    <div *ngIf="clsVir">
+        <div class="container-fluid page_container">
+            <div class="page_header">
+              <div class="header">
+                Cards
+              </div>
+              <ul>
+                <li>Cards/Virtual cards</li>
+              </ul>
+            </div>
+            <div class="acc_navbar">
+              <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item">
+                  <a data-target="#Physical" data-toggle="tab" class="nav-link" (click)="closeVirtual()">Physical</a>
+                </li>
+                <li class="nav-item">
+                  <a data-target="#Virtual" data-toggle="tab" class="nav-link active" (click)="closePhysical()">Virtual</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="Virtual">
+          
+                <div class="container-fluid">
+                  <div class="title_cnt">
+                    <div class="title">
+                    All cards
+                    </div>
+                    <div class="rt_cnt">
+                      <div id="AddNew" class="add_new" data-toggle="modal" data-target="#exampleModal2">
+                        Add new card
+                      </div>
+                      <div class="acc_style">
+                        <i class="fa fa fa-th-large" (click)="gridView()" [class.active]="gridActive"></i>
+                        <i class="fa fa fa-th-list" (click)="listView()" [class.active]="listActive"></i>
+                      </div>
+                      <div class="srch_cnt">
+                        <input type="text" name="key" class="form-control" size="25" placeholder="Search..." autocomplete="off"
+                          (keydown.space)="$event.preventDefault();" (focusout)="search_accounts = ''">
+                        <i class="fa fa-search search_open"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <img class="allCards" src="../../../assets/images/cards/EasyVoo_v.PNG" (click)="onVirCard()">
+                <img class="allCards" src="../../../assets/images/cards/FirstVoo_v.PNG">
+              </div>
+              <div class="modal hide" id="exampleModal2">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+            
+                    <div class="modal-body ">
+            
+                      <div class="text-center">
+                        <span class="modal_title">Choose a card type</span>
+                      </div>
+                      <div class="row" style="text-align: center;">
+                        <div class="col-md-4">
+                          <img class="allCards3" src="../../../assets/images/cards/EasyVoo_v.PNG"><br><br>
+                          <h5 style="color:black">EasyVoo</h5>
+                          <label class="switch">
+                            <input type="checkbox" (change)="onChange2()">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                        <div class="col-md-4">
+                          <img class="allCards3" src="../../../assets/images/cards/BlackVoo_v.PNG"><br><br>
+                          <h5 style="color:black">BlackVoo</h5>
+                          <label class="switch">
+                            <input type="checkbox" (change)="onChange2()">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                        <div class="col-md-4">
+                          <img class="allCards3" src="../../../assets/images/cards/FirstVoo_v.PNG"><br><br>
+                          <h5 style="color:black">FirstVoo</h5>
+                          <label class="switch">
+                            <input type="checkbox" (change)="onChange2()">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                      </div>
+            
+                      <div class="row choose">
+                        <div class="col-md-6">
+                          <button class="btn btn-outline-primary btn-block"
+                            data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-md-6">
+                          <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#orderV"
+                            [disabled]='!isVisible1' (click)="onClickV()">Continue</button>
+                        </div>
+                      </div>
+            
+            
+                    </div>
+            
+                  </div>
+                </div>
+              </div>
+              <div class="modal hide" id="orderV">
+                <div class="modal-dialog virCard" role="document">
+                  <div class="modal-content" align="center">
+                    <div class="modal-body">
+                      <div class="text-center">
+                        <img width="145px" src="../../../../assets/images/tick_icon.png">
+                      </div><br><br><br>
+                      <h5 style="margin-top: -30px; margin-bottom: -20px;">Great! Your PayVoo Virtual card <br> is ready
+                        to use</h5><br><br>
+                    </div>
+                    <div class="panel-footer">
+                      <div class="form-group col-md-6">
+                        <button class="btn btn-primary btn-block" (click)="onClick7()">Confirm</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+            
+    </div>
+    <div *ngIf="vcs">
+        <app-vircardsettings></app-vircardsettings>
+    </div>   
+    
+    <div *ngIf="forPhysical">
+        <app-cards></app-cards>
+    </div>
+     
+  
+  

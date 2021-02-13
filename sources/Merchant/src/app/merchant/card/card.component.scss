@@ -1,0 +1,221 @@
+@import "../../../styles.scss";
+.vertline::before {
+  position: absolute;
+  content: " ";
+  height: 90%;
+  width: 1px;
+  top: 5%;
+  background-color: $font-teritary;
+}
+.vertline {
+  min-height: calc(100vh - 350px);
+}
+.cvv {
+  width: 100px;
+}
+.card-header {
+  padding: 0.75rem 0rem 0rem 0rem;
+  margin-bottom: 0;
+  background-color: #ffffff;
+  border: none;
+}
+.mg-b-0 {
+  margin-bottom: 0px;
+}
+.margin-custom {
+  margin: -32px 6px 0px 0px;
+}
+.angle_down {
+  font-size: 20px;
+}
+.p-lr {
+  padding: 0px;
+  background-color: #ffffff;
+  width: 100%;
+  box-shadow: 0px 3px 6px #00000029;
+  z-index: 1;
+}
+.currlist:hover {
+  background-color: $color-secondary;
+  color: white;
+}
+.m-b-10 {
+  margin-bottom: 10px;
+}
+.pointer{
+  cursor: pointer;
+}
+.page_ht_crd {
+  box-shadow: 0px 3px 6px #00000029;
+  min-height: calc(100vh - 250px);
+  width: 60%;
+  padding: 20px 20px 20px 20px;
+  margin-left: 20%;
+  margin-top: 7%;
+}
+.page_ht_crd1 {
+  //box-shadow: 0px 3px 6px #00000029;
+  width: 100%;
+  padding: 10px 20px 10px 20px;
+}
+.cnt-btn {
+  margin-left: 41%;
+  width: 197px;
+}
+
+.pay {
+  color: $color-secondary;
+  font-weight: 500;
+  font-size: 25px;
+}
+.voo {
+  color: $color-primary;
+  font-weight: 500;
+  font-size: 25px;
+}
+.horizontal {
+  border: 0.5px solid $font-teritary;
+  width: 100%;
+  height: 0px;
+  margin: 20px 0px 20px 0px;
+}
+.total {
+  font-size: 18px;
+  color: $font-color-active;
+  padding: 0px 0px 0px 8px;
+}
+.amountdeduct {
+  width: 55px;
+  height: 30px;
+}
+.righthalf {
+  margin: 60px 20px 0px 20px;
+}
+input[type="radio"] {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 1px solid darkgray;
+  border-radius: 50%;
+  outline: none;
+}
+.vertalign {
+  vertical-align: middle;
+}
+
+input[type="radio"]:before {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 60%;
+  margin: 20% auto;
+  border-radius: 50%;
+}
+.lefthalf {
+  color: $font-color-active;
+}
+input[type="radio"]:checked:before {
+  background: $color-secondary;
+}
+.innerdiv {
+  padding: 15px;
+}
+.radio {
+  position: relative;
+}
+// .card_type_cnt {
+//   display: inline-block;
+//   vertical-align: middle;
+//   width: 35px;
+//   height: 35px;
+//   background: url("../../../assets/iconsprite.png");
+//   background-position: 0px 0px;
+//   background-repeat: no-repeat;
+
+//   &.card_master {
+//     background-position: -266px -2px;
+//   }
+// }
+.cardno {
+  margin-left: 40px;
+  vertical-align: middle;
+}
+.itm_crcl {
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  line-height: 34px;
+  padding: 0px;
+  background: $font-color-active;
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+}
+.addpaymenttext {
+  margin-left: 20px;
+  margin-top: 4px;
+}
+.addnewpayment {
+  margin: 10px;
+}
+@media (max-width: 768px) {
+  .page_ht_crd {
+    width: 90%;
+  }
+}
+@media (max-width: 576px) {
+  .page_ht_crd {
+    box-shadow: 0px 3px 6px #00000029;
+    min-height: calc(100vh - 250px);
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    margin-left: 0%;
+  }
+  .vertline::before {
+    position: absolute;
+    content: " ";
+    height: 1px;
+    width: 90%;
+
+    background-color: $font-teritary;
+  }
+  .cnt-btn {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+#cvv {
+  width: 20%;
+}
+
+.card_type_cnt {
+  position: absolute;
+  //right: 20px;
+  bottom: 4px;
+  width: 35px;
+  height: 35px;
+  background: url("../../../assets/iconsprite.png");
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+
+  &.card_master {
+    background-position: -266px 0px;
+  }
+  &.card_visa {
+    background-position: -137px 0px;
+  }
+  &.card_jcb {
+    background-position: -95px 0px;
+  }
+  &.card_dci {
+    background-position: -177px 0px;
+  }
+  &.card_unionpay {
+    background-position: -219px 0px;
+  }
+}
+
+#checkbox {
+  color: red;
+}

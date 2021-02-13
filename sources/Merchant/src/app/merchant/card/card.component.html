@@ -1,0 +1,150 @@
+<div class="card page_ht_crd mx-auto" *ngIf="displayCard">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 lefthalf">
+            <div class="logo_cnt">
+                <img class="img-fluid" src="../../../assets/payvoo_logo.png">
+            </div>
+            <div class="horizontal"></div>
+            <div class="innerdiv">
+                <!-- <div class="form-group float_label">
+                    <select class="form-control" (change)="currencyType($event.target.value)">
+                        <option disabled="disabled">EUR</option> 
+                        <option *ngFor="let currency of accounts">
+                            {{currency.currency}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{currency.balance}} {{currency.currency}}
+                             {{currency.currency}}{{currency.balance}}€
+                        </option>
+                    </select>
+                    <label>Choose your currency</label>
+                </div> -->
+
+
+
+
+                <div id="accordion" class="accordion">
+                    <div class="card-header collapsed" data-toggle="collapse" href="#collapseExample">
+                        <div class="form-group float_label mg-b-0">
+                            <input class="form-control pointer" placeholder="&nbsp;" required="required" value="{{currencyname}}"
+                                >
+                                <label>Choose your currency </label>
+                                <div class="pull-right margin-custom d-inline pointer">
+                                    <span>{{currencyvalue}} {{currencyname}} </span>
+                                    <i class="fa fa-angle-down angle_down" aria-hidden="true"></i>
+                                </div>
+                               
+                                    </div>
+                      <!-- <p class="ipttxt"><span>{{dummy}}</span><span class="pull-right">100<i class="fa fa-chevron-down"
+                            aria-hidden="true"></i></span></p> -->
+                    </div>
+                
+                  </div>
+                
+                <div class="position-relative">
+                  <div class="dropdown collapsedropdown position-absolute p-lr per">
+                    <div class="page_ht_crd1 collapse" id="collapseExample" data-parent="#accordion">
+                      <div (click)="currencyType(currency)" *ngFor="let currency of accounts" class="currlist">
+                        <p class="m-b-10">{{currency.currency}}<span class="pull-right">{{currency.balance}} {{currency.currency}} </span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+                <input type="checkbox" *ngIf="checkboxenable  && roundOff(roundOff(convertedAmount)-roundOff(money)) > 0 " name="check" value="true"
+                    (change)="checkbox($event.target.value)">
+                <input type="checkbox" id="checkbox" *ngIf="checkboxdisable  && roundOff(roundOff(convertedAmount)-roundOff(money)) > 0 " name="check" value="false"
+                    (change)="checkbox($event.target.value)" checked>
+                <label for="check" *ngIf=" roundOff(roundOff(convertedAmount)-roundOff(money)) > 0 ">&nbsp; Add money from card</label>
+                <div *ngIf="showCards && roundOff(roundOff(convertedAmount)-roundOff(money)) > 0">
+                    <h5>Saved cards</h5>
+                    <div class="radio" *ngFor="let card of cards">
+                        <label><input type="radio" name="cards" value="1" class="vertalign"
+                                (change)="radiobtn($event.target.value,card)">
+                            <!-- <i class="card_type_cnt card_master"></i> -->
+                            <i *ngIf="card.card_type=='VISA' || card.card_type=='visa'"
+                                class="card_type_cnt card_visa"></i>
+                            <i *ngIf="card.card_type=='mastercard' || card.card_type=='MASTERCARD'"
+                                class="card_type_cnt card_master"></i>
+                            <i *ngIf="card.card_type=='jcb' || card.card_type=='JCB'" class="card card_jcb"></i>
+                            <i *ngIf="card.card_type=='diners-club' || card.card_type=='DINERS-CLUB'"
+                                class="card_type_cnt card_dci"></i>
+                            <i *ngIf="card.card_type=='unionpay' || card.card_type=='UNIONPAY'"
+                                class="card_type_cnt card_unionpay"></i>
+                            <!-- <span class="cardno">Express bank LTD
+                                {{card.card_number}}</span> -->
+                        </label>
+                        <span class="cardno">Express bank LTD
+                            {{card.card_number}}</span>
+                    </div>
+                    <input type="text" id="cvv" class="form-control" *ngIf="ShowCvv" placeholder="CVV" maxlength="3" minlength="3"
+                        (input)="cvv($event.target.value)">
+
+                        <div class="row addnewpayment" routerLink="/add-card"  >
+                            <div class="itm_crcl">+</div>
+                            <div class="addpaymenttext">Add new payment source</div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 vertline">
+            <div class="righthalf">
+                <p class="d-flex">Wallet balance<span class="ml-auto"><b>{{roundOff(money)}} {{selectedCurrency}}</b></span></p>
+                <p *ngIf="roundOff(convertedAmount-money) > 0 " class="d-flex">Amount to be detucted from card
+                    <span class="ml-auto">
+                        {{roundOff(roundOff(convertedAmount)-roundOff(money))}} {{selectedCurrency}}
+                    </span>
+                </p>
+                <p class="d-flex">Amount to be Paid<span class="ml-auto"><b>{{roundOff(convertedAmount)}} {{selectedCurrency}}</b></span></p>
+                <!-- <p>Total amount to pay<span class="pull-right"><b>€10.00</b></span></p> -->
+                <p class="d-flex">Transaction fee<span class="ml-auto"><b>No fee</b></span></p>
+                <div class="total">
+                    <p class="d-flex"><b>Total</b><span class="ml-auto"><b>{{roundOff(totalamount)}} {{payingCurrency}}</b></span></p>
+                </div>
+                <p class="d-flex" *ngIf="roundOff(money-convertedAmount) > 0">Remaining account balance<span
+                        class="ml-auto"><b>{{roundOff(roundOff(money)-roundOff(convertedAmount))}} {{selectedCurrency}}</b></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-auto">
+        <button [disabled]="continueBtn" class="btn btn-primary cnt-btn" (click)="paySandbox()">Continue
+            <!-- <div class="spinner-border text-warning" *ngIf="loadingButton" role="status">
+                 
+                <span class="sr-only">Loading...</span>
+            </div> -->
+        </button>
+    </div>
+
+</div>
+
+
+<!-- =========================================================== loading  ====================================================================================================-->
+
+<div class="loading" *ngIf=loadingButton></div>
+
+
+<!--============================================================ Add Card ========================================================================-->
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered" style="width: 30%;">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="check_div">
+                    <img src="../../../../assets/images/tick_icon.png">
+                </div>
+                <h4>Insufficient funds in the selected account. Change card to continue</h4>
+
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <button class="btn btn-primary btn-block" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

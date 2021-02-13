@@ -1,0 +1,195 @@
+<div class="row">
+  <ng-template [ngIf]="currAmountTmpl">
+    <div class="col-md-6">
+      <div class="card add_money_card" style="height: 477px;">
+        <form [formGroup]="amountTransForm">
+          <h3 class="card_header">Choose currency and amount</h3> 
+          <div class="form-group float_label">
+            <select class="form-control" formControlName="currency" id="contryname" [(ngModel)]="currencyvalue"
+             (change)="choseCurrency(currencyvalue)" [attr.disabled]="state ? '' : null">
+              <option *ngFor="let x of currencyData"  [ngValue]="x.currency" [selected]="x.currency == 'Choose currency'" [hidden]="x.currency == 'Choose currency'">{{x.currency}}</option>
+            </select>
+            <label *ngIf="currencyvalue && currencyvalue!='Choose currency'">Choose currency</label>            
+          </div>
+          <div class="form-group float_label">
+            <input type="text" step="0.01" class="form-control" (keyup)="checkCurrency(currencyvalue)" appTwoDigitDecimaNumber formControlName="amount" placeholder="&nbsp;" autocomplete="off" [readonly]="isReadOnly" maxlength="10" minlength="1">
+            <label style="left: 16px !important;">Enter amount</label>
+          </div>
+          <small>Note: minimum top-up is : <small *ngIf="currencyvalue==undefined">EUR</small> <small  *ngIf="currencyvalue!=undefined">{{currencyvalue}}</small> {{currencyTopup}}</small>
+
+
+          <div class="card_details_cont">
+            <div class="addcard_icn">
+              <i class="fa fa-bank"></i>
+            </div>
+            <div class="crd_det">
+              <p>PayVoo Bank LTD</p>
+              <span>{{CardDetails?.card_type}} &nbsp;*{{creditCardMask(CardDetails?.card_number) | slice:(-5)}}</span>
+            </div>
+          </div>
+          <div class="panel-footer" *ngIf="hideCurrBtn">
+            <div class="row" style="margin-top: 40px;">
+              <div class="col-xs-6 col-md-6">
+                <div class="form-group" *ngIf="authService.accountMatch(['personal'])">
+                  <button style="border-radius:4px" class="btn btn-outline-primary btn-block" routerLink="/personal/add-money">Cancel</button>
+                </div>
+                <div class="form-group" *ngIf="authService.accountMatch(['business'])">
+                    <button style="border-radius:4px" class="btn btn-outline-primary btn-block" routerLink="/business/add-money">Cancel</button>
+                </div>
+              </div>
+              <div class="col-xs-6 col-md-6 pull-right">
+                <div class="form-group">
+                  <button style="border-radius:4px" class="btn btn-primary btn-block" (click)="addPaymentemp(amountTransForm.value)"
+                    [disabled]="amountTransForm.invalid">Continue</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="addPaymentemplate">
+    <div class="col-md-6">
+      <div class="card add_money_card" style="margin-left: -20px;">
+        <form [formGroup]="currTransForm">
+          <h3 class="card_header">Enter card details</h3>
+          <p><i class="fa fa-lock"></i> Card details are saved securely</p>
+          <div class="panel-body">
+            <div class="form-group float_label">
+              <input type="text" class="form-control" autocomplete="off" formControlName="name_on_card" placeholder="&nbsp;" readonly>
+              <label>Name on card</label>
+            </div>
+            <div class="form-group float_label">
+                 <input type="text" class="form-control" autocomplete="off" formControlName="card_number" maxlength="19" minlength="16" placeholder="&nbsp;" readonly>
+              <label>16-19 digit card number</label>
+              <i *ngIf="CardDetails.card_type=='visa' || CardDetails.card_type=='VISA'" class="card_type_cnt card_visa"></i>
+              <i *ngIf="CardDetails.card_type=='mastercard' || CardDetails.card_type=='MASTERCARD'" class="card_type_cnt card_master"></i>
+              <i *ngIf="CardDetails.card_type=='jcb' || CardDetails.card_type=='JCB'" class="card_type_cnt card_jcb"></i>
+              <i *ngIf="CardDetails.card_type=='diners-club' || CardDetails.card_type=='DINERS-CLUB'" class="card_type_cnt card_dci"></i>
+              <i *ngIf="CardDetails.card_type=='unionpay' || CardDetails.card_type=='UNIOPAY'" class="card_type_cnt card_unionpay"></i>
+            </div>
+            <div class="row">
+              <div class="col-xs-4 col-md-6">
+                <div class="form-group float_label">
+                  <input type="text" class="form-control" autocomplete="off" formControlName="card_month" readonly placeholder="&nbsp;">
+                  <label>Expiry month</label>
+                </div>
+              </div>
+              <div class="col-xs-4 col-md-6">
+                <div class="form-group float_label">
+                <input type="text" class="form-control" formControlName="card_year" placeholder="&nbsp;"
+                mask="0000" minlength="4" maxlength="4" autocomplete="off">
+                <label>Expiry year</label>
+                </div>
+                <div style="margin-top: -20px;">
+                  <span style="color: red; font-size: 12px;" *ngIf="yearValidation">Please, enter a valid expiry year.</span>
+                </div>
+              </div>
+              <!-- <div class="col-xs-4 col-md-6">
+                <div class="form-group float_label">
+                  <select formControlName="card_month" class="form-control">
+                    <option value="" disabled selected hidden>Expire month</option>
+                    <option *ngFor="let month of months" [ngValue]="month">{{month}}</option>
+                  </select>
+                </div>
+               <div style="margin-top: -20px;">
+                  <span style="color: red; font-size: 12px;" *ngIf="monthValidation">Please, enter a valid expiry month.</span>
+                </div>
+              </div> -->
+              <!-- <div class="col-xs-4 col-md-6">
+                <div class="form-group float_label">              -->
+                  <!-- <select [(ngModel)]="card_year" class="form-control"
+                   #month="ngModel">
+                  <option [ngValue]= "undefined" selected>Expiry year</option>
+                  <option *ngFor="let month of year" [ngValue]="month">{{year}}</option>
+                </select>             -->
+                <!-- <input type="text" class="form-control" formControlName="card_year" placeholder="&nbsp;"
+                mask="0000" minlength="4" maxlength="4" autocomplete="off">
+                <label>Expiry year</label>
+                </div>
+                <div style="margin-top: -20px;">
+                  <span style="color: red; font-size: 12px;" *ngIf="yearValidation">Please, enter a valid expiry year.</span>
+                </div>
+              </div> -->
+
+
+
+              <div class="col-xs-4 col-md-4 pull-right">
+                <div class="form-group float_label">
+                  <input type="text" class="form-control" id='cvv' maxlength="3" minlength="3" formControlName="card_cvv"
+                    placeholder="&nbsp;" autocomplete="off">
+                  <label>CVV</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                  <button class="btn btn-outline-primary btn-block" (click)="PreDiv()" *ngIf="!prevcurrTransForm">Cancel</button>
+                </div>
+              </div>
+              <div class="col-xs-6 col-md-6 pull-right">
+                <div class="form-group">
+                  <button class="btn btn-primary btn-block" [disabled]="currTransForm.invalid || prevcurrTransForm"
+                    (click)="AddCurrMoney(currTransForm.value)">  <span
+                    class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                    *ngIf="loader"></span>Continue</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<div class="modal fade" id="confirmation" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="width: 700px;">
+    <div class="modal-dialog modal-dialog-centered" style="width: 400px;">
+    <div class="modal-content">
+      <div class="modal-body body_popup">
+        <div class="add_money">
+          <nav class="navbar add-money global_font" style="background-color: #2A3477;">
+            <!-- <h4 style="color:white; margin-bottom: 1.5rem; margin-top:5px ;"><i class="fa">&#xf104;&nbsp;&nbsp;Add money</i></h4> -->
+            <h4 style="color:white; margin-bottom: 0.5rem;margin-top:15px;font-family:sans-serif;font-weight:100;font-size: 20px;"><i class="fa" >&#xf104;&nbsp;&nbsp;</i>Add money</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close" (click)="closeConfirm()">
+                <span  style="color:white" aria-hidden="true">&times;</span>
+            </button>
+        </nav>
+        <br>
+          <h4 class="header_bar global_font" style="text-align: center"><strong>Confirm top-up</strong></h4><br><br>
+          <div>
+              <table class="table table-borderless">
+                  <tbody>
+                      <tr>
+                          <td class="float-left">Top up</td>
+                          <td>{{currencyvalue}} {{amount}}</td>
+                      </tr>
+                      <tr>
+                          <td class="float-left">Processing fees (0%)</td>
+                          <td>{{currencyvalue}} {{processingFees |number : '1.2-2'}}</td>
+                      </tr><br>
+
+                      <tr class="font-weight-bold">
+                          <td class="float-left"><strong>Total charge</strong></td>
+                          <td><strong>{{currencyvalue}} {{amount*1 + processingFees*1 | number : '1.2-2'}}</strong></td>
+                      </tr>
+
+                  </tbody>
+              </table>
+          </div><br>
+          <div class="row justify-content-center">
+              <div class="col-md-6">
+                  <button class="btn btn-primary btn-block" (click)=confirmAddCurrency()>Confirm</button>
+              </div>
+
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

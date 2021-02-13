@@ -1,0 +1,235 @@
+@import "../../../../variables";
+
+  .lft_bg_img{
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+      left: 0px;
+      top: 0px;
+      bottom: 0px;
+      background-position: center;
+  }
+
+  .btn{
+    padding: 0.5rem 2rem;
+  }
+  // Added
+.pass_checkers {
+  list-style: none;
+  padding-left: 0px;
+  li {
+    padding: 10px 0px;
+
+    i {
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      margin-right: 10px;
+      font-size: 0.75rem;
+      background: $font-color;
+      border-radius: 50%;
+      padding: 8px 0px;
+      color: #ffffff;
+      line-height: 9px;
+    }
+    &.active {
+      color: $font-color-active;
+      i {
+        color: #ffffff;
+        background-color: $color-success;
+      }
+    }
+  }
+}
+
+// closed
+
+  .bg_img_1{
+    background-image: url("../../../../assets/images/business-signup.jpg");
+  }
+
+  .rt_cont{
+    padding: 50px 150px;
+
+  }
+
+  .check_div{
+    margin-top: 150px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .check_div img{
+    width: 100px;
+  }
+  .header_bar{
+    position: relative;
+    margin-bottom: 30px;
+    color: #545454;
+  }
+  .header_bar:after{
+  background: #a7a7a7;
+  opacity: 0.8;
+  content: "";
+  height: 1px;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  border-radius: 2px;
+  }
+  .header_para{
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #545454;
+    font-weight: 400;
+  }
+
+  .m_t_200{
+    margin-top: 200px;
+  }
+  .m_b_20{
+    margin-bottom: 20px;
+  }
+  .m_t_20{
+    margin-top:20px;
+  }
+  .m_r_20{
+    margin-right: 20px;
+  }
+
+  .logo_container{
+    width: 100%;
+    height: 0px;
+    position: relative;
+    z-index: 5;
+  }
+  .logo_container img{
+    position: fixed;
+    width: 22%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: -25px;
+
+  }
+  .matched
+  {
+    color: red;
+    /* padding-top: 17px; */
+    position: relative;
+    top: 4px;
+  }
+
+  #user_form fieldset:not(:first-of-type) {
+      display: none;
+    }
+    .progress {
+      display: -ms-flexbox;
+      display: flex;
+      height: 5px;
+      overflow: hidden;
+      font-size: .75rem;
+      background-color:#f8c015;
+      border-radius: 4px;
+      width: 80%;
+      margin: auto;
+      margin-top: 200px;
+      margin-bottom: 20px;
+  }
+
+  .float_label.rt_icon {
+    width: calc(100% - 0px);
+  }
+
+  .progress-bar {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-pack: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      background-color:#2766a8;
+      transition: width .6s ease;
+  }
+
+
+
+  $num-of-char: 6;
+  $char-width: 1ch;
+  $gap: .4 * $char-width;
+  $in-w: $num-of-char * ($char-width + ($gap));
+
+  .reset
+  {
+    margin-top:15px;
+  }
+
+  .otp{
+    display: block;
+    border: none;
+    width: 11.6ch;
+    background: repeating-linear-gradient(90deg, #000 0, #000 1.3ch, transparent 0, transparent 1.8ch) 0 100%/10ch 1px no-repeat;
+    font: 4.8ch droid sans mono, consolas, monospace;
+    letter-spacing: 0.74ch;
+    padding: 8px;
+    &:focus{
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .inpt_icn {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    background: none;
+    border: none;
+    color: #777777;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px){
+    .m_t_200 {
+      padding-top: 100px;
+    }
+  }
+
+@media (max-width: 768px) {
+  .lft_bg_img {
+    height: 300px;
+    min-height: auto;
+    z-index: 4;
+  }
+  .rt_cont {
+    padding: 10px 0px 10px 30px;
+  }
+  .logo_container img {
+    width: 130px;
+    top: -10px;
+    left: 50px;
+    position: fixed;
+  }
+  form.m_t_200{
+    margin-top: 330px;
+  }
+}
+
+
+@media (max-width: 480px){
+  .lft_bg_img {
+    height: 250px;
+    min-height: auto;
+    z-index: 4;
+    position: fixed;
+    background-position: center;
+  }
+  form.m_t_200{
+    margin-top: 200px;
+  }
+
+
+}

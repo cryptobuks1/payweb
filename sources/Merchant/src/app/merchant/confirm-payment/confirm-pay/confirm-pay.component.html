@@ -1,0 +1,98 @@
+
+<div class="container" style="margin-top:5%;">
+    <div class="card page_ht_crd1 mx-auto">
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <div class="navimg"><a class="navbar-brand" ><img width="100" src="../../../../../assets/images/main-logo.png"></a></div>
+            <div class="dropdown drpdn pull-right">
+              <button style="outline: none;" class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span style="font-size: 17px;"><i class="fa fa-shopping-cart" style="font-size:20px"></i>&nbsp;&nbsp;&nbsp;{{amount}} EUR</span>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <table>
+                  <tr>
+                    <td><a class="dropdown-item">My webshop</a></td>
+                  </tr>
+                  <tr>
+                    <td><a class="dropdown-item">Orchidacea</a></td>
+                    <td ><a class="dropdown-item">24,00 EUR</a></td>
+                  </tr>
+                  <tr>
+                    <td><a class="dropdown-item">Total Amount</a></td>
+                    <td><a class="dropdown-item">24,00 EUR</a></td>
+                  </tr>
+                  <tr>
+                    <td><a style="font-weight: bold;" class="dropdown-item">Total</a></td>
+                    <td><a style="font-weight: bold;" class="dropdown-item">24,00 EUR</a></td>
+                  </tr>
+                </table>
+              </div>             
+            </div>
+          </div>   <br>       
+          <h5 style="color:black;">Confirm payment</h5><br>
+            <div style="margin-left: 3px;">
+              <form (ngSubmit)="onClick(currTransForm.value)" [formGroup]="currTransForm">
+                <div class="row">
+                    <div class="col-md-6" >
+                      <input type="text" class="form-control" size="50" autocomplete="off" formControlName="name_on_card" placeholder="&nbsp;" readonly>
+                      <label style="color:black; font-size: 12px;">Name on card</label>
+                    </div>                    
+                </div>
+                <div class="form-group float_label">
+                  <input type="text" class="form-control" autocomplete="off" formControlName="card_number" maxlength="19" minlength="16" placeholder="&nbsp;" readonly>
+               <label style="color:black">16-19 digit card number</label>
+               <i *ngIf="CardDetails.card_type=='visa' || CardDetails.card_type=='VISA'" class="card_type_cnt card_visa"></i>
+               <i *ngIf="CardDetails.card_type=='mastercard' || CardDetails.card_type=='MASTERCARD'" class="card_type_cnt card_master"></i>
+               <i *ngIf="CardDetails.card_type=='jcb' || CardDetails.card_type=='JCB'" class="card_type_cnt card_jcb"></i>
+               <i *ngIf="CardDetails.card_type=='diners-club' || CardDetails.card_type=='DINERS-CLUB'" class="card_type_cnt card_dci"></i>
+               <i *ngIf="CardDetails.card_type=='unionpay' || CardDetails.card_type=='UNIOPAY'" class="card_type_cnt card_unionpay"></i>
+             </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" size="10"autocomplete="off" formControlName="card_month" readonly placeholder="&nbsp;">
+                      <label style="color:black; font-size: 12px;">Expiry month</label>
+                    </div>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" formControlName="card_year" placeholder="&nbsp;"
+                      mask="0000" minlength="4" maxlength="4" autocomplete="off">
+                      <label style="color:black; font-size: 12px;">Expiry year</label>
+                    </div>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" formControlName="card_cvv" placeholder="&nbsp;"
+                       minlength="3" maxlength="3" id='cvv' autocomplete="off">
+                      <label style="color:black;font-size: 12px;">CVV</label>
+                    </div>
+                    <!-- <div class="col-xs-4 col-md-4 pull-right">
+                      <div class="form-group float_label">
+                        <input type="text" class="form-control" id='cvv' maxlength="3" minlength="3" formControlName="card_cvv"
+                          placeholder="&nbsp;" autocomplete="off">
+                        <label style="color:black">CVV</label>
+                      </div>
+                    </div> -->
+                  </div><br>             
+            <div class="panel-footer">
+                <div class="row">
+                  <div class="col-xs-6 col-md-6">
+                    <div class="form-group">
+                      <button style="border-radius:4px" class="btn btn-outline-primary btn-block" (click)="PreDiv()">Cancel</button>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-md-6 pull-right">
+                    <div class="form-group">
+                      <button style="border-radius:4px" type="submit" class="btn btn-primary btn-block" [disabled]="" >Continue</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <div class="col-md-6" style="text-align: center; margin-top: 50px;">
+          <img width="130"  src="../../../../../assets/images/award.png"><br><br>
+          <p>With payvoo your payments<br>are fast and Secure. And your<br>data protected.</p>
+        </div>
+      </div><br>  
+      </div>
+    </div>

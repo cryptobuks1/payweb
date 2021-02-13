@@ -1,0 +1,2 @@
+INSERT INTO `country` (`country_id`, `country_name`, `calling_code`, `country_code`, `currency`, `currency_symbol`, `status`, `country_flag_img_path`, `iso_currency_name`) VALUES
+ (40, 'LIECHTENSTEIN', '423', 'LI', 'CHF', 'Fr.', '1', '/images/country_flag_img_path/swiss.png', 'Swiss franc');

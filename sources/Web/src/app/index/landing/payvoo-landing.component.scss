@@ -1,0 +1,124 @@
+.logo_container {
+    width: 100%;
+    height: 0px;
+    position: relative;
+    z-index: 5;
+  }
+  .logo_container img {
+    position: absolute;
+    width: 27%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: -25px;
+  }
+  .left_img:hover {
+    opacity: 0.5;
+  }
+  .right_img:hover {
+    opacity: 0.5;
+  }
+  .bg_wt {
+    background: #ffffff;
+  }
+  #personal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fa6102;
+    font-size: 40px;
+    font-weight: 900;
+    cursor: pointer;
+    opacity: 1;
+ }
+ .business {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fa6102;
+    font-size: 40px;
+    font-weight: 900;
+    cursor: pointer;
+ }
+
+ .container-fluid {
+   padding: 0 !important;
+ }
+
+ .splash_img_container {
+   width: 100%;
+   height: 100vh;
+   background-size: cover;
+   background-repeat: no-repeat;
+   left: 0px;
+   top: 0px;
+   bottom: 0px;
+   background-position: center;
+   cursor: pointer;
+
+   img {
+     height: 100% !important;
+   }
+ }
+
+ .left_img {
+   background-image: url('/assets/images/analysis-banking-businesswoman-2.jpg');
+ }
+
+ .right_img {
+   background-image: url('/assets/images/business-signup2.jpg');
+ }
+.abc {
+  display: none;
+}
+.xyz {
+  display: none;
+}
+ .account_type_text {
+   padding-left: 1rem;
+   padding-right: 1rem;
+   border-radius: 1rem;
+ }
+
+ @media (max-width: 991.98px) {
+   .splash_img_container {
+     height: 50vh !important;
+   }
+   .left_img {
+     display: none;
+   }
+   .right_img {
+    display: none;
+   }
+   .logo_container {
+     top: 0 !important;
+   }
+
+   .logo_container img {
+     width: 10rem !important;
+     left: 22% !important;
+     top: 0 !important;
+   }
+   .abc {
+    display: inline;
+    position: fixed;
+  }
+  .xyz {
+    display: inline;
+    position: fixed;
+  }
+ }
+ @media (max-width: 700px) {
+  .abc {
+    display: inline;
+    position: sticky;
+    top: 0;
+  }
+  .xyz {
+    display: inline;
+    position: sticky;
+    top: 0;
+  }
+ }

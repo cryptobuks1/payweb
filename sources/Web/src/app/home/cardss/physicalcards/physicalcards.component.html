@@ -1,0 +1,248 @@
+<div class="container-fluid">
+    <div class="page_header">
+        <div class="header">
+            Add Card
+        </div>
+        <ul>
+            <li>Accounts</li>
+            <li>Cards</li>
+            <li>Add Cards</li>
+        </ul>
+    </div>
+    <div class="row" >
+        <div class="col-md-4" *ngIf="cardholderr">
+            <div class="card add_money_card">
+                <h3 class="card_header">Choose a card holder</h3>
+                <div class="m-t-20 container">
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control" placeholder="&nbsp;">
+                        <label>Search employee name or email</label>
+                    </div>
+                </div>
+
+
+                <div class="d-flex" data-toggle="modal" data-target="#myModal1">
+                    <div class="p-2 align-self-center">
+                        <span class="itm_crcl1">+</span>
+                    </div>
+                    <div class="p-2 align-self-center">
+                        <span>Add new Employee</span>
+                    </div>
+                </div>
+
+                <div class="d-flex" (click)="cardsTrue(i)" [ngClass]="{'activeclr':i==selectedIndex}"
+                    *ngFor="let x of aray; let i= index">
+                    <div class="p-2 align-self-center">
+                        <span class="itm_crcl">{{x.symbol}}</span>
+                    </div>
+                    <div class="p-2">
+                        <p class="font-clr">{{x.name}}</p>
+                        <small> //url>//</small>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-4" *ngIf="linkAccount">
+            <div class="card add_money_card">
+                <form>
+                    <div class="panel-body">
+
+                        <div class="container">
+                            <h3 class="card_header">Link Accounts to the card</h3>
+                            <p>If there is more than 1 account linked to this card,
+                                the currency of the card transaction will determine which of the linked accounts will be
+                                changed.</p>
+                        </div>
+
+                        <div class="d-flex flexborder">
+                            <div class="p-2  align-self-center">
+                                <span><img src="../../../../assets/images/euro.png"></span>
+                            </div>
+                            <div class="p-2">
+                                <p class="m-b-0">EURO</p>
+                                <small>Bal : EUR 0</small>
+                            </div>
+                            <div class="ml-auto p-2  align-self-center">
+                                <div class="switch_box box_1">
+                                    <input type="checkbox" class="switch_1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flexborder">
+                            <div class="p-2  align-self-center">
+                                <span><img src="../../../../assets/images/euro.png"></span>
+                            </div>
+                            <div class="p-2">
+                                <p class="m-b-0">EURO</p>
+                                <small>Bal : EUR 0</small>
+                            </div>
+                            <div class="ml-auto p-2  align-self-center">
+                                <div class="switch_box box_1">
+                                    <input type="checkbox" class="switch_1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flexborder">
+                            <div class="p-2  align-self-center">
+                                <span><img src="../../../../assets/images/euro.png"></span>
+                            </div>
+                            <div class="p-2">
+                                <p class="m-b-0">EURO</p>
+                                <small>Bal : EUR 0</small>
+                            </div>
+                            <div class="ml-auto p-2  align-self-center">
+                                <div class="switch_box box_1">
+                                    <input type="checkbox" class="switch_1">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" *ngIf="btndisabled">
+                            <div class="col-md-6" (click) = "chooseCard()">
+                                <button 
+                                style="border-radius:4px" class="btn btn-outline-primary btn-block ">Cancel</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button  style="border-radius:4px"  class="btn btn-primary btn-block" (click)="cardLimit()">Continue</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4" *ngIf="cardLimittt">
+            <div class="card add_money_card">
+                <form>
+                    <div class="panel-body">
+                        <h3 class="card_header">Set monthly card limit</h3>
+                        <div class="d-flex flexborder">
+                            <div class="align-self-center">
+                                <span>EURO</span>
+                            </div>
+                            <div class="ml-auto align-self-center">
+                                <div class="form-group float_label">
+                                    <input type="text" class="form-control font-wdth" placeholder="&nbsp;">
+                                    <label>500</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flexborder">
+                            <div class="align-self-center">
+                                <span>BGN</span>
+                            </div>
+                            <div class="ml-auto align-self-center">
+                                <div class="form-group float_label">
+                                    <input type="text" class="form-control font-wdth" placeholder="&nbsp;">
+                                    <label>300</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button (click)="previousPage()" class="btn btn-outline-primary btn-block">
+                                    Cancel
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                                    data-target="#myModal">Continue</button>
+                            </div>
+                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                Open modal
+                              </button> -->
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="deliveryaddress">
+        <app-deliveryaddress></app-deliveryaddress>
+    </div>
+</div>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+                <div class="text-center container">
+                    <br>
+                    <h5>Create a pin code for your new card</h5>
+                    <div class="m-t-20">
+                        <div class="form-group float_label">
+                            <input type="text" class="form-control" placeholder="&nbsp;">
+                            <label>Create a 4-digit pin code</label>
+                        </div>
+                    </div>
+                    <div class="m-t-20">
+                        <div class="form-group float_label">
+                            <input type="text" class="form-control" placeholder="&nbsp;">
+                            <label>Confirm your 4-digit pin code</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-primary" data-dismiss="modal" type="button"
+                            (click)="deliveryAddress()">Continue</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="myModal1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="text-center container">
+                    <br>
+                    <h5>Create an employee</h5>
+
+                    <div class="m-t-20">
+                        <div class="form-group float_label">
+                            <input type="text" class="form-control" placeholder="&nbsp;">
+                            <label>First Name</label>
+                        </div>
+                    </div>
+                    <div class="m-t-20">
+                        <div class="form-group float_label">
+                            <input type="text" class="form-control" placeholder="&nbsp;">
+                            <label>Last Name</label>
+                        </div>
+                    </div>
+
+                    <div class="m-t-20">
+                        <div class="form-group float_label">
+                            <input type="text" class="form-control" placeholder="&nbsp;">
+                            <label>E-mail</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-primary" data-dismiss="modal">Continue</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

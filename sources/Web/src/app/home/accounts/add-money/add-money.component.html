@@ -1,0 +1,130 @@
+<div class="container-fluid">
+ <div class="page_header">
+    <div class="header">
+      Add Money
+    </div>
+    <ul>
+      <li>
+        <a routerLink="/personal/accounts/getaccount" *ngIf="authService.accountMatch(['personal'])">Accounts</a>
+        <a routerLink="/business/accounts/getaccount" *ngIf="authService.accountMatch(['business'])">Accounts</a>
+    </li>
+      <li>Add money</li>
+    </ul>
+  </div>
+  <div class="pull-right d-inline m-t-10" style="margin-right: 2px;">
+    <a *ngIf="authService.accountMatch(['personal']); else Business" routerLink="/personal/accounts/getaccount"><i class="fa fa-arrow-left"></i> Back</a>
+    <ng-template #Business>
+      <a routerLink="/business/accounts/getaccount"><i class="fa fa-arrow-left"></i> Back</a>
+    </ng-template>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card add_money_card" *ngIf="authService.accountMatch(['personal'])">
+        <h3 class="card_header">How would you like to add money?</h3>
+        <div class="addcard" routerLink="/personal/add-money/cards" routerLinkActive="addcardActive">
+          <div class="addcard_icn"><i class="fa fa-plus"></i></div>
+          <span>Add debit or credit card</span>
+        </div>
+        
+        <div data-toggle="modal" (click)="comingSoon()" class="transfer_Bank">
+          <div class="addcard_icn"><i class="fa fa-bank"></i></div>
+          <span>Transfer to your PayVoo account</span>
+        </div>
+        <div class="modal fade" id="appWarn" role="dialog">
+          <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+            <div class="modal-content" style="margin: 20px; width: 100%; padding: 10px">
+              <div class="modal-body body_popup">
+              <div class="wip-container text-center bg-white">
+                  <img class="wip-img" src="assets/images/payvoo-wip.png" />
+                  <p style="color:black"><strong>We are getting this feature ready. We will notify you when it is done.</strong></p>
+                  <button  style="border-radius:4px" class="btn btn-primary btn-block" data-dismiss="modal" (click)="hideOk()" >OK </button>
+                  </div>
+                  </div>
+                </div>
+        </div>
+        </div>
+        <ng-container *ngFor="let item of cardData">
+          <div class="crd_card" *ngIf="(item.status == 1)" routerLink="/personal/add-money/with-card/{{item.payment_cards_id}}" routerLinkActive='active'>
+          <div class="info_btn" title="card info" routerLink="/personal/add-money/card-details/{{item.payment_cards_id}}" routerLinkActive='active'  (click)="$event.stopPropagation()">
+            <i class="fa fa-info-circle"></i>
+          </div>
+          <div class="crd_num_title">
+            Card number
+          </div>
+          <div class="crd_num">
+            <p>{{creditCardMask(item.card_number)}}</p>
+            PayVoo Bank LTD 
+          </div>
+          <div class="bnk_nme">
+          </div>
+         
+            <!-- <img src="../../../../assets/images/cards/mastercard.png" /> -->
+            <!-- <i class="card_type_cnt card_unionpay"></i> -->
+            <i *ngIf="item.card_type=='VISA' || item.card_type=='visa'" class="card_type_cnt card_visa"></i>
+            <i *ngIf="item.card_type=='mastercard' || item.card_type=='MASTERCARD'" class="card_type_cnt card_master"></i>
+            <i *ngIf="item.card_type=='jcb' || item.card_type=='JCB'" class="card_type_cnt card_jcb"></i>
+            <i *ngIf="item.card_type=='diners-club' || item.card_type=='DINERS-CLUB'" class="card_type_cnt card_dci"></i>
+            <i *ngIf="item.card_type=='unionpay' || item.card_type=='UNIONPAY'" class="card_type_cnt card_unionpay"></i> 
+      
+        </div>
+      </ng-container>
+      </div>
+      <div class="card add_money_card" *ngIf="authService.accountMatch(['business'])">
+          <h3 class="card_header">How would you like to add money?</h3>
+          <div class="addcard" routerLink="/business/add-money/cards"> 
+            <div class="addcard_icn"><i class="fa fa-plus"></i></div>
+            <span>Add debit or credit card</span>
+          </div>
+          <div class="transfer_Bank" (click)="comingSoon()" data-toggle="modal">
+            <div class="addcard_icn"><i class="fa fa-bank"></i></div>
+            <span>Transfer to your PayVoo account</span>
+          </div>
+          <div class="modal fade" id="appWarn" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+              <div class="modal-content" style="margin: 20px; width: 100%; padding: 10px">
+                <div class="modal-body body_popup">
+                <div class="wip-container text-center bg-white">
+                    <img class="wip-img" src="assets/images/payvoo-wip.png" />
+                    <p style="color:black"><strong>We are getting this feature ready. We will notify you when it is done.</strong></p>
+                    <button style="border-radius:4px" class="btn btn-primary btn-block" data-dismiss="modal" (click)="hideOk()" >OK </button>
+                    </div>
+                    </div>
+                  </div>
+          </div>
+          </div>
+          <ng-container *ngFor="let item of cardData">
+            <div class="crd_card" *ngIf="(item.status == 1)" routerLink="/business/add-money/with-card/{{item.payment_cards_id}}" routerLinkActive='active'>  
+            <div class="info_btn" title="card info" routerLink="/business/add-money/card-details/{{item.payment_cards_id}}" routerLinkActive='active'  (click)="$event.stopPropagation()">
+              <i class="fa fa-info-circle"></i>
+            </div>
+            <div class="crd_num_title">
+              Card number
+            </div>
+            <div class="crd_num">
+              <p>{{creditCardMask(item.card_number)}}</p>
+              PayVoo Bank LTD 
+            </div>
+            <div class="bnk_nme">
+            </div>
+           
+              <!-- <img src="../../../../assets/images/cards/mastercard.png" /> -->
+              <!-- <i class="card_type_cnt card_unionpay"></i> -->
+              <i *ngIf="item.card_type=='VISA' || item.card_type=='visa'" class="card_type_cnt card_visa"></i>
+              <i *ngIf="item.card_type=='mastercard' || item.card_type=='MASTERCARD'" class="card_type_cnt card_master"></i>
+              <i *ngIf="item.card_type=='jcb' || item.card_type=='JCB'" class="card_type_cnt card_jcb"></i>
+              <i *ngIf="item.card_type=='diners-club' || item.card_type=='DINERS-CLUB'" class="card_type_cnt card_dci"></i>
+              <i *ngIf="item.card_type=='unionpay' || item.card_type=='UNIONPAY'" class="card_type_cnt card_unionpay"></i> 
+        
+          </div>
+        </ng-container>
+        </div>
+    </div>
+    <div class="col-md-8">
+      <router-outlet></router-outlet>
+    </div>
+
+
+  </div>
+</div>
+
+

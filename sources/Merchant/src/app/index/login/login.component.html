@@ -1,0 +1,29 @@
+<div class="card page_ht_crd mx-auto text-center">
+    <div class="logo_cnt">
+        <img class="img-fluid" src="../../../assets/payvoo_logo.png">
+    </div>
+    <!-- <span class="pay">Pay<span class="voo">Voo</span> </span> -->
+
+
+    <p class="p1">Login to your PayVoo</p>
+    <p class="p2"><i class="fa fa-lock"></i> Your details are saved securely</p>
+
+    <form [formGroup]="userForm" class="login_form">
+        <div>
+            <input type="text" class="form-control input_field" formControlName="userId" placeholder="E-mail">
+            <div class="error_text " *ngIf="userForm.controls['userId'].invalid && userForm.controls['userId'].touched">
+                Please,
+                Enter a valid sandbox e-mail.<div class="text icon_error inpt_icn"></div>
+            </div>
+        </div>
+        <div>
+            <input type="password" class="form-control input_field" formControlName="password" placeholder="Password">
+        </div>
+        <button class="btn btn-primary btn-block" [disabled]="userForm.invalid" (click)="loginForm(userForm.value)">Log
+            in</button>
+    </form>
+    <!-- <span class="forgotlink">Forgot your e-mail or password?</span>
+    <span class="linediv">OR</span>
+    <button class="btn btn-outline-primary btn-block create_btn" routerLink="/signup/sandbox">Create
+        account</button> -->
+</div>

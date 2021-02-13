@@ -1,0 +1,589 @@
+<div *ngIf="currentForm">
+    <div class="page_ht_crd2 mx-auto">
+        <div class="row">
+            <div class="col-md-12">
+                <h5 id="heading">Personal details</h5>
+                <div class="panel-body">
+                    <div class="form-group float_label">
+                        <label>Name</label>
+                        <input type="text" value={{fullName}} class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group float_label">
+                        <input type="text" value={{dateOfBirth}} class="form-control" readonly>
+                        <label>Date of birth</label>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group float_label">
+                                <input type="text" value={{fullAddress}} class="form-control" readonly>
+                                <label for="address">Address</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group float_label">
+                                <input type="text" value={{phoneNumberWithCallingCode}} class="form-control" readonly>
+                                <label for="mobile">Phone number</label>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group float_label">
+                                <input type="email" value={{email}} class="form-control" readonly>
+                                <label for="email">E-mail</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group float_label">
+                                <input type="place_of_birth" value={{place_of_birth}} class="form-control" readonly>
+                                <label for="place_of_birth">Place of Birth</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group float_label">
+                                <input type="nationality" value={{nationality}} class="form-control" readonly>
+                                <label for="nationality">Nationality</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+            <!-- <div class="row">
+                <div class="col-md-4">
+                    <button routerLink="/home/individual-settings"
+                        class="btn btn-outline-primary btn-block ">Back</button>
+                </div>
+                <div class="col-md-4" (click)="editDetailsForm()">
+                    <button class="btn btn-primary btn-block">Edit details</button>
+                </div>
+            </div> -->
+            <div class="row" style="margin-top: -20px;">
+                <div class="col-md-12" >
+                  <div class="text-center">
+                    <button style="padding-left: 50px;padding-right: 50px;margin-left: 60%;" class="btn btn-primary" (click)="editDetails()">Edit details</button>
+                  </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="modal model_top" id="editDetails">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="margin-top: 150px;margin-left: 90px; width:80%">
+        <div class="modal-body ">
+          <div class="text-center">
+            <p align="center" style="color: #42424c;margin-top: 15px;font-weight: 500;font-family: Roboto, sans-serif">Please, be informed that upon change of<br>
+            personal information, you shall repeat the<br>
+            verification process</p>
+            <span align="center" style="font-size: 0.825rem;">Would you still like to proceed with edit?</span>
+          </div><br>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                  <button style="border-radius:4px" class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+              <div class="col-xs-6 col-md-6 pull-right">
+                <div class="form-group">
+                  <button style="border-radius:4px" type="submit" class="btn btn-primary btn-block" data-dismiss="modal" (click)="editDetailsForm()">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- personal and address details -->
+<div *ngIf="editForm">
+    <form [formGroup]="editFormGroup" *ngIf="show">
+        <div>
+            <div class="page_ht_crd3 mx-auto">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="upld_cnt">
+                            <!-- <p class="hdng-center">Personal details</p> -->
+                            <div class="dot_bar">
+                                <ul>
+
+                                  <li class="current"></li>
+                                  <li></li>
+
+                                </ul>
+                              </div>
+                            <h5 id="heading">Personal details &nbsp;<i class="fa">&#xf040;</i></h5>
+                            <div class="panel-body" (change)="removeSpace()">
+                                <div class="form-group float_label">
+                                    <label for="last_name"> First name</label>
+                                    <input type="text" oninput="this.value = this.value.replace(/[^a-z]/g,'').replace(/(\..*)\./g, '$1');" formControlName="firstName" [(ngModel)]="firstName"
+                                        class="form-control">
+                                </div>
+                                <div class="form-group float_label">
+                                    <input type="text" oninput="this.value = this.value.replace(/[^a-z]/g,'').replace(/(\..*)\./g, '$1');" formControlName="lastName" [(ngModel)]="lastName"
+                                        class="form-control ">
+                                    <label for="last_name">Last name</label>
+
+                                    </div>
+                                    <div class="form-group float_label">
+                                        <input type="text" formControlName="dob" [(ngModel)]="dateOfBirth" readonly class="form-control" [dropSpecialCharacters]="false" [validation]="false"  mask="00/00/0000" bsDatepicker>
+                                        <label>Date of birth</label>
+
+                                </div>
+                                <div class="form-group float_label">
+                                    <input type="text" readonly formControlName="mobile" [(ngModel)]="phoneNumberWithCallingCode"
+                                        class="form-control">
+                                    <label>Phone number</label>
+                                </div>
+                                <div class="form-group float_label">
+                                    <input type="text" readonly formControlName="email" [(ngModel)]="email" class="form-control">
+                                    <label>Email</label>
+
+                                </div>
+                                <div class="form-group float_label">
+                                    <input type="text" formControlName="place_of_birth" [(ngModel)]="place_of_birth"
+                                        class="form-control">
+                                    <label>Place of Birth</label>
+                                </div>
+                                <div  class="form-group float_label">
+                                <select class="form-control" formControlName="nationality" id="nationality" [(ngModel)]="nationality" name="nationality">
+                                    <option value="null" hidden selected> Select nationality </option>
+                                    <option class="option" *ngFor='let option1 of countryData'  [value]="option1.country_name">
+                                   {{option1.country_name}}
+                                    </option>
+
+                                   <!---->
+                                </select>
+                                <label>Nationality</label>
+                                </div>
+                                <!-- <div class="form-group float_label">
+                                    <input type="text" formControlName="mobile" [(ngModel)]="mobile"
+                                        class="form-control">
+                                    <label>Phone number</label>
+
+                                </div>
+                                <div class="form-group float_label">
+                                    <input type="text" formControlName="email" [(ngModel)]="email" class="form-control">
+                                    <label>Email</label>
+
+                                </div> -->
+                                <!-- <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group float_label">
+                                                <input type="text" formControlName = "address" [(ngModel)]="address" class="form-control" readonly>
+                                                <label for="last_name">Address</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group float_label">
+                                                <input type="text" formControlName = "phoneNumber" [(ngModel)]="phoneNumber" class="form-control" readonly>
+                                                <label for="last_name">Phone Number</label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group float_label">
+                                                <input type="text" formControlName = "email" [(ngModel)]="email" class="form-control" readonly>
+                                                <label for="email">E-mail</label>
+                                            </div>
+                                        </div>
+
+                                    </div> -->
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                            <div class="det_cont">
+                                <div class="upld_cnt">
+                                    <p class="hdng-center">Address Details</p>
+                                    <div class="panel-body">
+                                        <div class="form-group float_label">
+                                            <label for="last_name" >Country</label>
+                                            <input type="text" formControlName = "country" [(ngModel)]="country" class="form-control">
+
+                                        </div>
+                                        <div class="form-group float_label">
+                                            <label for="last_name">Postalcode</label>
+                                            <input type="text" formControlName = "postalcode" [(ngModel)]="postalcode" class="form-control">
+
+                                        </div>
+                                        <div class="form-group float_label">
+                                            <input type="text" formControlName = "address_line1" [(ngModel)]="address_line1" class="form-control">
+                                            <label for="last_name">Address line 1</label>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group float_label">
+                                                    <input type="text" formControlName = "address_line2" [(ngModel)]="address_line2" class="form-control">
+                                                    <label for="last_name">Address line 2</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group float_label">
+                                                    <input type="text" formControlName = "city" [(ngModel)]="city" class="form-control">
+                                                    <label for="last_name">Town / city</label>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group float_label">
+                                                    <input type="text" formControlName = "region"  [(ngModel)]="region" class="form-control">
+                                                    <label for="email">Region</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> -->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <button style="border-radius:4px" type="button" class="btn btn-outline-primary btn-block" data-dismiss="modal"
+                            (click)="displayDetailsForm()">Cancel</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button style="border-radius:4px" class="btn btn-primary  btn-block" [disabled] = "editFormGroup.invalid"
+                            (click)="personalDetails(editFormGroup.value)">Continue</button>
+                    </div>
+                </div>
+
+                <!-- <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-outline-primary btn-block" data-dismiss="modal"
+                            (click)="displayDetailsForm()">Cancel</button>
+                    </div>
+                    <div class="col-md-6" (click)="editDetailsForm()">
+                        <button class="btn btn-primary  btn-block"
+                            (click)="personalDetails(editFormGroup.value)">Continue</button>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </form>
+    <form [formGroup]="addressForm" *ngIf="hide">
+        <div>
+            <div class="page_ht_crd3 mx-auto">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="upld_cnt">
+                            <!-- <p class="hdng-center mb-2">Address details</p> -->
+                            <div class="dot_bar">
+                                <ul>
+
+                                  <li class="completed"></li>
+                                  <li class="current"></li>
+
+                                </ul>
+                              </div>
+                            <h5 id="heading">Address details &nbsp;<i class="fa">&#xf040;</i></h5>
+                            <div class="panel-body" (change)="removeSpace()">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div _ngcontent-eap-c13="" class="form-group float_label">
+
+
+                                            <select  _ngcontent-eap-c13=""  class="form-control ng-pristine ng-invalid ng-touched" formcontrolname="country_id" id="contryname" [(ngModel)]="country" name="countryname" [ngModelOptions]="{standalone: true}"  (change)='changeUserCity(countryname)'>
+                                                <option value="null" hidden selected> Select country </option>
+                                                <option class="option" *ngFor='let option1 of countryData'  [value]="option1.country_name">
+                                               {{option1.country_name}}
+                                                </option>
+
+                                               <!---->
+                                            </select>
+
+
+
+
+
+
+                                            <!-- <select _ngcontent-eap-c13="" class="form-control ng-pristine ng-invalid ng-touched" formcontrolname="country_id" id="contryname">
+                                                <option _ngcontent-eap-c13="" disabled="" hidden="" selected="" value="">{{country}}</option><option _ngcontent-eap-c13="" value="1: 1">BULGARIA</option><option _ngcontent-eap-c13="" value="2: 7">CROATIA </option><option _ngcontent-eap-c13="" value="3: 8">CYPRUS </option><option _ngcontent-eap-c13="" value="4: 9">CZECH REPUBLIC</option><option _ngcontent-eap-c13="" value="5: 12">DENMARK</option><option _ngcontent-eap-c13="" value="6: 10">ESTONIA </option><option _ngcontent-eap-c13="" value="7: 13">FINLAND</option><option _ngcontent-eap-c13="" value="8: 14">FRANCE</option><option _ngcontent-eap-c13="" value="9: 36">GERMANY</option><option _ngcontent-eap-c13="" value="10: 17">GREECE</option><option _ngcontent-eap-c13="" value="11: 21">HUNGARY</option><option _ngcontent-eap-c13="" value="12: 22">IRELAND</option><option _ngcontent-eap-c13="" value="13: 23">ITALY</option><option _ngcontent-eap-c13="" value="14: 24">LATVIA</option><option _ngcontent-eap-c13="" value="15: 25">LITHUANIA</option><option _ngcontent-eap-c13="" value="16: 26">LUXEMBOURG</option><option _ngcontent-eap-c13="" value="17: 27">MALTA</option><option _ngcontent-eap-c13="" value="18: 28">NETHERLANDS</option><option _ngcontent-eap-c13="" value="19: 29">POLAND</option><option _ngcontent-eap-c13="" value="20: 30">PORTUGAL</option><option _ngcontent-eap-c13="" value="21: 31">ROMANIA</option><option _ngcontent-eap-c13="" value="22: 32">SLOVAKIA</option><option _ngcontent-eap-c13="" value="23: 33">SLOVENIA</option><option _ngcontent-eap-c13="" value="24: 34">SPAIN</option><option _ngcontent-eap-c13="" value="25: 19">SWEDEN</option><option _ngcontent-eap-c13="" value="26: 20">UK</option></select> -->
+
+
+
+                                                <label _ngcontent-eap-c13="">Country</label>
+
+
+
+                                                <!----></div>
+                                        <!-- <div class="form-group float_label">
+                                            <input type="text" formControlName="country" [(ngModel)]="country"
+                                                class="form-control">
+                                            <label for="Country">Country</label>
+                                        </div> -->
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group float_label">
+                                            <input type="text" formControlName="postalcode" [(ngModel)]="postalcode"
+                                                class="form-control" >
+                                            <label for="Postal code">Postal code</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group float_label">
+                                            <input type="text" formControlName="address_line1"
+                                                [(ngModel)]="address_line1" class="form-control">
+                                            <label for="Address line 1">Address line 1</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group float_label">
+                                            <input type="text" formControlName="address_line2"
+                                                [(ngModel)]="address_line2" class="form-control" >
+                                            <label for="Address line 2">Address line 2</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group float_label">
+                                            <input type="text" formControlName="city" [(ngModel)]="city"
+                                                class="form-control" >
+                                            <label for="city">town/city</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group float_label">
+                                            <input type="text" formControlName="region" [(ngModel)]="region"
+                                                class="form-control">
+                                            <label for="region">Region</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                            <div class="det_cont">
+                                <div class="upld_cnt">
+                                    <p class="hdng-center">Address Details</p>
+                                    <div class="panel-body">
+                                        <div class="form-group float_label">
+                                            <label for="last_name" >Country</label>
+                                            <input type="text" formControlName = "country" [(ngModel)]="country" class="form-control">
+
+                                        </div>
+                                        <div class="form-group float_label">
+                                            <label for="last_name">Postalcode</label>
+                                            <input type="text" formControlName = "postalcode" [(ngModel)]="postalcode" class="form-control">
+
+                                        </div>
+                                        <div class="form-group float_label">
+                                            <input type="text" formControlName = "address_line1" [(ngModel)]="address_line1" class="form-control">
+                                            <label for="last_name">Address line 1</label>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group float_label">
+                                                    <input type="text" formControlName = "address_line2" [(ngModel)]="address_line2" class="form-control">
+                                                    <label for="last_name">Address line 2</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group float_label">
+                                                    <input type="text" formControlName = "city" [(ngModel)]="city" class="form-control">
+                                                    <label for="last_name">Town / city</label>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group float_label">
+                                                    <input type="text" formControlName = "region"  [(ngModel)]="region" class="form-control">
+                                                    <label for="email">Region</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> -->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6" >
+                        <button type="button" class="btn btn-outline-primary btn-block" data-dismiss="modal"
+                            (click)="canceladdressDetails()">Back</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-primary  btn-block" (click)="updateEditedDetails(addressForm.value)"
+                            data-toggle="modal">Update</button>
+                    </div>
+                </div>
+                
+                 
+                <!-- offset-md-2 -->
+
+                <!-- <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-outline-primary btn-block" data-dismiss="modal"
+                            (click)="canceladdressDetails()">Cancel</button>
+                    </div>
+                    <div class="col-md-6" (click)="editDetailsForm()">
+                        <button class="btn btn-primary  btn-block" (click)="updateEditedDetails(addressForm.value)"
+                            data-toggle="modal" data-target="#success">Continue</button>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal invitemodal" id="myModalnew" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal_size">
+      <div class="modal-content fontbtn">
+        <div class="modal-body">
+  
+          <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+            <h4 class="modal-title header_txt text-center">Please, choose how to complete your identity verification</h4>
+            <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/webcam.png"></span>
+              </div>
+              <div class="p-2" (click)="webCamera()" data-dismiss="modal">
+                <p class="m-b-0 kyc_process">Use webcam</p>
+                <small>Make sure it supports high resolution</small>
+              </div>
+            </div>
+            <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/smartphone.png"></span>
+              </div>
+              <div class="p-2">
+                <p class="m-b-0 kyc_process">Use mobile camera through browser</p>
+                <small>You will receive a link on your registered e-mail</small>
+                <div id="demo" class="collapse">
+                  <button (click)="KYClinkToMobile('android')" data-dismiss="modal"><img
+                      src="../../assets/images/androidicon.png" style=width:35px;;></button> or
+                  <button (click)="KYClinkToMobile('ios')" data-dismiss="modal"><img src="../../assets/images/iosicon.png"
+                      style=width:35px;;></button>
+                </div>
+              </div>
+              <div class="ml-auto p-2  align-self-center" data-toggle="collapse" data-target="#demo">
+                <i class="fa fa-angle-right kyc_process" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="d-flex   flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/smartphonedwnld.png"></span>
+              </div>
+              <div class="p-2 ">
+                <p class="m-b-0 kyc_process">Install PayVoo app</p>
+                <small>Think long term. Download PayVoo app now on your Android/iOS device</small>
+              </div>
+            </div>
+  
+            <div class="row justify-content-center m-t-10">
+              <div style="padding-bottom: 8px;" class="col-md-6 col-sm-6">
+                <div (mouseover)="gplay=true" *ngIf="!gplay"><button type="button" class="btn btn-block btn-primary">
+                    <span style="margin-left: -15px;"><img style="padding-bottom: 2px;"
+                        src="../../../../assets/images/google-play.png"></span>&nbsp;Get it on Google Play</button></div>
+                <div (mouseout)="gplay=false" *ngIf="gplay"><button type="button"
+                    class="btn btn-block btn-outline-primary1">
+                    <span style="margin-left: -15px;"><img style="padding-bottom: 2px; height: 27px; width:23px"
+                        src="../../../../assets/images/playstore.png"></span>&nbsp;Get it on Google Play</button></div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div (mouseover)="ios=true" *ngIf="!ios"><button type="button" class="btn btn-block btn-primary">
+                    <span style="margin-left: -15px;"><img style="padding-bottom: 2px;"
+                        src="../../../../assets/images/app-store.png"></span>&nbsp;Get it on App Store
+                  </button></div>
+                <div (mouseout)="ios=false" *ngIf="ios"><button type="button" class="btn btn-block btn-outline-primary1">
+                    <span style="margin-left: -15px;"><img style="padding-bottom: 2px;"
+                        src="../../../../assets/images/app-store_1.png"></span>&nbsp;Get it on App Store
+                  </button></div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="kycpopupNew" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog  modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">KYC Verification Steps</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe *ngIf="kycIframe"  [src]="urlSafe" allow="geolocation; microphone; camera" height='730px' width="100%"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="kycwarn1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content fontbtn">
+        <div class="modal-body body_popup">
+          <div class="add_money">
+            <!-- <img src="../../../../../assets/images/addicon.png" alt="path not correct" /> -->
+            <h4 style="text-align: center;">Verify your identity</h4>
+            <p style="text-align: center;">Please, verify your identity in order to be able to edit persponal details</p>
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-outline-primary btn-block" data-dismiss="modal">I'll do it later</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-primary btn-block" onclick="cameraIdentification()" (click)="getKyc()" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="appWarn" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+      <div class="modal-content">
+        <div class="modal-body body_popup">
+        <div class="wip-container text-center bg-white">
+            <img class="wip-img" src="assets/images/payvoo-wip.png" />
+            <p style="color:black"><strong>We are getting this feature ready. We will notify you when it is done.</strong></p>
+            <button  style="border-radius:4px" class="btn btn-primary btn-block" data-dismiss="modal">OK </button>
+            </div>
+            </div>
+          </div>
+  </div>
+  </div>
+
+
+
+<div class="modal" id="success">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="col-lg-12" class="text-center">
+                    <img src="../../../assets/images/success.png" *ngIf="updateSuccess">
+                    <img src="../../../assets/images/cancel.png" *ngIf="updateFail">
+
+                    <h5 class="modal-text"><br>{{statusMessage}}</h5><br>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-block btn-primary col-8 mx-auto"
+                            style="margin-bottom: 10px;" data-dismiss="modal" >Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

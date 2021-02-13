@@ -1,0 +1,166 @@
+@import "../../../../variables";
+.page_header {
+    padding-top: 15px;
+    .header {
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+    ul {
+      list-style: none;
+      padding: 0px;
+      li {
+        font-size: 0.825rem;
+        display: inline-block;
+        opacity: 0.8;
+        &:after {
+          content: " / ";
+        }
+        &:last-child {
+          opacity: 1;
+          color: $font-color-active;
+          &:after {
+            content: "";
+          }
+        }
+      }
+    }
+}
+
+  .add_money_card {
+    min-height: calc(100vh - 200px);
+  }
+  .addcard {
+    color: $color-secondary;
+    padding: 15px 10px;
+    cursor: pointer;
+    .addcard_icn {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: $color-secondary;
+      color: #ffffff;
+      text-align: center;
+      font-size: 1rem;
+      line-height: 40px;
+      margin-right: 20px;
+    }
+    border-bottom: 1px solid #dadada;
+  }
+  .transfer_Bank {
+    color: $font-color-active;
+    padding: 15px 10px;
+    cursor: pointer;
+    .addcard_icn {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: $font-color;
+      // color: #ffffff;
+      text-align: center;
+      font-size: 1rem;
+      line-height: 40px;
+      margin-right: 20px;
+    }
+    border-bottom: 1px solid #dadada;
+    margin-bottom: 20px;
+  }
+  .itm_crcl {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    padding: 0px;
+    background: #2a3477;
+    color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 20px;
+  }
+  .itm_crcl1 {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 36px;
+    padding: 0px;
+    background-color: white;
+    color: $font-color-active;
+    border: 1px solid $font-color-active;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 26px;
+  }
+  .font-clr{
+    color: $font-color-active;
+    margin-bottom: -6px;
+  }
+  .card {
+    padding: 30px 20px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    display: block;
+    .card_header {
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .flexborder {
+    border-bottom: 1px solid $font-teritary;
+  }
+  input[type="checkbox"].switch_1 {
+    font-size: 30px;
+    appearance: none;
+    width: 43px;
+    height: 6px;
+    background: #ddd;
+    border-radius: 3em;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input[type="checkbox"].switch_1:checked {
+    background: $color-primary;
+  }
+
+  input[type="checkbox"].switch_1:after {
+    position: absolute;
+    content: "";
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    top: -11px;
+    margin-left: -5px;
+    background: #ddd;
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    //left: 0;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input[type="checkbox"].switch_1:checked:after {
+    left: calc(100% - 0.5em);
+    background: $color-primary;
+  }
+  .font-wdth{
+    padding: 0px;
+  }
+  .activeclr{
+    color: #ffffff;
+    background-color: $color-secondary;
+    .itm_crcl{
+      background-color: #ffffff;
+      color: $color-secondary;
+    }
+    .font-clr{
+      color: #ffffff;
+    }
+  }

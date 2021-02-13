@@ -1,0 +1,135 @@
+<div class="container-fluid">
+  <div class="logo_container">
+    <img src="../../../../assets/images/logo_white1.png">
+  </div>
+  <div class="row">
+    <div class="col-sm-6 lft_bg_img bg_img_1">
+      &nbsp;
+    </div>
+
+    <div class="col-sm-6 rt_cont offset-md-6">
+
+      <form id="user_form" [formGroup]="forgotPassword">
+
+        <ng-template [ngIf]=business_mail>
+
+          <fieldset>
+
+            <div class="m_t_200">
+
+              <h2 class="header_bar">Enter your personal e-mail</h2>
+
+              <div class="form-group float_label">
+                <input type="email" class="form-control" formControlName="email" name="email" (keydown.space)="$event.preventDefault();" placeholder="&nbsp;" autocomplete="off">
+                <label for="email">E-mail</label>
+                <div class="text text-danger" style="font-size: 14px;"
+                  *ngIf="forgotPassword.controls['email'].invalid && forgotPassword.controls['email'].touched">Please, enter a valid e-mail address</div>
+              </div>
+              <span *ngIf="error">There is no user, please verify</span>
+              <div class="row">
+                <div class="col-md-6 offset-md-6">
+                  <button id="step1" type="submit" class="next btn btn-block btn-primary"
+                    [disabled]="forgotPassword.controls['email'].invalid" (click)="checkdata()">Continue</button>
+                </div>
+              </div>
+            </div>
+
+          </fieldset>
+
+        </ng-template>
+
+
+        <ng-template [ngIf]=reset_mail>
+
+          <fieldset>
+
+            <div class="m_t_200">
+
+              <h2 style="margin-top:-20px;" class="header_bar">Reset password</h2>
+
+              <div class="form-group float_label">
+
+                <input style="margin-top:-20px;"  type="password" class="form-control" (keydown.space)="$event.preventDefault();" formControlName="oldpwd" autocomplete="off" name="newpwd" placeholder="&nbsp;" autocomplete="off">
+                      
+                <label for="newpwd">Enter new password</label>
+
+                <!-- <div class="text text-danger" style="font-size:12px;"
+                *ngIf="forgotPassword.controls['oldpwd'].dirty && forgotPassword.controls['oldpwd'].invalid">
+                The password should contain 8 characters which combine upper & lowercase letters and numbers
+                <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+               </div> -->
+
+              </div>
+
+
+              <div class="input-group">
+
+                <span class="float_label rt_icon">
+                  <input type="password" id="password" class="form-control" name="password" autocomplete="off" (keydown.space)="$event.preventDefault();" formControlName="newpwd"
+                    placeholder="&nbsp;">
+                  <label for="password">Confirm new password</label>
+                  <span class="matched" *ngIf="checkPassword && forgotPassword.controls['newpwd'].value && forgotPassword.controls['oldpwd'].value">Passwords do not match</span>
+                </span>
+                <div class="input-group-append">
+
+                  <div class="inpt_icn" onclick="showPassword()"
+                    (click)="showMyContainer=!showMyContainer" *ngIf="!showMyContainer">
+                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                 </div>
+
+                  <div class="inpt_icn" onclick="hidePassword()"
+                    (click)="showMyContainer=!showMyContainer" *ngIf="showMyContainer">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                 </div>
+
+                </div>
+                <!--added-->
+                <div>
+                  <ul class="pass_checkers">
+                      <li [ngClass]="{'active':forgotPassword.controls['oldpwd'].errors.minLength}">
+                        <i class="fa fa-check"></i> Minimum of 8 characters
+                      </li>
+                      <li [ngClass]="{'active':forgotPassword.controls['oldpwd'].errors.invalidPasswordAlpha}">
+                        <i class="fa fa-check"></i> Uppercase and lowercase
+                      </li>
+                      <li [ngClass]="{'active':forgotPassword.controls['oldpwd'].errors.invalidPasswordNumbers && !forgotPassword.controls['oldpwd'].errors.specialChara}">
+                        <i class="fa fa-check"></i> Letters and numbers  
+                      </li>
+                  </ul>
+              </div>
+              <!--closed-->
+              </div>
+            </div>
+           <!-- <button type="submit" class="next btn btn-primary reset"
+                [disabled]="forgotPassword.controls['oldpwd'].invalid || forgotPassword.controls['newpwd'].invalid || checkPassword" (click)="chcekpwd()">Continue</button> Added-->
+            
+                <button style="margin-top:-10px;" type="submit" class="next btn btn-primary reset"
+              [disabled]="forgotPassword.controls['oldpwd'].errors.required || forgotPassword.controls['newpwd'].errors.required || checkPassword" (click)="chcekpwd()">Continue</button>
+
+          </fieldset>
+
+        </ng-template>
+      
+
+        <ng-template [ngIf]="passwordcompleteFeildSet">
+
+          <fieldset>
+            <div class="check_div">
+              <img src="../../../../assets/images/tick_icon.png">
+            </div>
+            <div class="text-center">
+              <h5 class="header_bar">Password has been updated successfully</h5>
+              <div class="header_para m_b_20">Now, let's get started</div>
+          </div>
+          <div class="text-center">
+            <button class="next btn btn-primary" (click)="chooselogin()">Continue</button>
+            </div>
+          </fieldset>
+
+        </ng-template>
+
+
+      </form>
+    </div>
+  </div>
+</div>

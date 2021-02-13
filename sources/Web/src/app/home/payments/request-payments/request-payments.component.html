@@ -1,0 +1,119 @@
+<div class="pull-right d-inline back_btn" style=" align-self: flex-start; justify-self: flex-start;color: #2a3477;">
+          <a (click)="onBack()"><i class="fa fa-arrow-left"></i> Back</a>
+</div>
+<div *ngIf="!requestFromSelected">
+  <div class="card page_ht_crd" *ngIf="true">
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <a data-target="#single" data-toggle="tab" class="nav-link active">Single payment</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="single">
+        <app-singlepayments (requestFundsEvent)="requestFromSelectedCounterParty($event)" [requestMoney]="requestMoneyInSinglePaymentComponent"></app-singlepayments>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="requestFromSelected">
+  <div class="host">
+    <div class="row">
+      <div class="col-6 sender-info">
+        <div class="content2">
+          <div class="input_element1">
+            <span class="itm_crcl1">{{counterParty.full_name | slice:0:1| titlecase}}</span>
+            <br>
+            <br>
+            <span style="color: #42424c;">{{counterParty.full_name | titlecase}}</span>
+            <p class="mb-0" *ngIf="counterParty.currency" style="font-size: 12px;">{{ counterParty.currency }}</p><br>
+            <span *ngIf="counterParty.is_non_payvoo_user && counterParty.is_non_payvoo_user == 1"><img style="width: 80px;" src="assets/images/non_payvoo_beta1.png"></span>
+            <span *ngIf="!counterParty.is_non_payvoo_user && counterParty.is_non_payvoo_user != 1"><img style="width: 80px;" src="assets/images/PayVoo BETA_small.png"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 amount-section">
+        <div class="pull-right d-inline back_btn" style=" align-self: flex-start; justify-self: flex-start;">
+          <a routerLink="/personal/payments"><i class="fa fa-arrow-left"></i> Back</a>
+        </div>
+        <div class="mx-5">
+          <div class="form-group float_label" style="margin-bottom: 0px;">
+            <label>To</label>
+            <select class="form-control" *ngIf="currencyList" (change)="changeAcc($event)">
+              <option *ngFor="let item of currencyList">
+                {{item.currency}}
+              </option>
+            </select>
+          </div>
+          <span>Balance: {{ this.bankCurrency }} {{ this.bankBalance }}</span>
+          <div class="content1">
+            <div class="form-group float_label text-center">
+              <input id="myText" (keypress)="onlyNumberKey($event)" appDecimal (keyup)="checkbalance(balance.value)" #balance autocomplete="off"
+                class="form-control input_element" [(ngModel)]="requestingAmount" 
+                minlength="0" maxlength="10" placeholder="0" #balance>
+                <p class="text-danger text-center" *ngIf="zeroBalance">Please, enter valid amount</p>
+            </div>
+          </div>
+        </div>
+        <div class="pt-5">
+          <div class="transition-icon">
+            <img src="../../../assets/images/eclipse.png">
+            <img src="../../../assets/images/right-arrow-center.png" class="right_arrow"
+              style="position: relative; left: -50px;">
+          </div>
+
+          <button *ngIf="counterParty.is_non_payvoo_user; else payvoo" class="btn btn-primary continue-requesting-funds-btn " [disabled]="!requestingAmount || zeroBalance" (click)="requestFunds4Non(fundsRequested1)">
+            Continue
+          </button>
+          <ng-template #payvoo>
+            <button class="btn btn-primary continue-requesting-funds-btn " [disabled]="!requestingAmount || zeroBalance" (click)="requestFunds(fundsRequested)">
+              Continue
+            </button>
+          </ng-template>
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #fundsRequested>
+  <div class="modal-content">
+    <div class="modal-body modal_size moda-to">
+      <div class="check_div">
+        <img src="../../../../assets/images/tick_icon.png">
+      </div>
+      <h4 class="header_bar" style="font-size: 20px;">{{bankCurrency}} {{ requestingAmount}} has been requested from
+        {{ counterParty.full_name }}</h4>
+      <div style="text-align: center;">
+        <button class="btn btn-primary w-50" (click)="continue()">OK</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #fundsRequested1>
+  <div class="modal-content">
+    <div class="modal-body modal_size moda-to">
+      <div class="check_div">
+        <img src="../../../../assets/images/payvoo-wip.png">
+      </div>
+      <div style="text-align: center;">
+        <p style="color:black"><strong>
+          Send this link to {{ counterParty.full_name }} and your friend <br>can send you {{bankCurrency}} {{ requestingAmount}} from it.
+        </strong></p>
+        <p>
+          <a href="{{uniqueLinkToPayNonPayvooUser}}" target="_blank">{{uniqueLinkToPayNonPayvooUser}}</a>
+        </p>
+      </div>
+      
+      <div style="text-align: center;">
+        <button class="btn btn-primary btn-block" (click)="continue()">Send link</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

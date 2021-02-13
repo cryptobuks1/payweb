@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66" height="62" viewBox="0 0 66 62">
+    <defs>
+        <path id="a" d="M0 0l5 6 5-6z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="rotate(-180 33 31)">
+        <rect width="65" height="61" x=".5" y=".5" fill="#FFF" fill-opacity=".692" stroke="#979797" rx="21"/>
+        <g transform="rotate(-90 33.5 2.5)">
+            <mask id="b" fill="#fff">
+                <use xlink:href="#a"/>
+            </mask>
+            <use fill="#000" xlink:href="#a"/>
+            <g fill="#292A31" mask="url(#b)">
+                <path d="M-7-9h24v24H-7z"/>
+            </g>
+        </g>
+    </g>
+</svg>

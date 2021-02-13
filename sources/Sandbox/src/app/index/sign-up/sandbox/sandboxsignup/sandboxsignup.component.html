@@ -1,0 +1,176 @@
+<div class="container-fluid">
+
+    <div class="logo_container">
+    </div>
+  
+  
+    <form [formGroup]="sandboxDetailForm">
+  
+      <div class="row">
+  
+        <div class="col-lg-8 lft_bg_img bg_img_2">
+          &nbsp;
+          <div class="sandbox_text">
+             <h2 style="color:grey">Test Everything</h2>
+             <p>Entering our sandbox allows you to get a feel for the experience before applying for <span><br/></span> a  merchant account or going to production</p>
+          </div>
+        </div>
+  
+  
+        <div  class="col-lg-4 rt_cont offset-lg-8">
+  
+          <ng-template [ngIf]="signupsandbox">
+  
+            <div class="m_t_100 text-center">
+  
+              <img src="../../../../../assets/images/payvoo_logo.png" alt="path not correct" />
+  
+              <div class="header_para">Sign up for the sandbox</div>
+  
+            </div>
+  
+            <div class="row m-t-100">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="firstname" name="First Name" pattern="[a-zA-Z ]*" formControlName="first_name"
+                    placeholder="First Name" autocomplete="off" (blur)="firstname = trimming_fn(firstname)"(click)="noSpace()" [(ngModel)]="firstname">
+                  <!-- <label for="firstname">First Name</label> -->
+                </div>
+                <div class="text text-danger" style="margin-top: -25px;font-size: 12px;margin-right: 15px;" 
+                  *ngIf="sandboxDetailForm.controls['first_name'].invalid && sandboxDetailForm.controls['first_name'].dirty && sandboxDetailForm.controls['first_name'].touched">First Name is required.
+                  <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+                 </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="lastname" name="Last Name" formControlName="last_name"
+                    placeholder="Last Name" autocomplete="off" (blur)="lastname = trimming_fn(lastname)"(click)="noSpace()" [(ngModel)]="lastname">
+                  <!-- <label for="lastname">Last Name</label> -->
+                </div>
+                <div class="text text-danger" style="margin-top: -25px;font-size: 12px;margin-right: 15px;" 
+                  *ngIf="sandboxDetailForm.controls['last_name'].invalid && sandboxDetailForm.controls['last_name'].dirty && sandboxDetailForm.controls['last_name'].touched">Last Name is required.
+                  <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <input type="text" class="form-control" id="companyname" name="companyname" formControlName="companyname"
+                placeholder="Company Name" autocomplete="off" (blur)="companyname = trimming_fn(companyname)"(click)="noSpace()" [(ngModel)]="companyname">
+              <!-- <label for="companyname">Company Name</label> -->
+            </div>
+            <div class="text text-danger" style="margin-top: -25px; margin-right: 180px; font-size: 12px;" 
+              *ngIf="sandboxDetailForm.controls['companyname'].invalid && sandboxDetailForm.controls['companyname'].dirty && sandboxDetailForm.controls['companyname'].touched">Company Name is required.
+              <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+            </div>
+  
+            <div style="color:black" class="form-group">
+               <!-- <input type="text" class="form-control" id="country" name="country" formControlName="country"
+                placeholder="&nbsp;">  -->
+              <!-- <label for="country">Where is your business located?</label>  -->
+              <!-- <select class="form-control" formControlName="country" id="country">
+                <option value="" disabled selected hidden>Where is your business located?</option>
+                <option *ngFor="let item of countryData" [ngValue]="item.country_name">{{item.country_name}}
+                </option> 
+              </select> -->
+              <input type="text" class="form-control" id="country" [(ngModel)]="search_currencies" name="country" (focusout)="search_currencies = ''"formControlName="country"
+              placeholder="Where is your business located?" autocomplete="off">
+            <!-- <label for="country">Where is your business located?</label> -->
+            <i class="fa fa-angle-down"></i>
+               <ul style="margin-top: 98px;" class="dropdown-menu ul_style business_located">             
+                <li *ngFor="let item of countryData | search: search_currencies" (click)="onSelectBusiness(item)">{{item.country_name}}</li>
+              </ul>
+            </div>
+            <div class="text text-danger" style="margin-top: -25px;margin-right: 222px; font-size: 12px;" *ngIf="sandboxDetailForm.controls['country'].invalid && sandboxDetailForm.controls['country'].dirty">Country is required.
+              <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+            </div>
+            <!-- <div class="form-group float_label">
+              <input type="text" class="dropdown_country"  id="country" name="country" formControlName="country"  placeholder="&nbsp;">
+              <label for="country">Where is your business located? </label>
+              <button> <i  class="fa fa-angle-down"></i></button>
+               <ul class="dropdown-menu ul_style business_located">             
+                <li *ngFor="let item of countryData" (click)="onSelectBusiness(item)">{{item.country_name}}</li>
+              </ul>
+              <div class="text text-danger"
+              *ngIf="sandboxDetailForm.controls['country'].invalid && sandboxDetailForm.controls['country'].dirty">Country Name is required.
+              <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+            </div>          
+            </div> -->
+  
+  
+            <div class="form-group">
+              <input type="text" class="form-control" autocomplete="off" id="email" name="email" formControlName="email" (keydown.space)="$event.preventDefault();"
+                placeholder="Email Address">
+              <!-- <label for="email">Email Address</label> -->
+            </div>
+            <div class="text text-danger" style="margin-top: -25px;margin-right: 190px; font-size: 12px;" 
+              *ngIf="sandboxDetailForm.controls['email'].invalid && sandboxDetailForm.controls['email'].dirty && sandboxDetailForm.controls['email'].touched">Please enter a valid email
+              <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+            </div>
+           
+              <div class="input-group">
+                <div class="form-group">   
+                  <select  class="form-control" formControlName="calling_code" id="countryid">
+                     <option value="" hidden selected>Code</option>
+                    <option *ngFor="let item of countryData" [ngValue]="item.calling_code">{{item.calling_code}}
+                    </option>
+                  </select>  
+                </div> 
+               
+                <span  class="fltlbl_lft_fx calling_code_right">
+                  <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" required id="mobileno"
+                    name="mobileno" placeholder="Mobile number" autocomplete="off" formControlName="mobile" minlength=7 maxlength=10>
+                    <!-- <label for="mobileno">Mobile number</label>
+                     -->
+                </span>
+             
+                <div class="text text-danger" style="margin-top: -105px;font-size: 12px;margin-left: 8px;" *ngIf="sandboxDetailForm.controls['mobile'].invalid && sandboxDetailForm.controls['mobile'].dirty && sandboxDetailForm.controls['mobile'].touched">Please, enter a correct mobile number.
+                  <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+                 </div>
+              </div>
+            <div class="form-group" >
+              <input type="password" class="form-control" id="create" name="create" formControlName="password" (keydown.space)="$event.preventDefault();"
+                placeholder="Create password">
+              <!-- <label for="create">Create password</label> -->
+            </div>
+            <div class="text text-danger" style="margin-top: -25px; font-size: 12px;"
+              *ngIf="sandboxDetailForm.controls['password'].invalid && sandboxDetailForm.controls['password'].dirty && sandboxDetailForm.controls['password'].touched">The Password should contain 8 characters which combine upper and lowercase letters and numbers.
+              <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+            </div>
+  
+            <div class="form-group">
+              <input type="password" class="form-control" id="reset" name="reset" formControlName="repeat" (keydown.space)="$event.preventDefault();"
+                placeholder="Repeat password">
+              <!-- <label for="reset">Repeat password</label> -->
+            </div>
+            <div class="text text-danger" style="margin-top: -25px;margin-right: 205px; font-size: 12px;" 
+              *ngIf="checkPassword">Password not matched. <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+            </div>
+            <div style="color:black" class="form-group float_label" >
+              <input style="margin-top: 6px;" type="checkbox" formControlName="agree" required/>
+              I agree that PayVoo may contact me at the email address or phone above
+            </div>
+            <button class="btn btn-primary btn-block sanbox_button" (click)="registerSandbox(sandboxDetailForm.value)"
+              [disabled]="sandboxDetailForm.invalid || checkPassword">Try the sandbox <i *ngIf="spins" class="fa fa-spinner fa-spin"></i> </button><br>
+  
+            <p style="margin-left: -150px;color:black">Already in the sandbox? <a class="color" (click)="sandboxLogin()"> Sign in</a></p>
+  
+          </ng-template>
+  
+          <ng-template [ngIf]="profilecompleteFeildSet">
+            <fieldset style="margin-top: -60px;">
+              <div class="check_div">
+                <img src="../../../../../assets/images/tick_icon.png">
+              </div>
+              <h2 class="header_bar">You have completed your sandbox registration!</h2>
+              <div class="header_para m_b_20">Now, let's get started.</div>
+              <button class="next btn btn-primary" (click)="sandboxLogin()">Continue</button>
+            </fieldset>
+          </ng-template>
+  
+        </div>
+  
+      </div>
+  
+    </form>
+  </div>

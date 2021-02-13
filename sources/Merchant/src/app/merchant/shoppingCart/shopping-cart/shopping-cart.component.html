@@ -1,0 +1,181 @@
+<nav class="navbar navbar-expand-sm bg-light">
+  <div class="bars_cnt">
+    <i class="fa fa-bars"></i>
+  </div>
+  <a class="navbar-brand" href="\"><img src="../../assets/images/payvoo_logo_beta_1.png"></a>
+  <ul class="navbar-nav ml-auto " style="display: -webkit-inline-box;">
+    <li class="nav-item">
+      <a>
+          <span class="notification_icn" >
+            <img class="img-fluid" src="../../assets/images/icons/notification.png">
+          </span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <div class="dropdown profile_dropdown">
+        <label class="hoverable" for="fileInput">
+          <img style="cursor: pointer;" [src]="url ? url : '../../assets/images/profile_img.png'"> 
+        </label>
+        <input id="fileInput" type='file' accept="image/jpeg" (change)="onSelectFile($event)" >
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+            
+          <span>{{firstName}} {{lastName}}</span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="margin-left: -49px;">
+          <a class="dropdown-item">KYC Status: <span style="color: red">{{KYCStatus}}</span></a>
+          <a style="color:black" class="dropdown-item" >Profile: Personal User</a>
+          <!-- <a class="dropdown-item" routerLink="profile/personal" routerLinkActive="active">Profile</a>
+                       <ul class="float-none" style="list-style-type:none">
+                          <li><a>Personal</a></li>
+                       </ul>  -->
+          <a class="dropdown-item">Logout</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+</nav>
+<div class="left_nav">
+  <div class="close_btn">
+    <i class="fa fa-times"></i>
+  </div>
+  <ul class="left_nav_items">
+    <li>
+      <i class="nav_icn icn_accounts"></i>Accounts
+    </li>
+    <li>
+      <i class="nav_icn icn_analytics "></i>Analytics
+    </li>
+    <li class="paymnts">
+      <i class="nav_icn icn_payments"></i>Payments
+    </li>
+    <li>
+      <i class="nav_icn icn_cards"></i>Cards
+    </li>
+    <li>
+      <i class="nav_icn icn_settings"></i>Settings
+    </li>
+    <li>
+      <i class="nav_icn icn_more"></i>More
+    </li>
+  </ul>
+</div>
+
+<div style="padding-top: 90px;padding-left: 230px;">
+  <div class="container-fluid">
+    <h5>Send funds</h5>
+    <span><a style="text-decoration:none; color:#514747">Payments</a><span class="dark">/Send funds</span></span>
+  </div>
+</div>
+
+<div class="pull-right d-inline back_btn">
+  <div>
+     <a routerLink="" style="color: #2a3477;cursor: pointer;"><i class="fa fa-arrow-left"></i> Back</a>
+  </div>
+</div>
+<div class="container-fluid">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+     <div class="col-md-6 col-sm-12 card1-height pt-3">
+        <div class="content">
+           <div class="form-group float_label">
+              <select formControlName="selectedOption" class="form-control" (change)="changeAcc($event)">
+                 <option *ngFor="let acc of accountData">{{ acc.currency }}</option>
+              </select>
+              <label><u>From</u></label>
+              <span  class="mt-5 pt-3" *ngIf="!bankCurrency">Balance: {{ euroCurrency }}  {{ euroBalance }}</span>
+              <span class="mt-5 pt-3" *ngIf="bankCurrency">Balance: {{ bankCurrency }}  {{ bankBalance }}</span>
+           </div>
+        </div>
+        <div class="content1" >
+           <div class="form-group float_label text-center">
+              <input id="myText" (keypress)="onlyNumberKey($event)" appDecimal formControlName="balance" (keyup)="checkbalance1(balance.value)" class="form-control input_element" minlength="0" maxlength="10" placeholder="0" required #balance autocomplete="off"> 
+              <p class="margin-btmmm"><span *ngIf="fee">{{ fee }}</span><span *ngIf="!fee">No fee</span></p>
+           </div>
+        </div>
+        <p class="text-danger text-center" *ngIf="zeroBalance">Please, enter valid amount</p>
+     </div>
+     <div class="col-md-6 col-sm-12 card2-height pt-3 mt-2" *ngIf="true" >
+        <div class="eclipse">
+           <img src="../../../assets/images/eclipse.png">
+           <img src="../../../assets/images/right-arrow-center.png" class="right_arrow">
+        </div>
+        <div class="px-4">
+           <div class="form-group float_label">
+              <label><u>To</u></label>
+              <select *ngIf="false" formControlName="selectBen" class="form-control" (change)="changeBen($event)">
+                 <option *ngFor="let currency of currencyList">
+                    {{currency.currency}}
+                 </option>
+              </select>
+           </div>
+        </div>
+        <div class="content2">
+           <div class="input_element1">
+              <span class="itm_crcl1">{{counterPartyMember.full_name | slice:0:1| titlecase}}</span>
+              <br>
+              <br>
+              <span style="color: #42424c;">{{counterPartyMember.full_name | titlecase}}</span>
+              <p class="mb-0" *ngIf="!bankCurrency" style="font-size: 12px;">{{ euroCurrency }}</p>
+              <p class="mb-0" *ngIf="bankCurrency" style="font-size: 12px;">{{ bankCurrency }}</p>
+              <span *ngIf="counterPartyMember.is_non_payvoo_user && counterPartyMember.is_non_payvoo_user == 1"><img style="width: 80px;" src="assets/images/non_payvoo_beta1.png"></span>
+              <span *ngIf="!counterPartyMember.is_non_payvoo_user && counterPartyMember.is_non_payvoo_user != 1"><img style="width: 80px;" src="assets/images/PayVoo BETA_small.png"></span>
+           </div>
+        </div>
+     </div>
+     <div class="col-12 text-center">
+        <button type="button" class="btn btn-primary continue_btn" data-toggle="modal" data-target="#exampleModal">Continue</button>
+     </div>
+  </div>
+  </form>
+</div>
+<div class="modal model_top" id="exampleModal" style="margin-top: 65px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body" align="center">
+
+        <h3 class="card_header">Confirm payment</h3><br>
+        <div class="m-t-20 container">
+            <div class="form-group float_label">
+                <input type="password" class="form-control" placeholder="&nbsp;">
+                <label>Enter Password</label>
+            </div>
+            <span style="margin-left: -310px;">Forgot password?</span>
+        </div><br>
+      <div class="footer" style="margin-left: -150px; margin-top: 20px;">
+        <div class="row" >
+          <div class="col-md-6" >
+              <button 
+                  class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel</button>
+          </div>
+          <div class="col-md-6">
+              <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#linked" 
+              (click)="onClick1()">Continue</button>
+          </div>
+        </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal hide" id="linked">
+  <div class="modal-dialog" role="document" style="margin-top: 95px;">
+    <div class="modal-content" align="center">
+      <div class="modal-body">
+        <div class="text-center">
+          <img width="145px" src="../../../../assets/images/tick_icon.png">
+        </div><br><br><br>
+        <h5 style="margin-top: -30px; margin-bottom: -20px;">Successfully paid</h5><br><br>
+      </div>
+      <div class="panel-footer">
+        <div class="form-group col-md-6">
+          <button style="margin-bottom: 35px;"
+            class="btn btn-primary btn-block" data-dismiss="modal" data-backdrop="static" routerLink="" >Go back to the Webshop</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

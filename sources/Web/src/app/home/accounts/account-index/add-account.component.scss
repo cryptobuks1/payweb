@@ -1,0 +1,142 @@
+@import "../../../../variables";
+
+.page_container {
+  padding: 15px 25px;
+}
+.page_header {
+  display: inline-block;
+}
+
+.itm_crcl {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  padding: 0px;
+  background: #2a3477;
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 18px;
+}
+
+.flexborder{
+  border-top: 1px solid #dadada;
+ }
+ .m-t-10{
+  margin-top: 10px;
+}
+.m-b-0{
+  margin-bottom: 0px;
+  color: $font-color-active;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+.invitemodal{
+  top: 15%;
+
+}
+.fontbtn{
+  width:117% !important;
+}
+@media (max-width: 500px) {
+  .fontbtn{
+    width: 100% !important;
+    margin-top: -15px;
+    font-size: 9px;
+  }
+  .pull-right {
+   margin-left: 0px;
+  }
+}
+
+.wip-container{
+  position: absolute;
+  border: 2px solid #333;
+  font-weight: 700;
+  font-size: larger;
+  width: 40%;
+  padding: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .wip-popup-close{
+    width: 40%;
+  }
+}
+@media (max-width: 500px){
+  .acc_navbar {
+    padding-bottom: 0px;
+    border-bottom: 1px solid $color-primary;
+    background-color: $body-background;
+    margin-left: -14px;
+  }
+}
+
+.acc_navbar {
+  padding-bottom: 0px;
+  border-bottom: 1px solid $color-primary;
+  background-color: $body-background;
+  .navbar-nav {
+    li.nav-item {
+      a {
+        margin-bottom: -1px;
+        opacity: 0.6;
+        font-weight: 500;
+        padding: 10px 30px;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        &:focus,
+        &:hover {
+          border-bottom: 2px solid $color-secondary;
+          outline: none;
+          opacity: 1;
+        }
+      }
+
+      &:focus {
+        outline: none;
+        user-select: none;
+      }
+      &.active {
+        a {
+          border-bottom: 2px solid $color-secondary;
+          opacity: 1;
+          outline: none;
+          color: $font-color-active;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 460px) {
+  .m-r-15 {
+    margin-right: 10px;
+    padding-left: 6px;
+    padding-right: 10px;
+  }
+}
+@media screen and (max-width: 760px) {
+  .nav-link {
+    padding: 10px 8px !important;
+  }
+  .page_header {
+    padding-top: 10px;
+  }
+  .m-r-15 {
+    margin-right: 10px;
+    padding-left: 6px;
+    padding-right: 10px;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    margin-top: 45px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .m-r-15 {
+    margin-right: 6px;
+  }
+}

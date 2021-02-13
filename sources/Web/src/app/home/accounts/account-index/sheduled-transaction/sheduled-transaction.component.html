@@ -1,0 +1,225 @@
+<div class="container-fluid">
+    <!-- <form transForm="ngForm"> -->
+      <!--<div class="m-b-20">
+        <div class="tran_drpdwn">
+          <select class="form-control" (change)="getFilteredTransctionList()" [(ngModel)]='selCurId' name="SelCurrency" >
+              <option [value]=0>All accounts</option>
+              <option *ngFor="let x of currencyType" [value]=x.currency >{{x.currency }}</option>
+          </select>
+        </div>
+        <div class="tran_drpdwn">
+          <select class="form-control" (change)="getFilteredTransctionList()" [(ngModel)]='from_date'  name="transMonths">
+            <option *ngFor="let x of filterDate" [value]=x.date >{{x.months }}</option>
+          </select>
+        </div>
+        
+        <div class="transactions">
+            <div class="get-sta" (click)="getallCurrentTransDetails()" data-toggle="modal" data-target="#myModalall">
+              Get statement
+            </div>
+            <div class="srch_cnt">
+                <input type="text" name="key" class="form-control" [(ngModel)]="search_currencies" size="25" placeholder="Search...">
+              <i class="fa fa-search search_open" autocomplete="off"></i>
+            </div>
+          </div>
+        
+      </div>-->
+      <div class="trans_cont">
+          <!-- <h5>{{selCurType}}</h5> -->
+          <div class="trans_day">
+            <!-- <div class="trans_date">{{setDate(item.created_on)}}</div> -->
+            <ul class="trans_lst">
+              <li >
+                <div class="trans_type trans-width" >
+                    Transaction Number
+              
+                </div>
+
+                <div class="trans_data ">
+                   Transfer Date
+                </div>
+
+                <div class="trans_lst pull-right" style="margin-right: 3%;" >
+                 Amount
+      
+                </div>
+              
+              </li>
+            </ul>
+            </div>
+          <div class="trans_day" >
+              <!-- <div class="trans_date">{{setDate(item.created_on)}}</div> -->
+             
+              <ul class="trans_lst">
+                <li *ngFor="let x of sheduletransList">
+                  <div class="trans_type trans-width"  >
+                    {{x.refference_number}}
+                
+                  </div>
+
+                  <div class="trans_data">
+                     <!-- <span>{{x.transfer_time}}</span> -->
+                     {{setDate(x.transfer_time)}}
+                  </div>
+
+                  <div class="trans_amt pull-right" >
+                    {{ x.total_amount }} {{x.from_currency}} <img (click)="deleteSheduleTran(x)" style="margin-left: 10px;" src="../../../../assets/images/Group 743.png">
+        
+                  </div>
+              
+                
+                </li>
+              </ul>
+            </div>    
+      </div>
+    <!-- </form> -->
+      <!-- <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body content" id=content>
+              <div class="trans_info">
+                <div class="trans_img">
+                  <img src="../../../../../../assets/images/group-of-people.jpg">
+                </div>
+    
+                <div class="text-center">
+                  <h3 class="trans_title">Transferred to {{opositeOwner}}</h3>
+                  <h4 id="trans_amnt" [ngClass]="{'text-success': transaction_type=='CR', 'text-danger':transaction_type=='DB' }">
+                      <span *ngIf="transaction_type=='CR'">+</span> <span *ngIf="transaction_type=='DB'">-</span>{{amount}}
+            
+                      <span *ngIf="currency_type=='BGN'"> BGN</span>
+                      <span *ngIf="currency_type=='HRK'"> HRK</span>
+                      <span *ngIf="currency_type=='CZK'"> CZK</span>
+                      <span *ngIf="currency_type=='DKK'"> DKK</span>
+                      <span *ngIf="currency_type=='SEK'"> SEK</span>
+                      <span *ngIf="currency_type=='RON'"> RON</span>
+                      <span *ngIf="currency_type=='EUR'"> EUR</span>
+                      <span *ngIf="currency_type=='HUF'"> HUF</span>
+                      <span *ngIf="currency_type=='GBP'"> GBP</span>
+                      <span *ngIf="currency_type=='GIP'"> GIP</span>
+                      <span *ngIf="currency_type=='INR'"> INR</span>
+                      <span *ngIf="currency_type=='PLN'"> PLN</span>
+                      <span *ngIf="currency_type=='USD'"> USD</span>
+                  </h4>
+                </div>
+                <div class="trans_info" >
+                  <ul>
+                    <li>
+                      <span>Date</span>
+                      <p>{{setDate(transDate)}}</p>
+                    </li>
+                    <li>
+                      <span>Amount</span>
+                       <p>{{amount}} 
+                        <span *ngIf="currency_type=='BGN'"> BGN</span>
+                        <span *ngIf="currency_type=='HRK'"> HRK</span>
+                        <span *ngIf="currency_type=='CZK'"> CZK</span>
+                        <span *ngIf="currency_type=='DKK'"> DKK</span>
+                        <span *ngIf="currency_type=='SEK'"> SEK</span>
+                        <span *ngIf="currency_type=='RON'"> RON</span>
+                        <span *ngIf="currency_type=='EUR'"> EUR</span>
+                        <span *ngIf="currency_type=='HUF'"> HUF</span>
+                        <span *ngIf="currency_type=='GBP'"> GBP</span>
+                        <span *ngIf="currency_type=='GIP'"> GIP</span>
+                        <span *ngIf="currency_type=='INR'"> INR</span>
+                        <span *ngIf="currency_type=='PLN'"> PLN</span>
+                        <span *ngIf="currency_type=='USD'"> USD</span>
+                      </p>
+                    </li>
+                    <li>
+                      <span>Fee</span>
+                      <p>No Fee</p>
+                    </li>
+                    <li>
+                      <span>Total</span>
+                      <p>{{amount}}
+                        <span *ngIf="currency_type=='BGN'"> BGN</span>
+                        <span *ngIf="currency_type=='HRK'"> HRK</span>
+                        <span *ngIf="currency_type=='CZK'"> CZK</span>
+                        <span *ngIf="currency_type=='DKK'"> DKK</span>
+                        <span *ngIf="currency_type=='SEK'"> SEK</span>
+                        <span *ngIf="currency_type=='RON'"> RON</span>
+                        <span *ngIf="currency_type=='EUR'"> EUR</span>
+                        <span *ngIf="currency_type=='HUF'"> HUF</span>
+                        <span *ngIf="currency_type=='GBP'"> GBP</span>
+                        <span *ngIf="currency_type=='GIP'"> GIP</span>
+                        <span *ngIf="currency_type=='INR'"> INR</span>
+                        <span *ngIf="currency_type=='PLN'"> PLN</span>
+                        <span *ngIf="currency_type=='USD'"> USD</span>
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              
+              
+             
+              </div>
+            </div>
+            <div class="row modalfooter">
+                <div class="col-md-6 ">
+                  <button class="btn btn-block btn-outline-primary " name="cancel" data-dismiss="modal"
+                    aria-label="Close">Close</button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-block btn-primary" data-dismiss="modal" name="statement" aria-label="Close" (click)=makePdf()>Get statement</button>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    
+      <div class="modal fade" id="myModalall" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content" >
+            <div class="modal-body content modal-scroll" id=contentall>
+              <div class="trans_info ">
+                <div class="trans_img m-b-10" >
+                  <img src="../../../../../../assets/images/group-of-people.jpg">
+                </div>
+           
+        
+                <ul class="testTable" *ngFor="let item of transList ">
+                    <div class="trans_date">{{setDate(item.created_on)}}</div>
+                  <div class="testHeader">
+                      <li class="testRow">
+                          <span>Transfer To</span>
+                      
+                          <span >Date</span>
+                          <span>Amount</span>
+                          <span>Fee</span>
+                          <span>Total</span>
+    
+                      </li>
+                  </div>
+                  <div class="testBody">
+                      <li class="testRow" *ngFor="let x of item.data">
+                          <span>{{x.counterparty}}</span>
+                          
+                          <span >{{x.created_on}}</span>
+                          <span [ngClass]="{'text-success': x.transaction_type=='CR', 'text-danger':x.transaction_type=='DB' }"> <span *ngIf="x.ransaction_type=='CR'">+</span> <span *ngIf="x.transaction_type=='DB'">-</span>{{x.amount}} 
+  
+                      </li>
+    
+                   
+                  </div>
+              </ul>
+             
+              </div>
+            </div>
+            <div class="row modalfooter">
+                <div class="col-md-6 cancel-btn">
+                  <button class="btn btn-block btn-outline-primary" name="cancel" data-dismiss="modal"
+                    aria-label="Close">Close</button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-block btn-primary" data-dismiss="modal" name="statement" aria-label="Close" (click)=makealldataPdf()>Get Statement</button>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div> -->
+    
+    
+    </div>

@@ -1,0 +1,311 @@
+<div class="container-fluid page_container">
+    <div class="page_header">
+        <div class="header">
+            <h4>Settings</h4>
+        </div>
+        <ul *ngIf="(isKybCompleted$ | async)" routerLink="/business/settings">
+            <div style="display: inline-block;"><span style="cursor:pointer"
+                    routerLink="/business/accounts/getaccount">Accounts</span> / <h6 style="display: inline-block;">
+                    <span routerLink="/business/settings" style="cursor:pointer">Settings</span></h6>
+            </div>
+
+        </ul>
+        <ul *ngIf="!(isKybCompleted$ | async)" routerLink="/business/settings">
+            <div style="display: inline-block;"><span>Accounts</span> / <h6 style="display: inline-block;"><span
+                        routerLink="/business/settings" style="cursor:pointer">Settings</span></h6>
+            </div>
+
+        </ul>
+    </div>
+
+    <div class="acc_navbar">
+        <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+                <a data-target="#General" data-toggle="tab" class="nav-link active fw-500 genrl">General</a>
+            </li>
+            <li class="nav-item" *ngIf="(isKybCompleted$ | async)">
+                <a data-target="#Plan" data-toggle="tab" class="nav-link fw-500 pln" (click)="openPlan()">Plan</a>
+            </li>
+            <li class="nav-item" *ngIf="(isKybCompleted$ | async)">
+                <a data-target="#Users" data-toggle="tab" class="nav-link fw-500">Users</a>
+            </li>
+            <li class="nav-item" *ngIf="(isKybCompleted$ | async)">
+                <a data-target="#API" data-toggle="tab" class="nav-link fw-500">API</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane fade show active genrl1" id="General">
+            <div class="row" *ngIf="true" style="margin-top: 10px;">
+                <div class="col-md-6">
+                    <div class="card page_ht_crd ">
+                        <div class="card">
+                            <div>
+                                <div class="profilehead">
+
+                                    Profiles
+                                </div>
+                                <div *ngIf="(isKybCompleted$ | async)" class="addcard"
+                                    (click)="personalSettingsChange();one=false;  two=false; three=false; four=false;changeL=false;business_Profile=false;showAboutusDropdown=false"
+                                    [ngClass]="{'personal_selected': personalselect}" data-target="#collapseExample"
+                                    routerLink="personal-profile/personal-profile-settings">
+                                    <div class="addcard_icn">
+                                        <!-- <img src="../../../../assets/images/avatar.png">
+                                        <img src="../../../../assets/images/avatarwhite.png"> -->
+                                        <i class="fa fa-user-o"></i>
+                                    </div>
+                                    <span>Personal profile</span>
+                                    <div class="rt_itm pull-right">
+                                        <i class="fa fa-angle-right angle_right"></i>
+                                    </div>
+                                </div>
+                                <div *ngIf="(isKybCompleted$ | async)" id="accordion" class="accordion addcard1">
+                                    <div class="card accordcard">
+                                        <div [ngClass]="{'collapsed': personalselect || changeL || !showBusinessProfileDropdown}"
+                                            class="card-header collapsed" (click)="toggleBusinessProfileDropdown()">
+                                            <div class="addcard_icn"><i class="fa fa-bank"></i></div>
+                                            <span>Business profile</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="(isKybCompleted$ | async)" class="dropdown">
+                                    <div [ngClass]="{'show': !personalselect && !changeL && showBusinessProfileDropdown}"
+                                        class="page_ht_crd1 collapse">
+                                        <div class="cnv_cntr"
+                                            (click)="incorporationChange();one=true; two=false; three=false; four=false;changeL=false;personalselect=false;showAboutusDropdown"
+                                            [ngClass]="{'cnv_cntr_select': one}"
+                                            routerLink="business-profile/incorporation">
+
+                                            <div class="data_cnt">
+                                                <div class="currency_dta">Incorporation</div>
+                                                <p>{{companyName}}</p>
+
+                                            </div>
+                                            <div class="rt_itm">
+
+                                                <div class="mr-3">
+                                                    <i class="fa fa-angle-right angle_right"
+                                                        style="font-size: 1.5rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cnv_cntr"
+                                            (click)="business_ProfileChange();two=true; one=false; three=false; four=false;changeL=false;personalselect=false;showAboutusDropdown"
+                                            routerLink="business-profile" [ngClass]="{'cnv_cntr_select': two}">
+                                            <div class="data_cnt">
+                                                <div class="currency_dta">Business profile</div>
+                                                <p>{{business_profile_address}}</p>
+                                            </div>
+                                            <div class="rt_itm">
+                                                <div class="mr-3">
+                                                    <i class="fa fa-angle-right angle_right"
+                                                        style="font-size: 1.5rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="cnv_cntr"
+                                            (click)="nature_businessChange();two=false; one=false; three=true ;changeL=false; four=false;personalselect=false;showAboutusDropdown"
+                                            routerLink="business-profile/nature-business"
+                                            [ngClass]="{'cnv_cntr_select': three}">
+                                            <div class="data_cnt">
+                                                <div class="currency_dta">Nature of your business</div>
+                                                <p>{{nature_of_business}}</p>
+                                            </div>
+                                            <div class="rt_itm">
+                                                <div class="mr-3">
+                                                    <i class="fa fa-angle-right angle_right"
+                                                        style="font-size: 1.5rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cnv_cntr"
+                                            (click)="structure_businessChange();two=false; one=false; three=false;changeL=false; four=true;personalselect=false;showAboutusDropdown"
+                                            routerLink="business-profile/structure-business"
+                                            [ngClass]="{'cnv_cntr_select': four}">
+                                            <div class="data_cnt">
+                                                <div class="currency_dta">Structure of your business</div>
+                                                <p>{{count1}} Directors and {{count}} Shareholders</p>
+                                            </div>
+                                            <div class="rt_itm">
+                                                <div class="mr-3">
+                                                    <i class="fa fa-angle-right angle_right"
+                                                        style="font-size: 1.5rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="addcard"
+                                    (click)="changeLang();one=false; two=false; three=false; four=false;changeL=true;personalselect=false;showAboutusDropdown=false"
+                                    [ngClass]="{'personal_selected': changeL}"
+                                    routerLink="personal-profile/change-language">
+                                    <div class="addcard_icn">
+                                        <img src="../../../../assets/images/1111.png" *ngIf="imageTrue">
+                                        <img src="../../../../assets/images/13.png" *ngIf="imageFalse">
+                                    </div>
+                                    <span>Change language</span>
+                                    <div class="rt_itm pull-right">
+                                        <i class="fa fa-angle-right angle_right"></i>
+                                    </div>
+                                </div>
+                                <div class="accordion addcard1">
+                                    <div class="card accordcard">
+                                        <div [ngClass]="{'collapsed': personalselect || changeL || !showAboutusDropdown}"
+                                            class="card-header collapsed" (click)="toggleAboutUsDropdown()">
+                                            <div class="addcard_icn">
+                                                <img src="../../../../assets/images/about-us1.png" *ngIf="imageTrue2">
+                                                <img src="../../../../assets/images/about-us2.png" *ngIf="imageFalse2">
+                                            </div>
+                                            <span>About Us</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <div [ngClass]="{'show': !personalselect && !changeL && showAboutusDropdown}"
+                                        class="page_ht_crd1 collapse">
+                                        <div class="cnv_cntr"
+                                            (click)="privacyPolicy();one=true; two=false; three=false; four=false;changeL=false;personalselect=false;showBusinessProfileDropdown=false"
+                                            [ngClass]="{'cnv_cntr_select': one}">
+
+                                            <div class="data_cnt">
+                                                <div class="currency_dta">Privacy Policy</div>
+                                            </div>
+                                            <div class="rt_itm">
+
+                                                <div class="mr-3">
+                                                    <i class="fa fa-angle-right angle_right"
+                                                        style="font-size: 1.5rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cnv_cntr"
+                                            (click)="termsConditions();two=true; one=false; three=false; four=false;changeL=false;personalselect=false;showBusinessProfileDropdown=false"
+                                            [ngClass]="{'cnv_cntr_select': two}">
+                                            <div class="data_cnt">
+                                                <div class="currency_dta">Terms & Conditions</div>
+                                            </div>
+                                            <div class="rt_itm">
+                                                <div class="mr-3">
+                                                    <i class="fa fa-angle-right angle_right"
+                                                        style="font-size: 1.5rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="cnv_cntr"
+                                            (click)="closeAccount();two=false; one=false; three=true ;changeL=false; four=false;personalselect=false;showBusinessProfileDropdown=false"
+                                            [ngClass]="{'cnv_cntr_select': three}">
+                                            <div class="data_cnt">
+                                                <div class="currency_dta">Close Profile</div>
+                                            </div>
+                                            <div class="rt_itm">
+                                                <div class="mr-3">
+                                                    <i class="fa fa-angle-right angle_right"
+                                                        style="font-size: 1.5rem;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="emptyCard" class="col-md-6">
+                    <div class="card page_ht_crd2">
+                        <h5 style="padding-left: 20px; padding-top: 20px;">Choose an option to continue</h5>
+                    </div>
+                </div>
+                <div *ngIf="emptyCard1" class="col-md-6">
+                    <div class="card page_ht_crd2" style="overflow: hidden;">
+                        <iframe frameBorder="0" style="height: 90vh;top:-150px; margin-top: -160px; width: 100%; "
+                            sandbox="allow-scripts" src="https://payvoo.com/privacy-policy/"></iframe>
+                    </div>
+                </div>
+                <div *ngIf="emptyCard2" class="col-md-6">
+                    <div class="card page_ht_crd2" style="overflow: hidden;">
+                        <iframe frameBorder="0" style="height: 90vh;top:-150px; margin-top: -160px; width: 100%;"
+                            sandbox="allow-scripts" src="https://payvoo.com/terms-and-conditions/"></iframe>
+                    </div>
+                </div>
+                <div *ngIf="emptyCard3" class="col-md-6">
+                    <div class="card page_ht_crd2">
+                        <div id="close-account">
+                            <div class="text-center" style="margin-top: 10%;">
+                                <div>
+                                    <img style="width: 100px;" src="../../../../assets/images/close_account_menu.png">
+                                </div><br>
+
+                                <p class="editptext">Are you sure you want to close your account? It's free to keep our
+                                    basic plan</p><br><br>
+                                <div class="row mx-3">
+
+                                    <div class="col-md-6" (click)="closeBusinessUserAccount(0)">
+                                        <button type="button" class="btn btn-block btn-outline-primary"
+                                            style="margin-bottom: 10px;">Close
+                                            profile</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-block btn-primary"
+                                            style="margin-bottom: 10px;" (click)="keepAccount()">Keep profile</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="contentCard">
+                    <div class="card page_ht_crd2">
+                        <router-outlet></router-outlet>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade pln1" id="Plan">
+            <div *ngIf="forPlan">
+                <div *ngIf="(isKybCompleted$ | async)">
+                    <div class="page_ht_crd_plan mx-auto" style="text-align: center;">
+                        <div>
+                            <h5 id="heading" style="margin-left: -64px;margin-top: 12px;">You have not chosen your price
+                                plan yet</h5>
+                        </div>
+                        <br><br>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="form-group">
+                                        <button  style="border-radius:4px"  class="btn btn-outline-primary btn-block"
+                                            (click)="backPlan()">Cancel</button>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-md-6 pull-right">
+                                    <div class="form-group">
+                                        <button  style="border-radius:4px"  class="btn btn-primary btn-block">Choose Plan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade " id="Users">
+            <app-users *ngIf="(isKybCompleted$ | async)"></app-users>
+        </div>
+        <div class="tab-pane fade " id="API">
+            <app-api *ngIf="(isKybCompleted$ | async)"></app-api>
+        </div>
+        <div class="tab-pane fade " id="Security">
+            <app-business-settings-security></app-business-settings-security>
+        </div>
+        <div class="tab-pane fade" id="About">
+            <app-business-about-us></app-business-about-us>
+        </div>
+    </div>
+</div>

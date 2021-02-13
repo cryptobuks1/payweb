@@ -1,0 +1,4 @@
+
+sources/services/node_modules/*
+sources/services/package-lock.json
+sources/services/logs/all-logs.log

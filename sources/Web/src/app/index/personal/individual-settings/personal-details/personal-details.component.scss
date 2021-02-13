@@ -1,0 +1,124 @@
+@import "../../../../../variables";
+
+  .p-15{
+    padding: 15px;
+  }
+
+  .content_card {
+    display: block;
+    background: #ffffff;
+    padding: 0px 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-shadow: 5px 5px 8px rgba(155, 155, 155, 0.16);
+    border-radius: 4px;
+    transition-duration: 0.5s;
+    position: relative;
+    min-height: 120px;
+    .header_txt {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 15px;
+      color: $font-color-active;
+    }
+  }
+
+  .hover_items {
+    .content_card {
+      box-shadow: 5px 5px 3px rgba(155, 155, 155, 0.16);
+      &:hover,
+      &.active {
+        box-shadow: 5px 5px 8px rgba(155, 155, 155, 0.45);
+      }
+    }
+  }
+
+  .dot_bar {
+    display: block;
+    margin-top: 20px;
+    ul {
+      list-style: none;
+      padding-left: 0px;
+      li {
+        width: 8px;
+        height: 8px;
+        background: #c9c9d3;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 20px;
+        &:first-child {
+          margin-left: 0px;
+        }
+        &.completed {
+          background: $color-secondary;
+        }
+        &.current {
+          background: $color-primary;
+        }
+        span {
+          .edit {
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            padding: 0px;
+            background: $font-color-active;
+            // color: #ffffff;
+            border: 1px solid $font-color-active;
+            border-radius: 50%;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  .m-t-51{
+    margin-top: 30px;
+  }
+
+  #heading{
+    margin-bottom: 1.5rem;
+    margin-top: 20px;
+  }
+
+
+@media screen and (max-width: 1280px){
+  .btn{
+      padding: 0.5rem 0rem;
+      font-size: 0.825rem;
+  }
+}
+@media screen and (max-width: 576px){
+
+  .mb_5{
+margin-bottom: 10px;
+  }
+}
+.invitemodal{
+  top: 15%;
+}
+.modal_size {
+  max-width: 40% !important;
+}
+.fontbtn{
+  width:125% !important;
+}
+.flexborder{
+  border-top: 1px solid #dadada;
+ }
+.itm_crcl {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  padding: 0px;
+  background: #2a3477;
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 18px;
+}
+.kyc_process {
+  color: #42424c;
+  font-weight: 500;
+}

@@ -1,0 +1,264 @@
+<div class="pull-right d-inline back_btn">
+   <div>
+      <a routerLink="/personal/payments"><i class="fa fa-arrow-left"></i> Back</a>
+   </div>
+  
+  </div>
+  <div class="card page_ht_crd" *ngIf="one">
+      <div class="acc_navbar">
+        <ul class="nav nav-pills" role="tablist">
+          <li class="nav-itemP">
+            <a  data-target="#single" data-toggle="tab" class="nav-link active">Select a beneficiary</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="single">
+            <div class="float_label row searchbar">
+                <div class="add_itm">
+                      <span (click)="onNew()"><i class="fa fa-plus"></i>Add a new beneficiary</span>
+                </div>
+             </div>
+              <div class="cntry_par">
+                 Your beneficiaries
+              </div>
+              <div class="cntry_par4" data-target="#bName" data-toggle="modal" (click)="onClose()" *ngIf="confirm">
+                <div data-toggle="modal" class="transfer_Bank">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="addcard_icn"><i class="fa fa-bank"></i></div>
+                        </div>
+                        <div class="col-md-10" style="line-height: normal;margin-top: -9px;">
+                            <span>{{fName}} {{lName}}</span><br>
+                            <span style="font-size: 10px;">IBAN: BG09 6545 3555 6866 3232 3233 <br>BIC/SWIFT: 6876 3846 3749</span>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="card page_ht_crd" *ngIf="two">
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-itemP">
+          <a  data-target="#choose" data-toggle="tab" class="nav-link active">Choose transfer type</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content type">
+      <div class="tab-pane fade show active" id="choose">
+            <div class="cntry_par1" (click)="transferType()">
+               Transfer type
+            </div>
+            <div class="cntry_par2">
+                To myself
+             </div>
+             <div class="cntry_par2">
+                To another person
+             </div>
+             <div class="cntry_par2">
+                To a business
+             </div>
+      </div>
+    </div>
+</div>
+<div class="card page_ht_crd" *ngIf="three">
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-itemP">
+          <a  data-target="#country" data-toggle="tab" class="nav-link active">Choose country and currency</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content type">
+      <div class="tab-pane fade show active" id="country">
+            <div class="cntry_par3">
+                Country <i class="fa fa-angle-down" style="font-size:24px; padding-left: 237px;"></i>
+             </div>
+             <div class="cntry_par3">
+                Currency <i class="fa fa-angle-down" style="font-size:24px; padding-left: 230px;"></i>
+             </div>
+             <div class="col-md-6">
+                <button class="btn btn-primary btn-block" style="margin-top: 60px;
+                margin-left: 100px;" data-dismiss="modal" 
+                (click)="onClick1()">Continue</button>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="card page_ht_crd" *ngIf="four">
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-itemP">
+          <a  data-target="#account" data-toggle="tab" class="nav-link active">Add beneficiary account details</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content type">
+      <div class="tab-pane fade show active" id="account">
+        <div class="form-group float_label" style="margin-bottom: 8px; margin-top: 20px;">
+            <input type="text" [(ngModel)]="fName" class="form-control m_t_15 postal" placeholder="&nbsp;" autocomplete="off">
+            <label>First name</label>
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" [(ngModel)]="lName" class="form-control m_t_15 add1" placeholder="&nbsp;" autocomplete="off">
+            <label>Last name</label>
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" class="form-control m_t_15" placeholder="&nbsp;" autocomplete="off">
+            <label>IBAN</label>
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" class="form-control m_t_15" placeholder="&nbsp;" autocomplete="off">
+            <label>BIC / Swift</label>
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" class="form-control m_t_15" placeholder="&nbsp;" autocomplete="off">
+            <label>Mobile (Optional)</label>
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" class="form-control m_t_15" placeholder="&nbsp;" autocomplete="off">
+            <label>Email (Optional)</label>
+            <input type="checkbox" style="margin-right: 10px;">Send the recipient a transfer confirmation
+          </div>
+             <div class="col-md-6">
+                <button class="btn btn-primary btn-block" style="margin-top: 25px;
+                margin-left: 100px;" data-dismiss="modal" 
+                (click)="onClick2()">Continue</button>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="card page_ht_crd" *ngIf="five">
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-itemP">
+          <a  data-target="#account" data-toggle="tab" class="nav-link active">Add beneficiary address details</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content type">
+      <div class="tab-pane fade show active" id="account">
+        <div class="form-group float_label" style="margin-bottom: 8px; margin-top: 20px;">
+            <input type="text" class="form-control m_t_15 postal" placeholder="&nbsp;" autocomplete="off">
+            <label>Country</label>
+            
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" class="form-control m_t_15 add1" placeholder="&nbsp;" autocomplete="off">
+            <label>Postal Code</label>
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" class="form-control m_t_15" placeholder="&nbsp;" autocomplete="off">
+            <label>Address Line1</label>
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" class="form-control m_t_15" placeholder="&nbsp;" autocomplete="off">
+            <label>Address Line2 (Optional)</label>
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" class="form-control m_t_15" placeholder="&nbsp;" autocomplete="off">
+            <label>Town / City</label>
+          </div>
+          <div class="form-group float_label" style="margin-bottom: 8px;">
+            <input type="text" class="form-control m_t_15" placeholder="&nbsp;" autocomplete="off">
+            <label>Region</label>
+          </div>
+             <div class="col-md-6">
+                <button class="btn btn-primary btn-block" style="margin-top: 40px;
+                margin-left: 100px;" data-toggle="modal" data-target="#reported" 
+                (click)="onClick3()">Continue</button>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="modal model_top" id="reported">
+    <div class="modal-dialog" role="document" style="margin-top: 80px;">
+      <div class="modal-content" align="center">
+        <div class="modal-body ">
+          <div class="text-center">
+            <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png">
+          </div><br><br>
+          <h5 style="padding-left: 20px;padding-right: 20px;">{{fName}} {{lName}} has been added successfully</h5><br>
+        </div>
+        <div class="panel-footer">
+          <div class="form-group col-md-4">
+            <button class="btn btn-primary btn-block" style="margin-bottom: 30px;" data-dismiss="modal" (click)="onConfirm()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal model_top" id="bName">
+    <div class="modal-dialog" role="document" style="margin-top: 80px;">
+      <div class="modal-content" align="center">
+        <div class="modal-body ">
+          <div class="text-center">
+            <div class="addcard_icn1"><i class="fa fa-bank"></i></div>
+          </div><br>
+          <h5 style="padding-left: 20px;padding-right: 20px;">{{fName}} {{lName}}<br><span style="font-size: 12px;">IBAN: BG09 6545 3555 6866 3232 3233<br>BIC/SWIFT: 6876 3846 3749</span></h5><br>
+        </div>
+        <div class="cntry_par5">
+            <div style="color: black;">
+                <span class="pull-left" style="margin-left: 10px;">USD<i class="fa fa-angle-down" style="font-size:24px;padding-left: 16px;"></i></span>
+                <span class="pull-right" style="margin-right: 10px;">0</span>
+            </div><br>
+            <div style="font-size: 12px;">
+                <span class="pull-left" style="margin-left: -60px;">Balance: $ 145.45</span>
+                <span class="pull-right" style="margin-right: 10px;">x1.7836 = lv.0.00.</span>
+            </div>
+         </div>
+        <div class="panel-footer">
+          <div class="form-group col-md-4">
+            <button class="btn btn-primary btn-block" style="margin-bottom: 30px;margin-top: 20px;" data-toggle="modal" data-target="#bName2" (click)="onClose2()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal model_top" id="bName2">
+    <div class="modal-dialog" role="document" style="margin-top: 80px;">
+      <div class="modal-content" align="center">
+        <div class="modal-body ">
+          <div class="text-center">
+            <div class="addcard_icn1"><i class="fa fa-bank"></i></div>
+          </div><br>
+          <h5 style="padding-left: 20px;padding-right: 20px;">{{fName}} {{lName}}<br><span style="font-size: 12px;">IBAN: BG09 6545 3555 6866 3232 3233<br>BIC/SWIFT: 6876 3846 3749</span></h5><br>
+        </div>
+        <div class="cntry_par5">
+            <div style="color: black;">
+                <span class="pull-left" style="margin-left: 10px;">USD<i class="fa fa-angle-down" style="font-size:24px;padding-left: 16px;"></i></span>
+                <span class="pull-right" style="margin-right: 10px;">20</span>
+            </div><br>
+            <div style="font-size: 12px;">
+                <span class="pull-left" style="margin-left: -60px;">Balance: $ 145.45</span>
+                <span class="pull-right" style="margin-right: 10px;">x1.7836 = lv.0.00.</span>
+            </div>
+         </div>
+        <div class="panel-footer">
+          <div class="form-group col-md-4">
+            <button class="btn btn-primary btn-block" style="margin-bottom: 30px;margin-top: 20px;" data-toggle="modal" data-target="#final" (click)="onClose1()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal model_top" id="final">
+    <div class="modal-dialog" role="document" style="margin-top: 80px;">
+      <div class="modal-content" align="center">
+        <div class="modal-body ">
+          <div class="text-center">
+            <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png">
+          </div><br><br>
+          <h5 style="padding-left: 20px;padding-right: 20px;">$20 has been sent to <br>from Jackson Hood</h5><br>
+        </div>
+        <div class="panel-footer">
+          <div class="form-group col-md-4">
+            <button class="btn btn-primary btn-block" style="margin-bottom: 30px;" routerLink="/personal/payments" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

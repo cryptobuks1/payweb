@@ -1,0 +1,174 @@
+
+    <div class="row" >
+        <div class="col-md-4">
+            <div class="card add_money_card">
+                <h3 class="card_header">Enter delivery address</h3>
+                <div class="m-t-20 container">
+                    <div class="float_label">
+                        <select class="form-control">
+                            <option>
+                                Choose country
+                            </option>
+                        </select>
+                        <label>Country</label>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control" placeholder="&nbsp;">
+                        <label>Postal code</label>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control" placeholder="&nbsp;">
+                        <label>Address line 1</label>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control" placeholder="&nbsp;">
+                        <label>Address line 2 (Optional)</label>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control" placeholder="&nbsp;">
+                        <label>Town / City</label>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control" placeholder="&nbsp;">
+                        <label>Region</label>
+                    </div>
+                </div>
+                <div class="col-12 row mx-auto" *ngIf="address">
+
+                    <div class="col-md-6">
+                        <button routerLink="/home/cards"
+                        style="border-radius:4px"  class="btn btn-outline-primary btn-block">Cancel</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button  style="border-radius:4px"  type="button" class="btn btn-primary btn-block" (click)="cardsTrue()">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" *ngIf="linkAccount">
+            <div class="card add_money_card">
+                <form>
+                    <div class="panel-body text-clr">
+
+                        <div class="container m-btm">
+                            <h3 class="card_header">Choose delivery option</h3>
+                        </div>
+
+                        <div class="d-flex flexborder" (click)="activclrexpress()" [ngClass]="{'activeclr':activeclrexpress}">
+                            <div class="p-2  align-self-center">
+                                <span class="itm_crcl_modal"><img src="../../../../assets/images/departures.png"></span>
+                            </div>
+                            <div class="p-2">
+                                <p class="m-b-0 fw-500">Express</p>
+                                <small>Get it by Wednesday, Jan 30</small>
+                            </div>
+                            <div class="ml-auto p-2  align-self-center">
+                                ‎€ 19.99
+                            </div>
+                        </div>
+
+                        <div class="d-flex flexborder" (click)="activclrstndard()" [ngClass]="{'activeclr':activeclrstandard}">
+                            <div class="p-2  align-self-center">
+                                <span class="itm_crcl_modal"><img
+                                        src="../../../../assets/images/delivery-truck.png"></span>
+                            </div>
+                            <div class="p-2">
+                                <p class="m-b-0 fw-500">Standard</p>
+                                <small>Get it by Wednesday, Feb 20</small>
+                            </div>
+                            <div class="ml-auto p-2  align-self-center">
+                                Free
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" *ngIf="btndisabled">
+                            <div class="col-md-6">
+                                <button  style="border-radius:4px"  routerLink="/home/cards/deliveryaddress"
+                                    class="btn btn-outline-primary btn-block ">Cancel</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button  style="border-radius:4px"  class="btn btn-primary btn-block" (click)="cardLimit()">Continue</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4" *ngIf="cardLimittt">
+            <div class="card add_money_card">
+                <form>
+                    <div class="panel-body text-clr">
+                        <h3 class="card_header">Place order</h3>
+                        <div class="d-flex m-btm-10">
+                            <div class="align-self-center">
+                                <span>Card holder</span>
+                            </div>
+                            <div class="ml-auto align-self-center fw-500">
+                                Marvin Blazhevski
+                            </div>
+                        </div>
+                        <div class="d-flex m-btm-10">
+                            <div class="align-self-center">
+                                <span>Accounts</span>
+                            </div>
+                            <div class="ml-auto align-self-center fw-500">
+                                2
+                            </div>
+                        </div>
+                        <div class="d-flex m-btm-10">
+                            <div class="align-self-center">
+                                <span>Card charges</span>
+                            </div>
+                            <div class="ml-auto align-self-center fw-500">
+                                No charges
+                            </div>
+                        </div>
+                        <div class="d-flex m-btm-10">
+                            <div class="align-self-center">
+                                <span>Delivery charges</span>
+                            </div>
+                            <div class="ml-auto align-self-center fw-500">
+                                Free
+                            </div>
+                        </div>
+                        <div class="d-flex bdr-top-btm">
+                            <div class="align-self-center">
+                                <span>Total</span>
+                            </div>
+                            <div class="ml-auto align-self-center fw-500">
+                                ‎€ 0
+                            </div>
+                        </div>
+
+
+                        <br>
+                        <div class="float_label m-top-20">
+                            <select class="form-control">
+                                <option>
+                                    EUR
+                                </option>
+                            </select>
+                            <label>With draw charges from</label>
+                            <small>Balance: ‎€ 200</small>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button (click)="previousPage()" class="btn btn-outline-primary btn-block">
+                                    Cancel
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary btn-block"
+                                    routerLink="/home/cards">Continue</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

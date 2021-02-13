@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="logo_container brand">
+      <img src="../../../../../assets/images/logo_white1.png">
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-6 lft_bg_img bg_img_1">
+        &nbsp;
+      </div>
+      <div class="col-lg-6 rt_cont offset-lg-6">
+          <fieldset style="margin-top: 175px;">
+              <h2 class="header_bar">Confirm your mobile number</h2>
+              <div class="form-group">
+                <h5 class="header_para">A 6-digit code has been sent to<span class="blue1"> +{{ mobile }}</span></h5>
+                <p *ngIf='mobileOTPMessage' class="text text-danger" style="font-size: 14px;">{{otpFailMsg}}</p>
+                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" id="emailconfirm" name="opt" class="otp brandotp" autocomplete="off" 
+                [(ngModel)]="mobileOtp" minlength=6 maxlength=6>
+               <div class="m_t_20">You can resend the code if it doesn't arrive in <span
+                    id="pageBeginCountdownText" class="timer">00:{{timer}}s</span></div>
+                  <span class="txt_link timer cur-resend"  *ngIf="isDisabled" (click)="mobileResendLink()">Resend</span>
+                  <div class="m_t_20" *ngIf="textShow">A new confirmation code was sent to <span class="blue1"> +{{ mobile }}</span></div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 offset-md-6">
+                  <button name="next" id="step3" [disabled]="mobileOtp.length<6" class="next btn btn-primary btn-block" (click)="verifyOTPAndSubmit(mobileOtp)">Continue</button>
+                </div>
+              </div>
+              
+            </fieldset>
+      </div>
+    </div>
+  </div>

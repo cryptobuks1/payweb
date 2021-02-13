@@ -1,0 +1,77 @@
+@import "../../styles.scss";
+.page_ht_crd {
+    box-shadow: 0px 3px 6px #00000029;
+    min-height: calc(100vh - 250px);
+    width: 30%;
+    padding: 20px 20px 20px 20px;
+    margin-left: 33%;
+}
+  .lock{
+    margin-right: 6px;
+  }
+  .pay {
+    color: $color-secondary;
+    font-weight: 500;
+    font-size: 25px;
+  }
+  .voo {
+    color: $color-primary;
+    font-weight: 500;
+    font-size: 25px;
+  }
+  .p1{
+    margin-top: 25px;
+  }
+   
+  .p2{
+    margin-top: -20px;
+    font-size: 12px;
+  }
+  .forgotlink{
+    font-size: 12px;
+    color: $color-secondary; 
+    margin: 20px 0 15px 0;
+  }
+  .create_btn{
+    margin-top: 30px;
+  }
+   
+  .login_form{
+    .input_field{
+      margin-bottom: 1rem;
+    }
+  }
+  .linediv {
+    overflow: hidden;
+    text-align: center;
+  }
+   
+  .linediv:before,
+  .linediv:after {
+    background-color:$font-color;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+   
+  .linediv:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+   
+  .linediv:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
+  @media (max-width:576px){
+    .page_ht_crd {
+    box-shadow: 0px 3px 6px #00000029;
+    min-height: calc(100vh - 250px);
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    margin-left: 0%;
+  }
+  }

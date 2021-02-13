@@ -1,0 +1,95 @@
+@import "../../../../../variables";
+
+.card {
+  padding: 30px 20px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  display: block;
+  .card_header {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+}
+
+.add_money_card {
+  min-height: calc(100vh - 200px);
+}
+
+.add-money{
+  top: -16px;
+  width: 109%;
+  left: -16px;
+  padding: 3px 15px;
+  font-family:sans-serif;
+}
+
+
+.card_details_cont {
+  padding: 10px 15px;
+  border-top: 1px solid $font-teritary;
+  border-bottom: 1px solid $font-teritary;
+  margin-bottom: 20px;
+  margin-top: 10px;
+
+  .addcard_icn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background: $font-teritary;
+    border-radius: 50%;
+    margin-right: 20px;
+    line-height: 40px;
+    color:$font-color-active;
+  }
+  .crd_det {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.75rem;
+    p {
+      margin-bottom: 0px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    span {
+      display: block;
+    }
+  }
+}
+@media(max-width:576px){
+  .add_money_card {
+   margin-top: 10px;
+  }
+}
+
+
+.card_type_cnt {
+  position: absolute;
+  right: 20px;
+  bottom: 6px;
+  width: 35px;
+  height: 35px;
+  background: url("../../../../../assets/images/icons/iconsprite.png");
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+
+  &.card_master {
+    background-position: -266px 0px;
+  }
+  &.card_visa {
+    background-position: -137px 0px;
+  }
+  &.card_jcb {
+    background-position: -95px 0px;
+  }
+  &.card_dci {
+    background-position: -177px 0px;
+  }
+  &.card_unionpay {
+    background-position: -219px 0px;
+  }
+}

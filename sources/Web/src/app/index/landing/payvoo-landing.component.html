@@ -1,0 +1,19 @@
+    <div class="container-fluid bg_wt">
+      <div class="logo_container">
+        <img src="../../../../../assets/images/logo_white1.png">
+      </div>
+      <div class="row no-gutters">
+        <div class="col-md-6 splash_img_container left_img" (mouseover)="personalIn()" (mouseout)="personalOut()" (focus)="personalIn()" (focusout)="personalOut()" (click)="personalLogin()">
+          <div id="personal" *ngIf="personal" class="account_type_text">Personal</div>
+        </div>
+        <div class="col-md-6 splash_img_container left_img abc" (click)="personalLogin()">
+          <div id="personal" class="account_type_text">Personal</div>
+        </div>
+        <div class="col-md-6 splash_img_container right_img" (mouseover)="businessIn()" (mouseout)="businessOut()" (focus)="businessIn()" (focusout)="businessOut()" (click)="businessLogin()">
+          <div class="account_type_text business" *ngIf="business" [ngClass]="{'focused': business}">Business</div>
+        </div>
+        <div class="col-md-6 splash_img_container right_img xyz" (mouseover)="businessIn()" (mouseout)="businessOut()"(click)="businessLogin()">
+          <div class="account_type_text business" >Business</div>
+        </div>
+      </div>
+    </div>

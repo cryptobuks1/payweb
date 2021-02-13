@@ -1,0 +1,197 @@
+.panel-heading.collapsed .fa-chevron-down,
+.panel-heading .fa-chevron-right {
+  display: none;
+}
+.panel-heading.collapsed .fa-chevron-right,
+.panel-heading .fa-chevron-down {
+  display: inline-block;
+}
+
+
+
+
+
+i.fa {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.collapsed ~ .panel-body {
+  padding: 0;
+}
+
+input {
+  text-align: center;
+  }
+  form{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top:5px;
+  }
+  form.example input[type=text] {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid grey;
+    float: left;
+    width: 95%;
+    background: #ffffff;
+  }
+  .email_send button {
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  form.example button {
+    float: left;
+    width: 5%;
+    padding: 8px;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+.text {
+    color: #2a3477;
+    padding: 25px;
+    font-weight: 800;
+  }
+  .prod-note {
+    font-size: 13px;
+    top: 9px;
+    margin-top: 0px;
+  }
+  .sandboxes {
+    max-width: 900px;
+    margin-left: 10px;
+    padding-left: 60px;
+  }
+  .mt-10 {
+    margin-top: 5px;
+  }
+  .member {
+    padding: 20px;
+  }
+  .rotate.down {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  .rotate-product.down {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  .member_content {
+    background-color: #cecece;
+    padding: 12px;
+    margin-top: 11px;
+    margin-bottom: 10px;
+  }
+  .sandboxes .card {
+    margin-bottom: 20px;
+  }
+  .card-header {
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px
+  }
+  .email_send {
+    min-width: 371px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+  }
+  .card-body p {
+    font-weight: 300;
+  }
+  .email_send h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    padding-bottom: 10px;
+  }
+  
+  .copied {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #cecece;
+  }
+  .copies {
+    position: relative;
+    margin-bottom: 10px;
+    padding-top: 1px;
+  }
+  .copies div {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 0px 21px 4px 17px;
+    border: 1px solid #d4d3d3;
+    background-color: white;
+    cursor: pointer;
+  }
+  .prod-api h4 {
+    font-size: 16px;
+    font-weight: 900;
+  }
+  .prod-api {
+    border-bottom: none;
+    background-color: rgb(0, 0, 0, 0)
+  }
+  .prod-api span {
+    font-size: 13px;
+  }
+  .share {
+    background-color: #f37221;
+    padding: 5px 35px 6px 35px;
+    color: white;
+    border-radius: 36px;
+    float: right;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 0px;
+  }
+  .sandbox {
+    padding: 6px 20px 4px 20px;
+  }
+  .sandbox_title {
+    float: left;
+    margin-bottom: 11px;
+    padding-top: 4px;
+  }
+  .email_send p {
+    padding-bottom: 5px;
+    margin-bottom: 1px;
+  }
+  .email_send img {
+    width: 27%;
+    margin-bottom: 23px;
+  }
+  .email_send .form-group {
+    margin-top: 15px;
+  }
+  .color {
+    color: blue;
+    font-weight: 500;
+  }
+  input:focus {
+    outline: none;
+  }
+
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 471px;
+      margin: 1.75rem auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .email_send {
+      min-width: unset;
+    }
+    .sandboxes {
+      margin-left: 0px;
+    }
+  }

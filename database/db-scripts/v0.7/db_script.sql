@@ -1,0 +1,2 @@
+ALTER TABLE `kyb_doc_comments`
+CHANGE COLUMN IF EXISTS `comment` `comment` VARCHAR(4000) NULL DEFAULT NULL ;

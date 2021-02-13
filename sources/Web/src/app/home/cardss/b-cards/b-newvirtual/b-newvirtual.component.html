@@ -1,0 +1,400 @@
+<div *ngIf="clsVir">
+  <div class="container-fluid page_container">
+    <div class="page_header">
+      <div class="header">
+        Cards
+      </div>
+      <ul>
+        <li>Cards/Virtual cards</li>
+      </ul>
+    </div>
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <a data-target="#Physical" data-toggle="tab" class="nav-link" (click)="openPhysical()">Physical</a>
+        </li>
+        <li class="nav-item">
+          <a data-target="#Virtual" data-toggle="tab" class="nav-link active" (click)="openVirtual()">Virtual</a>
+        </li>
+        <li class="nav-item">
+          <a data-target="#Employee" data-toggle="tab" class="nav-link" (click)="openEmployees()">Employees</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="Virtual">
+
+      <div class="container-fluid">
+        <div class="title_cnt">
+          <div class="title">
+            All cards
+          </div>
+          <div class="rt_cnt">
+            <div id="AddNew" class="add_new" data-toggle="modal" data-target="#exampleModal">
+              Add new card
+            </div>
+            <div id="AddNew"  style="padding-left: 15px;" class="add_new" data-toggle="modal" data-backdrop="static" data-target="#corporateCard">
+              Link a corporate card
+            </div>
+            <div class="acc_style">
+              <i class="fa fa fa-th-large" (click)="gridView()" [class.active]="gridActive"></i>
+              <i class="fa fa fa-th-list" (click)="listView()" [class.active]="listActive"></i>
+            </div>
+            <div class="srch_cnt">
+              <input type="text" name="key" class="form-control" size="25" placeholder="Search..." autocomplete="off"
+                (keydown.space)="$event.preventDefault();" (focusout)="search_accounts = ''">
+              <i class="fa fa-search search_open"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img class="allCards" src="../../../assets/images/cards/EasyVoo_v.PNG" (click)="onVirCard()">
+      <img class="allCards" src="../../../assets/images/cards/FirstVoo_v.PNG">
+    </div>
+
+    <div class="modal model_top" id="exampleModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body" align="center">
+
+            <h3 class="card_header" >Choose a card holder</h3><br>
+            <div class="m-t-20 container">
+              <div class="form-group float_label">
+                <input type="text" class="form-control" placeholder="&nbsp;">
+                <label>Enter employee name or email</label>
+              </div>
+            </div><br>
+
+            <div class="d-flex" data-toggle="modal" data-target="#newEmployee">
+              <div class="p-2 align-self-center">
+                <span class="itm_crcl1">+</span>
+              </div>
+              <div class="p-2 align-self-center">
+                <span style="cursor: pointer;" (click)="addNew()">Add new Employee</span>
+              </div>
+              <div class="d-flex" (click)="cardsTrue(i)" [ngClass]="{'activeclr':i==selectedIndex}"
+                *ngFor="let x of aray; let i= index">
+                <div class="p-2 align-self-center">
+                  <span class="itm_crcl">{{x.symbol}}</span>
+                </div>
+                <div class="p-2">
+                  <p class="font-clr">{{x.name}}</p>
+                  <small> //url>//</small>
+                </div>
+              </div>
+
+            </div><br>
+            <div class="footer">
+              <div class="row">
+                <div class="col-md-6">
+                  <button class="btn btn-outline-primary btn-block" style="width: 80%;"
+                    data-dismiss="modal">Previous</button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-primary btn-block" style="width: 80%;" data-toggle="modal"
+                    data-target="#setName" (click)="onClick1()">Continue</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal model_top" id="newEmployee">
+      <div class="modal-dialog" role="document">
+       <div class="modal-content">
+        <div class="modal-body ">
+           <h3 align="center" class="card_header">Add new employee</h3><br><br>
+        <div class="m-t-20 container">
+        <div class="form-group float_label">
+          <input type="text"class="form-control" placeholder="&nbsp;">
+           <label>E-mail</label>
+        </div>
+        <div class="form-group float_label">
+          <input type="text"class="form-control" placeholder="&nbsp;">
+          <label>First name</label>
+        </div>
+        <div class="form-group float_label">
+           <input type="text"class="form-control" placeholder="&nbsp;">
+           <label>Last name</label>
+        </div>
+        </div><br><br>
+             <div class="footer">
+                   <div class="row">
+                    <div class="col-md-6">
+                         <button class="btn btn-outline-primary btn-block " style="width:80%;"  data-dismiss="modal" (click)="onClose1()">Previous</button>
+                    </div>
+             <div class="col-md-6">
+                 <button class="btn btn-primary btn-block" style="width:80%;" data-toggle="modal"
+                 data-target="#setName" (click)="onClick2()">Continue</button>
+                 </div>
+                </div>
+               </div>
+            </div>
+          </div>
+         </div>
+        </div>
+        
+
+    <div class="modal model_top" id="setName">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body" align="center">
+            <h4>Set a name for the card</h4>
+            <br><br>
+
+            <div class="m-t-20 container">
+              <div class="form-group float_label">
+                <input type="text" class="form-control" placeholder="&nbsp;">
+                <label>Enter card Name</label>
+              </div>
+            </div><br><br><br>
+
+            <div class="panel-footer">
+              <div class="row">
+                <div class="col-md-6">
+                  <button class="btn btn-outline-primary btn-block" style="width: 80%;"
+                  data-dismiss="modal" (click)="onClose2()">Previous</button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-primary btn-block" style="width: 80%;" data-toggle="modal"
+                    data-target="#linkCard" (click)="onClick3()">Continue</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal model_top" id="linkCard" style="top: -70px;">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content link">
+          <div class="modal-body ">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button> <br><br>   
+            <div class="container" style="text-align: center;">
+              <h3 class="card_header">Link Accounts to the card</h3><br>
+              <p style="font-size: 12px;">If there is more than 1 account linked to this card, the currency of the card <br>
+                transaction will determine which of the linked accounts will be changed.</p>                
+          </div>
+          <div class="acc_navbar">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item col-md-6">
+                <a  data-toggle="tab" class="nav-link active">Currency</a>
+              </li>
+              <li class="nav-item col-md-6">
+                <a data-toggle="tab" class="nav-link">Balance</a>
+              </li>
+            </ul>
+          </div>
+          <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                  <span><img src="../../../../assets/images/euro.png"></span>
+              </div>
+              <div class="p-2">
+                  <p class="m-b-0">EURO</p>
+                  <small>Bal : EUR 0</small>
+              </div>
+              <div class="ml-auto p-2  align-self-center">
+                  <div class="switch_box box_1">
+                    <label class="switch">
+                      <input type="checkbox">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+              </div>
+          </div>   
+          <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                  <span><img src="../../../../assets/images/euro.png"></span>
+              </div>
+              <div class="p-2">
+                  <p class="m-b-0">EURO</p>
+                  <small>Bal : EUR 0</small>
+              </div>
+              <div class="ml-auto p-2  align-self-center">
+                  <div class="switch_box box_1">
+                    <label class="switch">
+                      <input type="checkbox">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+              </div>
+          </div>
+    
+          <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                  <span><img src="../../../../assets/images/euro.png"></span>
+              </div>
+              <div class="p-2">
+                  <p class="m-b-0">EURO</p>
+                  <small>Bal : EUR 0</small>
+              </div>
+              <div class="ml-auto p-2  align-self-center">
+                <div class="switch_box box_1">
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+          </div>
+          <div class="footer" style="margin-top: 20px; margin-bottom: 10px;">
+            <div class="row" align="center">
+              <div class="col-md-6" >
+                  <button 
+                      class="btn btn-outline-primary btn-block" data-dismiss="modal" (click)="onClose3()">Previous</button>
+              </div>
+              <div class="col-md-6">
+                  <button class="btn btn-primary btn-block" (click)="onClick4()" data-dismiss="modal">Continue</button>
+              </div>
+          </div>
+        </div>    
+          </div>    
+        </div>
+      </div>
+    </div>
+
+    <div class="modal model_top" id="monthlyLimit">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 120%; height: 400px;">
+          <div class="modal-body ">
+
+            <h4 class="spendLimit" align="center">Set monthly card limit</h4>
+            <br><br><br>
+            <div class="form-group float_label col-md-4">
+              <select class="form-control" style="border-bottom: none;width: 85px;margin-left: 70px;"
+                formControlName="country_id" id="contryname">
+                <option value="" disabled selected hidden>BGN</option>
+              </select>
+              <label for="contryname"></label>
+            </div>
+            <div style="margin-left: 250px;margin-top: -85px;" class="float_label">
+              <input type="text" class="form-control" placeholder="&nbsp;" #month>
+              <label>Monthly limit</label>
+            </div><br><br>
+            <div class="row">
+              <div class="col-md-6">
+                <button style="margin-left: 20px; width: 80%; margin-top: 100px;"
+                  class="btn btn-outline-primary btn-block" data-dismiss="modal" (click)="onClose4()">
+                  Previous
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button type="button" class="btn btn-primary btn-block" style="width: 80%; margin-top: 100px;"
+                  data-toggle="modal" data-target="#order" (click)="onClick5()">Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal hide" id="order">
+      <div class="modal-dialog" role="document" style="margin-top: 75px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="text-center">
+              <img width="120px" src="../../../../assets/images/tick_icon.png">
+            </div><br><br><br>
+            <h5 style="margin-top: -30px; margin-bottom: -20px;" align="center">Invitation link sent
+              to<br>I.johnson@sepa-cyber.com to order a new card</h5><br><br>
+
+            <div class="panel-footer">
+              <div class="form-group col-md-4">
+                <button style="margin-left: 140px; margin-bottom: 35px; padding-right: 90px; width:120%"
+                  class="btn btn-primary btn-block" (click)="onClick6()">Complete</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal model_top" id="corporateCard">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 100%;">
+          <div class="modal-body" align="center">
+            <h3 class="card_header">Link existing card</h3><br>
+            <div class="m-t-20 container">
+                <div class="form-group float_label">
+                    <input type="text" class="form-control" placeholder="&nbsp;">
+                    <label>Card number</label>
+                </div>
+            </div><br>
+            <div class="footer">
+              <div class="row" >
+                <div class="col-md-6" >
+                    <button 
+                        class="btn btn-outline-primary btn-block" data-dismiss="modal"  (click)="onClick1()">Cancel</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block"  data-toggle="modal" data-target="#linked" 
+                    (click)="onClick7()">Continue</button>
+                </div>
+            </div>
+          </div>    
+        </div>    
+      </div>
+    </div>
+  </div>
+  
+    <div class="modal hide" id="linked">
+      <div class="modal-dialog" role="document" style="margin-top: 95px;">
+        <div class="modal-content" align="center">
+          <div class="modal-body">
+            <div class="text-center">
+              <img width="145px" src="../../../../assets/images/tick_icon.png">
+            </div><br><br><br>
+            <h5 style="margin-top: -30px; margin-bottom: -20px;">Your card was successfully linked!</h5><br><br>
+          </div>
+          <div class="panel-footer">
+            <div class="form-group col-md-6">
+              <button style="margin-bottom: 35px;"
+                class="btn btn-primary btn-block" data-dismiss="modal" data-backdrop="static">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   
+
+    <div class="modal hide" id="orderV">
+      <div class="modal-dialog" role="document" style="margin-top: 95px;width: 430px;">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <div class="text-center">
+              <img width="145px" src="../../../../assets/images/tick_icon.png">
+            </div><br><br><br>
+            <h5 style="margin-top: -30px; margin-bottom: -20px;" align="center">Great! Your PayVoo Virtual card <br> is
+              ready
+              to use</h5><br><br>
+
+            <div class="panel-footer">
+              <div class="form-group col-md-4">
+                <button style="margin-left: 140px; margin-bottom: 35px; padding-right: 90px; padding-left: 40px;"
+                  class="btn btn-primary btn-block" (click)="onClick7()">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="vcs">
+  <app-b-vircardsettings></app-b-vircardsettings>
+</div>
+
+<div *ngIf="forPhysical">
+  <app-b-cards></app-b-cards>
+</div>
+<div *ngIf="forEmployees">
+  <app-employees></app-employees>
+</div>

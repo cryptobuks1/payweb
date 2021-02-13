@@ -1,0 +1,326 @@
+<div *ngIf="emp">
+  <div class="container-fluid page_container">
+    <div class="page_header">
+      <div class="header">
+        Cards
+      </div>
+      <ul>
+        <li>Cards/Employees</li>
+      </ul>
+    </div>
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <a data-target="#Physical" data-toggle="tab" class="nav-link" (click)="openPhysical()">Physical</a>
+        </li>
+        <li class="nav-item">
+          <a data-target="#Virtual" data-toggle="tab" class="nav-link" (click)="openVirtual()">Virtual</a>
+        </li>
+        <li class="nav-item">
+          <a data-target="#Employee" data-toggle="tab" class="nav-link active" >Employees</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-pane fade show active" id="Employees">
+    <div class="container-fluid">
+      <div class="title_cnt">
+        <div class="title">
+         Employees
+        </div><br><br>
+        <div class="acc_navbar">
+          <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item col-md-4" style="padding-left: 0px;padding-right: 0px;max-width: 25%;">
+              <a data-toggle="tab" class="nav-link active">NAME</a>
+            </li>
+            <li class="nav-item col-md-4" style="padding-left: 0px;padding-right: 0px;max-width: 25%;">
+              <a  data-toggle="tab" class="nav-link">EMAIL</a>
+            </li>
+            <li class="nav-item col-md-4" style="padding-left: 0px;padding-right: 0px;max-width: 25%;">
+              <a  data-toggle="tab" class="nav-link" >STATUS</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul class="nav nav-pills">
+            <li class="nav-item col-md-4">
+              <a data-toggle="tab"  (click)="closePhysical()">Vanya Grozeva</a>
+            </li>
+            <li class="nav-item col-md-4 email">
+              <a  data-toggle="tab">v.grozeva@sepa-cyber.com</a>
+            </li>
+            <li class="nav-item col-md-4 actv">
+              <a  data-toggle="tab">Active</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div> 
+
+<div *ngIf="navBar" style="margin-left: 30px;margin-right: 30px;margin-bottom: -30px;">
+  <a (click)="onBack()" class="pull-right" style="color: #2a3477;"><i class="fa fa-arrow-left" style="margin-top: 10px;"></i> Back</a>
+  <h3>Vanya Grozeva</h3>
+ <span>Active</span><br><br>
+<div class="acc_navbar">
+  <ul class="nav nav-pills" role="tablist">
+    <li  class="nav-item ">
+      <a data-toggle="tab" class="nav-link active" (click)="openCards()">Cards</a>
+    </li>
+    <li  class="nav-item ">
+      <a  data-toggle="tab" class="nav-link" (click)="openTran()">Transactions</a>
+    </li>
+    <li  class="nav-item ">
+      <a  data-toggle="tab" class="nav-link" (click)="blockEmployee()">Settings</a>
+    </li>
+  </ul>
+</div><br><br>
+<div *ngIf="cards" style="margin-top: -50px;">
+  <img class="allCards" src="../../../assets/images/cards/bblack.PNG" >
+  <img class="allCards" src="../../../assets/images/cards/bsilver.PNG">
+</div>
+</div>
+
+<div class="modal model_top" id="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body ">
+        <div align="center">                                  
+        <h4 >Vanya Grozeva</h4>  <br><br>                   
+        <img src="../../../../assets/images/pending.png" alt=""> 
+      </div>  <br>
+        <div align="center">
+        <h6 >Pending activation</h6><br>
+       <span > Vanya Grozeva hasn't ordered this card yet.</span>
+      </div><br>
+       <h6 align="center" style="color:#323B94">Resend activation link</h6>
+       <h6 align="center"style="color:red">Delete card order</h6>
+      </div> 
+    </div>
+  </div>
+</div> 
+
+<div class="modal model_top" id="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body ">
+        <div align="center">                                  
+        <h4 >Vanya Grozeva</h4>  <br><br>                   
+        <img src="../../../../assets/images/pending.png" alt=""> 
+      </div>  <br>
+        <div align="center">
+        <h6 >Pending activation</h6><br>
+       <span > Vanya Grozeva hasn't ordered this card yet.</span>
+      </div><br>
+       <h6 align="center" style="color:#323B94">Link has been sent</h6>
+       <h6 align="center"style="color:red">Delete card order</h6>
+      </div> 
+    </div>
+  </div>
+</div> 
+
+<div class="modal model_top decline" id="toEmp" style="margin-top: 2px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body ">
+        <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button> <br><br>
+        <table class="table table-borderless">
+          <tbody>
+              <tr>
+                  <td style="color:grey" class="float-left">12:25 PM,July 12,2019</td>
+                  <td>Declined</td>
+              </tr>
+          </tbody>
+        </table>
+        <h4 class="header_bar global_font" style="text-align: center"><strong>To Marvin Blazhevski</strong></h4><br><br>
+        <div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td style="color:grey" class="float-left">Card</td>
+                        <td>**1258</td>
+                    </tr>
+                    <tr>
+                        <td  style="color:grey"class="float-left">Payer</td>
+                        <td>Vanya Grozeva</td>
+                    </tr>
+
+                    <tr>
+                      <td style="color:grey" class="float-left">Reason</td>
+                      <td>Card inactive</td>
+                  </tr><br>
+
+                  <tr>
+                    <td style="color:grey" class="float-left">Amount</td>
+                    <td>AED324</td>
+                </tr>
+                <tr>
+                  <td style="color:grey" class="float-left">Exchange rate</td>
+                  <td>E1=AED4.0461</td>
+                 </tr>
+                 <tr>
+                  <td style="color:grey" class="float-left">Amount after exchange</td>
+                  <td>E1=80.10</td>
+                 </tr>
+              <tr>
+                <td style="color:grey" class="float-left">Exchange fee</td>
+                <td>No fee</td>
+               </tr>
+            <tr>
+              <td style="color:grey" class="float-left">Total</td>
+              <td>E1=80.10</td>
+             </tr>
+            
+             <tr>
+              <td style="color:grey" class="float-left">Location</td>
+              <td>Dubai AE Duabi,AE</td>
+             </tr>
+                  </tbody>
+              </table>
+          </div><br>
+       </div> 
+      </div>
+    </div>
+  </div>
+
+  <div class="modal model_top decline" id="toEmp2" style="margin-top: 2px;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body ">
+          <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button> <br><br>
+          <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <td style="color:grey" class="float-left">12:25 PM,July 12,2019</td>
+                    <td>Complete</td>
+                </tr>
+            </tbody>
+          </table>        
+          <h4 class="header_bar global_font" style="text-align: center"><strong>Adhoh comm </strong></h4>
+          <h2 style="color:darkgrey;margin-left: 180px;">-25E</h2><br><br>
+          <div>
+              <table class="table table-borderless">
+                  <tbody>
+                      <tr>
+                          <td style="color:grey" class="float-left">Card</td>
+                          <td>**1258</td>
+                      </tr>
+                      <tr>
+                          <td  style="color:grey"class="float-left">Payer</td>
+                          <td>Vanya Grozeva</td>
+                      </tr>
+                    <tr>
+                      <td style="color:grey" class="float-left">Amount</td>
+                      <td>-25E</td>
+                  </tr>
+                 <tr>
+                <td style="color:grey" class="float-left">Fee</td>
+                <td>No fee</td>
+               </tr>
+            <tr>
+              <td style="color:grey" class="float-left">Total</td>
+              <td>E1=80.10</td>
+             </tr>
+             <tr>
+              <td style="color:grey" class="float-left">Location</td>
+              <td>Amsterdam NL Amsterdam,NL</td>
+             </tr>
+                  </tbody>
+              </table>
+          </div><br>   
+        </div> 
+      </div>
+    </div>
+  </div> 
+  <div *ngIf="state">
+    <span style="color: #424263;padding-left: 25px;">All transactions from start of account activity</span>
+    <span class="pull-right" style="padding-right: 25px;color: #2a3477;">Get statement</span><br><br>
+    <div class="trans_cont" data-toggle="modal" data-target="#toEmp">
+      <div class="trans_day" >
+          <ul class="trans_lst">
+            <li >
+              <div class="trans_type" (click)="getallCurrentTransDetails()" data-toggle="modal" >
+                <img style="width: 65%;margin-right: -340px;" src="../../../../../../assets/images/exchanges_exng.png">
+                <i class="trans_icn tran_icn_wallet"></i>
+              <!--   <i class="trans_icn tran_icn_shop"></i> -->
+              </div>
+              <div class="trans_data">
+                <h6 >Added money to wallet</h6>                
+                <h6 > Transferred to Marvin Blazhevski</h6>
+                <span>10:15 AM</span>
+              </div>
+              <div class="trans_amt pull-right"  >
+                <span >+</span> 200
+              </div>
+            </li>
+          </ul>
+        </div>    
+  </div>
+  <div class="trans_cont" data-toggle="modal" data-target="#toEmp2">
+    <div class="trans_day" >
+        <ul class="trans_lst">
+          <li >
+            <div class="trans_type" (click)="getallCurrentTransDetails()" data-toggle="modal" >
+              <img style="width: 65%;margin-right: -340px;" src="../../../../../../assets/images/exchanges_exng.png">
+              <i class="trans_icn tran_icn_wallet"></i>
+            <!--   <i class="trans_icn tran_icn_shop"></i> -->
+            </div>
+            <div class="trans_data">
+              <h6 >Added money to wallet</h6>                
+              <h6 > Transferred to Adhoh comm</h6>
+              <span>10:15 AM</span>
+            </div>
+            <div class="trans_amt pull-right"  >
+              <span >+</span> 100
+            </div>
+          </li>
+        </ul>
+      </div>    
+</div>
+    <!-- <div align="center">
+      <img width="6%" src="../../../../assets/images/exchanges icon orange.png"><br><br>
+      <h6>No transactions found</h6>
+      <span>You haven't made any transactions yet.</span>
+    </div> -->
+  </div>
+  
+        <div class="modal-body" *ngIf="forSettings" style="margin-left: 20px;">
+          <h5>Block employee</h5>
+              <div class="ml-auto p-2  align-self-center">
+                <div class="switch_box box_1" style="margin-top: -35px; margin-left: 250px;">
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+            </div>
+     </div>
+
+  <div class="modal model_top" id="">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body ">
+          <div class="text-center">
+            <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png"><br><br>
+           <h5 align="center">Card order was deleted</h5>         
+              </div><br>
+              <div>
+              <button style="margin-left: 190px;width: 30%;;padding: 5px 10px;" class="btn btn-primary btn-block">Close</button>                                         
+            </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+<div *ngIf="forPhysical">
+  <app-b-cards></app-b-cards>
+</div>
+<div *ngIf="forVirtual">
+  <app-b-newvirtual></app-b-newvirtual>
+</div>

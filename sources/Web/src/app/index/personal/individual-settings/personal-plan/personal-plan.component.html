@@ -1,0 +1,130 @@
+<!-- <div class="d-flex p-2">
+    Your plan
+</div> -->
+<div class="page_ht_crd mx-auto" style="text-align: center;">
+    <div>
+        <h5 id="heading" style="margin-left: -64px;margin-top: 12px;">You have not chosen your price plan yet</h5>
+    </div>
+    <br><br>
+    <!-- <div class="col-md-6" *ngIf ="dynamic">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th class="text-center">Usage this month</th>
+                    <th class="text-center">Spent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="mrgn-btm">{{plan_subscription}}</p>
+                        <small>Your plan includes allowances and features</small>
+                    </td>
+                    <td class="text-center">-</td>
+                    <td class="text-center ">{{plan_subscription_spent}}</td>
+                </tr>
+                <tr *ngFor = 'let features of planFeatures'>
+                    <td>
+                        <p class="mrgn-btm">{{features.plan_features}}</p>
+                        <small>Your plan includes allowances and features</small>
+                    </td>
+                    <td class="text-center">{{features.used_allowances}}/{{features.free_allowances}}</td>
+                    <td class="text-center ">{{features.amount}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h5 class="mrgn-btm">{{footer}}<span class="pull-right">€{{total}}</span></h5>
+    </div> -->
+    <!-- If the user has no plans -->
+    <!-- <div class="col-md-6" *ngIf = "static">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th class="text-center">Usage&nbsp;this&nbsp;month</th>
+                    <th class="text-center">Spent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p class="mrgn-btm">Plan Subscription</p>
+                        <small>Your plan includes allowances and features</small>
+                    </td>
+                    <td class="text-center"> </td>
+                    <td class="text-center ">€500</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="mrgn-btm">Team members</p>
+                        <small>€10 per user per month above free allowance</small>
+                    </td>
+                    <td class="text-center">0/10 free</td>
+                    <td class="text-center">€0</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="mrgn-btm">Local transfers</p>
+                        <small>€0.5 per transfer above free allowences</small>
+                    </td>
+                    <td class="text-center">0/10 free</td>
+                    <td class="text-center">€0</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="mrgn-btm">International transfers</p>
+                        <small>€7 per transfer above free allowences</small>
+                    </td>
+                    <td class="text-center ">0/10 free</td>
+                    <td class="text-center">€0</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="mrgn-btm">FX at the real rate</p>
+                        <small>0.4% markup on FX above free allowance</small>
+                    </td>
+                    <td class="text-center ">€0 / €20K free</td>
+                    <td class="text-center">€0</td>
+                </tr>
+            </tbody>
+        </table>
+        <h5 class="mrgn-btm">Total spent so far this month<span class="pull-right pr-3">€500</span></h5>
+    </div>  -->
+    <!-- <div class="col-md-6 text-center vertline" *ngIf = "static">
+        <br>
+        <h5 class="mrg_top">Your Current Plan</h5>
+        <div>
+            <img src="../../../../assets/images/blackVoo.png" style="height: 120px; width: 210px;">
+        </div>
+        <h5 class="m-t-10">Black Voo</h5><br>
+        <p>Next payment on 19 Nov</p>
+        <a>  Manage Plan</a>
+
+    </div>
+    <div class="col-md-6 text-center vertline" *ngIf = "dynamic">
+
+        <h4 class="mrg_top">{{planname}}</h4>
+        <div>
+            <img src="../../../../assets/images/NoPath@2x.png" style="height: 150px; width: 200px;">
+        </div>
+        <h5 class="m-t-10">Black Voo</h5>
+        <p>Next payment on 19 Nov</p>
+        <a href="#">  Manage Plan</a>
+
+    </div>  -->
+    <div class="panel-footer">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+              <button style="width: 70%;border-radius: 4px;margin-left: 70px;" class="btn btn-outline-primary btn-block" (click)="backPlan()">Cancel</button>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6 pull-right">
+            <div class="form-group">
+              <button style="width: 70%;border-radius: 4px;" class="btn btn-primary btn-block">Choose Plan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

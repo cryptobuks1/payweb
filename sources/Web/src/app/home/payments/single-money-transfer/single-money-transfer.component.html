@@ -1,0 +1,202 @@
+<div class="pull-right d-inline back_btn">
+   <div *ngIf="!isPersonal">
+      <a routerLink="/business/payments/payment-type"><i class="fa fa-arrow-left"></i> Back</a>
+      </div>
+   <div *ngIf="isPersonal">
+      <a routerLink="/personal/payments/payment-type"><i class="fa fa-arrow-left"></i> Back</a>
+      </div>
+ </div>
+<div class="container-fluid">
+   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+   <div class="row">
+      <div class="col-md-6 col-sm-12 card1-height pt-3">
+         <div class="content">
+            <div class="form-group float_label">
+               <select formControlName="selectedOption" class="form-control" (change)="changeAcc($event)">
+                  <option *ngFor="let acc of accountData">{{ acc.currency }}</option>
+               </select>
+               <label><u>From</u></label>
+               <span  class="mt-5 pt-3" *ngIf="!bankCurrency">Balance: {{ euroCurrency }}  {{ euroBalance }}</span>
+               <span class="mt-5 pt-3" *ngIf="bankCurrency">Balance: {{ bankCurrency }}  {{ bankBalance }}</span>
+            </div>
+         </div>
+         <div class="content1" >
+            <div class="form-group float_label text-center">
+               <input id="myText" (keypress)="onlyNumberKey($event)" appDecimal formControlName="balance" (keyup)="checkbalance1(balance.value)" class="form-control input_element" minlength="0" maxlength="10" placeholder="0" required #balance autocomplete="off"> 
+               <p class="margin-btmmm"><span *ngIf="fee">{{ fee }}</span><span *ngIf="!fee">No fee</span></p>
+            </div>
+         </div>
+         <!-- <div class="content1" >
+            <div class="form-group float_label text-center">
+               <input id="myText" (keypress)="onlyNumberKey($event)"  formControlName="balance" (keyup)="checkbalance2($event)" class="form-control input_element" minlength="0" maxlength="6" placeholder="0" required #balance autocomplete="off">
+               <p class="margin-btmmm"><span *ngIf="fee">{{ fee }}</span><span *ngIf="!fee">No fee</span></p>
+            </div>
+         </div> -->
+         <p class="text-danger text-center" *ngIf="zeroBalance">Please, enter valid amount</p>
+      </div>
+      <div class="col-md-6 col-sm-12 card2-height pt-3 mt-2" *ngIf="true" >
+         <div class="eclipse">
+            <img src="../../../assets/images/eclipse.png">
+            <img src="../../../assets/images/right-arrow-center.png" class="right_arrow">
+         </div>
+         <div class="px-4">
+            <div class="form-group float_label">
+               <label><u>To</u></label>
+               <select *ngIf="false" formControlName="selectBen" class="form-control" (change)="changeBen($event)">
+                  <option *ngFor="let currency of currencyList">
+                     {{currency.currency}}
+                  </option>
+               </select>
+            </div>
+         </div>
+         <div class="content2">
+            <div class="input_element1">
+               <span class="itm_crcl1">{{counterPartyMember.full_name | slice:0:1| titlecase}}</span>
+               <br>
+               <br>
+               <span style="color: #42424c;">{{counterPartyMember.full_name | titlecase}}</span>
+               <p class="mb-0" *ngIf="!bankCurrency" style="font-size: 12px;">{{ euroCurrency }}</p>
+               <p class="mb-0" *ngIf="bankCurrency" style="font-size: 12px;">{{ bankCurrency }}</p>
+               <span *ngIf="counterPartyMember.is_non_payvoo_user && counterPartyMember.is_non_payvoo_user == 1"><img style="width: 80px;" src="assets/images/non_payvoo_beta1.png"></span>
+               <span *ngIf="!counterPartyMember.is_non_payvoo_user && counterPartyMember.is_non_payvoo_user != 1"><img style="width: 80px;" src="assets/images/PayVoo BETA_small.png"></span>
+            </div>
+         </div>
+      </div>
+      <div class="col-12 text-center">
+         <button class="btn btn-primary continue_btn" [disabled]="profileForm.invalid && zeroBalance" (click)="paymentDetailsModal(template)">Continue</button>
+      </div>
+   </div>
+   </form>
+</div>
+<ng-template #template>
+   <div class="modal-body pb-0">
+      <div class="alin">
+         <div class='fnt_color mb-3'>
+            <h5 class="mb-1"><span *ngIf="bankCurrency">{{ bankCurrency }}</span><span *ngIf="!bankCurrency">{{ euroCurrency }}</span> {{ balance.value }}</h5>
+            <span>To {{counterPartyMember.full_name | titlecase}}
+            <!-- <span *ngIf="benCurrency">{{ benCurrency }}</span>
+            <span *ngIf="!benCurrency">{{ euroDefCurrency }}</span> -->
+            </span>
+         </div>
+         <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+         <div class="float_label">
+            <input class="form-control d-inline" formControlName="reference" placeholder="Reason for payment or reference (optional)">
+         </div>
+           <div class="my-4" *ngIf="scheduledPaymentsEnabled">
+             <p class="inpt_color1" (click)="inputDisplay()">
+               <span><i class="fa fa-calendar mr-2" aria-hidden="true"></i></span>
+               <span *ngIf="!this.scheduleForm.controls['dateYMD'].value">Schedule</span>
+               <span *ngIf="this.scheduleForm.controls['dateYMD'].value">{{this.scheduleForm.controls['dateYMD'].value | date : "EEE, d MMMM"}}</span>
+             </p>
+             <div class="form-group float_label text-center" *ngIf="input_display">
+               <input type="date" class="form-control datepicker" formControlName="dateYMD" placeholder="YYYY-MM-DD"
+                 [min]="MinimunDate" [max]="MaximumDate" (change)="dateVal($event)">
+             </div>
+             <div *ngIf="this.scheduleForm.controls['dateYMD'].value != ''">
+               <p class="text-danger" *ngIf="validDate">
+                 Invalid scheduled transfer date. Only future date allowed.
+               </p>
+             </div>
+             <div *ngIf="insufficientBal">
+                <p class="text-danger mb-0 mt-3">
+                   Insufficient funds in
+                   <span *ngIf="!bankCurrency">{{euroCurrency}}</span>
+                   <span *ngIf="bankCurrency">{{bankCurrency}}</span>
+                </p>
+                <p>To proceed, schedule this payment and add funds later</p>
+             </div>
+             <div *ngIf="!insufficientBal">
+                <p class="marginTop">You can schedule this payment and add funds later</p>
+             </div>
+           </div>
+         <div class="form-check form-check-inline">
+            <input type="checkbox" class="form-check-input" formControlName="notify">
+            <label class="form-check-label inpt_color">Notify recipient</label>
+         </div>
+         </form>
+      </div>
+      <div style="padding: 30px; background-color: #fafafa; margin-left:-15px; margin-right:-15px">
+         <p class="mb-4"><span class="dark prsn mr-1">From</span><span class="dark" *ngIf="!bankCurrency">{{ euroCurrency }}</span>
+            <span class="dark" *ngIf="bankCurrency">{{ bankCurrency }}</span>
+            <span class="pull-right bal">Balance:
+            <span *ngIf="!bankCurrency"> {{ euroCurrency }}  {{ euroBalance }}</span>
+            <span *ngIf="bankCurrency"> {{ bankCurrency }} {{ bankBalance }}</span>
+            </span>
+         </p>
+         <p><span class="dark" class="prsn dark mr-1">To</span><span class="dark">{{counterPartyMember.full_name | titlecase}}</span></p>
+         <p>Account<span class="pull-right dark"><span *ngIf="bankCurrency">{{bankCurrency}}</span><span *ngIf="!bankCurrency">{{euroCurrency}}</span></span></p>
+         <p>Amount<span class="pull-right dark"><span *ngIf="bankCurrency">{{bankCurrency}}</span><span *ngIf="!bankCurrency">{{euroCurrency}}</span>  {{ balance.value }}</span></p>
+         <p>Transfer fee<span class="pull-right dark">No fee</span></p>
+         <p class="mb-0">Total<span class="pull-right dark"><span *ngIf="bankCurrency">{{bankCurrency}}</span><span *ngIf="!bankCurrency">{{euroCurrency}}</span>  {{balance.value }}</span></p>
+         <div class="row pt-4">
+            <div  style="border-radius:4px"  class="col-6 "><button (click)="modalRef.hide()" class="btn btn-outline-primary btn-block"
+               data-dismiss="modal">Cancel</button></div>
+            <div class="col-6">
+               <button *ngIf="!insufficientBal && !scheduleshow" [disabled]="validDate || sendFundsButton" (click)="singleTransfer(amount)" class="btn btn-primary btn-block">
+               Send funds</button>
+               <button *ngIf="!insufficientBal && scheduleshow" [disabled]="!disabledform || validDate || valdate" (click)="singleTransfer(scheduled)" class="btn btn-primary btn-block">
+                  Schedule payment</button>
+               <button *ngIf="insufficientBal" [disabled]="!disabledform || validDate" (click)="singleTransfer(scheduled)" class="btn btn-primary btn-block">
+               Schedule payment</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- <div class="loading" *ngIf=apploader></div> -->
+</ng-template>
+<ng-template #amount>
+   <div class="modal-content">
+      <div class="modal-body modal_size moda-to">
+         <div class="check_div">
+            <img src="../../../../assets/images/tick_icon.png">
+         </div>
+         <h4 class="header_bar">Successfully sent</h4>
+         <div class="header_para dark">
+            <span *ngIf="bankCurrency">{{balance.value | currency:bankCurrency :"symbol-narrow" }} </span>
+            <span *ngIf="!bankCurrency">{{balance.value | currency:euroCurrency :"symbol-narrow"}} </span>
+            to {{counterPartyMember.full_name | titlecase}}
+         </div>
+         <div style="text-align: center;">
+            <button class="btn btn-primary w-50" (click)="continue()">Done</button>
+         </div>
+      </div>
+   </div>
+</ng-template>
+<ng-template #scheduled>
+   <div class="modal-content">
+      <div class="modal-body modal_size moda-to">
+         <div class="check_div">
+            <img src="../../../../assets/images/tick_icon.png">
+         </div>
+         <h4 class="header_bar">Payment created</h4>
+         <div class="header_para dark"><span *ngIf="bankCurrency">{{bankCurrency}}</span><span *ngIf="!bankCurrency">{{euroCurrency}}</span>&nbsp;{{balance.value}} to {{counterPartyMember.full_name | titlecase}} -
+            <span *ngIf="benCurrency">{{benCurrency}}</span>
+            <span *ngIf="!benCurrency">{{euroDefCurrency}}</span><br />
+            <span>scheduled for </span>
+            <span>{{this.scheduleForm.controls['dateYMD'].value | date : "MMM d, y"}}</span>
+         </div>
+         <div style="text-align: center;">
+            <button class="btn btn-primary w-50" (click)="continue()">Got it</button>
+         </div>
+      </div>
+   </div>
+</ng-template>
+
+<div class="modal fade" id="sentNonPayvooUser" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+    <div class="modal-content" style="margin: 20px; width: 100%; padding: 10px">
+      <div class="modal-body body_popup">
+        <div class="wip-container text-center bg-white">
+          <img class="wip-img" src="assets/images/payvoo-wip.png" />
+          <p style="color:black"><strong>
+            Send this link to {{ counterPartyMember.full_name }} and the counterparty can receive EUR {{ amountSent }} from it.
+          </strong></p>
+          <p>
+            <a href="{{uniqueLinkToPayNonPayvooUser}}" target="_blank">{{uniqueLinkToPayNonPayvooUser}}</a>
+          </p>
+          <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="hideOk()">Send link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

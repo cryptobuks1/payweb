@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payvoo-config
+data:
+  MAIL_USER: test@sepa-cyber.com
+  MAIL_PASSWORD: Muc46712
+  MAIL_GMAIL_PORT: '587'
+  PORT: '5000'
+  SERVICE: smtp.office365.com
+  PASSWORD_CONFIG: '*&^%$#@!0987654321'
+  PASSWORD_CONFIG1: FVT09YZ-WMW4MX7-QWNYCMJ-QFK5G4E
+  CLIENT_ID: '12'
+  PI_KEY: FVT09YZ-WMW4MX7-QWNYCMJ-QFK5G4E
+  FORGOT_PASSWORD_URL: ewallet.payvoo.in
+  COUNTRYCODE: '+91'
+  DBHOST: payvoodb-mariadb.default.svc.cluster.local
+  DBUSER: root
+  DBPORT: '3306'
+  DBPASSWORD: r1wlm8eAkQ
+  WEBADDRESS: 'http://ewallet.payvoo.in'
+  DB: payvoo2
+  DBCONNECTIONLIMIT: '10'
+  CONNECTTIMEOUT: '10000'
+  GATEWAY_URL: 95.169.219.195
+  GATEWAY_PORT: '30310'
+  PAYVOOLINK: 'https://www.payvoo.com/'
+  MUSE_URL: 192.168.16.4
+  MUSE_SECRET: YjY5NDk5M2QyODNkYmJiZGM4NzFkNjljNjA5YWQ2NTA=
+  CM_PRODUCT_TOKEN: 45829E14-1D3D-44FA-B1B6-881E589999C5
+  CURRENCY_EXCHANGE: ec953f5e4a0030db2d83563c4a6ab71d
+  SANDBOX_URL: 'http://192.168.16.160:5001'
+  SANDBOX_API_DOC_URL: 'https://documenter.getpostman.com/view/12051096/T17Q658U?version=latest'
+  SANDBOX_REDIRECT_URL: 'http://115.112.122.100:4200/sandbox-login/'
+  MOBICAUSER: sepa-cyber
+  MOBICAPASS: S$ePa@cY123
+  WEB_LOGIN_URL: 'sandbox.payvoo.in'
+  WEB_DOC_URL: 'http://192.168.16.4:5001/api-docs/'
+  TOKEN_EXP_TIME: '60'
+  MERCHANT_URL: 'http://192.168.16.4:5001'
+  MERCHANT_API_DOC_URL: 'https://documenter.getpostman.com/view/12051096/T17Q5PnV?version=latest'
+  MERCHANT_REDIRECT_URL: 'http://115.112.122.100:4200/login/'
+  SANDBOX_CLIENT_ID: zc2eea1
+  SANDBOX_API_KEY: Y6S1AFY-MYXM443-QRKY9VS-G7VED7Z
+  CRON_AUTOEXCHANGE: '0 */30 * * * *'
+  CRON_KYCCHECKANDUPDATE: '0 */30 * * * *'
+  CRON_SCHEDULEDPAYMENTS: '0 0 0 * * *'
+  PAYVOO_API_KEY: 9032cc96-0706-4ada-bb9b-af36eca96f5f
+  FILE_UPLOAD_LOCATION: '/data'
+  SEPA_KYC_ENVIRONMENT: 'sepacybertestauto1'

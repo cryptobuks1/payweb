@@ -1,0 +1,357 @@
+<div class="container-fluid page_container">
+
+    <div class="acc_navbar">
+        <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+                <a data-target="#General" data-toggle="tab" class="nav-link genrl active"
+                    (click)="generalDetails()">General</a>
+            </li>
+            <li class="nav-item">
+                <a data-target="#Profile" data-toggle="tab" class="nav-link prof" (click)="personalDetails()">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a data-target="#Security" data-toggle="tab" class="nav-link scrty" (click)="changePin()">Security</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content">
+
+        <div class="tab-pane genrl1 fade show active" id="General">
+            <div class="row" *ngIf="true" style="margin-top: 10px;">
+                <div class="col-md-6">
+                    <div class="card page_ht_crd ">
+                        <div class="card">
+
+                            <div class="addcard">
+                                <div class=""></div>
+                                General
+                            </div>
+                            <div class="addcard" (click)="generalDetails()" [ngClass]="{'activeclr':changeLang}">
+                                <div class="addcard_icn">
+                                    <img src="../../../../assets/images/1111.png" *ngIf="imageTrue">
+                                    <img src="../../../../assets/images/13.png" *ngIf="imageFalse">
+                                </div>
+                                <span class="font-clr">Change Language</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+                            <div class="addcard" (click)="toggleAboutUsDropdown()" [ngClass]="{'activeclr':aboutUs}">
+                                <div class="addcard_icn">
+                                    <img src="../../../../assets/images/about-us1.png" *ngIf="imageTrue2">
+                                    <img src="../../../../assets/images/about-us2.png" *ngIf="imageFalse2">
+                                </div>
+                                <span class="font-clr">About us</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <div [ngClass]="{'show': !personalselect && !changeL && showAboutusDropdown}"
+                                    class="page_ht_crd1 collapse">
+                                    <div class="cnv_cntr"
+                                        (click)="privacyPolicy();one=true; two=false; three=false; four=false;changeL=false;personalselect=false;showBusinessProfileDropdown=false"
+                                        [ngClass]="{'cnv_cntr_select': one}">
+
+                                        <div class="data_cnt">
+                                            <div class="currency_dta">Privacy Policy</div>
+                                        </div>
+                                        <div class="rt_itm">
+
+                                            <div class="mr-3">
+                                                <i class="fa fa-angle-right angle_right" style="font-size: 1.5rem;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cnv_cntr"
+                                        (click)="termsConditions1();two=true; one=false; three=false; four=false;changeL=false;personalselect=false;showBusinessProfileDropdown=false"
+                                        [ngClass]="{'cnv_cntr_select': two}">
+                                        <div class="data_cnt">
+                                            <div class="currency_dta">Terms & Conditions</div>
+                                        </div>
+                                        <div class="rt_itm">
+                                            <div class="mr-3">
+                                                <i class="fa fa-angle-right angle_right" style="font-size: 1.5rem;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cnv_cntr"
+                                        (click)="closeAccount();two=false; one=false; three=true ;changeL=false; four=false;personalselect=false;showBusinessProfileDropdown=false"
+                                        [ngClass]="{'cnv_cntr_select': three}">
+                                        <div class="data_cnt">
+                                            <div class="currency_dta">Close Profile</div>
+                                        </div>
+                                        <div class="rt_itm">
+                                            <div class="mr-3">
+                                                <i class="fa fa-angle-right angle_right" style="font-size: 1.5rem;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="emptyCard1" class="col-md-6">
+                    <div class=" page_ht_crd19" style="overflow: hidden;">
+                        <iframe frameBorder="0" style="height: 90vh;top:-150px; margin-top: -160px; width: 100%; "
+                            sandbox="allow-scripts" src="https://payvoo.com/privacy-policy/"></iframe>
+                    </div>
+                </div>
+                <div *ngIf="emptyCard2" class="col-md-6">
+                    <div class="card page_ht_crd19" style="overflow: hidden;">
+                        <iframe frameBorder="0" style="height: 90vh;top:-150px; margin-top: -160px; width: 100%;"
+                            sandbox="allow-scripts" src="https://payvoo.com/terms-and-conditions/"></iframe>
+                    </div>
+                </div>
+                <div *ngIf="emptyCard3" class="col-md-6">
+                    <div class="card page_ht_crd19">
+                        <div id="close-account">
+                            <div class="text-center" style="margin-top: 10%;">
+                                <div>
+                                    <img style="width: 100px;" src="../../../../assets/images/close_account_menu.png">
+                                </div><br>
+
+                                <p class="editptext">Are you sure you want to close your account? It's free to keep our
+                                    basic plan</p><br><br>
+                                <div class="row mx-3">
+
+                                    <div class="col-md-6" (click)="closeBusinessUserAccount(0)">
+                                        <button type="button" class="btn btn-block btn-outline-primary"
+                                            style="margin-bottom: 10px;">Close
+                                            profile</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-block btn-primary"
+                                            style="margin-bottom: 10px;" (click)="keepAccount()">Keep profile</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card page_ht_crd19" *ngIf="contentCard">
+                        <div class="card">
+                            <app-general-details *ngIf="generalDetail"></app-general-details>
+
+                            <!-- <router-outlet></router-outlet> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade show prof1" id="Profile">
+            <div class="row" *ngIf="true" style="margin-top: 10px;">
+                <div class="col-md-6">
+                    <div class="card page_ht_crd ">
+                        <div class="card">
+
+                            <div class="addcard">
+                                <div class=""></div>
+                                Profiles
+                            </div>
+                            <div class="addcard" (click)="personalDetails()"
+                                [ngClass]="{'activeclr':persoanlDetailsactive}">
+                                <div class="addcard_icn">
+                                    <img src="../../../../assets/images/avatarwhite.png" *ngIf="imageTrue">
+                                    <img src="../../../../assets/images/avatar.png" *ngIf="imageFalse">
+                                </div>
+                                <span class="font-clr">Personal details</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+                            <div class="addcard" routerLink="personal-plan" (click)="activclrPlan()"
+                                [ngClass]="{'activeclr':priceplanActive}">
+                                <div class="addcard_icn">
+                                    <img src="../../../assets/images/miu.png" *ngIf="planImage">
+                                    <img src="../../../assets/images/miusdaf.png" *ngIf="planImage1">
+                                </div>
+                                <span class="font-clr">Price plan</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card page_ht_crd19">
+                        <div class="card">
+                            <app-personal-details *ngIf="personalDetail" (parentFun)="parentFun2()"></app-personal-details>
+                            <div *ngIf="personalPlan">
+                                <div class="mx-auto" style="text-align: center;">
+                                    <div>
+                                        <h5 id="heading" style="margin-left: -30px;margin-top: 65px;">You have not
+                                            chosen your price plan yet</h5>
+                                    </div>
+                                    <br><br>
+                                    <div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-6">
+                                                <div class="form-group">
+                                                    <button style="border-radius:4px" class="btn btn-outline-primary btn-block"
+                                                        (click)="backPlan()">Cancel</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 col-md-6 pull-right">
+                                                <div class="form-group">
+                                                    <button style="border-radius:4px" class="btn btn-primary btn-block">Choose Plan</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <router-outlet></router-outlet> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane scrty1 fade" id="Security">
+            <div class="row" *ngIf="true" style="margin-top: 10px;">
+                <div class="col-md-6">
+                    <div class="card page_ht_crd ">
+                        <div class="card">
+
+                            <div class="addcard">
+                                <div class=""></div>
+                                Security
+                            </div>
+                            <div class="addcard" (click)="changePin()" [ngClass]="{'activeclr':changePinActive}">
+                                <div class="addcard_icn">
+                                    <img src="../../../assets/images/pin1 (1).png" *ngIf="pinChangeImage">
+                                    <img src="../../../assets/images/pin (2).png" *ngIf="pinChangeImage1">
+                                </div>
+                                <span class="font-clr">Change PIN</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+                            <div class="addcard" routerLink="change-password" (click)="showOtp()"
+                                [ngClass]="{'activeclr':otpActive}">
+                                <div class="addcard_icn">
+                                    <img src="../../../assets/images/keyImage1.png" *ngIf="keyImage">
+                                    <img src="../../../assets/images/keyImage.png" *ngIf="keyImage1">
+                                </div>
+                                <span class="font-clr">Change password</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+                            <div class="addcard" routerLink="personal-privacy" (click)="privacy()"
+                                [ngClass]="{'activeclr':privacyActive}">
+                                <div class="addcard_icn">
+                                    <img src="../../../assets/images/Page-1.png" *ngIf="privacyImage">
+                                    <img src="../../../assets/images/Page-11.png" *ngIf="privacyImage1">
+                                </div>
+                                <span class="font-clr">Privacy</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card page_ht_crd19">
+                        <div class="card">
+                            <app-change-pin *ngIf="pinChange" (parentFun)="parentFun()"></app-change-pin>
+                            <app-change-password *ngIf="password" (parentFun)="generalDetails()"></app-change-password>
+                            <app-personal-privacy *ngIf="personalPrivacy"></app-personal-privacy>
+                            <!-- <router-outlet></router-outlet> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="About">
+            <div class="row" *ngIf="true" style="margin-top: 10px;">
+                <div class="col-md-6">
+                    <div class="card page_ht_crd ">
+                        <div class="card">
+
+                            <div class="addcard">
+                                <div class=""></div>
+                                About us
+                            </div>
+                            <div class="addcard"
+                                (click)="privacyPolicy();goToLink('https://www.payvoo.com/privacy-policy/')"
+                                [ngClass]="{'activeclr':privacyPolicyActive}">
+                                <div class="addcard_icn">
+                                    <img src="../../../assets/images/iconfinder_shield_256138.png"
+                                        *ngIf="privacyPolicyImage">
+                                    <img src="../../../assets/images/iconfinder_shield_2561385.png"
+                                        *ngIf="privacyPolicyImage1">
+                                </div>
+                                <span class="font-clr">Privacy policy</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+                            <div class="addcard"
+                                (click)="terms_conditions();goToLink('https://www.payvoo.com/terms-and-conditions/')"
+                                [ngClass]="{'activeclr':termsConditions}">
+                                <div class="addcard_icn">
+                                    <img src="../../../assets/images/Layer 9.png" *ngIf="terms_Conditions">
+                                    <img src="../../../assets/images/Layer 91.png" *ngIf="terms_Conditions1">
+                                </div>
+                                <span class="font-clr">Terms & conditions</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+                            <!-- <div class="addcard" (click)="cookies_policy();goToLink('https://www.payvoo.com/terms-and-conditions/')" [ngClass]="{'activeclr':cookiesPolicy}">
+                                <div class="addcard_icn">
+                                    <img src="../../../assets/images/Layer 9.png" *ngIf="cookiesImage1">
+                                    <img src="../../../assets/images/Layer 91.png" *ngIf="cookiesImage2">
+                                </div>
+                                <span class="font-clr">Cookies Policy</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div> -->
+                            <div class="addcard" (click)="closeAccount()" [ngClass]="{'activeclr':closeAccountActive}">
+                                <div class="addcard_icn">
+                                    <img src="../../../assets/images/Layer_1.png" *ngIf="closeAccountImage">
+                                    <img src="../../../assets/images/Layer_111.png" *ngIf="closeAccountImage1">
+                                </div>
+                                <span class="font-clr">Close Profile</span>
+                                <div class="rt_itm pull-right">
+                                    <i class="fa fa-angle-right angle_right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card page_ht_crd19">
+                        <div class="card policies">
+                            <app-close-account *ngIf="closeacc"></app-close-account>
+                            <h1 style="z-index:9;position:relative;background:white;" *ngIf="privacyAndpolicy">Privacy
+                                policy</h1>
+                            <app-privacy-policy *ngIf="privacyAndpolicy"></app-privacy-policy>
+                            <h1 style="z-index:9;position:relative;background:white;" *ngIf="termsAndConditions">Terms &
+                                conditions</h1>
+                            <app-terms-and-conditions *ngIf="termsAndConditions"></app-terms-and-conditions>
+                            <app-cookies-policy *ngIf="cookiesAndPolicy"></app-cookies-policy>
+                            <!-- <router-outlet></router-outlet> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

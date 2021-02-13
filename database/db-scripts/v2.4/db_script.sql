@@ -1,0 +1,1 @@
+UPDATE `country` SET `status` = 0 WHERE (`country_id` = '35');

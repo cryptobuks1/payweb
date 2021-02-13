@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card add_money_card">
+      <div class="bank_details">
+        <div class="bank_icn_cont"><i class="fa fa-bank"></i></div>
+        <div class="bank_det_cont">
+          <p>PayVoo bank Ltd</p>
+          <small>{{creditCardMask(CardDetails?.card_number)}}</small>
+        </div>
+      </div>
+      <h6><b>Card details</b></h6>
+      <ul class="card_info">
+        <li>
+          <span>Card:</span>
+          <div class="right">
+            {{creditCardMask(CardDetails?.card_number)}}
+          </div>
+        </li>
+        <li>
+          <span>Name on card:</span>
+          <div class="right">
+            {{CardDetails?.name_on_card}}
+          </div>
+        </li>
+        <li>
+          <span>Provider:</span>
+          <div class="right">
+              {{CardDetails?.card_type}}
+          </div>
+        </li>
+        <li>
+          <span>Type:</span>
+          <div class="right">
+            {{CardDetails?.card_type}}
+          </div>
+        </li>
+        <li>
+          <span>Valid Until:</span>
+          <div class="right">
+            {{CardDetails?.card_month}}/{{CardDetails?.card_year.substr(-2)}}
+          </div>
+        </li>
+      </ul>
+      <div class="row">
+        <div class="col-md-6" *ngIf="authService.accountMatch(['personal'])">
+          <button style="border-radius:4px" class="btn btn-primary btn-block close_btn" routerLink="/personal/add-money">Cancel</button>
+        </div>
+        <div class="col-md-6" *ngIf="authService.accountMatch(['business'])">
+            <button style="border-radius:4px" class="btn btn-primary btn-block close_btn" routerLink="/business/add-money">Close</button>
+          </div>
+        <div class="col-md-6">
+          <button style="border-radius:4px" class="btn btn-outline-danger btn-block" data-toggle="modal" (click)="deleteModel()">Delete</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="delete_card">
+          <img src="../../../../assets/images/icons/delete_icon.png">
+          <h3>Delete Card ?</h3>
+          <p>This card will be removed from your top-up methods</p>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-block btn-primary" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-block btn-outline-danger" (click)="deleteCard()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="confirm_delete" role="dialog" >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" >
+        <div class="delete_card">
+          <img src="../../../../assets/images/icons/delete_icon.png">
+          <p>PayVoo Bank LTD </p>
+          <p>{{CardDetails?.card_type}} <i>*</i>{{ CardDetails?.card_number.substr(-4, 4)}}</p>
+            
+          <p class="fnt-clr">This card has been deleted</p>
+          <button class="btn btn-primary btn-block" (click)='confirmPopClose()'>Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

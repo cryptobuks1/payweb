@@ -1,0 +1,663 @@
+<div class="container-fluid">
+  <form transForm="ngForm">
+    <div class="m-b-20">
+      <div class="tran_drpdwn">
+        <select class="form-control" (change)="getSelectedTransctionList()" [(ngModel)]='selCurId' name="SelCurrency">
+          <option [value]=0>All accounts</option>
+          <option *ngFor="let x of currencyType" [value]=x.currency>{{x.currency }}</option>
+        </select>
+      </div>
+      <div class="tran_drpdwn">
+        <select class="form-control" (change)="getFilteredTransctionList()" [(ngModel)]='from_date' name="transMonths">
+          <option *ngFor="let x of filterDate" [value]=x.date>{{x.months }}</option>
+        </select>
+      </div>
+
+      <div class="transactions">
+        <div class="get-sta" (click)="getallCurrentTransDetails()" data-toggle="modal" data-target="#myModalall">
+          Get statement
+        </div>
+        <div class="srch_cnt" [ngClass]="{'active': toggle}">
+          <input type="text" name="key" class="form-control" (keydown.space)="$event.preventDefault();"
+            [(ngModel)]="search_currencies" size="25" placeholder="Search..." autocomplete="off">
+          <i (click)="clickEvent($event)" class="fa fa-search search_open"></i>
+        </div>
+      </div>
+
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-1" style="margin-left: 15px;">
+        <i class="trans_icn tran_icn_transfer"></i>
+      </div>
+      <div class="col-md-9" style="margin-left: -27px;margin-top: 7px;margin-bottom: 40px;">
+        <span style="cursor: pointer;" data-toggle="modal" data-target="#cancelReq">Requester & </span>
+        <span style="cursor: pointer;" data-toggle="modal" data-target="#sendDecline">Sender</span>
+      </div>
+      <div class="col-md-2 pull-right" style="color: #c74b4b;font-size: 18px;">
+        <span style="margin-left: 60px;">Owes you</span>
+      </div>
+    </div> -->
+
+    <div class="modal model_top" id="confirmDecline">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 100%;margin-top: 83px;">
+          <div class="modal-body "><br><br>
+            <img style="width: 100px;margin-left: 180px;" src="../../../../assets/images/rejected.png"> <br><br>
+            <h4 align="center" class="header_bar global_font" style="font-size: 28px;margin-bottom: 25px;">The request has been <br>declined
+            </h4>
+            <div class="footer">
+              <div class="col-md-12">
+                <button class="btn btn-primary  btn-block" style="margin-left: 40px; width: 80%;margin-bottom: 20px;"
+                  data-dismiss="modal">Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal model_top" id="passwrd">
+      <form [formGroup]="passwordForm">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 100%;margin-top: 83px;">
+          <div class="modal-body ">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button> <br><br>
+            <h4 class="header_bar" align="center">Please enter password</h4>
+            <div class="form-group float_label">        
+              <input [type]="type" class="form-control" placeholder="&nbsp;" autocomplete="off" required="required"
+              formControlName="password" [(ngModel)]="password" (keydown.space)="$event.preventDefault();">
+                  <i *ngIf="eye" class="fa fa-eye pull-right p-eye" style="margin-top: -25px;" (click)="eyeHide()"></i>
+                  <i *ngIf="slasheye" class="fa fa-eye-slash pull-right p-eye" style="margin-top: -25px;" (click)="eyeHide()"></i>
+                
+                </div>
+            <div class="row mrgin_btm">
+              <div class="col-md-6 mx-auto">
+                  <button name="next" class="next btn btn-primary btn-block" style="margin-top: 10px;margin-bottom: 20px;" [disabled]="passwordForm.invalid" (click)="onContinue(passwordForm.controls['password'].value, transaction_id)">Continue</button>
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
+      </form>
+    </div>
+
+    <div class="modal model_top" id="cancelMessage">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 100%;margin-top: 83px;">
+          <div class="modal-body "><br><br>
+            <img style="margin-left: 186px;width: 93px;" src="../../../../assets/images/tick_icon.png"> <br><br>
+            <div style="text-align: center">
+              <h4 class="header_bar global_font" style="font-size: 20px;">{{cancelMessage}}</h4>          
+            </div>
+            <div class="footer">
+              <div class="col-md-12">
+                <button class="btn btn-primary  btn-block" style="margin-left: 100px; width: 50%;margin-bottom: 20px;margin-top: 20px;"
+                  data-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal model_top" id="success">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 100%;margin-top: 83px;">
+          <div class="modal-body "><br><br>
+            <img style="margin-left: 186px;width: 93px;" src="../../../../assets/images/tick_icon.png"> <br><br>
+            <div style="text-align: center">
+              <h4 class="header_bar global_font" style="font-size: 28px;">{{message}}</h4>
+              <span style="font-size: 18px;">{{viaTransfer}}</span>
+            </div>
+            <div class="footer">
+              <div class="col-md-12">
+                <button class="btn btn-primary  btn-block" style="margin-left: 40px; width: 80%;margin-bottom: 20px;margin-top: 10px;"
+                  data-dismiss="modal">Done</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trans_cont">
+      <h5>{{selCurType}}</h5>
+      <div class="trans_day" *ngFor="let item of transList " >
+        <div class="trans_date">{{setDate(item.created_on)}}</div>
+        <ul class="trans_lst" >
+          <li *ngFor="let x of item.data" >
+            <div class="trans_type" (click)="getCurrentTransDetails(x)">
+              <img style="width: 65%;margin-right: -340px;" *ngIf="x.transaction_operation == 'WALLET'"
+                src="../../../../../../assets/images/exchanges_exng.png">
+              <i *ngIf="x.transaction_operation == 'VISA' || x.transaction_operation == 'MASTERCARD' ||
+                x.transaction_operation == 'JCB' || x.transaction_operation == 'DINERS-CLUB' || x.transaction_operation == 'UNIONPAY'"
+                class="trans_icn tran_icn_wallet"></i>
+              <i *ngIf="x.transaction_operation == 'TRANSFER' || !x.transaction_operation == 'REQUEST'" class="trans_icn tran_icn_transfer"></i>
+              <!--   <i class="trans_icn tran_icn_shop"></i> -->
+              <span *ngIf="!x.transaction_operation == 'TRANSFER' || x.transaction_operation == 'REQUEST'" class="itm_crcl1">{{x.counterparty | slice:0:1| titlecase}}</span>
+              <img style="width: 65%;margin-right: -340px;"  *ngIf="x.transaction_operation == 'CANCELLED' || x.transaction_operation == 'DECLINED'" 
+                src="../../../../../../assets/images/rejected.png">
+            </div>
+            <div class="trans_data" (click)="getCurrentTransDetails(x)">
+              <h6 *ngIf="x.transaction_operation == 'VISA' || x.transaction_operation == 'MASTERCARD' ||
+                x.transaction_operation == 'JCB' || x.transaction_operation == 'DINERS-CLUB' || x.transaction_operation == 'UNIONPAY'">Added money
+                to wallet</h6>
+              <h6  style="cursor: pointer;" *ngIf="x.transaction_type=='CR' && x.transaction_operation != 'VISA' && x.transaction_operation != 'WALLET' && x.transaction_operation != 'TRANSFER' && x.transaction_operation != 'CANCELLED' && x.transaction_operation != 'DECLINED'" (click)="owesYou()">
+             Request to {{x.counterparty}}</h6>
+                <h6 *ngIf="(x.transaction_type=='CR' && x.transaction_operation != 'VISA' && x.transaction_operation != 'WALLET' && x.transaction_operation != 'TRANSFER' && x.transaction_operation == 'CANCELLED') || (x.transaction_type=='CR' && x.transaction_operation == 'DECLINED')">
+                  <span style="font-size: 1rem;
+                  font-weight: 500;
+                  margin-bottom: 0px;" [ngClass]="(x.transaction_type=='DB' || x.transaction_type=='CR')  && x.transaction_operation == 'CANCELLED' ? disable-pointer : null" >Request to {{x.counterparty}}</span></h6>
+              <h6 style="cursor: pointer;" *ngIf="x.transaction_type=='DB' && x.transaction_operation != 'VISA' && x.transaction_operation != 'WALLET' && x.transaction_operation != 'TRANSFER' && x.transaction_operation != 'DECLINED' && x.transaction_operation != 'CANCELLED'" (click)="youOwe()">
+                Request from {{x.counterparty}}</h6>
+                <h6 *ngIf="(x.transaction_type=='DB' && x.transaction_operation != 'VISA' && x.transaction_operation != 'WALLET' && x.transaction_operation != 'TRANSFER' && x.transaction_operation == 'DECLINED') || (x.transaction_type=='DB' && x.transaction_operation == 'CANCELLED')">
+                  <span style="font-size: 1rem;
+                  font-weight: 500;
+                  margin-bottom: 0px;" [ngClass]="(x.transaction_type=='CR'|| x.transaction_type=='CR') && x.transaction_operation == 'DECLINED' ? disable-pointer : null" >Request from {{x.counterparty}}</span></h6>
+              <h6 *ngIf="x.transaction_operation == 'WALLET' && x.transaction_type == 'CR'"> Exchanged to {{x.currency_type}}
+              </h6>
+              <h6 *ngIf="x.transaction_operation == 'WALLET' && x.transaction_type == 'DB'"> Exchanged from {{x.currency_type}}
+              </h6>              
+              <h6 *ngIf="x.transaction_operation == 'TRANSFER' && x.transaction_type == 'DB'"> Transferred to {{x.counterparty}}
+              </h6>
+              <h6 *ngIf="x.transaction_operation == 'TRANSFER' && x.transaction_type == 'CR'"> Received from {{x.counterparty}}
+              </h6>
+              <span>{{setTime(x.created_on_with_time)}}</span>
+            </div>
+            <div class="trans_amt pull-right" style="font-size: 20px;" (click)="getCurrentTransDetails(x)"
+              [ngClass]="{'text-success': x.transaction_type=='CR' && x.transaction_operation != 'CANCELLED' && x.transaction_operation != 'DECLINED', 'text-danger':x.transaction_type=='DB' && x.transaction_operation != 'CANCELLED' && x.transaction_operation != 'DECLINED'}">
+              <span *ngIf="x.transaction_type=='CR' && x.transaction_operation != 'REQUEST' && x.transaction_operation != 'CANCELLED' && x.transaction_operation != 'DECLINED'">+</span> 
+              <span *ngIf="x.transaction_type=='DB' && x.transaction_operation != 'REQUEST' && x.transaction_operation != 'CANCELLED' && x.transaction_operation != 'DECLINED'">-</span>{{ roundOff(x.amount) }}
+              <!-- <span *ngIf="x.currency_type=='BGN'"> Лв</span>
+                <span *ngIf="x.currency_type=='HRK'"> Kn</span>
+                <span *ngIf="x.currency_type=='CZK'"> Kč</span>
+                <span *ngIf="x.currency_type=='DKK'"> Kr</span>
+                <span *ngIf="x.currency_type=='SEK'"> Kr</span>
+                <span *ngIf="x.currency_type=='RON'"> lei</span>
+                <span *ngIf="x.currency_type=='EUR'"> €</span>
+                <span *ngIf="x.currency_type=='HUF'"> Ft</span>
+                <span *ngIf="x.currency_type=='GBP'"> £</span>
+                <span *ngIf="x.currency_type=='GIP'"> £</span>
+                <span *ngIf="x.currency_type=='INR'"> ₹</span>
+                <span *ngIf="x.currency_type=='PLN'"> zł</span>
+                <span *ngIf="x.currency_type=='USD'"> $</span> -->
+                <div *ngIf="x.transaction_operation != 'REQUEST'">
+                  <span>{{x.currency_type}}</span>
+             </div>
+              <span *ngIf="x.transaction_operation == 'REQUEST'">
+                <span>{{x.requested_currency}}</span>
+              </span>
+              <span *ngIf="((x.transaction_operation == 'REQUEST' || x.transaction_operation == 'CANCELLED')             
+              && x.transaction_type=='CR')" class="dscr"><br>{{x.description}}</span>
+              <span *ngIf="(x.transaction_operation == 'DECLINED'             
+              && (x.transaction_type=='DB' || x.transaction_type=='CR'))" class="dscr"><br>{{x.description}}</span>
+             
+              <span *ngIf="((x.transaction_operation == 'REQUEST' || x.transaction_operation == 'CANCELLED')
+              && x.transaction_type=='DB')" class="dscr"><br>{{x.description}}</span>
+            </div>
+            <div class="modal model_top" id="cancelReq">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 100%;">
+                  <div class="modal-body ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <table class="table table-borderless">
+                      <tbody>
+                        <tr>
+                          <td style="color:grey" class="float-left">{{setTime(x.created_on_with_time)}}, {{setDate(item.created_on)}}</td>
+                          <td style="color:grey" class="pull-right">Pending</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <h4 class="header_bar global_font" style="text-align: center">
+                      <span class="itm_crcl2">{{opositeOwner | slice:0:1| titlecase}}</span><br>
+                      
+                      <strong>From {{opositeOwner}}</strong></h4>
+                    <span style="margin-left: 160px;">+ {{phoneNo}}</span><br><br>
+                    <div>
+                      <div class="m-t-20 container">
+                        <div style="border-bottom: 2px solid #ced4da;margin-bottom: 20px;">
+                          <!-- <input type="text" class="form-control" value="{{reqAmount}} {{reqCurr}}" placeholder="&nbsp;">
+                          <label>Requested Amount</label> -->
+                          <span>Requested Amount</span> <span class="pull-right" style="color: #28a745;font-size: 20px;font-weight: 500;">{{amount}} {{currency_type}}</span>
+                        </div>
+                        <div class="form-group float_label">
+                          <input type="text" class="form-control" placeholder="&nbsp;">
+                          <label>Note</label>
+                        </div>
+                      </div><br>
+                      <div class="footer">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <button style="border-radius:4px" class="btn btn-outline-primary btn-block" style="margin-left: 90px; width: 120%;"
+                              data-dismiss="modal" (click)="cancelRequest(transaction_id)">Cancel Request</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal model_top" id="sendDecline">
+              <form [formGroup]="sendForm">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 100%;">
+                  <div class="modal-body ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button> <br>
+                    <table class="table table-borderless">
+                      <tbody>
+                        <tr>
+                          <td style="color:grey" class="float-left">{{setTime(x.created_on_with_time)}}, {{setDate(item.created_on)}}</td>
+                          <td style="color:grey" class="pull-right">Pending</td>
+                        </tr>
+                      </tbody>
+                    </table><br>
+                    <h4 class="header_bar global_font" style="text-align: center">
+                    <span class="itm_crcl2">{{opositeOwner | slice:0:1| titlecase}}</span><br>
+                      <strong>To {{opositeOwner}}</strong></h4>
+                    <span style="margin-left: 160px;">+ {{phoneNo}}</span><br><br>
+                    <div class="form-group float_label" style="margin-bottom: 0px;margin-left: 15px;margin-right: 15px;">
+                      <label>From</label>
+                      <select class="form-control" (change)="checkbalance()"
+                      formControlName="selectedCurrency" [(ngModel)]="this.bankCurrency" (change)="changeAcc($event)">
+                        <option [value]="item.currency" *ngFor="let item of currencyType">
+                          {{item.currency}}
+                        </option>
+                      </select>
+                    </div>
+                    <span style="margin-left: 15px;font-size: 13px;">Balance: {{ this.bankCurrency }} {{ this.bankBalance }}</span>
+                    <div>
+                      <div class="m-t-20 container">
+                        <div style="border-bottom: 2px solid #ced4da;margin-bottom: 20px;">
+                        <span>Requested Amount</span> <span class="pull-right" style="color:#dc3545;font-size: 20px;font-weight: 500;">{{amount}} {{currency_type}}</span>
+                        </div>
+                        <div class="form-group float_label">
+                          <input type="text" class="form-control" placeholder="&nbsp;">
+                          <label>Would you please borrow me some money?</label>
+                        </div>
+                      </div><br>
+                      <div class="footer">
+                        <div class="col-md-12">
+                          <button class="btn btn-primary btn-block continue_btn" style="margin-left: 40px; width: 80%;margin-bottom: 10px;"
+                            data-toggle="modal" (click)="onSend()" [disabled]="insufficient">Send</button>
+                        </div>
+                        <div class="col-md-12">
+                          <button class="btn btn-outline-primary  btn-block" style="margin-left: 40px; width: 80%;"
+                            data-toggle="modal" data-target="#decline" (click)="closeSendDecline()">Decline</button>
+                        </div>
+                      </div>
+                    </div><br>
+                  </div>
+                </div>
+              </div>
+            </form>
+            </div>
+            <div class="modal model_top" id="decline">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 100%;margin-top: 83px;">
+                  <div class="modal-body "><br><br>
+                    <div style="text-align: center">
+                      <h4 class="header_bar global_font" style="font-size: 28px;">Decline the request?</h4><br>
+                      <span style="font-size: 18px;">The request will be deleted<br> from the list?</span>
+                    </div><br>
+                    <div class="footer">
+                      <div class="col-md-12">
+                        <button class="btn btn-outline-primary btn-block"
+                          style="margin-left: 40px; width: 80%;margin-bottom: 10px;border-radius:4px" data-dismiss="modal">Cancel</button>
+                      </div>
+                      <div class="col-md-12">
+                        <button class="btn btn-primary  btn-block" style="margin-left: 40px; width: 80%;margin-bottom: 20px;border-radius:4px"
+                          data-toggle="modal" (click)="onDecline(transaction_id)">Confirm</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+  <div class="modal fade" id="transactionModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body content" id=content>
+          <div class="trans_info">
+            <div class="trans_img">
+              <img src="../../../../../../assets/images/group-of-people.jpg">
+            </div>
+
+            <div class="text-center">
+              <h3 *ngIf="transaction_operation == 'VISA' || transaction_operation == 'MASTERCARD' ||
+              transaction_operation == 'JCB' || transaction_operation == 'DINERS-CLUB' || transaction_operation == 'UNIONPAY'">Added money to
+                wallet</h3>
+              <h3 class="trans_title" *ngIf="transaction_operation == 'WALLET' && transaction_type == 'CR'"> Exchanged to
+                {{currency_type}}</h3>
+              <h3 class="trans_title" *ngIf="transaction_operation == 'WALLET' && transaction_type == 'DB'">Exchanged from
+                {{currency_type}}</h3>
+              <h3 *ngIf="transaction_operation == 'TRANSFER' && transaction_type == 'DB'"> Transferred to {{counterparty}}</h3>
+              <h3 *ngIf="transaction_operation == 'TRANSFER' && transaction_type == 'CR'"> Received from {{counterparty}}</h3>
+              <h4 id="trans_amnt"
+                [ngClass]="{'text-success': transaction_type=='CR', 'text-danger':transaction_type=='DB' }">
+                <span *ngIf="transaction_type=='CR'">+</span> <span *ngIf="transaction_type=='DB'">-</span>{{amount}}
+                <!-- <span *ngIf="currency_type=='BGN'"> Лв</span>
+                  <span *ngIf="currency_type=='HRK'"> Kn</span>
+                  <span *ngIf="currency_type=='CZK'"> Kč</span>
+                  <span *ngIf="currency_type=='DKK'"> Kr</span>
+                  <span *ngIf="currency_type=='SEK'"> Kr</span>
+                  <span *ngIf="currency_type=='RON'"> lei</span>
+                  <span *ngIf="currency_type=='EUR'"> €</span>
+                  <span *ngIf="currency_type=='HUF'"> Ft</span>
+                  <span *ngIf="currency_type=='GBP'"> £</span>
+                  <span *ngIf="currency_type=='GIP'"> £</span>
+                  <span *ngIf="currency_type=='INR'"> ₹</span>
+                  <span *ngIf="currency_type=='PLN'"> zł</span>
+                  <span *ngIf="currency_type=='USD'"> $</span> -->
+                <span *ngIf="currency_type=='BGN'"> BGN</span>
+                <span *ngIf="currency_type=='HRK'"> HRK</span>
+                <span *ngIf="currency_type=='CZK'"> CZK</span>
+                <span *ngIf="currency_type=='DKK'"> DKK</span>
+                <span *ngIf="currency_type=='SEK'"> SEK</span>
+                <span *ngIf="currency_type=='RON'"> RON</span>
+                <span *ngIf="currency_type=='EUR'"> EUR</span>
+                <span *ngIf="currency_type=='HUF'"> HUF</span>
+                <span *ngIf="currency_type=='GBP'"> GBP</span>
+                <span *ngIf="currency_type=='GIP'"> GIP</span>
+                <span *ngIf="currency_type=='INR'"> INR</span>
+                <span *ngIf="currency_type=='PLN'"> PLN</span>
+                <span *ngIf="currency_type=='USD'"> USD</span>
+                <span *ngIf="currency_type=='CHF'"> CHF</span>
+                <span *ngIf="currency_type=='ISK'"> ISK</span>
+                <span *ngIf="currency_type=='NOK'"> NOK</span>
+              </h4>
+            </div>
+            <div class="trans_info">
+              <ul>
+                <li>
+                  <span>Date</span>
+                  <p>{{setDate(transDate)}}</p>
+                </li>
+                <li>
+                  <span>Amount</span>
+                  <p>{{amount}}
+                    <!--<span *ngIf="currency_type=='BGN'"> Лв</span>
+                    <span *ngIf="currency_type=='HRK'"> Kn</span>
+                    <span *ngIf="currency_type=='CZK'"> Kč</span>
+                    <span *ngIf="currency_type=='DKK'"> Kr</span>
+                    <span *ngIf="currency_type=='SEK'"> Kr</span>
+                    <span *ngIf="currency_type=='RON'"> lei</span>
+                    <span *ngIf="currency_type=='EUR'"> €</span>
+                    <span *ngIf="currency_type=='HUF'"> Ft</span>
+                    <span *ngIf="currency_type=='GBP'"> £</span>
+                    <span *ngIf="currency_type=='GIP'"> £</span>
+                    <span *ngIf="currency_type=='INR'"> ₹</span>
+                    <span *ngIf="currency_type=='PLN'"> zł</span>
+                    <span *ngIf="currency_type=='USD'"> $</span> -->
+                    <span *ngIf="currency_type=='BGN'"> BGN</span>
+                    <span *ngIf="currency_type=='HRK'"> HRK</span>
+                    <span *ngIf="currency_type=='CZK'"> CZK</span>
+                    <span *ngIf="currency_type=='DKK'"> DKK</span>
+                    <span *ngIf="currency_type=='SEK'"> SEK</span>
+                    <span *ngIf="currency_type=='RON'"> RON</span>
+                    <span *ngIf="currency_type=='EUR'"> EUR</span>
+                    <span *ngIf="currency_type=='HUF'"> HUF</span>
+                    <span *ngIf="currency_type=='GBP'"> GBP</span>
+                    <span *ngIf="currency_type=='GIP'"> GIP</span>
+                    <span *ngIf="currency_type=='INR'"> INR</span>
+                    <span *ngIf="currency_type=='PLN'"> PLN</span>
+                    <span *ngIf="currency_type=='USD'"> USD</span>
+                    <span *ngIf="currency_type=='CHF'"> CHF</span>
+                    <span *ngIf="currency_type=='ISK'"> ISK</span>
+                    <span *ngIf="currency_type=='NOK'"> NOK</span>
+                  </p>
+                </li>
+                <li>
+                  <span>Fee</span>
+                  <p>{{processingFees | number}}
+                    <span *ngIf="currency_type=='BGN'"> BGN</span>
+                    <span *ngIf="currency_type=='HRK'"> HRK</span>
+                    <span *ngIf="currency_type=='CZK'"> CZK</span>
+                    <span *ngIf="currency_type=='DKK'"> DKK</span>
+                    <span *ngIf="currency_type=='SEK'"> SEK</span>
+                    <span *ngIf="currency_type=='RON'"> RON</span>
+                    <span *ngIf="currency_type=='EUR'"> EUR</span>
+                    <span *ngIf="currency_type=='HUF'"> HUF</span>
+                    <span *ngIf="currency_type=='GBP'"> GBP</span>
+                    <span *ngIf="currency_type=='GIP'"> GIP</span>
+                    <span *ngIf="currency_type=='INR'"> INR</span>
+                    <span *ngIf="currency_type=='PLN'"> PLN</span>
+                    <span *ngIf="currency_type=='USD'"> USD</span>
+                    <span *ngIf="currency_type=='CHF'"> CHF</span>
+                    <span *ngIf="currency_type=='ISK'"> ISK</span>
+                    <span *ngIf="currency_type=='NOK'"> NOK</span>
+                  </p>
+                </li>
+                <li>
+                  <span>Total</span>
+                  <p>{{amount + processingFees | number}}
+                    <span *ngIf="currency_type=='BGN'"> BGN</span>
+                    <span *ngIf="currency_type=='HRK'"> HRK</span>
+                    <span *ngIf="currency_type=='CZK'"> CZK</span>
+                    <span *ngIf="currency_type=='DKK'"> DKK</span>
+                    <span *ngIf="currency_type=='SEK'"> SEK</span>
+                    <span *ngIf="currency_type=='RON'"> RON</span>
+                    <span *ngIf="currency_type=='EUR'"> EUR</span>
+                    <span *ngIf="currency_type=='HUF'"> HUF</span>
+                    <span *ngIf="currency_type=='GBP'"> GBP</span>
+                    <span *ngIf="currency_type=='GIP'"> GIP</span>
+                    <span *ngIf="currency_type=='INR'"> INR</span>
+                    <span *ngIf="currency_type=='PLN'"> PLN</span>
+                    <span *ngIf="currency_type=='USD'"> USD</span>
+                    <span *ngIf="currency_type=='CHF'"> CHF</span>
+                    <span *ngIf="currency_type=='ISK'"> ISK</span>
+                    <span *ngIf="currency_type=='NOK'"> NOK</span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="row modalfooter">
+          <div class="col-md-6">
+            <button class="btn btn-block btn-primary" data-dismiss="modal" name="statement" aria-label="Close"
+              (click)=makeExcel()>Excel</button>
+          </div>
+          <!-- <div class="col-md-4">
+            <button class="btn btn-block btn-primary" data-dismiss="modal" name="statement" aria-label="Close" (click)=makePdf()>PDF</button>
+          </div> -->
+          <div class="col-md-6 cancel-btn">
+            <button class="btn btn-block btn-outline-primary" name="cancel" data-dismiss="modal"
+              aria-label="Close">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <div class="modal fade" id="myModalall" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" >
+        <div class="modal-body content modal-scroll" id=contentall>
+          <div class="trans_info ">
+            <div class="trans_img">
+              <img src="../../../../../../assets/images/group-of-people.jpg">
+            </div><br>           
+          <h5>Please select the format to download the statement</h5>     
+          </div>
+        </div>
+        <div class="row modalfooter">            
+            <div class="col-md-6">
+              <button class="btn btn-block btn-primary" data-dismiss="modal" name="statement" aria-label="Close" (click)=makealldataExcel()>Excel</button>
+            </div>
+            <div class="col-md-6 cancel-btn">
+              <button class="btn btn-block btn-outline-primary" name="cancel" data-dismiss="modal"
+                aria-label="Close">Close</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="modal fade" id="myModalall" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body content modal-scroll" id=contentall>
+          <div class="trans_info ">
+            <button type="button" class="close topright" data-dismiss="modal" aria-label="Close"
+              (click)="from1.value=currentDate;from2.value=currentDate">
+              <span aria-hidden="true" style="margin-top: 2px;">&times;</span>
+            </button>
+            <h6>Pick a period:</h6>
+            <form action="/action_page.php">
+              <label style="margin-left:150px; color:black;" for="from">From</label>&nbsp;
+              <input type="text" [value]=currentDate style="width:110px;" #from1 max="9999-12-31" id="from" name="from">
+            </form>
+            <form action="/action_page.php">
+              <label style="margin-left:170px; color:black;" for="from">To</label>&nbsp;
+              <input type="text" [value]=currentDate style="width:110px;" #from2 max="9999-12-31" id="from" name="from">
+            </form> <br>
+            <h6>Pick a format:</h6>
+            <div class="checkbox pull-left">
+              <label style="color:black; margin-left: 180px;"><input #pdf type="checkbox" disabled id="pdf" [checked]="selectpdf"
+                  (change)="onSelectPdf(pdf.checked)" />&nbsp;PDF</label>
+            </div><br>
+            <div class="checkbox pull-left1">
+              <label style="color:black; margin-left: -45px;"><input #excel type="checkbox" id="excel"
+                  [checked]="selectexcel" (change)="onSelectExcel(excel.checked)" />&nbsp;EXCEL</label>
+            </div><br>
+          </div>
+        </div>
+        <div class="row modalfooter">
+          <div class="col-md-6">
+            <button style="margin-left: 130px;" class="btn btn-block btn-primary" data-dismiss="modal" name="statement"
+              aria-label="Close" [disabled]="!selectpdf && !selectexcel" (click)="getStatement();from1.value=currentDate;from2.value=currentDate">Get
+              Statement</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="modal fade" id="kycwarnhome" role="dialog" style="margin-left: 10px;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content fontbtn">
+      <div class="modal-body body_popup">
+        <div class="add_money">
+          <!-- <img src="../../../../../assets/images/addicon.png" alt="path not correct" /> -->
+          <h4 style="text-align: center;">Verify your identity</h4>
+          <p style="text-align: center;">Please, verify your identity in order to be able to use the payments
+            functionalities of PayVoo</p>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">I'll do it later</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block" data-dismiss="modal" onclick="cameraIdentification()" (click)="gotoProfilePage()" data-dismiss="modal">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal invitemodal" id="myModal" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal_size">
+    <div class="modal-content fontbtn">
+      <div class="modal-body">
+
+        <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+          <h4 class="modal-title header_txt text-center">Please, choose how to complete your identity verification</h4>
+          <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/webcam.png"></span>
+              </div>
+              <div class="p-2" (click)="webCamera()" data-dismiss="modal">
+                <p class="m-b-0 kyc_process">Use webcam</p>
+                <small>Make sure it supports high resolution</small>
+                <div  id="demo" class="collapse">
+                  </div>
+              </div>
+              <div class="ml-auto p-2  align-self-center" data-toggle="collapse" data-target="#demo">
+                <i class="fa fa-angle-right kyc_process" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/smartphone.png"></span>
+              </div>
+              <div class="p-2">
+                <p class="m-b-0 kyc_process">Use mobile camera through browser</p>
+                <small>You will receive a link on your registered e-mail</small>
+                <div  id="demo" class="collapse"> 
+                <button  (click)="KYClinkToMobile('android')" data-dismiss="modal"><img
+                  src="../../assets/images/androidicon.png" style=width:35px;;></button> or
+                 <button  (click)="KYClinkToMobile('ios')" data-dismiss="modal"><img src="../../assets/images/iosicon.png"
+                  style=width:35px;;></button>
+                 </div>
+              </div>
+              <div class="ml-auto p-2  align-self-center" data-toggle="collapse" data-target="#demo">
+                <i class="fa fa-angle-right kyc_process" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="d-flex   flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/smartphonedwnld.png"></span>
+              </div>
+              <div class="p-2 ">
+                <p class="m-b-0 kyc_process">Install PayVoo app</p>
+                <small>Think long term. Download PayVoo app now on your Android/iOS device</small>
+              </div>
+            </div>
+
+            <div class="row justify-content-center m-t-10">
+                <div style="padding-bottom: 8px;" class="col-md-6 col-sm-6">
+                  <div (mouseover)="gplay=true" *ngIf="!gplay"><button type="button" (click)="getApp()" class="btn btn-block btn-primary">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/google-play.png"></span>&nbsp;Get it on Google Play</button></div>
+                  <div (mouseout)="gplay=false" *ngIf="gplay"><button type="button"
+                      (click)="getApp()" class="btn btn-block btn-outline-primary1">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/playstore.png"></span>&nbsp;Get it on Google Play</button></div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div (mouseover)="ios=true" *ngIf="!ios"><button type="button" (click)="getApp()" class="btn btn-block btn-primary">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store.png"></span>&nbsp;Get it on App Store
+                    </button></div>
+                  <div (mouseout)="ios=false" *ngIf="ios"><button type="button" (click)="getApp()" class="btn btn-block btn-outline-primary1">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store_1.png"></span>&nbsp;Get it on App Store
+                    </button></div>
+
+                </div>
+              </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="modal" id="kycpopup" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">KYC Verification Steps</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe *ngIf="kycIframe"  [src]="urlSafe" allow="geolocation; microphone; camera" height='730px' width="100%"></iframe>
+      </div>
+    </div>
+  </div>
+</div>

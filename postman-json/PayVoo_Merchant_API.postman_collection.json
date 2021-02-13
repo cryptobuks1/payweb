@@ -1,0 +1,2126 @@
+{
+	"info": {
+		"_postman_id": "1d9da73f-c055-4209-a4d7-b6cc76ceb502",
+		"name": "PayVoo_Merchant_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Introduction",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Registration",
+			"item": [
+				{
+					"name": "Country",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://service.payvoo.in:5000/service/country",
+							"protocol": "http",
+							"host": [
+								"service",
+								"payvoo",
+								"in"
+							],
+							"port": "5000",
+							"path": [
+								"service",
+								"country"
+							]
+						},
+						"description": "Country details are fetched successfully"
+					},
+					"response": [
+						{
+							"name": "Country",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://service.payvoo.in:5000/service/country",
+									"protocol": "http",
+									"host": [
+										"service",
+										"payvoo",
+										"in"
+									],
+									"port": "5000",
+									"path": [
+										"service",
+										"country"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "0",
+									"value": "A"
+								},
+								{
+									"key": "1",
+									"value": "c"
+								},
+								{
+									"key": "2",
+									"value": "c"
+								},
+								{
+									"key": "3",
+									"value": "e"
+								},
+								{
+									"key": "4",
+									"value": "s"
+								},
+								{
+									"key": "5",
+									"value": "s"
+								},
+								{
+									"key": "6",
+									"value": "-"
+								},
+								{
+									"key": "7",
+									"value": "C"
+								},
+								{
+									"key": "8",
+									"value": "o"
+								},
+								{
+									"key": "9",
+									"value": "n"
+								},
+								{
+									"key": "10",
+									"value": "t"
+								},
+								{
+									"key": "11",
+									"value": "r"
+								},
+								{
+									"key": "12",
+									"value": "o"
+								},
+								{
+									"key": "13",
+									"value": "l"
+								},
+								{
+									"key": "14",
+									"value": "-"
+								},
+								{
+									"key": "15",
+									"value": "A"
+								},
+								{
+									"key": "16",
+									"value": "l"
+								},
+								{
+									"key": "17",
+									"value": "l"
+								},
+								{
+									"key": "18",
+									"value": "o"
+								},
+								{
+									"key": "19",
+									"value": "w"
+								},
+								{
+									"key": "20",
+									"value": "-"
+								},
+								{
+									"key": "21",
+									"value": "M"
+								},
+								{
+									"key": "22",
+									"value": "e"
+								},
+								{
+									"key": "23",
+									"value": "t"
+								},
+								{
+									"key": "24",
+									"value": "h"
+								},
+								{
+									"key": "25",
+									"value": "o"
+								},
+								{
+									"key": "26",
+									"value": "d"
+								},
+								{
+									"key": "27",
+									"value": "s"
+								},
+								{
+									"key": "28",
+									"value": ":"
+								},
+								{
+									"key": "29",
+									"value": ""
+								},
+								{
+									"key": "30",
+									"value": "P"
+								},
+								{
+									"key": "31",
+									"value": "U"
+								},
+								{
+									"key": "32",
+									"value": "T"
+								},
+								{
+									"key": "33",
+									"value": ","
+								},
+								{
+									"key": "34",
+									"value": "G"
+								},
+								{
+									"key": "35",
+									"value": "E"
+								},
+								{
+									"key": "36",
+									"value": "T"
+								},
+								{
+									"key": "37",
+									"value": ","
+								},
+								{
+									"key": "38",
+									"value": "P"
+								},
+								{
+									"key": "39",
+									"value": "O"
+								},
+								{
+									"key": "40",
+									"value": "S"
+								},
+								{
+									"key": "41",
+									"value": "T"
+								},
+								{
+									"key": "42",
+									"value": ","
+								},
+								{
+									"key": "43",
+									"value": "D"
+								},
+								{
+									"key": "44",
+									"value": "E"
+								},
+								{
+									"key": "45",
+									"value": "L"
+								},
+								{
+									"key": "46",
+									"value": "E"
+								},
+								{
+									"key": "47",
+									"value": "T"
+								},
+								{
+									"key": "48",
+									"value": "E"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4381"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"111d-/WxLfHlVyjmBpIrrm3J57wnSRmU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jul 2020 08:16:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 0,\n    \"message\": \"Success\",\n    \"code\": 0,\n    \"data\": {\n        \"country list\": [\n            {\n                \"country_id\": 3,\n                \"country_name\": \"Austria\",\n                \"calling_code\": 43,\n                \"country_code\": \"AT\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 4,\n                \"country_name\": \"Belgium\",\n                \"calling_code\": 32,\n                \"country_code\": \"BG\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 1,\n                \"country_name\": \"Bulgaria\",\n                \"calling_code\": 359,\n                \"country_code\": \"BG\",\n                \"currency\": \"BGN\",\n                \"currency_symbol\": \"Лв\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 7,\n                \"country_name\": \"Croatia\",\n                \"calling_code\": 385,\n                \"country_code\": \"HR\",\n                \"currency\": \"HRK\",\n                \"currency_symbol\": \"kn\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 8,\n                \"country_name\": \"Cyprus\",\n                \"calling_code\": 357,\n                \"country_code\": \"CY\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 9,\n                \"country_name\": \"Czech Republic\",\n                \"calling_code\": 420,\n                \"country_code\": \"CZ\",\n                \"currency\": \"CZK\",\n                \"currency_symbol\": \"Kč\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 12,\n                \"country_name\": \"Denmark\",\n                \"calling_code\": 45,\n                \"country_code\": \"DK\",\n                \"currency\": \"DKK\",\n                \"currency_symbol\": \"Kr\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 10,\n                \"country_name\": \"Estonia\",\n                \"calling_code\": 372,\n                \"country_code\": \"EE\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 13,\n                \"country_name\": \"Finland\",\n                \"calling_code\": 358,\n                \"country_code\": \"FI\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 14,\n                \"country_name\": \"France\",\n                \"calling_code\": 33,\n                \"country_code\": \"FR\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 36,\n                \"country_name\": \"Germany\",\n                \"calling_code\": 49,\n                \"country_code\": \"DE\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 17,\n                \"country_name\": \"Greece\",\n                \"calling_code\": 30,\n                \"country_code\": \"GR\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 21,\n                \"country_name\": \"Hungary\",\n                \"calling_code\": 36,\n                \"country_code\": \"HU\",\n                \"currency\": \"HUF\",\n                \"currency_symbol\": \"Ft\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 38,\n                \"country_name\": \"Iceland\",\n                \"calling_code\": 354,\n                \"country_code\": \"IS\",\n                \"currency\": \"ISK\",\n                \"currency_symbol\": \"kr\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 22,\n                \"country_name\": \"Ireland\",\n                \"calling_code\": 353,\n                \"country_code\": \"IE\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 23,\n                \"country_name\": \"Italy\",\n                \"calling_code\": 39,\n                \"country_code\": \"IT\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 24,\n                \"country_name\": \"Latvia\",\n                \"calling_code\": 371,\n                \"country_code\": \"LV\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 40,\n                \"country_name\": \"Liechtenstein\",\n                \"calling_code\": 423,\n                \"country_code\": \"LI\",\n                \"currency\": \"CHF\",\n                \"currency_symbol\": \"Fr.\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 25,\n                \"country_name\": \"Lithuania\",\n                \"calling_code\": 370,\n                \"country_code\": \"LT\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 26,\n                \"country_name\": \"Luxembourg\",\n                \"calling_code\": 352,\n                \"country_code\": \"LU\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 27,\n                \"country_name\": \"Malta\",\n                \"calling_code\": 356,\n                \"country_code\": \"MT\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 28,\n                \"country_name\": \"Netherlands\",\n                \"calling_code\": 31,\n                \"country_code\": \"NL\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 39,\n                \"country_name\": \"Norway\",\n                \"calling_code\": 47,\n                \"country_code\": \"NO\",\n                \"currency\": \"NOK\",\n                \"currency_symbol\": \"kr\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 29,\n                \"country_name\": \"Poland\",\n                \"calling_code\": 48,\n                \"country_code\": \"PL\",\n                \"currency\": \"PLN\",\n                \"currency_symbol\": \"zł\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 30,\n                \"country_name\": \"Portugal\",\n                \"calling_code\": 351,\n                \"country_code\": \"PT\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 31,\n                \"country_name\": \"Romania\",\n                \"calling_code\": 40,\n                \"country_code\": \"RO\",\n                \"currency\": \"RON\",\n                \"currency_symbol\": \"leu\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 32,\n                \"country_name\": \"Slovakia\",\n                \"calling_code\": 421,\n                \"country_code\": \"SK\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 33,\n                \"country_name\": \"Slovenia\",\n                \"calling_code\": 386,\n                \"country_code\": \"SI\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 34,\n                \"country_name\": \"Spain\",\n                \"calling_code\": 34,\n                \"country_code\": \"ES\",\n                \"currency\": \"EUR\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 19,\n                \"country_name\": \"Sweden\",\n                \"calling_code\": 46,\n                \"country_code\": \"SE\",\n                \"currency\": \"SEK\",\n                \"currency_symbol\": \"kr\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 37,\n                \"country_name\": \"Switzerland\",\n                \"calling_code\": 41,\n                \"country_code\": \"CH\",\n                \"currency\": \"CHF\",\n                \"currency_symbol\": \"Fr.\",\n                \"status\": 1\n            },\n            {\n                \"country_id\": 20,\n                \"country_name\": \"UK\",\n                \"calling_code\": 44,\n                \"country_code\": \"UK\",\n                \"currency\": \"GBP\",\n                \"currency_symbol\": \"£\",\n                \"status\": 1\n            }\n        ],\n        \"status\": 0,\n        \"message\": \"GetCountriesList fetched successfully\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"first_name\":\"soujanya\",\"last_name\":\"Jadala\",\"email\":\"sharthjadala@gmail.com\",\"mobile\":\"3598963400006\",\"password\":\"Soujanya25\",\"account_type\":\"sandbox\",\"address_line1\":\"\",\"address_line2\":\"\",\"city\":\"\",\"country_id\":1,\"dob\":null,\"gender\":\"\",\"middle_name\":\"\",\"next_step\":\"\",\"passcode_pin\":\"9931\",\"postal_code\":\"\",\"region\":\"\",\"telephone\":\"\",\"town\":\"\",\"phone\":\"\"}"
+						},
+						"url": {
+							"raw": "http://service.payvoo.in:5000/service/user/registration",
+							"protocol": "http",
+							"host": [
+								"service",
+								"payvoo",
+								"in"
+							],
+							"port": "5000",
+							"path": [
+								"service",
+								"user",
+								"registration"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Registration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"first_name\":\"soujanya\",\"last_name\":\"Jadala\",\"email\":\"sharthjadala@gmail.com\",\"mobile\":\"3598963400006\",\"password\":\"Soujanya25\",\"account_type\":\"sandbox\",\"address_line1\":\"\",\"address_line2\":\"\",\"city\":\"\",\"country_id\":1,\"dob\":null,\"gender\":\"\",\"middle_name\":\"\",\"next_step\":\"\",\"passcode_pin\":\"9931\",\"postal_code\":\"\",\"region\":\"\",\"telephone\":\"\",\"town\":\"\",\"phone\":\"\"}"
+								},
+								"url": {
+									"raw": "http://service.payvoo.in:5000/service/user/registration",
+									"protocol": "http",
+									"host": [
+										"service",
+										"payvoo",
+										"in"
+									],
+									"port": "5000",
+									"path": [
+										"service",
+										"user",
+										"registration"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "0",
+									"value": "A"
+								},
+								{
+									"key": "1",
+									"value": "c"
+								},
+								{
+									"key": "2",
+									"value": "c"
+								},
+								{
+									"key": "3",
+									"value": "e"
+								},
+								{
+									"key": "4",
+									"value": "s"
+								},
+								{
+									"key": "5",
+									"value": "s"
+								},
+								{
+									"key": "6",
+									"value": "-"
+								},
+								{
+									"key": "7",
+									"value": "C"
+								},
+								{
+									"key": "8",
+									"value": "o"
+								},
+								{
+									"key": "9",
+									"value": "n"
+								},
+								{
+									"key": "10",
+									"value": "t"
+								},
+								{
+									"key": "11",
+									"value": "r"
+								},
+								{
+									"key": "12",
+									"value": "o"
+								},
+								{
+									"key": "13",
+									"value": "l"
+								},
+								{
+									"key": "14",
+									"value": "-"
+								},
+								{
+									"key": "15",
+									"value": "A"
+								},
+								{
+									"key": "16",
+									"value": "l"
+								},
+								{
+									"key": "17",
+									"value": "l"
+								},
+								{
+									"key": "18",
+									"value": "o"
+								},
+								{
+									"key": "19",
+									"value": "w"
+								},
+								{
+									"key": "20",
+									"value": "-"
+								},
+								{
+									"key": "21",
+									"value": "M"
+								},
+								{
+									"key": "22",
+									"value": "e"
+								},
+								{
+									"key": "23",
+									"value": "t"
+								},
+								{
+									"key": "24",
+									"value": "h"
+								},
+								{
+									"key": "25",
+									"value": "o"
+								},
+								{
+									"key": "26",
+									"value": "d"
+								},
+								{
+									"key": "27",
+									"value": "s"
+								},
+								{
+									"key": "28",
+									"value": ":"
+								},
+								{
+									"key": "29",
+									"value": ""
+								},
+								{
+									"key": "30",
+									"value": "P"
+								},
+								{
+									"key": "31",
+									"value": "U"
+								},
+								{
+									"key": "32",
+									"value": "T"
+								},
+								{
+									"key": "33",
+									"value": ","
+								},
+								{
+									"key": "34",
+									"value": "G"
+								},
+								{
+									"key": "35",
+									"value": "E"
+								},
+								{
+									"key": "36",
+									"value": "T"
+								},
+								{
+									"key": "37",
+									"value": ","
+								},
+								{
+									"key": "38",
+									"value": "P"
+								},
+								{
+									"key": "39",
+									"value": "O"
+								},
+								{
+									"key": "40",
+									"value": "S"
+								},
+								{
+									"key": "41",
+									"value": "T"
+								},
+								{
+									"key": "42",
+									"value": ","
+								},
+								{
+									"key": "43",
+									"value": "D"
+								},
+								{
+									"key": "44",
+									"value": "E"
+								},
+								{
+									"key": "45",
+									"value": "L"
+								},
+								{
+									"key": "46",
+									"value": "E"
+								},
+								{
+									"key": "47",
+									"value": "T"
+								},
+								{
+									"key": "48",
+									"value": "E"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "112"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"70-wov8+R20jOzR0yTHOjz82C7HrtY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jul 2020 08:19:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\":0,\n    \"message\":\"Success\",\n    \"code\":0,\n    \"data\":\n            {\"Token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYXJ0aGphZGFsYUBnbWFpbC5jb20iLCJpYXQiOjE1OTQ3OTcwMDN9.cerj8eKjjhCRyGX_-5sdfwXSRsA9g7gwtZD65EZjOLM\",\n            \"status\":0,\n            \"message\":\"Registration successfull\",\n            \"client_auth\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYXJ0aGphZGFsYUBnbWFpbC5jb20iLCJpYXQiOjE1OTQ3OTcwMDN9.S0hahRq7IhIxoN18aPFalIWWFDnUfIMeqA_YwLVxprg\",\n            \"member_id\":\"zc2eea1\",\n            \"api_access_key\":\"Y6S1AFY-MYXM443-QRKY9VS-G7VED7Z\",\n            \"x-auth-token\":\"3367dfe0-c66a-11ea-8274-cba0121e53591594797001\",\n            \"userInfo\":\n                         {\"first_name\":\"soujanya\",\n                         \"last_name\":\"Jadala\",\n                         \"email\":\"sharthjadala@gmail.com\",\n                         \"country_id\":1,\n                         \"gender\":\"\",\n                         \"mobile\":\"3598963400006\",\n                         \"phone\":\"\",\n                         \"account_type\":\"sandbox\",\n                         \"kycStatus\":\"NOT_INITIATED\",\n                         \"initialPayment\":false,\n                         \"isBusiness\":false,\n                         \"applicant_id\":2294}}}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"userId\":\"soujanyajadala25@gmail.com\",\r\n\"password\":\"Soujanya25\",\r\n\"account_type\":\"sandbox\"\r\n}"
+						},
+						"url": {
+							"raw": "http://service.payvoo.in:5000/service/user/login",
+							"protocol": "http",
+							"host": [
+								"service",
+								"payvoo",
+								"in"
+							],
+							"port": "5000",
+							"path": [
+								"service",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"userId\":\"soujanyajadala25@gmail.com\",\r\n\"password\":\"Soujanya25\",\r\n\"account_type\":\"sandbox\"\r\n}"
+								},
+								"url": {
+									"raw": "http://service.payvoo.in:5000/service/user/login",
+									"protocol": "http",
+									"host": [
+										"service",
+										"payvoo",
+										"in"
+									],
+									"port": "5000",
+									"path": [
+										"service",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "0",
+									"value": "A"
+								},
+								{
+									"key": "1",
+									"value": "c"
+								},
+								{
+									"key": "2",
+									"value": "c"
+								},
+								{
+									"key": "3",
+									"value": "e"
+								},
+								{
+									"key": "4",
+									"value": "s"
+								},
+								{
+									"key": "5",
+									"value": "s"
+								},
+								{
+									"key": "6",
+									"value": "-"
+								},
+								{
+									"key": "7",
+									"value": "C"
+								},
+								{
+									"key": "8",
+									"value": "o"
+								},
+								{
+									"key": "9",
+									"value": "n"
+								},
+								{
+									"key": "10",
+									"value": "t"
+								},
+								{
+									"key": "11",
+									"value": "r"
+								},
+								{
+									"key": "12",
+									"value": "o"
+								},
+								{
+									"key": "13",
+									"value": "l"
+								},
+								{
+									"key": "14",
+									"value": "-"
+								},
+								{
+									"key": "15",
+									"value": "A"
+								},
+								{
+									"key": "16",
+									"value": "l"
+								},
+								{
+									"key": "17",
+									"value": "l"
+								},
+								{
+									"key": "18",
+									"value": "o"
+								},
+								{
+									"key": "19",
+									"value": "w"
+								},
+								{
+									"key": "20",
+									"value": "-"
+								},
+								{
+									"key": "21",
+									"value": "M"
+								},
+								{
+									"key": "22",
+									"value": "e"
+								},
+								{
+									"key": "23",
+									"value": "t"
+								},
+								{
+									"key": "24",
+									"value": "h"
+								},
+								{
+									"key": "25",
+									"value": "o"
+								},
+								{
+									"key": "26",
+									"value": "d"
+								},
+								{
+									"key": "27",
+									"value": "s"
+								},
+								{
+									"key": "28",
+									"value": ":"
+								},
+								{
+									"key": "29",
+									"value": ""
+								},
+								{
+									"key": "30",
+									"value": "P"
+								},
+								{
+									"key": "31",
+									"value": "U"
+								},
+								{
+									"key": "32",
+									"value": "T"
+								},
+								{
+									"key": "33",
+									"value": ","
+								},
+								{
+									"key": "34",
+									"value": "G"
+								},
+								{
+									"key": "35",
+									"value": "E"
+								},
+								{
+									"key": "36",
+									"value": "T"
+								},
+								{
+									"key": "37",
+									"value": ","
+								},
+								{
+									"key": "38",
+									"value": "P"
+								},
+								{
+									"key": "39",
+									"value": "O"
+								},
+								{
+									"key": "40",
+									"value": "S"
+								},
+								{
+									"key": "41",
+									"value": "T"
+								},
+								{
+									"key": "42",
+									"value": ","
+								},
+								{
+									"key": "43",
+									"value": "D"
+								},
+								{
+									"key": "44",
+									"value": "E"
+								},
+								{
+									"key": "45",
+									"value": "L"
+								},
+								{
+									"key": "46",
+									"value": "E"
+								},
+								{
+									"key": "47",
+									"value": "T"
+								},
+								{
+									"key": "48",
+									"value": "E"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1316"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"524-EGIuSAlnzha2w2uMad4kcPHCMYk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jul 2020 08:25:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 0,\n    \"message\": \"Success\",\n    \"code\": 0,\n    \"data\": {\n        \"Token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdWphbnlhamFkYWxhMjVAZ21haWwuY29tIiwiaWF0IjoxNTk0ODAxNTI3fQ.qjjBKogUz7cqFOytAMK5HPD-IhHZIBLsA76eZwLpdN0\",\n        \"client_auth\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvdWphbnlhamFkYWxhMjVAZ21haWwuY29tIiwiaWF0IjoxNTk0ODAxNTI3LCJleHAiOjE1OTQ4MDMzMjd9.6X7b1SQxB2PAv9tO70ZJ9RPLc8YDNh0Uaa1dnExCcSY\",\n        \"member_id\": \"zc2eea1\",\n        \"api_access_key\": \"Y6S1AFY-MYXM443-QRKY9VS-G7VED7Z\",\n        \"message\": \"Loged in Successfully\",\n        \"x-auth-token\": \"bca027e0-c674-11ea-8274-cba0121e53591594801527\",\n        \"userInfo\": {\n            \"email\": \"soujanyajadala25@gmail.com\",\n            \"gender\": \"\",\n            \"mobile\": \"3598963400007\",\n            \"phone\": \"\",\n            \"first_name\": \"Soujanya\",\n            \"last_name\": \"Akula\",\n            \"account_type\": \"sandbox\",\n            \"kycStatus\": \"NOT_INITIATED\",\n            \"country_id\": 1,\n            \"country_name\": \"Bulgaria\",\n            \"address_line1\": null,\n            \"address_line2\": null,\n            \"city\": null,\n            \"postal_code\": null,\n            \"isBusiness\": false,\n            \"business_country_of_incorporation\": null,\n            \"business_legal_name\": null,\n            \"initialPayment\": false,\n            \"kyb_status\": \"\",\n            \"applicant_id\": 2287\n        },\n        \"sandBoxInfo\": {\n            \"memberId\": \"a2be88ea794e\",\n            \"api_key\": \"0EAA2BD-7NWM1QY-GZAZ1CF-J3GA5PY\",\n            \"url\": \"http://192.168.16.160:5001\",\n            \"api_doc_url\": \"https://documenter.getpostman.com/view/11732230/Szzhfyea?version=latest\",\n            \"redirect_url\": \"http://115.112.122.100:4200/sandbox-login/\"\n        },\n        \"status\": 0\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Add Cards",
+			"item": [
+				{
+					"name": "Card",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						},
+						"description": "Card details are fetched successfully."
+					},
+					"response": [
+						{
+							"name": "Card",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://service.payvoo.in:5000/service/v1/validateCard/4444",
+									"protocol": "http",
+									"host": [
+										"service",
+										"payvoo",
+										"in"
+									],
+									"port": "5000",
+									"path": [
+										"service",
+										"v1",
+										"validateCard",
+										"4444"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "0",
+									"value": "A"
+								},
+								{
+									"key": "1",
+									"value": "c"
+								},
+								{
+									"key": "2",
+									"value": "c"
+								},
+								{
+									"key": "3",
+									"value": "e"
+								},
+								{
+									"key": "4",
+									"value": "s"
+								},
+								{
+									"key": "5",
+									"value": "s"
+								},
+								{
+									"key": "6",
+									"value": "-"
+								},
+								{
+									"key": "7",
+									"value": "C"
+								},
+								{
+									"key": "8",
+									"value": "o"
+								},
+								{
+									"key": "9",
+									"value": "n"
+								},
+								{
+									"key": "10",
+									"value": "t"
+								},
+								{
+									"key": "11",
+									"value": "r"
+								},
+								{
+									"key": "12",
+									"value": "o"
+								},
+								{
+									"key": "13",
+									"value": "l"
+								},
+								{
+									"key": "14",
+									"value": "-"
+								},
+								{
+									"key": "15",
+									"value": "A"
+								},
+								{
+									"key": "16",
+									"value": "l"
+								},
+								{
+									"key": "17",
+									"value": "l"
+								},
+								{
+									"key": "18",
+									"value": "o"
+								},
+								{
+									"key": "19",
+									"value": "w"
+								},
+								{
+									"key": "20",
+									"value": "-"
+								},
+								{
+									"key": "21",
+									"value": "M"
+								},
+								{
+									"key": "22",
+									"value": "e"
+								},
+								{
+									"key": "23",
+									"value": "t"
+								},
+								{
+									"key": "24",
+									"value": "h"
+								},
+								{
+									"key": "25",
+									"value": "o"
+								},
+								{
+									"key": "26",
+									"value": "d"
+								},
+								{
+									"key": "27",
+									"value": "s"
+								},
+								{
+									"key": "28",
+									"value": ":"
+								},
+								{
+									"key": "29",
+									"value": ""
+								},
+								{
+									"key": "30",
+									"value": "P"
+								},
+								{
+									"key": "31",
+									"value": "U"
+								},
+								{
+									"key": "32",
+									"value": "T"
+								},
+								{
+									"key": "33",
+									"value": ","
+								},
+								{
+									"key": "34",
+									"value": "G"
+								},
+								{
+									"key": "35",
+									"value": "E"
+								},
+								{
+									"key": "36",
+									"value": "T"
+								},
+								{
+									"key": "37",
+									"value": ","
+								},
+								{
+									"key": "38",
+									"value": "P"
+								},
+								{
+									"key": "39",
+									"value": "O"
+								},
+								{
+									"key": "40",
+									"value": "S"
+								},
+								{
+									"key": "41",
+									"value": "T"
+								},
+								{
+									"key": "42",
+									"value": ","
+								},
+								{
+									"key": "43",
+									"value": "D"
+								},
+								{
+									"key": "44",
+									"value": "E"
+								},
+								{
+									"key": "45",
+									"value": "L"
+								},
+								{
+									"key": "46",
+									"value": "E"
+								},
+								{
+									"key": "47",
+									"value": "T"
+								},
+								{
+									"key": "48",
+									"value": "E"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "114"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"72-y/HumdsdJBj0FuQSIVtn8/Qa9H0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jul 2020 08:37:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 0,\n    \"message\": \"Success\",\n    \"code\": 0,\n    \"data\": {\n        \"type\": \"visa\",\n        \"isValid\": false,\n        \"status\": 0,\n        \"message\": \"Data found\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Card details",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "605d3000-c673-11ea-8274-cba0121e53591594800942",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"card_type\":\"visa\",\r\n\"name_on_card\":\"Soujanya\",\r\n\"card_number\":\"4444 3333 2222 1111\",\r\n\"card_cvv\":\"123\",\r\n\"card_month\":3,\r\n\"card_year\":2025\r\n}"
+						},
+						"url": {
+							"raw": "http://service.payvoo.in:5000/service/sandbox/v1/card",
+							"protocol": "http",
+							"host": [
+								"service",
+								"payvoo",
+								"in"
+							],
+							"port": "5000",
+							"path": [
+								"service",
+								"sandbox",
+								"v1",
+								"card"
+							]
+						},
+						"description": "Card details are registered successfully."
+					},
+					"response": [
+						{
+							"name": "Card details",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-auth-token",
+										"value": "605d3000-c673-11ea-8274-cba0121e53591594800942",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"card_type\":\"visa\",\r\n\"name_on_card\":\"Soujanya\",\r\n\"card_number\":\"4444 3333 2222 1111\",\r\n\"card_cvv\":\"123\",\r\n\"card_month\":3,\r\n\"card_year\":2025\r\n}"
+								},
+								"url": {
+									"raw": "http://service.payvoo.in:5000/service/sandbox/v1/card",
+									"protocol": "http",
+									"host": [
+										"service",
+										"payvoo",
+										"in"
+									],
+									"port": "5000",
+									"path": [
+										"service",
+										"sandbox",
+										"v1",
+										"card"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "0",
+									"value": "A"
+								},
+								{
+									"key": "1",
+									"value": "c"
+								},
+								{
+									"key": "2",
+									"value": "c"
+								},
+								{
+									"key": "3",
+									"value": "e"
+								},
+								{
+									"key": "4",
+									"value": "s"
+								},
+								{
+									"key": "5",
+									"value": "s"
+								},
+								{
+									"key": "6",
+									"value": "-"
+								},
+								{
+									"key": "7",
+									"value": "C"
+								},
+								{
+									"key": "8",
+									"value": "o"
+								},
+								{
+									"key": "9",
+									"value": "n"
+								},
+								{
+									"key": "10",
+									"value": "t"
+								},
+								{
+									"key": "11",
+									"value": "r"
+								},
+								{
+									"key": "12",
+									"value": "o"
+								},
+								{
+									"key": "13",
+									"value": "l"
+								},
+								{
+									"key": "14",
+									"value": "-"
+								},
+								{
+									"key": "15",
+									"value": "A"
+								},
+								{
+									"key": "16",
+									"value": "l"
+								},
+								{
+									"key": "17",
+									"value": "l"
+								},
+								{
+									"key": "18",
+									"value": "o"
+								},
+								{
+									"key": "19",
+									"value": "w"
+								},
+								{
+									"key": "20",
+									"value": "-"
+								},
+								{
+									"key": "21",
+									"value": "M"
+								},
+								{
+									"key": "22",
+									"value": "e"
+								},
+								{
+									"key": "23",
+									"value": "t"
+								},
+								{
+									"key": "24",
+									"value": "h"
+								},
+								{
+									"key": "25",
+									"value": "o"
+								},
+								{
+									"key": "26",
+									"value": "d"
+								},
+								{
+									"key": "27",
+									"value": "s"
+								},
+								{
+									"key": "28",
+									"value": ":"
+								},
+								{
+									"key": "29",
+									"value": ""
+								},
+								{
+									"key": "30",
+									"value": "P"
+								},
+								{
+									"key": "31",
+									"value": "U"
+								},
+								{
+									"key": "32",
+									"value": "T"
+								},
+								{
+									"key": "33",
+									"value": ","
+								},
+								{
+									"key": "34",
+									"value": "G"
+								},
+								{
+									"key": "35",
+									"value": "E"
+								},
+								{
+									"key": "36",
+									"value": "T"
+								},
+								{
+									"key": "37",
+									"value": ","
+								},
+								{
+									"key": "38",
+									"value": "P"
+								},
+								{
+									"key": "39",
+									"value": "O"
+								},
+								{
+									"key": "40",
+									"value": "S"
+								},
+								{
+									"key": "41",
+									"value": "T"
+								},
+								{
+									"key": "42",
+									"value": ","
+								},
+								{
+									"key": "43",
+									"value": "D"
+								},
+								{
+									"key": "44",
+									"value": "E"
+								},
+								{
+									"key": "45",
+									"value": "L"
+								},
+								{
+									"key": "46",
+									"value": "E"
+								},
+								{
+									"key": "47",
+									"value": "T"
+								},
+								{
+									"key": "48",
+									"value": "E"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "133"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"85-L+hoKpTAYRQMMtLQ2kzKNOuKyKo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jul 2020 08:47:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 0,\n    \"message\": \"Success\",\n    \"code\": 0,\n    \"data\": {\n        \"cards\": [\n            {\n                \"payment_cards_id\": 313,\n                \"card_type\": \"VISA\",\n                \"name_on_card\": \"SOUJANYA\",\n                \"card_number\": \"1111\",\n                \"status\": 1,\n                \"default_card\": 1,\n                \"card_month\": \"3\",\n                \"card_year\": \"2025\"\n            }\n        ],\n        \"status\": 0,\n        \"message\": \"Card detail fetched sucesfuly\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Card details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://service.payvoo.in:5000/service/v1/validateCard/4444",
+							"protocol": "http",
+							"host": [
+								"service",
+								"payvoo",
+								"in"
+							],
+							"port": "5000",
+							"path": [
+								"service",
+								"v1",
+								"validateCard",
+								"4444"
+							]
+						},
+						"description": "Card details of the user are registered successfully"
+					},
+					"response": [
+						{
+							"name": "Card details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://service.payvoo.in:5000/service/v1/validateCard/4444",
+									"protocol": "http",
+									"host": [
+										"service",
+										"payvoo",
+										"in"
+									],
+									"port": "5000",
+									"path": [
+										"service",
+										"v1",
+										"validateCard",
+										"4444"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "0",
+									"value": "A"
+								},
+								{
+									"key": "1",
+									"value": "c"
+								},
+								{
+									"key": "2",
+									"value": "c"
+								},
+								{
+									"key": "3",
+									"value": "e"
+								},
+								{
+									"key": "4",
+									"value": "s"
+								},
+								{
+									"key": "5",
+									"value": "s"
+								},
+								{
+									"key": "6",
+									"value": "-"
+								},
+								{
+									"key": "7",
+									"value": "C"
+								},
+								{
+									"key": "8",
+									"value": "o"
+								},
+								{
+									"key": "9",
+									"value": "n"
+								},
+								{
+									"key": "10",
+									"value": "t"
+								},
+								{
+									"key": "11",
+									"value": "r"
+								},
+								{
+									"key": "12",
+									"value": "o"
+								},
+								{
+									"key": "13",
+									"value": "l"
+								},
+								{
+									"key": "14",
+									"value": "-"
+								},
+								{
+									"key": "15",
+									"value": "A"
+								},
+								{
+									"key": "16",
+									"value": "l"
+								},
+								{
+									"key": "17",
+									"value": "l"
+								},
+								{
+									"key": "18",
+									"value": "o"
+								},
+								{
+									"key": "19",
+									"value": "w"
+								},
+								{
+									"key": "20",
+									"value": "-"
+								},
+								{
+									"key": "21",
+									"value": "M"
+								},
+								{
+									"key": "22",
+									"value": "e"
+								},
+								{
+									"key": "23",
+									"value": "t"
+								},
+								{
+									"key": "24",
+									"value": "h"
+								},
+								{
+									"key": "25",
+									"value": "o"
+								},
+								{
+									"key": "26",
+									"value": "d"
+								},
+								{
+									"key": "27",
+									"value": "s"
+								},
+								{
+									"key": "28",
+									"value": ":"
+								},
+								{
+									"key": "29",
+									"value": ""
+								},
+								{
+									"key": "30",
+									"value": "P"
+								},
+								{
+									"key": "31",
+									"value": "U"
+								},
+								{
+									"key": "32",
+									"value": "T"
+								},
+								{
+									"key": "33",
+									"value": ","
+								},
+								{
+									"key": "34",
+									"value": "G"
+								},
+								{
+									"key": "35",
+									"value": "E"
+								},
+								{
+									"key": "36",
+									"value": "T"
+								},
+								{
+									"key": "37",
+									"value": ","
+								},
+								{
+									"key": "38",
+									"value": "P"
+								},
+								{
+									"key": "39",
+									"value": "O"
+								},
+								{
+									"key": "40",
+									"value": "S"
+								},
+								{
+									"key": "41",
+									"value": "T"
+								},
+								{
+									"key": "42",
+									"value": ","
+								},
+								{
+									"key": "43",
+									"value": "D"
+								},
+								{
+									"key": "44",
+									"value": "E"
+								},
+								{
+									"key": "45",
+									"value": "L"
+								},
+								{
+									"key": "46",
+									"value": "E"
+								},
+								{
+									"key": "47",
+									"value": "T"
+								},
+								{
+									"key": "48",
+									"value": "E"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "114"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"72-y/HumdsdJBj0FuQSIVtn8/Qa9H0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jul 2020 08:49:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 0,\n    \"message\": \"Success\",\n    \"code\": 0,\n    \"data\": {\n        \"type\": \"visa\",\n        \"isValid\": false,\n        \"status\": 0,\n        \"message\": \"Data found\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Account",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "605d3000-c673-11ea-8274-cba0121e53591594800942",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://service.payvoo.in:5000/service/sandbox/v1/account",
+							"protocol": "http",
+							"host": [
+								"service",
+								"payvoo",
+								"in"
+							],
+							"port": "5000",
+							"path": [
+								"service",
+								"sandbox",
+								"v1",
+								"account"
+							]
+						},
+						"description": "Account details are fetched successfully."
+					},
+					"response": [
+						{
+							"name": "Account",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-auth-token",
+										"value": "605d3000-c673-11ea-8274-cba0121e53591594800942",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://service.payvoo.in:5000/service/sandbox/v1/account",
+									"protocol": "http",
+									"host": [
+										"service",
+										"payvoo",
+										"in"
+									],
+									"port": "5000",
+									"path": [
+										"service",
+										"sandbox",
+										"v1",
+										"account"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "0",
+									"value": "A"
+								},
+								{
+									"key": "1",
+									"value": "c"
+								},
+								{
+									"key": "2",
+									"value": "c"
+								},
+								{
+									"key": "3",
+									"value": "e"
+								},
+								{
+									"key": "4",
+									"value": "s"
+								},
+								{
+									"key": "5",
+									"value": "s"
+								},
+								{
+									"key": "6",
+									"value": "-"
+								},
+								{
+									"key": "7",
+									"value": "C"
+								},
+								{
+									"key": "8",
+									"value": "o"
+								},
+								{
+									"key": "9",
+									"value": "n"
+								},
+								{
+									"key": "10",
+									"value": "t"
+								},
+								{
+									"key": "11",
+									"value": "r"
+								},
+								{
+									"key": "12",
+									"value": "o"
+								},
+								{
+									"key": "13",
+									"value": "l"
+								},
+								{
+									"key": "14",
+									"value": "-"
+								},
+								{
+									"key": "15",
+									"value": "A"
+								},
+								{
+									"key": "16",
+									"value": "l"
+								},
+								{
+									"key": "17",
+									"value": "l"
+								},
+								{
+									"key": "18",
+									"value": "o"
+								},
+								{
+									"key": "19",
+									"value": "w"
+								},
+								{
+									"key": "20",
+									"value": "-"
+								},
+								{
+									"key": "21",
+									"value": "M"
+								},
+								{
+									"key": "22",
+									"value": "e"
+								},
+								{
+									"key": "23",
+									"value": "t"
+								},
+								{
+									"key": "24",
+									"value": "h"
+								},
+								{
+									"key": "25",
+									"value": "o"
+								},
+								{
+									"key": "26",
+									"value": "d"
+								},
+								{
+									"key": "27",
+									"value": "s"
+								},
+								{
+									"key": "28",
+									"value": ":"
+								},
+								{
+									"key": "29",
+									"value": ""
+								},
+								{
+									"key": "30",
+									"value": "P"
+								},
+								{
+									"key": "31",
+									"value": "U"
+								},
+								{
+									"key": "32",
+									"value": "T"
+								},
+								{
+									"key": "33",
+									"value": ","
+								},
+								{
+									"key": "34",
+									"value": "G"
+								},
+								{
+									"key": "35",
+									"value": "E"
+								},
+								{
+									"key": "36",
+									"value": "T"
+								},
+								{
+									"key": "37",
+									"value": ","
+								},
+								{
+									"key": "38",
+									"value": "P"
+								},
+								{
+									"key": "39",
+									"value": "O"
+								},
+								{
+									"key": "40",
+									"value": "S"
+								},
+								{
+									"key": "41",
+									"value": "T"
+								},
+								{
+									"key": "42",
+									"value": ","
+								},
+								{
+									"key": "43",
+									"value": "D"
+								},
+								{
+									"key": "44",
+									"value": "E"
+								},
+								{
+									"key": "45",
+									"value": "L"
+								},
+								{
+									"key": "46",
+									"value": "E"
+								},
+								{
+									"key": "47",
+									"value": "T"
+								},
+								{
+									"key": "48",
+									"value": "E"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "182"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b6-hKhqoelAh/GHH+u7Cdxkxsym51w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jul 2020 08:44:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 0,\n    \"message\": \"Success\",\n    \"code\": 0,\n    \"data\": {\n        \"account\": [\n            {\n                \"account_no\": 2594,\n                \"currency\": \"EUR\",\n                \"status\": 1,\n                \"balance\": 0\n            }\n        ],\n        \"status\": 0,\n        \"message\": \"Account details fetched successfully\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,120 @@
+<div class="pull-right d-inline back_btn">
+   <div *ngIf="!isPersonal">
+      <a routerLink="/business/payments/payment-type"><i class="fa fa-arrow-left"></i> Back</a>
+      </div>
+   <div *ngIf="isPersonal">
+      <a routerLink="/personal/payments/payment-type"><i class="fa fa-arrow-left"></i> Back</a>
+      </div>
+ </div>
+<div class="card page_ht_crd">
+    <h4 class="text-center">Add new counterparty</h4>
+    <!-- <h4 class="text-center" *ngIf="SearchForm.controls['search_name'].value !== '' && !emptyCheck && !searchResults">Link {{ SearchForm.controls['search_name'].value }} profile</h4>
+    <h6 class="text-center" *ngIf="SearchForm.controls['search_name'].value !== '' && !emptyCheck && !searchResults"> Company</h6> -->
+    <div class="container m-t-10">
+       <form [formGroup]="SearchForm">
+          <div class="form-group float_label">
+             <input type="text" class="form-control" formControlName="search_name" placeholder="Name"
+               (keyup)="searchTerm.next($event.target.value)">
+             <i class="fa fa-search pull-right" style="margin-top:-25px;"></i>
+             <p class="wrong_info">Wrong information may cause transfers to be rejected</p>
+          </div>
+          <div *ngIf="SearchForm.controls['search_name'].value !== ''">
+             <div *ngIf="searchResults">
+                <table class="bulk_list_view table-responsive table-padding" style="max-height: 204px;overflow-y: auto;overflow-x: hidden;">
+                   <tr *ngFor="let payUser of searchResults"
+                   (click)="setClickedRow(payUser)" [class.active]="payUser == selectedRow">
+                   <td style="width:6%"><span class="itm_crcl" [class.crcle]="payUser == selectedRow">{{ getShortName(payUser.full_name) }}</span></td>
+                   <td style="width:80%">
+                      <span class="lists" [class.full_name]="counterParty == selectedRow">{{ payUser.full_name | titlecase }}</span>
+                      <div class="mrg-ngtv"><span class="fnt-sze-clr">{{ payUser.email }} - </span>
+                         <span class="fnt-sze-clr"> +{{ payUser.mobile }}</span>
+                      </div>
+                      <!-- <div class="mrg-ngtv"><span class="fnt-sze-clr">{{ payUser.currency }} - </span>
+                        <span class="fnt-sze-clr"> {{ payUser.account_no }}</span>
+                     </div> -->
+                   </td>
+                   <td style="width:10%;">
+                        <img style="width: 80px;" src="../../../../assets/images/PayVoo BETA_small.png">
+                     </td>
+                   </tr>
+                </table>
+             </div>
+          </div>
+          <div *ngIf="!searchResults" class="form-group float_label mt-5">
+             <input type="text" class="form-control" formControlName="search_contact" (keypress)="RestrictCommaSemicolon(event)" 
+             placeholder="Email or phone number(with country code)">
+          </div>
+          <ng-template #searchNull>
+             <!--- it's shows if there is no search results --->
+             <div class="text-center">
+                <div><img src="../../../../assets/images/icons/user.png"></div>
+                <h5 class="p1">Nothing found?</h5>
+                <p class="p2">Try another search or invite<br>
+                   <span style="color: #2a3477;">{{ SearchForm.controls['search_name'].value }}</span> to
+                   PayVoo
+                </p>
+             </div>
+             <div class="text-center btn_counterparty">
+                <div class="form-group">
+                   <button class="btn btn-primary" data-toggle="modal" data-target="#inviteModal" data-backdrop="static" data-keyboard="false">Invite to
+                   PayVoo</button>
+                </div>
+             </div>
+          </ng-template>
+          <!--- ending if there is no search results --->
+          <button  class="btn btn-primary"  (click)="createCounterParty(Salert)" style="margin-left: 90px;width: 60%; margin-top: 10px ;padding: 5px 10px;" [disabled]="isButtonDisabled()">Create counterparty</button>                                         
+            
+       </form>
+       <div class="text-center btn_counterparty">
+         <div class="form-group">
+            <!-- <button class="btn btn-primary" (click)="createCounterParty(Salert)"
+            style="padding-left:25px; padding-right: 25px; margin-top: 90px;"[disabled]="isButtonDisabled()">Create counterparty</button> -->
+                                                    
+            
+         </div>
+      </div>
+    </div>
+ </div>
+ <!-- <div class="text-center btn_counterparty">
+   <div class="form-group">
+      <button class="btn btn-primary" (click)="createCounterParty(Salert)"
+      style="padding-left:25px; padding-right: 25px; margin-top: 90px;"[disabled]="isButtonDisabled()">Create counterparty</button>
+   </div>
+</div> -->
+ <ng-template #Salert>
+    <!-- alert after counterParty scuccess -->
+    <div class="modal-body modal_size text-center">
+       <div class="check_div">
+          <img src="../../../../assets/images/tick_icon.png">
+       </div>
+       <h4 class="header_bar">Counterparty created</h4>
+       <div class="header_para">Counterparty {{addCounterParty.full_name}} created sucessfully</div>
+       <div style="text-align: center;">
+          <button class="btn btn-primary btn-block col-4 offset-4 mb-4" (click)="backToPayments()">Continue</button>
+       </div>
+    </div>
+ </ng-template>
+ <!-- alert ending -->
+ <!-- End of Invite Payvoo Screen -->
+ <!-- Invite Payvoo Screen -->
+ <div class="modal invitemodal" id="inviteModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+       <div class="modal-content text-center">
+          <div class="modal-body">
+             <button type="button" class="close" data-dismiss="modal" (click)="inviteClose()">&times;</button>
+             <p class="fnt-clr-sze">Message to send</p>
+             <p><span>Join PayVoo to get the fastest payments and</span> <br>
+                <span >the best fix rates. Use this link to join</span>
+             </p>
+             <a class="invite_link" href="https://www.payvoo.com">https://www.payvoo.com</a>
+             <div class="btn_copylink">
+                <button (click)="copyText('Join PayVoo to get the fastest payments and the best fix rates. Use this link to join https://www.payvoo.com')" value="click to copy" type="button"
+                   class="btn btn-primary">Copy link</button>
+             </div>
+             <div *ngIf="linkCopied" style="font-size: 13px;">
+               <p> INVITATION MESSAGE AND LINK HAVE BEEN COPIED TO THE CLIPBOARD </p>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

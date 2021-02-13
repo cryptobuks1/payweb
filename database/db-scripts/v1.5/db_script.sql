@@ -1,0 +1,1 @@
+UPDATE country SET country_name = 'EUROPEAN UNION' WHERE country_id = '2';

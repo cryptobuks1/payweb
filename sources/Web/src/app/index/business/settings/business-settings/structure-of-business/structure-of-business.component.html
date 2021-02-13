@@ -1,0 +1,495 @@
+<!-- Structure of Business -->
+
+<div class="card page_ht_crd" *ngIf="busStructureForm">
+    <div class="d-flex">
+      <div class="p-2 align-self-center">
+        <span class="itm_crcl">{{companySymbol}}</span>
+      </div>
+      <div class="p-2">
+        <p class="text-clr">{{companyName}}</p>
+        <small>{{country_of_incorporation}} - Active </small>
+      </div>
+    </div>
+    <div class="header">
+      <h5 class="text-center">Structure of your business</h5>
+    </div>
+    <div class="cnv_cntr">
+      Directors <span class="pull-right" (click)="newDirector()" style="font-size: 12px;margin-right: 23px;color: #42424c;cursor: pointer;"><i class="fa fa-plus addcard_icn"></i>Add director</span>
+  </div>
+    <div class="cnv_cntr" style="font-size: 16px;"  *ngFor="let list of directorsList">
+  
+      <div class="lft_itm ctry_img">
+        <span class="itm_crcl">{{list.name.slice(0, 1)}}</span>
+      </div>
+      <div class="data_cnt">
+        <div class="currency_dta">{{list.name.replace(','," ")}}</div>
+        
+        <p>{{list.email}}</p>
+        
+      </div>
+      <div class="content_card" style="cursor: pointer;" *ngIf="verifyId" (click)="verifyIdentity()"
+      
+          [ngClass]="{'pointer-event': KYBStatus?.business_owner_details==1 || KYBStatus?.business_owner_details==2 || KYBStatus?.isRestricted==1}">
+          <div align="center" class="card_header_title" style="font-size: 12px;">Verify ID</div>
+          <div class='step-progress-bar-container'>
+            <div class='step-progress-bar'>
+              <div class='step'
+                [ngClass]="KYBStatus?.business_owner_details==2 || KYBStatus?.business_owner_details==1 ? 'complete' : 'current'">
+              </div>
+              <div class='step'
+                [ngClass]="{'complete':KYBStatus?.business_owner_details==2 || KYBStatus?.business_owner_details==1}">
+              </div>
+              <div class='step' [ngClass]="{'complete':KYBStatus?.business_owner_details==2}"></div>
+            </div>
+            <div class='step-headers'>
+              <div class='step-header'>Pending</div>
+              <div class='step-header'>Submitted</div>
+              <div class='step-header'>Verified</div>
+            </div>
+          </div>
+        </div>
+      <div class="pull-right" style="margin-right: 85px;margin-top: 14px;">
+        <span  (click)="VeriyYourself(list)" *ngIf="!editButton" class="edit_btn"><i class="fa fa-pencil" style="color: blue;"></i></span>
+        <span *ngIf="!editButton" class="del_cntr"><i class="fa fa-trash-o cursor_pointer text-danger"></i></span>
+      </div>
+  
+    </div>
+    
+    <div class="cnv_cntr">
+      Shareholders <span class="pull-right" (click)="newShareHolder()" style="font-size: 12px;color: #42424c;cursor: pointer;"><i class="fa fa-plus addcard_icn"></i>Add Shareholder</span>
+    </div>
+    <div class="cnv_cntr" style="font-size: 16px;" *ngFor="let ownersdata of ownersList" >
+  
+      <div class="lft_itm ctry_img">
+        <span class="itm_crcl">{{ownersdata.name.slice(0, 1)}}</span>
+      </div>
+      <div class="data_cnt">
+        <div class="currency_dta">{{ownersdata.name.replace(','," ")}}</div>
+        <p>{{ownersdata.email}}</p>
+      </div>
+      
+      <div class="percent_itm pull-right" style="margin-right: 85px">
+        <span class="percentage">{{ownersdata.percentage}}%</span>
+        <span (click)="VeriyYourself(ownersdata)" *ngIf="!editButton" class="edit_btn"><i class="fa fa-pencil" style="color: blue;"></i></span>
+        <span *ngIf="!editButton" class="del_cntr"><i class="fa fa-trash-o cursor_pointer text-danger"></i></span>
+      </div>
+    </div>
+    <div *ngIf="editButton">
+      <button (click)="editDetails()" style="margin-left: 300px;margin-top: 25px;" class="btn btn-primary pull-right">Edit details</button>
+    </div>
+  </div>
+<div class="modal model_top" id="editDetails">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="margin-top: 150px;margin-left: 90px; width:80%">
+        <div class="modal-body ">
+          <div class="text-center">
+            <p align="center" style="color: #42424c;margin-top: 15px;font-weight: 500;font-family: Roboto, sans-serif">
+              Please, be informed that upon change of<br>
+              personal information, you shall repeat the<br>
+              verification process</p>
+            <span align="center" style="font-size: 0.825rem;">Would you still like to proceed with edit?</span>
+          </div><br>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                  <button style="border-radius:4px" class="btn btn-outline-primary btn-block"
+                    data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+              <div class="col-xs-6 col-md-6 pull-right">
+                <div class="form-group">
+                  <button style="border-radius:4px" type="submit" class="btn btn-primary btn-block" data-dismiss="modal"
+                    (click)="edit()">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="success">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="col-lg-12" class="text-center">
+                    <img src="../../../../assets/images/success.png">
+  
+                    <h5 class="modal-text"><br>Details updated successfully</h5><br>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-block btn-primary col-8 mx-auto"
+                            style="margin-bottom: 10px;" data-dismiss="modal" (click)="StuctureOfBusiness()">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<ng-template [ngIf]="busOwnPerTemplate">
+    <div class="container">
+        <div class="dot_bar">
+            <ul>
+                <li class="completed"></li>
+                <li class="current"></li>
+            </ul>
+        </div>
+        <form [formGroup]="busOwnerForm">
+            <div>
+                <div class="header_txt m-b-20">Enter Your Personal Details</div>
+                <div class="col-md-12">
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control" name="dir_share" readonly [(ngModel)]="dirList"
+                          formControlName="business_owner_type" placeholder="&nbsp;" autocomplete="off">
+                        <div class="text text-danger"
+                          *ngIf="busOwnerForm.controls['business_owner_type'].invalid && busOwnerForm.controls['business_owner_type'].dirty">
+                        </div>
+                      </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control fname" (click)="noSpace()"
+                            [readonly]="isPrimaryApplicant" name="first_name" formControlName="first_name"
+                            placeholder="&nbsp;" autocomplete="off">
+                        <label for="first_name">First name</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="busOwnerForm.controls['first_name'].invalid && busOwnerForm.controls['first_name'].dirty">
+                            Please, make sure that you are using only letters, hyphen and apostrophe.</div>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control lname" (click)="noSpace()"
+                            [readonly]="isPrimaryApplicant" name="last_name" formControlName="last_name"
+                            placeholder="&nbsp;" autocomplete="off">
+                        <label for="last_name">Last name</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="busOwnerForm.controls['last_name'].invalid && busOwnerForm.controls['last_name'].dirty">
+                            Please,
+                            make sure that you are using only letters, hyphen and apostrophe.</div>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="date" class="form-control datepicker" formControlName="dob" placeholder="&nbsp;"
+                            autocomplete="off" [min]="minDOB" [max]="maxDOB" (change)="dobValidation($event)">
+                        <label for="date">Date of birth</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="(busOwnerForm.controls['dob'].touched || busOwnerForm.controls['dob'].pristine) && validDOB">
+                            Please, enter valid date of birth</div>
+                        <div class="text text-danger error_msg" *ngIf="valid18DOB && !validDOB">Eligibility 18+ years
+                            ONLY</div>
+                    </div>
+
+                    <div class="form-group ">
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="MALE" formControlName="gender">
+                            <label class="form-check-label" for="radio_male">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input femaleradio" value="FEMALE"
+                                formControlName="gender">
+                            <label class="form-check-label" for="radio_female">Female</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control" (keydown.space)="$event.preventDefault();" name="email"
+                            formControlName="email" placeholder="&nbsp;" autocomplete="off"
+                            [readonly]="emailFieldReadonlyInBusOwnerForm">
+                        <label for="Email">Email</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="busOwnerForm.controls['email'].invalid && busOwnerForm.controls['email'].dirty">
+                            Please, enter
+                            valid e-mail</div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group" style="width: 110%">
+                            <div class="float_label">
+                                <select class="form-control" formControlName="calling_code" id="countryid">
+                                    <!-- <option *ngFor="let item of countryData" [ngValue]="item.calling_code">{{item.calling_code}}               -->
+                                    <option *ngFor="let item of countryData" [attr.value]="item.calling_code"
+                                        [attr.selected]="item.calling_code == '359' ? true : null"
+                                        [ngValue]="item.calling_code">
+                                        {{item.calling_code}}
+                                    </option>
+                                </select>
+                                <label>Code</label>
+                                <div class="text text-danger error_msg"
+                                    *ngIf="busOwnerForm.controls['calling_code'].invalid && busOwnerForm.controls['calling_code'].dirty">
+                                    Please, select calling code</div>
+                            </div>
+                            <span class="float_label fltlbl_lft_fx">
+                                <input type="text" class="form-control"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                    [readonly]="isPrimaryApplicant" required id="mobileno"
+                                    onkeypress="return AvoidSpace(event)" name="mobileno" placeholder="&nbsp;"
+                                    autocomplete="off" formControlName="mobile" minlength="7" maxlength="10">
+                                <label for="mobileno">Mobile Number</label>
+                                <div class="text text-danger error_msg"
+                                    *ngIf="busOwnerForm.controls['mobile'].invalid && busOwnerForm.controls['mobile'].dirty">
+                                    Please, make sure that the mobile number contains minimum 7 digits.</div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control pBirth" minlength="2" maxlength="100" required
+                            (click)="noSpace()" name="place_of_birth" formControlName="place_of_birth"
+                            placeholder="&nbsp;" autocomplete="off">
+                        <label for="place_of_birth">Place of Birth</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="busOwnerForm.controls['place_of_birth'].invalid && busOwnerForm.controls['place_of_birth'].dirty">
+                            Please, make sure that you are using only letters, hyphen and apostrophe.</div>
+                    </div>
+
+                    <div class="form-group float_label">
+                        <select class="custom-select" formControlName="nationality" id="nationality" required>
+                            <option value="null" hidden selected> Select nationality </option>
+                            <option *ngFor="let item of countryData" [ngValue]="item.country_name">{{item.country_name}}
+                            </option>
+                        </select>
+                        <label>Nationality</label>
+                    </div>
+                    <div class="form-group float_label" *ngIf="sharePercent">
+                        <input type="text" class="form-control" name="per" min="25" max="100" formControlName="percentage"
+                          (keypress)="numberOnly($event)" placeholder="&nbsp;" autocomplete="off">
+                        <label for="email">Percentage of ownership</label>
+                        <div class="text text-danger error_msg"
+                          *ngIf="ultimateOwnForm.controls['percentage'].invalid && ultimateOwnForm.controls['percentage'].dirty && ultimateOwnForm.controls['percentage'].touched">
+                          Please, enter percentage above 25 and below 100.</div>
+                        <p class="small m-t-5">If you don't know precise number then add an approximate value</p>
+                      </div>
+
+                    <div class="row">
+                        <div style="padding-bottom: 8px;" class="col-md-6">
+                            <button class="btn btn-outline-primary btn-block" (click)="listTempalte()">Previous</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-primary btn-block" (click)="submitPersonalDetails(busOwnerForm.value)">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template [ngIf]="busSelfAddress">
+    <div class="container">
+        <div class="dot_bar">
+            <ul>
+                <li class="completed"></li>
+                <li class="current"></li>
+            </ul>
+        </div>
+        <form [formGroup]="personalAddress">
+            <div>
+                <div class="header_txt m-b-20">Enter Your Business Address Details</div>
+                <div class="col-md-12">
+                    <div class="form-group float_label">
+                        <select class="custom-select" formControlName="country_id" id="contryname" required>
+                            <option value="null" hidden selected>Choose Country</option>
+                            <option *ngFor="let item of countryData" [ngValue]="item.country_id">{{item.country_name}}
+                            </option>
+                        </select>
+                        <label>Country</label>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control code" (click)="noSpace()" formControlName="postal_code"
+                            name="postal_code" placeholder="&nbsp;" autocomplete="off" maxlength="9" minlength="4">
+                        <label for="postal_code">Postal code</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="personalAddress.controls['postal_code'].invalid && personalAddress.controls['postal_code'].dirty">
+                            Please, make sure that the postal code contains minimum 4 characters and they are digits and
+                            letters only.
+                        </div>
+                    </div>
+
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control add1" (click)="noSpace()" formControlName="address_line1"
+                            name="addressline1" placeholder="&nbsp;" autocomplete="off">
+                        <label for="addressline1">Address line 1</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="personalAddress.controls['address_line1'].invalid && personalAddress.controls['address_line1'].dirty">
+                            Please, make sure that Address line 1 contains only letters, numbers, apostrophe, hyphen and
+                            comma.
+                        </div>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control add2" (click)="noSpace()" formControlName="address_line2"
+                            name="addressline2" placeholder="&nbsp;" autocomplete="off">
+                        <label for="addressline2">Address line 2 (Optional)</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="personalAddress.controls['address_line2'].invalid && personalAddress.controls['address_line2'].dirty">
+                            Please, make sure that Address line 2 contains only letters, numbers, apostrophe, hyphen and
+                            comma.
+                        </div>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control city" (click)="noSpace()" formControlName="city"
+                            name="town_city" placeholder="&nbsp;" autocomplete="off">
+                        <label for="town_city">Town / City</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="personalAddress.controls['city'].invalid && personalAddress.controls['city'].dirty">
+                            Please,
+                            make sure that you have used only letters, hyphen and apostrophe.</div>
+                    </div>
+                    <div class="form-group float_label">
+                        <input type="text" class="form-control region" (click)="noSpace()" formControlName="region"
+                            name="region" placeholder="&nbsp;" autocomplete="off">
+                        <label for="region">Region</label>
+                        <div class="text text-danger error_msg"
+                            *ngIf="personalAddress.controls['region'].invalid && personalAddress.controls['region'].dirty">
+                            Please, make sure that you are using letters only.</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-primary btn-block"
+                                (click)="personaDetailsTemplate()">Previous</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-primary btn-block" [disabled]="personalAddress.invalid"
+                                (click)="submitPersonalAddr(personalAddress.value)">Continue</button>
+                        </div>
+                        <!-- <div *ngIf = "actionLabel === 'Edit Director' || actionLabel === 'Edit Shareholder' || actionLabel === ''" class="col-md-6">
+                            <button class="btn btn-primary btn-block" [disabled]="personalAddress.invalid"
+                            onclick="cameraIdentification()" (click)="updatePersonalAddr(personalAddress.value)">Continue</button>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template [ngIf]="verifyIdenTemp">
+    <div class="container">
+      <div class="dot_bar">
+        <ul>
+          <li class="completed"></li>
+          <li class="current"></li>
+  
+        </ul>
+      </div>
+      <div class="header_txt">Verify identities</div>
+      <p>We need a little more information about the following people</p>
+      <div class="d_cont">
+        <ul class="add_itm">
+          <li style="margin-top: 11px;border-bottom: none !important;">DIRECTORS</li>
+          <li *ngFor="let x of arrayList?.Directors">
+            <div class="dir_crcl">
+              <div >
+                <span><i class="fa fa-check-circle verify_directors"
+                    [ngClass]="{'verified_KYC': x.kyc_status === 'SUCCESS' || x.kyc_status === 'SUCCESSFUL_WITH_CHANGES'}"></i></span>
+                <div class="dir_det">
+                  {{x.name.replace(','," ")}}</div>
+              </div>
+            </div>
+          </li>
+          <li style="margin-top: 11px;border-bottom: none !important;">SHAREHOLDERS</li>
+          <li *ngFor="let x of arrayList?.Shareholder">
+            <div class="dir_crcl">
+              <div>
+                <span><i class="fa fa-check-circle verify_directors"
+                    [ngClass]="{'verified_KYC': x.kyc_status === 'SUCCESS' || x.kyc_status === 'SUCCESSFUL_WITH_CHANGES'}"></i></span>
+                <div class="dir_det">
+                  {{x.name.replace(','," ")}}</div>
+                <div *ngIf="(x.isKyc==true && x.kyc_status=='' &&  x.is_verified==false) || (x.isKyc==false && x.kyc_status=='' &&  x.is_verified==false) ||
+                   (x.isKyc==true && (x.kyc_status=='PENDING') && x.is_verified==false) ||  (x.isKyc==false && (x.kyc_status=='PENDING') && x.is_verified==false) ||
+                   (x.isKyc==true && (x.kyc_status=='PENDING') && x.is_verified==true) ||
+                   (x.kyc_status=='OBJECT_NOT_FOUND' && x.isKyc==true && x.is_verified==true) ">
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="content_card2" (click)="attDocument()"
+      
+          [ngClass]="{'pointer-event': KYBStatus?.business_owner_details==1 || KYBStatus?.business_owner_details==2 || KYBStatus?.isRestricted==1}">
+          <div class="card_header_title" style="font-size: 12px;">Proof of Shareholder structure</div>
+          <div class='step-progress-bar-container'>
+            <div class='step-progress-bar'>
+              <div class='step'
+                [ngClass]="KYBStatus?.business_owner_details==2 || KYBStatus?.business_owner_details==1 ? 'complete' : 'current'">
+              </div>
+              <div class='step'
+                [ngClass]="{'complete':KYBStatus?.business_owner_details==2 || KYBStatus?.business_owner_details==1}">
+              </div>
+              <div class='step' [ngClass]="{'complete':KYBStatus?.business_owner_details==2}"></div>
+            </div>
+            <div class='step-headers'>
+              <div class='step-header'>Pending</div>
+              <div class='step-header'>Submitted</div>
+              <div class='step-header'>Verified</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary" style="margin-bottom: 10px;" 
+              (click)="verifiedAllStatus()">Continue</button>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </ng-template>
+  <div class="container" *ngIf="shareStructure">
+    <div class="header_txt">Proof of Shareholder structure</div>
+    <p>An official document containing the full business name and its registered address</p>
+    <div class="rev_note">
+      <div class="note_head"><i class="fa fa-info-circle text-danger"></i> &nbsp; Review Note</div>
+      <p>We need proof from an official, third-party source of the physical address from which your business operates.</p>
+    </div>
+    <div class="fup_cont" id="browse-click">
+      <div class="upld_button" for="fileupload">
+        <div class="lft_cont">
+          <p><span>+</span></p>
+        </div>
+        <div class="rt_cont">
+          <div class="cont_title">Add documents</div>
+          <div class="cont_desc">Scanned copy or clear photo</div>
+        </div>
+        <small class="fileuploads" *ngIf="fileupload">{{registeredFileName}}</small>
+      </div>
+      <div class="alert alert-warning">
+        Documents should be uploaded in pdf,&nbsp;jpeg,&nbsp;xlsx,&nbsp;xls format only.
+      </div>
+      <div [hidden]="!fileupload" class="cont_title text text-success">
+        <!-- {{registeredFileName}} -->
+        <!-- <img *ngIf="myObject['file_type'] != 'ATION/PDF'" class="supwidth" id="registeredFileName" alt={{registeredFileName}}> -->
+        <!-- <img class="supwidthPDF" id="registeredFileNamePDF" alt={{registeredFileName}}> -->
+        <span>{{registeredFileName}}</span>
+      </div><br>
+      <input id="fileupload" [attr.disabled]="activeclick ? '' : null" class="file_inpt" type="file"
+        (change)="handleFileSelect($event)" accept="image/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+              application/vnd.ms-excel, .xls,.xlsx, image/png, image/jpeg, application/pdf" />
+    </div>
+    <div class="col-md-12">
+            <button type="button" class="btn btn-primary" style="margin-bottom: 10px;" (click)="onComplete()">Continue</button>
+    </div>
+  </div>
+
+  <ng-template [ngIf]="completeIdentity">
+    <div class="container">
+      <form [formGroup]="busOwnerForm">
+        <div class="container" style="height: 20em; transform: translateY(25%);">
+          <div class="row mb-4 mt-4">
+            <h4 class="text-center" style="font-weight: 200; margin:auto">
+              Please, Choose how to complete identity verification of {{busOwnerForm.value.first_name}}
+              {{busOwnerForm.value.last_name}}
+            </h4>
+          </div>
+          <div class="row col-md-12" style="margin: auto; margin-top: 3em;">
+            <div style="padding-bottom: 8px;" class="col-md-6">
+              <button class="btn btn-outline-primary btn-block" onclick="cameraIdentification()"
+                (click)="check_Kyc()">Verify Now</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block" (click)="sendInvitationAlert('android')">Send an
+                Invitation</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+  

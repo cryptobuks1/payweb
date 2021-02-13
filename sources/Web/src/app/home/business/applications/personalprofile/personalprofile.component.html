@@ -1,0 +1,324 @@
+<ng-template [ngIf]="updateContactDetails">
+  <form [formGroup]="updateContactForm">
+    <div class="content_card">
+
+      <div class="dot_bar">
+        <ul>
+
+          <li class="current"></li>
+          <li></li>
+
+        </ul>
+      </div>
+
+      <div class="header_txt">Enter your personal information</div>
+      <div class="d_cont">
+        <div class="form-group float_label">
+          <input type="text" class="form-control fname" name="first_name" formControlName="first_name"  (click)="noSpace()" placeholder="&nbsp;" autocomplete="off">
+          <label for="first_name">First name</label>
+          <div class="text text-danger error_msg"
+            *ngIf="updateContactForm.controls['first_name'].invalid && updateContactForm.controls['first_name'].dirty">
+            Please, make sure that you are using only letters, hyphen and apostrophe.</div>
+        </div>
+        <div class="form-group float_label">
+          <input type="text" class="form-control lname" name="last_name" formControlName="last_name"  (click)="noSpace()" placeholder="&nbsp;" autocomplete="off">
+          <label for="last_name">Last name</label>
+          <div class="text text-danger error_msg"
+            *ngIf="updateContactForm.controls['last_name'].invalid && updateContactForm.controls['last_name'].dirty">
+            Please, make sure that you are using only letters, hyphen and apostrophe.</div>
+        </div>
+          <div class="form-group ">
+
+
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input " type="radio" name="gender" value="MALE" id="radio_male"
+                formControlName="gender">
+              <label class="form-check-label" for="radio_male">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input femaleradio" type="radio" name="gender" value="FEMALE" id="radio_female"
+                formControlName="gender">
+              <label class="form-check-label" for="radio_female">Female</label>
+            </div>
+            <!-- <input type="radio" value="MALE" name="gender" formControlName="gender">&nbsp;Male
+            <input type="radio" value="FEMALE" name="gender" formControlName="gender" class="femaleradio">&nbsp;Female -->
+          </div>
+          <div class="text text-danger error_msg"
+          *ngIf="updateContactForm.controls['gender'].invalid && updateContactForm.controls['gender'].dirty">
+          Gender is required</div>
+        <div class="form-group float_label">
+          <input type="date" class="form-control  datepicker" formControlName="dob" placeholder="YYYY/MM/DD"
+            [min]="minDOB" [max]="maxDOB" (change)="dobValidation($event)">
+          <label for="last_name">Date of Birth</label>
+          <div class="text text-danger error_msg" *ngIf="validDOB">Please, enter valid date of birth</div>
+          <div class="text text-danger error_msg" *ngIf="valid18DOB && !validDOB">Eligibility 18+ years ONLY</div>
+        </div>
+
+        <div class="text text-danger error_msg"
+          *ngIf="updateContactForm.controls['gender'].invalid && updateContactForm.controls['gender'].dirty">
+          Gender is required</div>
+        <div class="form-group float_label">
+            <input type="text" class="form-control" (keydown.space)="$event.preventDefault();" [(ngModel)]= "personalEmail"
+             name="email" formControlName="email" placeholder="&nbsp;" autocomplete="off">
+          <label for="Email">E-mail</label>
+          <div class="text text-danger error_msg"
+            *ngIf="updateContactForm.controls['email'].invalid && updateContactForm.controls['email'].dirty">Enter
+            valid email id</div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="float_label ">
+              <select class="custom-select"  formControlName="calling_code" id="contryname" (change)="SetCountryKYB()">
+                <option *ngFor="let item of countryData" [ngValue]="item.calling_code">{{item.calling_code}}
+                </option>
+              </select>
+              <label>Code</label>
+              <p class="plusSign">+</p>
+              <div class="text text-danger error_msg"
+                *ngIf="updateContactForm.controls['calling_code'].invalid && updateContactForm.controls['calling_code'].dirty">
+                Please, select calling code</div>
+            </div>
+            <span class="float_label" style="margin-left: 20px;width: 300px;">
+              <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="phone" required id="mobileno" onkeypress="return AvoidSpace(event)"
+                name="mobileno" placeholder="&nbsp;" formControlName="mobile" minlength="7" maxlength="10">
+              <label for="mobileno">Mobile number</label>
+              <div class="text text-danger error_msg"
+                *ngIf="updateContactForm.controls['mobile'].invalid && updateContactForm.controls['mobile'].dirty">
+                Please, make sure that the mobile number contains minimum 7 digits.</div>
+            </span>
+          </div>
+        </div>
+        <div class="form-group float_label" style="margin-top: -15px;">
+          <input type="text" class="form-control m_t_20 last" [(ngModel)]="place_of_birth" (click)="noSpace()" name="place_of_birth" id="place_of_birth" formControlName="place_of_birth"
+            placeholder="&nbsp;" minlength="2" maxlength="100" autocomplete="off">
+          <label for="place_of_birth">Place of Birth</label>
+          <div class="text text-danger error_msgs"
+            *ngIf="updateContactForm.controls['place_of_birth'].dirty && updateContactForm.controls['place_of_birth'].invalid">
+            Please, make sure that you are using only letters, hyphen and apostrophe.
+            <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+          </div>
+        </div>
+        <div class="form-group float_label">
+          <select class="custom-select" formControlName="nationality" id="nationality">
+            <option value="null" hidden selected> Select Nationality </option>
+            <option *ngFor="let item of countryData" [ngValue]="item.country_name">{{item.country_name}}</option>
+          </select>
+          <label>Nationality</label>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6 offset-md-6">
+            <button class="btn btn-primary btn-block" [disabled]="(updateContactForm.invalid || dobvalidator || validDOB || valid18DOB)"
+              (click)="updateAddrDetails(updateContactForm.value)">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template [ngIf]="updateContactAddress">
+  <form [formGroup]="personalAddress1">
+    <div class="content_card">
+      <div class="dot_bar">
+        <ul>
+
+          <li class="completed"></li>
+          <li class="current"></li>
+
+        </ul>
+      </div>
+
+      <div class="header_txt">Enter your personal address</div>
+      <div class="d_cont">
+        <div class="form-group float_label">
+          <select class="custom-select" formControlName="country_id" id="contryname">
+            <option *ngFor="let item of countryData" [ngValue]="item.country_id">{{item.country_name}}</option>
+          </select>
+          <label>Country</label>
+        </div>
+        <div class="form-group float_label">
+          <input type="text" class="form-control code" formControlName="postal_code" (click)="noSpace()" name="postal_code" placeholder="&nbsp;" autocomplete="off"
+          minlength="4" maxlength="9">
+          <label for="postal_code">Postal code</label>
+          <div class="text text-danger error_msg"
+            *ngIf="personalAddress1.controls['postal_code'].invalid && personalAddress1.controls['postal_code'].dirty">
+            Please, make sure that the postal code contains minimum 4 characters and they are digits and letters only.</div>
+        </div>
+
+        <div class="form-group float_label">
+          <input type="text" class="form-control add1" formControlName="address_line1" (click)="noSpace()" name="addressline1"
+            placeholder="&nbsp;" autocomplete="off">
+          <label for="addressline1">Address line 1</label>
+          <div class="text text-danger error_msg"
+            *ngIf="personalAddress1.controls['address_line1'].invalid && personalAddress1.controls['address_line1'].dirty">
+            Please, make sure that Address line 1 contains only letters, numbers, apostrophe, hyphen and comma.
+          </div>
+        </div>
+        <div class="form-group float_label">
+          <input type="text" class="form-control add2" formControlName="address_line2" (click)="noSpace()" name="addressline2"
+            placeholder="&nbsp;" autocomplete="off">
+          <label for="addressline2">Address line 2 (Optional)</label>
+          <div class="text text-danger error_msg"
+            *ngIf="personalAddress1.controls['address_line2'].invalid && personalAddress1.controls['address_line2'].dirty">
+            Please, make sure that Address line 2 contains only letters, numbers, apostrophe, hyphen and comma.
+          </div>
+        </div>
+        <div class="form-group float_label">
+          <input type="text" class="form-control city" formControlName="city" (click)="noSpace()" name="town_city" placeholder="&nbsp;" autocomplete="off">
+          <label for="town_city">Town/City</label>
+          <div class="text text-danger error_msg"
+            *ngIf="personalAddress1.controls['city'].invalid && personalAddress1.controls['city'].dirty">
+            Please, make sure that you have used only letters, hyphen and apostrophe</div>
+        </div>
+        <div class="form-group float_label">
+          <input type="text" class="form-control region" formControlName="region" (click)="noSpace()" name="region" placeholder="&nbsp;" autocomplete="off">
+          <label for="region">Region</label>
+          <div class="text text-danger error_msg"
+            *ngIf="personalAddress1.controls['region'].invalid && personalAddress1.controls['region'].dirty">
+            Please, make sure that you are using letters only.
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-outline-primary btn-block" (click)="personalAddTemplate()">Previous</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary btn-block" [disabled]="personalAddress1.invalid"
+                (click)="submitAddr(personalAddress1.value)">Continue</button>
+            </div>
+         </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<div class="modal fade" id="kycwarn" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" style="margin-left: 41%; margin-top: -9%">
+      <div class="modal-content" style="margin: 20px; width: 83%; padding: 35px">
+        <div class="modal-body body_popup">
+          <div class="add_money">
+            <!-- <h4 style="text-align: center; margin-top: -20px;">KYC Alert</h4> -->
+            <p style="text-align: center; margin-bottom: 30px;">To activate your account you need to verify your identity.</p>
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-outline-primary btn-block" (click)="showPersonalInfo()" style="padding: 0.65rem 1.1rem;" data-dismiss="modal">I'll do it later</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-primary btn-block" style="padding: 0.65rem 1.1rem;"
+                 (click)="checkKYC()" data-dismiss="modal" onclick="cameraIdentification()">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal invitemodal" id="myModal" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal_size">
+    <div class="modal-content fontbtn">
+      <div class="modal-body">
+
+        <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+          <h4 class="modal-title header_txt text-center">Please, choose how to complete your identity verification</h4>
+          <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/webcam.png"></span>
+              </div>
+              <div class="p-2" (click)="webCamera()" data-dismiss="modal">
+                <p class="m-b-0 kyc_process">Use webcam</p>
+                <small>Make sure it supports high resolution</small>
+              </div>
+            </div>
+            <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/smartphone.png"></span>
+              </div>
+              <div class="p-2">
+                <p class="m-b-0 kyc_process">Use mobile camera through browser</p>
+                <small>You will receive a link on your registered e-mail</small>
+                <div  id="demo" class="collapse">
+                <button  (click)="KYClinkToMobile('android')" style="cursor:pointer" data-dismiss="modal"><img
+                  src="../../assets/images/androidicon.png" style=width:35px;;></button> or
+                 <button  (click)="KYClinkToMobile('ios')" style="cursor:pointer" data-dismiss="modal" ><img src="../../assets/images/iosicon.png"
+                  style=width:35px;;></button>
+                 </div>
+              </div>
+              <div class="ml-auto p-2  align-self-center" data-toggle="collapse" data-target="#demo">
+                <i class="fa fa-angle-right kyc_process" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="d-flex   flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/smartphonedwnld.png"></span>
+              </div>
+              <div class="p-2 ">
+                <p class="m-b-0 kyc_process">Install PayVoo app</p>
+                <small>Think long term. Download PayVoo app now on your Android/iOS device</small>
+              </div>
+            </div>
+
+            <div class="row justify-content-center m-t-10">
+                <div style="padding-bottom: 8px;" class="col-md-6 col-sm-6">
+                  <div (mouseover)="gplay=true" *ngIf="!gplay"><button type="button" class="btn btn-block btn-primary">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;"
+                          src="../../../../assets/images/google-play.png"></span>&nbsp;Get it on Google
+                      Play</button></div>
+                  <div (mouseout)="gplay=false" *ngIf="gplay"><button type="button" class="btn btn-block btn-outline-primary1">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px; height: 27px; width:23px"
+                          src="../../../../assets/images/playstore.png"></span>&nbsp;Get it on Google
+                      Play</button></div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div (mouseover)="ios=true" *ngIf="!ios"><button type="button" class="btn btn-block btn-primary">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;"
+                          src="../../../../assets/images/app-store.png"></span>&nbsp;Get it on App Store
+                    </button></div>
+                  <div (mouseout)="ios=false" *ngIf="ios"><button type="button" class="btn btn-block btn-outline-primary1">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;"
+                          src="../../../../assets/images/app-store_1.png"></span>Get it on App Store
+                    </button></div>
+                </div>
+              </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="modal" id="kycpopup" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">KYC Verification Steps</h4>
+            <button type="button" (click)="latestStatus()" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe *ngIf="kycIframe"  [src]="urlSafe"   allow="geolocation; microphone; camera" height='730px' width="100%"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="kycverifywarn" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" style="margin-left: 38%; margin-top: -9%">
+      <div class="modal-content">
+        <div class="modal-body body_popup">
+          <div class="add_money">
+            <h4 style="text-align: center;">Alert</h4>
+            <p style="text-align: center;">Please, make sure that the person is ready with the identity document and
+              completes the KYC in next 30 minutes.</p>
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-outline-primary btn-block"  data-dismiss="modal">I'll do it later</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-primary btn-block" (click)="KYClinkToMobile(platform_type)" data-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

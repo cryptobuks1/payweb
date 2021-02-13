@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sandboxfrontend
+  labels:
+    app: payvoo_sandbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payvoo_sandbox
+  template:
+    metadata:
+      labels:
+        app: payvoo_sandbox
+    spec:
+      containers:
+      - name: sandboxfrontend
+        image: 995966766395.dkr.ecr.us-west-2.amazonaws.com/payvoo/sandbox:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "0.1"
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always

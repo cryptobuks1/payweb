@@ -1,0 +1,36 @@
+<div class="container-fluid bg_wt">
+	<div class="logo_container_login1 login_logo">
+		<img src="../../../../../assets/images/logo_white1.png">
+	</div>
+	<div class="row">
+		<div class="col-lg-6 lft_bg_img bg_img_1">
+			&nbsp;
+		</div>
+		<div class="col-lg-6 rt_cont offset-lg-6 m_t_200 ">
+
+			<h2 class="header_bar">Enter your e-mail & password</h2>
+
+			<form class="login-form" [formGroup]="loginForm" (ngSubmit)="LoginAction(loginForm.value)">
+				<div class="form-group float_label">
+					<input type="email" class="form-control" placeholder="&nbsp;" autocomplete="off" required="required"
+						formControlName="userId" (keydown.space)="$event.preventDefault();">
+						<label>E-mail</label>
+						<div class="text text-danger error_msgs"
+						*ngIf="loginForm.controls['userId'].invalid && loginForm.controls['userId'].touched">
+						Please, enter a valid e-mail address
+					  </div>
+
+							</div>
+				<div class="form-group float_label">
+						<input [type]="type" class="form-control" placeholder="&nbsp;" autocomplete="off" required="required"
+						formControlName="password" (keydown.space)="$event.preventDefault();">
+            <label>Password</label>
+              <i *ngIf="eye" class="fa fa-eye pull-right p-eye" style="margin-top: -25px;" (click)="eyeHide()"></i>
+              <i *ngIf="slasheye" class="fa fa-eye-slash pull-right p-eye" style="margin-top: -25px;" (click)="eyeHide()"></i>
+				</div>
+				<button class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Login</button>
+				<a (click)="password()" class="pull-right forgot1">Forgot password ?</a>
+			</form>
+		</div>
+	</div>
+</div>

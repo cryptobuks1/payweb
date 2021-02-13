@@ -1,0 +1,137 @@
+<!-- <div class="panel panel-default m-t-20">
+  <div class="panel-body">
+   <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8" style="padding-top: 15px;">
+         <h4  style="margin:0;display:inline;">{{userData.data.userInfo.first_name}}&nbsp;{{userData.data.userInfo.last_name}}</h4>
+         <p class="pull-right" style="display:inline;">KYC status: <span class="text text-danger">{{KYCStatus}}</span></p>
+         <hr>
+       <div class="container" >
+         <p style="margin:0;display:inline;">Mobile number : <b>+{{ calling_code }} {{userData.data.userInfo.mobile}}</b></p>
+         <p style="display:inline;margin-left: 40px;">E-mail: <b>{{userData.data.userInfo.email}}</b></p>
+         <p style="display:inline;margin-left: 40px;">Gender: <b>{{userData.data.userInfo.gender}}</b></p>
+       </div>
+        <hr>
+       <ul class="container details" >
+           <li><p>Account type : <span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{userData.data.userInfo.account_type | titlecase }}</p></li>
+       </ul>
+       <hr>
+       <div class="col-sm-5 col-xs-6 tital " >Address line 1 : <span>{{userData.data.userInfo.address_line1}}</span></div>
+       <div class="col-sm-5 col-xs-6 tital " style="margin-top: 10px;">Address line 2 : <span>{{userData.data.userInfo.address_line2}}</span></div>
+       <hr>
+       <div class="col-sm-5 col-xs-6 tital " >Town/City : <span>{{userData.data.userInfo.city}}</span></div>
+       <div class="col-sm-5 col-xs-6 tital " style="margin-top: 10px;">Region : <span>{{userData.data.userInfo.region}}</span></div>
+       <div class="col-sm-5 col-xs-6 tital " style="margin-top: 10px;">Postal code : <span>{{userData.data.userInfo.postal_code}}</span></div>
+       <div class="col-sm-5 col-xs-6 tital " style="margin-top: 10px;">Country : <span>{{country_name}}</span></div>
+
+       <hr>
+      <button [disabled]="KYCStatus !== 'PENDING'" type="button" class="btn btn-info pull-right" onclick="cameraIdentification()" (click)="kycOption()">Submit for KYC</button>
+   </div>
+</div>
+</div> -->
+
+
+<div class="modal invitemodal" id="myModal" data-backdrop="static" data-keyboard="false">
+<div class="modal-dialog modal_size">
+ <div class="modal-content fontbtn">
+   <div class="modal-body">
+     
+     <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+       <h4 class="modal-title header_txt text-center">Please, choose how to complete your identity verification</h4>
+       <div class="d-flex flexborder">
+           <div class="p-2  align-self-center">
+             <span class="itm_crcl"><img src="../../../../assets/images/webcam.png"></span>
+           </div>
+           <div class="p-2" (click)="webCamera()" data-dismiss="modal">
+             <p class="m-b-0 kyc_process">Use webcam</p>
+             <small>Make sure it supports high resolution</small>
+           </div>
+         </div>
+         <div class="d-flex flexborder">
+           <div class="p-2  align-self-center">
+             <span class="itm_crcl"><img src="../../../../assets/images/smartphone.png"></span>
+           </div>
+           <div class="p-2">
+             <p class="m-b-0">Use mobile camera through browser</p>
+             <small>You will receive a link on your registered e-mail</small>
+             <div  id="demo" class="collapse">
+             <button (click)="KYClinkToMobile('android')" style="cursor:pointer" data-dismiss="modal"><img
+               src="../../assets/images/androidicon.png" style=width:35px;;></button> or
+              <button  (click)="KYClinkToMobile('ios')" style="cursor:pointer" data-dismiss="modal"><img src="../../assets/images/iosicon.png"
+               style=width:35px;;></button>
+              </div>
+           </div>
+           <div class="ml-auto p-2  align-self-center" data-toggle="collapse" data-target="#demo">
+             <i class="fa fa-angle-right kyc_process" style="font-size: 1.5rem;"></i>
+           </div>
+         </div>
+         <div class="d-flex   flexborder">
+           <div class="p-2  align-self-center">
+             <span class="itm_crcl"><img src="../../../../assets/images/smartphonedwnld.png"></span>
+           </div>
+           <div class="p-2 ">
+             <p class="m-b-0 kyc_process">Install PayVoo app</p>
+             <small>Think long term. Download PayVoo app now on your Android/iOS device</small>
+           </div>
+         </div>
+       
+         <div class="row justify-content-center m-t-10">
+             <div style="padding-bottom: 8px;" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 store_btn">
+               <div (mouseover)="gplay=true" *ngIf="!gplay"><button type="button" class="btn btn-block btn-primary">
+                   <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/google-play.png"></span>&nbsp;Get it on Google Play</button></div>
+               <div (mouseout)="gplay=false" *ngIf="gplay"><button type="button"
+                   class="btn btn-block btn-outline-primary1">
+                   <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/playstore.png"></span>&nbsp;Get it on Google Play</button></div>
+             </div>
+             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 store_btn">
+               <div (mouseover)="ios=true" *ngIf="!ios"><button type="button" class="btn btn-block btn-primary">
+                   <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store.png"></span>&nbsp;Get it on App Store
+                 </button></div>
+               <div (mouseout)="ios=false" *ngIf="ios"><button type="button" class="btn btn-block btn-outline-primary1">
+                   <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store_1.png"></span>&nbsp;Get it on App Store
+                 </button></div>
+ 
+             </div>
+           </div>
+ </div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal" id="kycpopup" data-backdrop="static" data-keyboard="false">
+<div class="modal-dialog  modal-lg">
+ <div class="modal-content">
+     <div class="modal-header">
+         <h4 class="modal-title">KYC Verification Steps</h4>
+         <button type="button" (click)="latestStatus()" class="close" data-dismiss="modal">&times;</button>
+   </div>
+   <div class="modal-body">
+     <iframe *ngIf="kycIframe"  [src]="urlSafe" allow="geolocation; microphone; camera"   height='730px' width="100%"></iframe>
+     <!-- allow='microphone camera' -->
+   </div>
+ </div>
+</div>
+</div>
+
+
+<div class="modal fade" id="kycverifywarn" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body body_popup">
+          <div class="add_money">
+            <!-- <img src="../../../../../assets/images/addicon.png" alt="path not correct" /> -->
+            <h4 style="text-align: center;">Alert</h4>
+            <p style="text-align: center;">Please, make sure that the person is ready with the identity document and 
+              completes the KYC in next 30 minutes.</p>
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-outline-primary btn-block"  data-dismiss="modal">I'll do it later</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-primary btn-block" (click)="KYClinkToMobile(platform_type)" data-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

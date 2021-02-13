@@ -1,0 +1,129 @@
+<!-- CHANGE PIN Starts -->
+<form [formGroup]="changePinForm" *ngIf="currentPinn"><br>
+    <div>
+        <div class="row">
+            <div class="text-center col-4">
+                <img src="assets/images/lockwithbackground.png " class="m-top float-right">
+            </div>
+            <div class="col-8 text_cntr">
+                <p class="ptext">Enter your current PIN</p>
+                <div class="row form-group float_label mar-left">
+                    <input [type]="password" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" formControlName="old_passcode" name="password"
+                        id="password" class="pin" minlength=4 maxlength=4 required>
+
+                    <button class="inpt_icn" type="button" (click)="showCurrent()" *ngIf="openEye">
+                        <i class="fa fa-eye eye"></i>
+                    </button>
+                    <button class="inpt_icn" type="button" (click)="hideCurrent()" *ngIf="closeEye">
+                        <i class="fa fa-eye-slash eye"></i>
+                    </button>
+
+                </div>
+                <p class="ptext">Enter your New PIN</p>
+                <div class="row form-group float_label mar-left">
+                    <input [type]="password1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" formControlName="new_passcode"  name="password"
+                        id="password" class="pin" minlength=4 maxlength=4 required>
+ 
+                    <button class="inpt_icn" type="button" (click)="showCurrent1()" *ngIf="openEye1">
+                        <i class="fa fa-eye eye"></i>
+                    </button>
+                    <button class="inpt_icn" type="button" (click)="hideCurrent1()" *ngIf="closeEye1">
+                        <i class="fa fa-eye-slash eye"></i>
+                    </button>
+ 
+                </div>
+            </div>
+        </div><br><br>
+
+        <div class="row btm-btns"> 
+            <div class="col-md-6">
+                <button type="button" class="btn btn-block btn-outline-primary" style="margin-bottom: 10px;border-radius:4px"
+                    data-toggle="modal" data-target="#cancel" (click) = "clearOldPinform()">Cancel</button>
+            </div>
+            <div class="col-md-6">
+                <button type="button"  [disabled]="changePinForm.invalid" class="btn btn-block btn-primary"
+                    style="margin-bottom: 10px;border-radius:4px" (click)="changePin(changePinForm.value)">Continue</button>
+                   
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+
+<!-- <form [formGroup]="changeNewPinForm">
+    <div *ngIf="newPin">
+        <div class="row">
+            <div class="text-center col-12">
+                <img src="assets/images/lockwithbackground.png" class="m-top">
+            </div>
+            <div class="col-12 text_cntr">
+
+                <p class="ptext">Enter your new PIN</p>
+                <div class="row form-group float_label mar-left">
+                    <input [type]="password" class="form-control" formControlName="new_passcode" name="password"
+                        id="password" class="pin" minlength=4 maxlength=4 required>
+
+                    <button class="inpt_icn" type="button" (click)="showCurrent()" *ngIf="openEye">
+                        <i class="fa fa-eye eye"></i>
+                    </button>
+                    <button class="inpt_icn" type="button" (click)="hideCurrent()" *ngIf="closeEye">
+                        <i class="fa fa-eye-slash eye"></i>
+                    </button>
+
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row btm-btns">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-block btn-outline-primary" style="margin-bottom: 10px;"
+                    data-toggle="modal" data-target="#cancel" (click)="clearNewPinform()">Cancel</button>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-block btn-primary" style="margin-bottom: 10px;" data-toggle="modal"
+                    data-target="#success" [disabled]="changeNewPinForm.invalid"
+                    (click)="changePin(changeNewPinForm.value)">Continue</button>
+            </div>
+        </div>
+
+    </div>
+
+</form> -->
+
+<div class="modal fade" id="success" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" >
+            <div class="modal-body body_popup">
+                <div class="col-lg-12 text-center">
+                    <img src="../../../assets/images/success.png">                
+                    <h5 class="modal-text">PIN has been updated successfully</h5>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-block btn-primary col-8 mx-auto"
+                            style="margin-bottom: 10px;" data-dismiss="modal">Done</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="fail" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" >
+            <div class="modal-body body_popup">
+                <div class="col-lg-12 text-center">                    
+                    <img src="../../../assets/images/cancel.png">
+                    <h5 class="modal-text" >Current PIN is invalid</h5>                   
+                    <div class="col-12">                       
+                        <button type="button" class="btn btn-block btn-primary col-8 mx-auto"
+                            style="margin-bottom: 10px;" data-dismiss="modal" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CHANGE PIN Ends -->

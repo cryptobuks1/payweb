@@ -1,0 +1,523 @@
+<!-- <p>cards works!</p>
+<button type="button" routerLink="/home/physicalcards">Physical cards</button>
+ -->
+<div *ngIf="phys">
+  <div class="container-fluid page_container">
+    <div class="page_header">
+      <div class="header">
+        Cards
+      </div>
+      <ul>
+        <!-- <li>Accounts/cards</li> -->
+        <li>Cards/Physical cards</li>
+      </ul>
+    </div>
+
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <a data-target="#Physical" data-toggle="tab" class="nav-link active" (click)="closeVirtual()">Physical</a>
+        </li>
+        <li class="nav-item">
+          <a data-target="#Virtual" data-toggle="tab" class="nav-link" (click)="closePhysical()">Virtual</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a data-target="#Employees" data-toggle="tab" class="nav-link">Employees</a>
+          </li> -->
+      </ul>
+    </div>
+  </div>
+
+
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="Physical">
+
+      <div class="container-fluid">
+        <div class="title_cnt">
+          <div class="title">
+           All cards
+          </div>
+          <div class="rt_cnt">
+            <div id="AddNew" class="add_new" data-toggle="modal" data-backdrop="static" data-target="#exampleModal">
+              Add new card
+            </div>
+            <div id="AddNew" style="padding-left: 15px;" class="add_new" data-toggle="modal" data-backdrop="static" data-target="#corporateCard">
+              Link a corporate card
+            </div>
+            <div class="acc_style">
+              <i class="fa fa fa-th-large" (click)="gridView()" [class.active]="gridActive"></i>
+              <i class="fa fa fa-th-list" (click)="listView()" [class.active]="listActive"></i>
+            </div>
+            <div class="srch_cnt">
+              <input type="text" name="key" class="form-control" size="25" placeholder="Search..." autocomplete="off"
+                (keydown.space)="$event.preventDefault();" (focusout)="search_accounts = ''">
+              <i class="fa fa-search search_open"></i>
+            </div>
+            <!-- <div class="acc_style">
+                <i class="fa fa fa-th-large" (click)="gridView()" [class.active]="gridActive"></i>
+                <i class="fa fa fa-th-list" (click)="listView()" [class.active]="listActive"></i>
+              </div>
+              <div class="srch_cnt">
+                <input type="text" name="key" class="form-control" size="25" placeholder="Search...">
+                <i class="fa fa-search search_open"></i>
+              </div> -->
+          </div>
+        </div>
+      </div>
+
+      <img class="allCards" src="../../../assets/images/cards/first - front.jpg" (click)="onPhys()">
+      <img class="allCards" src="../../../assets/images/cards/black-front-brushed-aluminium-no-visa-logo.jpg">
+      <!-- <div class="container-fluid">
+            <div [ngClass]="layout === true ? 'acc_lst card_style' : 'acc_lst list_style'">
+              <div class="acc_cont">
+                <div class="acc_card">
+                  
+                    <div>
+                        <span>Pending activation</span><span class="pull-right itm_crcl">M</span>
+                      </div>
+                      <div class="m-top">
+                        <h5>Marvin Blazevski</h5>
+                        <span>*9879</span><span class="pull-right"><img src="../../../assets/images/cards/mastercard.png"
+                            class="card_symb"></span>
+                      </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>-->
+    </div>
+
+    <div class="modal hide" id="exampleModal">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+          <div class="modal-body ">
+
+            <div class="text-center">
+              <span class="modal_title">Choose a type of card</span>
+            </div>
+            <div class="row" style="text-align: center;">
+              <div class="col-md-4">
+                <img class="allCards3" (click)="onOrange()" data-toggle="modal" data-target="#ORANGE" src="../../../../assets/images/cards/easy-front.jpg"><br><br>
+                <h6 style="color:black">PayVoo Orange</h6>
+                <label class="switch">
+                  <input type="checkbox" (change)="onChange1()">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <img class="allCards3" (click)="onBlue()" data-toggle="modal" data-target="#BLUE"
+                  src="../../../assets/images/cards/first - front.jpg"><br><br>
+                  <h6 style="color:black">PayVoo Blue</h6>
+                <label class="switch">
+                  <input type="checkbox" (change)="onChange1()">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <img class="allCards3" (click)="onBlack()" data-toggle="modal" data-target="#BLACK" src="../../../assets/images/cards/black-front-brushed-aluminium-no-visa-logo.jpg"><br><br>
+                <h6 style="color:black">PayVoo Black</h6>
+                <label class="switch">
+                  <input type="checkbox" (change)="onChange1()">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row choose">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block"  data-toggle="modal" data-target="#PIN" [disabled]='!isVisible'
+                (click)="onClick1()">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal hide" id="ORANGE">
+      <div class="modal-dialog modal-lg forPin">
+        <div  style="width:130%;margin-top: -22px;margin-left: -70px;" class="modal-content">
+          <div class="modal-body">
+             <div class="text-center container">
+              <h4>PayVoo Orange</h4>
+              <img class="allCards4" src="../../../../assets/images/cards/easy-front.jpg">
+            </div><br>
+              <div class="row">
+                <div class="col-md-6" style="margin-left: 133px;max-width: 41%;">
+                  <p><i class="fa fa-check tick"></i>&nbsp; One digital wallet</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Multi-currency account</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Free Euro IBAN account</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; 1 physical card</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Fast card delivery within EU available</p>
+                </div>
+                <div class="col-md-6" style="margin-left: -22px;max-width: 44%;">
+                  <p><i class="fa fa-check tick"></i>&nbsp; 1 virtual card</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Affordable wire-transfers</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Real and fair exchange rates</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Health insurance for travelling abroad</p>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom: 25px;margin-top: 15px;">
+                <div class="col-md-6 pull-right">
+                  <button class="btn btn-outline-primary btn-block" style="margin-left: 130px; width: 60%;"
+                    data-dismiss="modal">Go Back</button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-primary btn-block"  style="width: 65%;" data-dismiss="modal" (click)="getOrange()">Get PayVoo Orange for 10/month</button>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal hide" id="BLUE">
+      <div class="modal-dialog modal-lg forPin">
+        <div  style="width:130%;margin-top: -22px;margin-left: -70px;" class="modal-content">
+          <div class="modal-body">
+             <div class="text-center container">
+              <h4>PayVoo Blue</h4>
+              <img class="allCards4" src="../../../../assets/images/cards/first - front.jpg">
+            </div><br>
+              <div class="row">
+                <div class="col-md-6" style="margin-left: 133px;max-width: 41%;">
+                  <p><i class="fa fa-check tick"></i>&nbsp; One digital wallet</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Multi-currency account</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Free Euro IBAN account</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; 1 physical card</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Fast card delivery within EU available</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; 1 virtual card</p>
+                </div>
+                <div class="col-md-6" style="margin-left: -22px;max-width: 44%;">
+                  <p><i class="fa fa-check tick"></i>&nbsp; Multiple free ATM withdrawals per month</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; 3 free-wire transfers per month</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Real and fair exchange rates</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Various multiple insurances included</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; One additional virtual card</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; One additional physical card</p>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom: 25px;margin-top: 15px;">
+                <div class="col-md-6 pull-right">
+                  <button class="btn btn-outline-primary btn-block" style="margin-left: 130px; width: 60%;"
+                    data-dismiss="modal">Go Back</button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-primary btn-block"  style="width: 65%;" data-dismiss="modal" (click)="getBlue()">Get PayVoo Blue for 0/month</button>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal hide" id="BLACK">
+      <div class="modal-dialog modal-lg forPin">
+        <div  style="width:130%;margin-top: -22px;margin-left: -70px;" class="modal-content">
+          <div class="modal-body">
+             <div class="text-center container">
+              <h4>PayVoo Black</h4>
+              <img class="allCards4" src="../../../../assets/images/cards/black-front-brushed-aluminium-no-visa-logo.jpg">
+            </div><br>
+              <div class="row">
+                <div class="col-md-6" style="margin-left: 133px;max-width: 41%;">
+                  <p><i class="fa fa-check tick"></i>&nbsp; One digital wallet</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Multi-currency account</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Free Euro IBAN account</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; 1 physical card</p>
+                  <p><i class="fa fa-check tick"></i>&nbsp; Fast card delivery within EU available</p>
+                </div>
+                <div class="col-md-6" style="margin-left: -22px;max-width: 44%;">
+                  <p><i class="fa fa-check tick"></i>&nbsp; One virtual card</p>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom: 25px;margin-top: 15px;">
+                <div class="col-md-6 pull-right">
+                  <button class="btn btn-outline-primary btn-block" style="margin-left: 130px; width: 60%;"
+                    data-dismiss="modal">Go Back</button>
+                </div>
+                <div class="col-md-6">
+                  <button class="btn btn-primary btn-block"  style="width: 65%;" data-toggle="modal" data-target="#PLAN" (click)="closeBlack()">Get PayVoo Blue for 2000/month</button>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal hide" id="PLAN">
+      <div class="modal-dialog modal-lg forPin">
+        <div  style="width:115%;margin-left: -30px;" class="modal-content">
+          <div class="modal-body">
+            <div class="text-center container">
+             <h4 style="margin-top: 30px; margin-bottom: 40px;">PayVoo Black</h4><br>  
+             <span>This plan is a minimum-12 month contract.<br>By proceeding, you agree to the General Terms and Conditions.<br>Please, confirm that 2000 will be billed annually.</span>
+            </div>
+            <div class="row" style="margin-bottom: 25px;margin-top: 80px;">
+              <div class="col-md-6 pull-right">
+                <button class="btn btn-outline-primary btn-block" style="margin-left: 130px; width: 60%;"
+                  data-dismiss="modal">Go Back</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-primary btn-block"  style="width: 60%;" data-dismiss="modal" (click)="getBlack()">Confirm</button>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal hide" id="PIN">
+      <div class="modal-dialog modal-lg forPin">
+        <div class="modal-content">
+
+          <div class="modal-body">
+
+            <div class="text-center container">
+              <br>
+              <h4>Create a PIN code for your new card</h4>
+              <p style="margin-top:45px;" class="header_bar">Create 4-digit pin code</p>
+              <div class="form-group float_label pin_cnt">
+                <input type="password"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  class="form-control nubmers" formControlName="passcode_pin" name="password" id="password" class="pin"
+                  minlength=4 maxlength=4 required>
+                <div class="text text-danger error_msgs" style="margin-top: 5px;" *ngIf="checkPin">
+                  Please, enter a 4-digit PIN.
+                </div>
+                <div>
+                  <button class="inpt_icn" type="button" onclick="showPassword()"
+                    (click)="showMyContainer=!showMyContainer" *ngIf="!showMyContainer">
+                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                  </button>
+                  <button class="inpt_icn" type="button" onclick="hidePassword()"
+                    (click)="showMyContainer=!showMyContainer" *ngIf="showMyContainer">
+
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <p style="margin-top:40px;">Confirm your 4-digit pin code</p>
+              <div class="form-group float_label pin_cnt">
+                <input [type]="passwordType"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  class="form-control nubmers" formControlName="confirm_pin" name="password" id="confirm_pin"
+                  class="pin" minlength=4 maxlength=4 (change)="forPin()">
+                <div class="text text-danger error_msgs" style="margin-top: 5px;" *ngIf="checkPin">
+                  The PINs you typed do not match!
+                </div>
+                <div>
+                  <button class="inpt_icn" type="button" (click)="togglePassword()"
+                    (click)="showMyContainer1=!showMyContainer1" *ngIf="!showMyContainer1">
+                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                  </button>
+                  <button class="inpt_icn" type="button" (click)="togglePassword()"
+                    (click)="showMyContainer1=!showMyContainer1" *ngIf="showMyContainer1">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row" align="center"style="padding-top:60px; padding-bottom: 20px;">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal"
+                (click)="onClose5()">Cancel</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#delivery"
+                [disabled]='!confirmPin' (click)="onClick2()">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <div class="modal hide" id="delivery">
+      <div class="modal-dialog modal-lg forPin">
+        <div class="modal-content">
+
+          <div class="modal-body" style="text-align: center;">
+
+            <div class="text-center container">
+              <br>
+              <h4>Confirm your delivery address</h4>
+            </div><br><br>
+            <h3>Varna, Bulgaria<br>9000<br>western industrial zone</h3><br><br>
+            <p style="cursor: pointer; color:#0909c3;" data-toggle="modal" data-target="#address" (click)="onClick3()">
+              Change your address</p>
+          </div>
+          <div class="row" align="center" style="padding-top:60px; padding-bottom: 20px;">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal"
+                (click)="onClose2()">Cancel</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#order"
+                (click)="onClick4()">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal hide" id="address">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body" style="padding-left: 40px; padding-right: 40px;">
+          <div class="text-center">
+            <span class="modal_title">Enter delivery address</span>
+          </div><br><br>
+          <div class="form-group float_label">
+            <select class="form-control" formControlName="country_id" id="contryname">
+              <option value="" disabled selected hidden>Choose country</option>
+              <option *ngFor="let x of countryData">{{x.country_name}}</option>
+            </select>
+            <label for="contryname">Country</label>
+          </div>
+          <div class="form-group float_label">
+            <input type="text" class="form-control m_t_20 postal" placeholder="&nbsp;" autocomplete="off" minlength=4
+              maxlength=9>
+            <label>Postal code</label>
+          </div>
+          <div class="form-group float_label">
+            <input type="text" class="form-control m_t_20 add1" placeholder="&nbsp;" autocomplete="off"
+              formControlName="address_line1">
+            <label>Address line 1</label>
+          </div>
+          <div class="form-group float_label">
+            <input type="text" class="form-control m_t_20 add2" placeholder="&nbsp;" autocomplete="off">
+            <label>Address line 2 (Optional)</label>
+          </div>
+          <div class="form-group float_label">
+            <input type="text" class="form-control m_t_20" placeholder="&nbsp;" autocomplete="off">
+            <label>City</label>
+          </div>
+        </div>
+        <div class="row" align="center" style="padding-top:10px; padding-bottom: 20px;">
+          <div class="col-md-6">
+            <button class="btn btn-outline-primary btn-block" data-dismiss="modal"
+              (click)="onClose3()">Cancel</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#order"
+              (click)="onClick5()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal model_top" id="corporateCard">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content linkExisting" align="center">
+        <div class="modal-body ">
+          <h3 class="card_header">Link existing card</h3><br>
+          <div class="m-t-20 container">
+              <div class="form-group float_label">
+                  <input type="text" class="form-control" placeholder="&nbsp;">
+                  <label>Card number</label>
+              </div>
+          </div><br>
+          <div class="footer">
+            <div class="row" >
+              <div class="col-md-6" >
+                  <button class="btn btn-outline-primary btn-block" data-dismiss="modal"  (click)="onClick1()">Cancel</button>
+              </div>
+              <div class="col-md-6">
+                  <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#linked" 
+                  (click)="onClick10()">Continue</button>
+              </div>
+          </div>
+        </div>    
+          </div>    
+        </div>
+      </div>
+    </div>
+
+  <div class="modal hide" id="linked">
+    <div class="modal-dialog" role="document" style="margin-top: 95px;">
+      <div class="modal-content" align="center">
+        <div class="modal-body">
+          <div class="text-center">
+            <img width="145px" src="../../../../assets/images/tick_icon.png">
+          </div><br><br><br>
+          <h5 style="margin-top: -30px; margin-bottom: -20px;">Your card was successfully linked!</h5><br><br>
+        </div>
+        <div class="panel-footer">
+          <div class="form-group col-md-12">
+            <button class="btn btn-primary btn-block" data-dismiss="modal" data-backdrop="static">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+
+
+  <div class="modal hide" id="order">
+    <div class="modal-dialog" role="document" style="margin-top: 75px;">
+      <div class="modal-content" align="center">
+        <div class="modal-body">
+          <div class="text-center">
+            <img width="145px" src="../../../../assets/images/tick_icon.png">
+          </div><br><br><br>
+          <h4 style="margin-top: -30px; margin-bottom: -20px;">Your card has been ordered!</h4><br><br>
+        </div>
+        <div class="panel-footer">
+          <div class="form-group col-md-12">
+            <button class="btn btn-primary btn-block" (click)="onClick6()">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="physStt">
+  <app-physcardsettings></app-physcardsettings>
+</div>
+<div *ngIf="forVirtual">
+  <app-newvirtual></app-newvirtual>
+</div>
+<div class="modal model_top" id="existingCard">
+  <div class="modal-dialog" role="document" style="margin-top: 5px;">
+    <div class="modal-content">
+      <div class="modal-body ">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 align="center" style="margin-top: 20px;">Type your card number</h4>
+      </div> <br>
+      <div align="center" class="cardStyle">
+        <div style="margin-top: 10px;">
+          <h5 class="pay">Pay</h5>
+          <h5 class="voo">Voo</h5>
+        </div>
+        <div style="width: 80%;margin-left: 30px;" class="form-group float_label cardN">
+          <input type="text" class="form-control" maxlength="23" minlength="19" mask="0000 0000 0000 0000" style= "margin-top: 50px;margin-left: -35px;border-bottom:2px solid #a2a7ac;" placeholder="&nbsp;">
+          <label> Card number </label>
+        </div><br>
+      </div> <br>
+      <div class="panel-footer">
+        <button class="btn btn-primary btn-block linkCard" data-toggle="modal" data-backdrop="static" data-target="#linked" (click)="onLink()">Link your card</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal hide" id="linked">
+  <div class="modal-dialog" role="document" style="margin-top: 95px;">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center">
+          <img width="145px" src="../../../../assets/images/tick_icon.png">
+        </div><br><br><br>
+        <h5 style="margin-top: -30px; margin-bottom: -20px;" align="center">Your card was successfully linked!</h5><br><br>
+      </div>
+      <div class="panel-footer">
+        <div class="form-group col-md-4">
+          <button style="margin-left: 170px; margin-bottom: 35px; padding-right: 90px; padding-left: 40px;"
+            class="btn btn-primary btn-block" data-dismiss="modal" data-backdrop="static">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,349 @@
+<div class="container-fluid">
+  <div class="title_cnt">
+    <div class="title">
+      All accounts
+    </div>
+    <div class="rt_cnt">
+      <div id="AddNew" class="add_new" data-toggle="modal" data-target="#exampleModal4" (click)="statusCurrency()">
+        Add new account
+      </div>
+      <div class="acc_style">
+        <i class="fa fa fa-th-large" (click)="gridView()" [class.active]="gridActive"></i>
+        <i class="fa fa fa-th-list" (click)="listView()" [class.active]="listActive"></i>
+      </div>
+      <div class="srch_cnt">
+        <input type="text" name="key" class="form-control" [(ngModel)]="search_accounts" size="25"
+        placeholder="Search..." autocomplete="off" (keydown.space)="$event.preventDefault();" (focusout)="search_accounts = ''">
+        <i class="fa fa-search search_open"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" data-backdrop="static" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-slideout" role="document">
+  <div class="modal-content ov_y_auto cntry_lst_mdl">
+    <button type="button" class="close close_crcl" style="height: 30px; width:30px;top: 15px;" data-dismiss="modal" aria-label="Close" (click)="searchText=''">
+      <i class="fa fa-times"></i>
+    </button>
+      <div class="modal-title ctry_lst_title" id="exampleModalLabel">Choose which currency account you would like to add</div>
+      <div class="input-group mb-3">
+        <input style="box-shadow: none;" type="text" class="form-control bor-rem" name="key1" (keydown.space)="$event.preventDefault();" [(ngModel)]="searchText" placeholder="Search currency" (keyup)="searchCurrencyCountry(searchCurrency)">
+        <div class="input-group-append" autocomplete="off">
+          <button style="box-shadow: none;" class="btn btn-outline-secondary search_btn" type="button" ><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+
+      <div class="ctry_cnt">
+        <ul class="ctry_lst">
+          <li *ngFor="let item of filteredCurrencyData | isoCurrencySearch:searchText" (click)="save_outage_item(item)"
+          data-toggle="modal" data-target="#exampleModalCenter">
+          <div class="ctry_img">
+            <i class="flag_cont flag_cont_bulg" *ngIf="item.country_id==1"></i>
+            <i class="flag_cont flag_cont_croatian" *ngIf="item.country_id==7"></i>
+            <i class="flag_cont flag_cont_czech" *ngIf="item.country_id==9"></i>
+            <i class="flag_cont flag_cont_danish" *ngIf="item.country_id==12"></i>
+            <i class="flag_cont flag_cont_swedan " *ngIf="item.country_id==19"></i>
+            <i class="flag_cont flag_cont_romania " *ngIf="item.country_id==31"></i>
+            <i class="flag_cont flag_cont_euro" *ngIf="item.country_id==2"></i>
+            <i class="flag_cont flag_cont_hungarian" *ngIf="item.country_id==21"></i>
+            <i class="flag_cont flag_cont_polish" *ngIf="item.country_id==29"></i>
+            <i class="flag_cont flag_cont_british" *ngIf="item.country_id==20"></i>
+            <i class="flag_cont flag_cont_us" *ngIf="item.country_id==16"></i>
+            <i class="flag_cont flag_cont_india" *ngIf="item.country_id==5"></i>
+            <i class="flag_cont flag_cont_us" *ngIf="item.country_id==35"></i>
+            <i class="flag_cont flag_cont_swiss" *ngIf="item.country_id==37"></i>
+                    <i class="flag_cont flag_cont_iceland" *ngIf="item.country_id==38"></i>
+                    <i class="flag_cont flag_cont_norway" *ngIf="item.country_id==39"></i>
+                    <i class="flag_cont flag_cont_swiss" *ngIf="item.country_id==40"></i>
+          </div>
+          <div class="ctry_crncy_cnt">
+            <div class="ctry_crncy">
+              {{item.currency}}
+            </div>
+            <div class="ctry_title">{{item.country_name}}</div>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-center" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="cnf_cnt">
+        <div class="cnf_title">
+          Confirm adding account
+        </div>
+        <div class="cnf_img_cnt">
+
+          <i class="flag_cont2x flag_cont_bulg" *ngIf="country_id_currency==1"></i>
+          <i class="flag_cont2x flag_cont_croatian" *ngIf="country_id_currency==7"></i>
+          <i class="flag_cont2x flag_cont_czech" *ngIf="country_id_currency==9"></i>
+          <i class="flag_cont2x flag_cont_danish" *ngIf="country_id_currency==12"></i>
+          <i class="flag_cont2x flag_cont_swedan " *ngIf="country_id_currency==19"></i>
+          <i class="flag_cont2x flag_cont_romania " *ngIf="country_id_currency==31"></i>
+          <i class="flag_cont2x flag_cont_euro" *ngIf="country_id_currency==2"></i>
+          <i class="flag_cont2x flag_cont_hungarian" *ngIf="country_id_currency==21"></i>
+          <i class="flag_cont2x flag_cont_polish" *ngIf="country_id_currency==29"></i>
+          <i class="flag_cont2x flag_cont_british" *ngIf="country_id_currency==20"></i>
+          <i class="flag_cont2x flag_cont_us" *ngIf="country_id_currency==16"></i>
+          <i class="flag_cont2x flag_cont_india" *ngIf="country_id_currency==5"></i>
+          <i class="flag_cont2x flag_cont_us" *ngIf="country_id_currency==35"></i>
+          <i class="flag_cont2x flag_cont_iceland" *ngIf="country_id_currency==38"></i>
+          <i class="flag_cont2x flag_cont_switzerland" *ngIf="country_id_currency==37"></i>
+          <i class="flag_cont2x flag_cont_norway" *ngIf="country_id_currency==39"></i>
+          <i class="flag_cont2x flag_cont_switzerland" *ngIf="country_id_currency==40"></i>
+        </div>
+        <form #cfb="ngForm">
+          <p>Would you like to add <br><b>{{country_name}}</b> account?</p>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <button style="border-radius:4px" type="button" class="btn btn-block btn-outline-primary" (click)="searchText=''" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <button style="border-radius:4px" class="btn btn-primary btn-block" (click)="createAccount()"
+                data-dismiss="modal">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="container-fluid">
+  <div [ngClass]="layout === true ? 'acc_lst card_style' : 'acc_lst list_style'">
+    <div class="acc_cont" *ngFor="let item of accountData | filter2: search_accounts">
+      <div class="acc_card">
+        <div class="acc_title">{{ item.currency }}</div>
+        <div class="acc_val">
+          <span *ngIf="item.currency=='BGN'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='HRK'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='CZK'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='DKK'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='SEK'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='RON'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='EUR'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='HUF'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='GBP'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='GIP'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='INR'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='PLZ'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='USD'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='PLN'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='CHF'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='ISK'"> {{ item.currency }} {{item.balance}}</span>
+          <span *ngIf="item.currency=='NOK'"> {{ item.currency }} {{item.balance}}</span>
+        </div>
+        <div class="acc_flag">
+          <i class="flag_cont flag_cont_bulg" *ngIf="item.currency=='BGN'"></i>
+          <i class="flag_cont flag_cont_croatian" *ngIf="item.currency=='HRK'"></i>
+          <i class="flag_cont flag_cont_czech" *ngIf="item.currency=='CZK'"></i>
+          <i class="flag_cont flag_cont_danish" *ngIf="item.currency=='DKK'"></i>
+          <i class="flag_cont flag_cont_swedan " *ngIf="item.currency=='SEK'"></i>
+          <i class="flag_cont flag_cont_romania " *ngIf="item.currency=='RON'"></i>
+          <i class="flag_cont flag_cont_euro" *ngIf="item.currency=='EUR'"></i>
+          <i class="flag_cont flag_cont_hungarian" *ngIf="item.currency=='HUF'"></i>
+          <i class="flag_cont flag_cont_polish" *ngIf="item.currency=='PLZ'"></i>
+          <i class="flag_cont flag_cont_british" *ngIf="item.currency=='GBP'"></i>
+          <i class="flag_cont flag_cont_us" *ngIf="item.currency=='GIP'"></i>
+          <i class="flag_cont flag_cont_czech" *ngIf="item.currency=='INR'"></i>
+          <i class="flag_cont flag_cont_us" *ngIf="item.currency=='USD'"></i>
+          <i class="flag_cont flag_cont_polish" *ngIf="item.currency=='PLN'"></i>
+          <i class="flag_cont flag_cont_swiss" *ngIf="item.currency=='CHF'"></i>
+                    <i class="flag_cont flag_cont_iceland" *ngIf="item.currency=='ISK'"></i>
+                    <i class="flag_cont flag_cont_norway" *ngIf="item.currency=='NOK'"></i>
+        </div>
+        <!-- <div class="acc_status">
+          <button type="button" class="btn btn-sm active" *ngIf="item.status=='0'"
+          (click)="activateAccount(item)">Activate</button>
+          <button type="button" class="btn btn-sm inactive" *ngIf="item.status=='1'"
+          (click)="deactivateAccount(item)">Deactivate</button>
+        </div> -->
+        <div style="display: flex; justify-content: flex-end">
+          <ui-switch floated="right" [checked]="item.status === 1" (change)="setAccountStatus($event, item)"[disabled]="item.currency=='EUR'"></ui-switch>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="success" class="modal fade" id="add_money" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body body_popup">
+        <div class="add_money">
+          <img src="../../../../../assets/images/addicon.png" alt="path not correct" />
+          <h4>Add € 10 or more</h4>
+          <p>Your account will be ready to use when you add money to it.You can spend or withdraw this money later</p>
+            <div class="row">
+              <div style="padding-bottom: 8px;" class="col-md-6">
+                <button class="btn btn-outline-primary btn-block" (click)="skip()">Skip</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-primary btn-block" onclick="cameraIdentification()" (click)="addMoney()">Add Money</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="kycwarn1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body body_popup">
+          <div class="add_money">
+            <!-- <img src="../../../../../assets/images/addicon.png" alt="path not correct" /> -->
+            <h4 style="text-align: center;">Verify your identity</h4>
+            <p style="text-align: center;">Please, verify your identity in order to be able to use the payments functionalities of PayVoo</p>
+            <div class="row">
+              <div style="padding-bottom: 8px;" class="col-md-6">
+                <button class="btn btn-outline-primary btn-block"  data-dismiss="modal">I'll do it later</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-primary btn-block" (click)="gotoProfilePage()"  data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="modal invitemodal" id="myModal_addMoney" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal_size">
+    <div class="modal-content fontbtn">
+      <div class="modal-body">
+
+        <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+          <h4 class="modal-title header_txt text-center">Please, choose how to complete your identity verification</h4>
+          <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/webcam.png"></span>
+              </div>
+              <div class="p-2" (click)="webCamera()" data-dismiss="modal">
+                <p class="m-b-0 kyc_process">Use webcam</p>
+                <small>Make sure it supports high resolution</small>
+              </div>
+            </div>
+            <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/smartphone.png"></span>
+              </div>
+              <div class="p-2">
+                <p class="m-b-0 kyc_process">Use mobile camera through browser</p>
+                <small>You will receive a link on your registered e-mail</small>
+                <div  id="demo" class="collapse">
+                  <button  (click)="KYClinkToMobile('android')" data-dismiss="modal"><img
+                    src="../../assets/images/androidicon.png" style=width:35px;;></button> or
+                    <button  (click)="KYClinkToMobile('ios')" data-dismiss="modal"><img src="../../assets/images/iosicon.png"
+                      style=width:35px;;></button>
+                    </div>
+                  </div>
+                  <div class="ml-auto p-2  align-self-center" data-toggle="collapse" data-target="#demo">
+                    <i class="fa fa-angle-right kyc_process" style="font-size: 1.5rem;"></i>
+                  </div>
+                </div>
+                <div class="d-flex   flexborder">
+                  <div class="p-2  align-self-center">
+                    <span class="itm_crcl"><img src="../../../../assets/images/smartphonedwnld.png"></span>
+                  </div>
+                  <div class="p-2 ">
+                    <p class="m-b-0 kyc_process">Install PayVoo app</p>
+                    <small>Think long term. Download PayVoo app now on your Android/iOS device</small>
+                  </div>
+                </div>
+
+                <div class="row justify-content-center m-t-10">
+                  <div style="padding-bottom: 8px;" class="col-md-6 col-sm-6">
+                    <div (mouseover)="gplay=true" *ngIf="!gplay"><button type="button" (click)="getApp()" class="btn btn-block btn-primary">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/google-play.png"></span>&nbsp;Get it on Google Play</button></div>
+                      <div (mouseout)="gplay=false" *ngIf="gplay"><button type="button" (click)="getApp()"
+                        class="btn btn-block btn-outline-primary1">
+                        <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/playstore.png"></span>&nbsp;Get it on Google Play</button></div>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <div (mouseover)="ios=true" *ngIf="!ios"><button type="button" (click)="getApp()" class="btn btn-block btn-primary">
+                          <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store.png"></span>&nbsp;Get it on App Store
+                        </button></div>
+                        <div (mouseout)="ios=false" *ngIf="ios"><button type="button" (click)="getApp()" class="btn btn-block btn-outline-primary1">
+                          <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store_1.png"></span>&nbsp;Get it on App Store
+                        </button></div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row justify-content-center m-t-10">
+                <!-- <div class="col-md-6 col-sm-6">
+                  <div (mouseover)="gplay=true" *ngIf="!gplay"><button type="button" (click)="getApp()" class="btn btn-block btn-primary">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/google-play.png"></span>&nbsp;Get it on Google Play</button></div>
+                  <div (mouseout)="gplay=false" *ngIf="gplay"><button type="button" (click)="getApp()"
+                      class="btn btn-block btn-outline-primary1">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/playstore.png"></span>&nbsp;Get it on Google Play</button></div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div (mouseover)="ios=true" *ngIf="!ios"><button type="button" (click)="getApp()" class="btn btn-block btn-primary">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store.png"></span>&nbsp;Get it on App Store
+                    </button></div>
+                  <div (mouseout)="ios=false" *ngIf="ios"><button type="button" (click)="getApp()" class="btn btn-block btn-outline-primary1">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store_1.png"></span>&nbsp;Get it on App Store
+                    </button></div>
+
+                </div>  -->
+              </div>
+            </div>
+
+            <div class="modal" id="kycpopup_addMoney" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">KYC Verification Steps</h4>
+                        <button type="button" (click)="latestStatus()" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <iframe *ngIf="kycIframe"  [src]="urlSafe" allow="geolocation; microphone; camera" height='730px' width="100%"></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="kycverifywarn" role="dialog">
+              <div class="modal-dialog modal-dialog-centered" style="margin-left: 38%; margin-top: -9%">
+                <div class="modal-content">
+                  <div class="modal-body body_popup">
+                    <div class="add_money">
+                      <h4 style="text-align: center;">Alert</h4>
+                      <p style="text-align: center;">Please, make sure that the person is ready with the identity document and
+                        completes the KYC in next 30 minutes.</p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <button class="btn btn-outline-primary btn-block"  data-dismiss="modal">I'll do it later</button>
+                        </div>
+                        <div class="col-md-6">
+                          <button class="btn btn-primary btn-block" (click)="KYClinkToMobile(platform_type)" data-dismiss="modal">Ok</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

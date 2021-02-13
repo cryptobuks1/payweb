@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="logo_container">
+    <img src="../../../../../assets/images/logo_white1.png">
+  </div>
+  <ng-template [ngIf]='businessDetailTemplate'>
+  <form [formGroup]="businessDetailForm"> 
+  <div class="row">
+    <div class="col-lg-6 lft_bg_img bg_img_2">
+      &nbsp;
+    </div>
+    <div class="col-lg-6 rt_cont offset-lg-6">
+      <div class="m_t_200">
+        <h2 class="header_bar global_font">Enter your business details</h2>
+      </div>
+      <div class="form-group float_label">
+          <select class="form-control" formControlName="country_of_incorporation" id="contryname">
+
+             <option [ngValue]= "0" disabled selected hidden>Choose country</option>
+              <option *ngFor="let x of countryData" [ngValue]="x.country_id">{{x.country_name}}</option>
+         </select>
+        <label for="COI">Country of incorporation</label> 
+      </div>
+      <div class="form-group float_label">
+        <input type="text" class="form-control legal" id="legalName" name="legalName" formControlName="business_legal_name"  (blur)="legalName = trimming_fn(legalName)" [(ngModel)]="legalName" (click)="noSpace()" placeholder="&nbsp;" autocomplete="off">
+        <label for="legalName">Legal name</label>
+        <div class="text text-danger inpt_icn" *ngIf="businessDetailForm.controls['business_legal_name'].invalid && businessDetailForm.controls['business_legal_name'].dirty"><i class="fa fa-warning"></i></div>
+        <div class="text text-danger" style="font-size: 14px;" *ngIf="businessDetailForm.controls['business_legal_name'].invalid && businessDetailForm.controls['business_legal_name'].dirty">Please, make sure that you are using  only letters,numbers and symbols</div>
+      </div>
+      <div class="form-group">
+        <div class="form-check pd-0">
+          <input class="form-check-input ipt_ckbx" type="checkbox" value="" id="Tradename_chkbx"  (change)="showTradeContent=!showTradeContent;tredingNameclear()">
+          <label class="form-check-label check_lable" style="font-size: 14px; color: #42424C;" for="Tradename_chkbx">
+            My business has a trading name
+          </label>
+        </div>
+      </div>
+      <div class="form-group float_label" *ngIf="showTradeContent">
+          <input type="text" class="form-control tradName" id="tradName" name="tradName" (blur)="tradName = trimming_fn(tradName)" [(ngModel)]="tradName" (click)="noSpace()" formControlName="trading_name" placeholder="&nbsp;" autocomplete="off">
+          <label for="tradName">Trading name</label>
+      </div>
+      <div class="form-group float_label">
+        <input type="text" class="form-control Rn" id="Rn" name="Rn" formControlName="registration_number" (blur)="Rn = trimming_fn(Rn)" [(ngModel)]="Rn" (click)="noSpace()" placeholder="&nbsp;" autocomplete="off">
+        <label for="Rn">Registration number</label>
+        <div class="text text-danger inpt_icn" *ngIf="businessDetailForm.controls['registration_number'].invalid && businessDetailForm.controls['registration_number'].dirty"><i class="fa fa-warning"></i></div>
+     </div>
+      <div class="text error_text digits3 text-danger"
+      *ngIf="businessDetailForm.controls['registration_number'].invalid && businessDetailForm.controls['registration_number'].dirty">Please, make sure that you are using digits only when completing the Registration number.</div>
+      <div class="form-group float_label">
+        <input type="text" class="form-control add1" id="address1" name="address1" formControlName="address_line1" (blur)="address1 = trimming_fn(address1)" [(ngModel)]="address1" (click)="noSpace()" placeholder="&nbsp;" autocomplete="off">
+        <label for="address1">Address line 1</label>
+        <div class="text text-danger inpt_icn" *ngIf="businessDetailForm.controls['address_line1'].invalid && businessDetailForm.controls['address_line1'].dirty"><i class="fa fa-warning"></i></div>
+     </div>
+     <div class="form-group float_label">
+      <input type="text" class="form-control add2" id="address2" name="address2" formControlName="address_line2" (blur)="address2 = trimming_fn(address2)" [(ngModel)]="address2" (click)="noSpace()" placeholder="&nbsp;" autocomplete="off">
+      <label for="address2">Address line 2 (Optional)</label>
+      <div class="text text-danger inpt_icn" *ngIf="businessDetailForm.controls['address_line2'].invalid && businessDetailForm.controls['address_line2'].dirty"><i class="fa fa-warning"></i></div>
+   </div>
+      <div class="form-group float_label">
+        <input type="date" class="form-control" id="DOIC" [value]="businessDetailForm.get('incorporation_date').value" formControlName="incorporation_date" name="DOIC"  [min]="minDOB" [max]="maxDOB" (change)="dobValidation($event)" bsDatepicker placeholder="&nbsp;" autocomplete="off">
+        <label for="DOIC">Date of incorporation</label>
+        <div class="text text-danger error_msgs" *ngIf="validDOB">Invalid registration date</div>
+        <div class="text text-danger error_msgs" *ngIf="valid18DOB && !validDOB">Invalid registration date</div>
+      </div>
+      
+      <div class="form-group float_label">
+          <select class="type-width" formControlName="business_type" id="contryname">
+            <option [ngValue]= "0" selected>Choose type</option>
+              <option *ngFor="let x of businessTypeData" [ngValue]="x.business_type_id">{{x.business_type_name}}</option>
+         </select>
+        <label for="COI">Business Type</label>
+      </div>
+      <div *ngIf="businessDetailForm" class="row justify-content-end">
+        <div *ngIf="businessDetailForm" class="col-md-6">
+          <button class="btn btn-primary btn-block" (click)="registerBusiness(businessDetailForm.value)"  [disabled]="businessDetailForm.invalid || validDOB || businessDetailForm.controls['business_type'].value==0">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</form>
+</ng-template>
+<ng-template [ngIf]="detailsCompltTemplate">
+<div class="logo_container">
+    <img src="../../../../assets/images/logo_white1.png">
+  </div>
+  <div class="row">
+    <div class="col-lg-6 lft_bg_img bg_img_2">
+      &nbsp;
+    </div>
+    <div class="col-lg-6 rt_cont offset-lg-6" style="margin-top: -20px;">
+      <div class="check_div">
+        <img src="../../../assets/images/tick_icon.png">
+      </div>
+      <h2 class="header_bar font global_font text-center">You have registered your <br> company</h2>
+      <div class="header_para m_b_20 text-center code_otp">Now, let's set up your company profile</div>
+      
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <button class="btn btn-primary btn-block" (click)="LoginAction()">Continue</button>  
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+</div>

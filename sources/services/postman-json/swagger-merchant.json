@@ -1,0 +1,903 @@
+{
+    "swagger": "2.0",
+    "info": {
+      
+        "license": {
+            "url": "https://opensource.org/licenses/sandbox"
+        }
+    },
+    "basePath": "/mock/service/v1",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/userRegistration": {
+            "post": {
+                "tags": [
+                    "userRegistration"
+                ],
+                "description": "For new Users Registration ",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "user Registration",
+                        "schema": {
+                            "$ref": "#/definitions/Registration"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "registratiton successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "description": "User Login",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "login user details",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "logged in success",
+                        "schema": {
+                            "$ref": "#/definitions/LoginSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/card": {
+            "post": {
+                "tags": [
+                    "card"
+                ],
+                "description": "card  ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "card ",
+                        "schema": {
+                            "$ref": "#/definitions/card"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "card  ",
+                        "schema": {
+                            "$ref": "#/definitions/cardSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/card/{applicant_id}": {
+            "get": {
+                "tags": [
+                    "cardDetails"
+                ],
+                "description": "cardDetails  ",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "cardDetails ",
+                        "schema": {
+                            "$ref": "#/definitions/cardDetails"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "cardDetails  ",
+                        "schema": {
+                            "$ref": "#/definitions/cardDetailsSuccess"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Login": {
+            "required": [
+                "email",
+                "password",
+                "mpin",
+                "account_type"
+            ],
+            "properties": {
+                "email": {
+                    "$id": "#/properties/email",
+                    "type": "string",
+                    "title": "The Email Schema",
+                    "default": "",
+                    "examples": [
+                        "taranginidola@gmail.com"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "password": {
+                    "$id": "#/properties/password",
+                    "type": "string",
+                    "title": "The Password Schema",
+                    "default": "",
+                    "examples": [
+                        "tarangini@1234"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "mpin": {
+                    "$id": "#/properties/mpin",
+                    "type": "string",
+                    "title": "The Mpin Schema",
+                    "default": "",
+                    "examples": [
+                        "1234"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "account_type": {
+                    "$id": "#/properties/account_type",
+                    "type": "string",
+                    "title": "The Account_type Schema",
+                    "default": "",
+                    "examples": [
+                        "business"
+                    ],
+                    "pattern": "^(.*)$"
+                }
+            }
+        },
+        "LoginSuccess": {
+            "required": [
+                "Token",
+                "status",
+                "message",
+                "userInfo"
+            ],
+            "properties": {
+                "Token": {
+                    "$id": "#/properties/Token",
+                    "type": "string",
+                    "title": "The Token Schema",
+                    "default": "",
+                    "examples": [
+                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRhcmFuZ2luaWRvbGFAZ21haWwuY29tIiwiaWF0IjoxNTY0MjE2OTk1fQ.H5fdU6-X3ApXLUcUeeIrlt2l_X9p_OvzekbADCTA_6E"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "status": {
+                    "$id": "#/properties/status",
+                    "type": "integer",
+                    "title": "The Status Schema",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                },
+                "message": {
+                    "$id": "#/properties/message",
+                    "type": "string",
+                    "title": "The Message Schema",
+                    "default": "",
+                    "examples": [
+                        "login successfull"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "userInfo": {
+                    "$id": "#/properties/userInfo",
+                    "type": "object",
+                    "title": "The Userinfo Schema",
+                    "required": [
+                        "applicant_id",
+                        "email",
+                        "gender",
+                        "mobile",
+                        "account_type",
+                        "kycStatus",
+                        "country_id",
+                        "business_Id"
+                    ],
+                    "properties": {
+                        "applicant_id": {
+                            "$id": "#/properties/userInfo/properties/applicant_id",
+                            "type": "integer",
+                            "title": "The Applicant_id Schema",
+                            "default": 0,
+                            "examples": [
+                                57
+                            ]
+                        },
+                        "email": {
+                            "$id": "#/properties/userInfo/properties/email",
+                            "type": "string",
+                            "title": "The Email Schema",
+                            "default": "",
+                            "examples": [
+                                "taranginidola@gmail.com"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "gender": {
+                            "$id": "#/properties/userInfo/properties/gender",
+                            "type": "string",
+                            "title": "The Gender Schema",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "mobile": {
+                            "$id": "#/properties/userInfo/properties/mobile",
+                            "type": "string",
+                            "title": "The Mobile Schema",
+                            "default": "",
+                            "examples": [
+                                "79989163806"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "account_type": {
+                            "$id": "#/properties/userInfo/properties/account_type",
+                            "type": "string",
+                            "title": "The Account_type Schema",
+                            "default": "",
+                            "examples": [
+                                "business"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "kycStatus": {
+                            "type": "string",
+                            "title": "The Kycstatus Schema",
+                            "default": "",
+                            "examples": [
+                                "PENDING"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "country_id": {
+                            "$id": "#/properties/userInfo/properties/country_id",
+                            "type": "integer",
+                            "title": "The Country_id Schema",
+                            "default": 0,
+                            "examples": [
+                                2
+                            ]
+                        },
+                        "business_Id": {
+                            "$id": "#/properties/userInfo/properties/business_Id",
+                            "type": "integer",
+                            "title": "The Business_id Schema",
+                            "default": 0,
+                            "examples": [
+                                264
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Registration": {
+            "required": [
+                "account_type",
+                "next_step",
+                "first_name",
+                "middle_name",
+                "last_name",
+                "email",
+                "gender",
+                "dob",
+                "telephone",
+                "mobile",
+                "country_id",
+                "postal_code",
+                "address_line1",
+                "address_line2",
+                "city",
+                "town",
+                "region",
+                "password",
+                "passcode_pin"
+            ],
+            "properties": {
+                "account_type": {
+                    "$id": "#/properties/account_type",
+                    "type": "string",
+                    "title": "The Account_type Schema",
+                    "default": "",
+                    "examples": [
+                        "business"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "next_step": {
+                    "$id": "#/properties/next_step",
+                    "type": "string",
+                    "title": "The Next_step Schema",
+                    "default": "",
+                    "examples": [
+                        "KYC"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "first_name": {
+                    "$id": "#/properties/first_name",
+                    "type": "string",
+                    "title": "The First_name Schema",
+                    "default": "",
+                    "examples": [
+                        "nikesh"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "middle_name": {
+                    "$id": "#/properties/middle_name",
+                    "type": "string",
+                    "title": "The Middle_name Schema",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "last_name": {
+                    "$id": "#/properties/last_name",
+                    "type": "string",
+                    "title": "The Last_name Schema",
+                    "default": "",
+                    "examples": [
+                        "mortha"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "email": {
+                    "$id": "#/properties/email",
+                    "type": "string",
+                    "title": "The Email Schema",
+                    "default": "",
+                    "examples": [
+                        "tarangini.dola@gmail.com"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "gender": {
+                    "$id": "#/properties/gender",
+                    "type": "string",
+                    "title": "The Gender Schema",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "dob": {
+                    "$id": "#/properties/dob",
+                    "type": "string",
+                    "title": "The Dob Schema",
+                    "default": "",
+                    "examples": [
+                        "1994-04-26"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "telephone": {
+                    "$id": "#/properties/telephone",
+                    "type": "string",
+                    "title": "The Telephone Schema",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "mobile": {
+                    "$id": "#/properties/mobile",
+                    "type": "string",
+                    "title": "The Mobile Schema",
+                    "default": "",
+                    "examples": [
+                        "7999163806"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "country_id": {
+                    "$id": "#/properties/country_id",
+                    "type": "string",
+                    "title": "The Country_id Schema",
+                    "default": "",
+                    "examples": [
+                        "2"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "postal_code": {
+                    "$id": "#/properties/postal_code",
+                    "type": "string",
+                    "title": "The Postal_code Schema",
+                    "default": "",
+                    "examples": [
+                        "761118"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "address_line1": {
+                    "$id": "#/properties/address_line1",
+                    "type": "string",
+                    "title": "The Address_line1 Schema",
+                    "default": "",
+                    "examples": [
+                        "ODISHA"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "address_line2": {
+                    "$id": "#/properties/address_line2",
+                    "type": "string",
+                    "title": "The Address_line2 Schema",
+                    "default": "",
+                    "examples": [
+                        "INDIA"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "city": {
+                    "$id": "#/properties/city",
+                    "type": "string",
+                    "title": "The City Schema",
+                    "default": "",
+                    "examples": [
+                        "DELHI"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "town": {
+                    "$id": "#/properties/town",
+                    "type": "string",
+                    "title": "The Town Schema",
+                    "default": "",
+                    "examples": [
+                        "HYDERABAD"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "region": {
+                    "$id": "#/properties/region",
+                    "type": "string",
+                    "title": "The Region Schema",
+                    "default": "",
+                    "examples": [
+                        "DECAN"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "password": {
+                    "$id": "#/properties/password",
+                    "type": "string",
+                    "title": "The Password Schema",
+                    "default": "",
+                    "examples": [
+                        "tarangini@1234"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "passcode_pin": {
+                    "$id": "#/properties/passcode_pin",
+                    "type": "string",
+                    "title": "The Passcode_pin Schema",
+                    "default": "",
+                    "examples": [
+                        "1234"
+                    ],
+                    "pattern": "^(.*)$"
+                }
+            }
+        },
+        "RegistrationSuccess": {
+            "required": [
+                "Token",
+                "status",
+                "message",
+                "userInfo"
+            ],
+            "properties": {
+                "Token": {
+                    "$id": "#/properties/Token",
+                    "type": "string",
+                    "title": "The Token Schema",
+                    "default": "",
+                    "examples": [
+                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRhcmFuZ2luaS5kb2xhQGdtYWlsLmNvbSIsImlhdCI6MTU2NDIxNzQzM30.8R0JTbk0f-CBgG9TSG9FnVwh4lefwi1KC8wD4lE03BE"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "status": {
+                    "$id": "#/properties/status",
+                    "type": "integer",
+                    "title": "The Status Schema",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                },
+                "message": {
+                    "$id": "#/properties/message",
+                    "type": "string",
+                    "title": "The Message Schema",
+                    "default": "",
+                    "examples": [
+                        "registratiton successfully"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "userInfo": {
+                    "$id": "#/properties/userInfo",
+                    "type": "object",
+                    "title": "The Userinfo Schema",
+                    "required": [
+                        "applicant_id",
+                        "email",
+                        "gender",
+                        "mobile",
+                        "account_type",
+                        "kycStatus"
+                    ],
+                    "properties": {
+                        "applicant_id": {
+                            "$id": "#/properties/userInfo/properties/applicant_id",
+                            "type": "integer",
+                            "title": "The Applicant_id Schema",
+                            "default": 0,
+                            "examples": [
+                                228
+                            ]
+                        },
+                        "email": {
+                            "$id": "#/properties/userInfo/properties/email",
+                            "type": "string",
+                            "title": "The Email Schema",
+                            "default": "",
+                            "examples": [
+                                "tarangini.dola@gmail.com"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "gender": {
+                            "$id": "#/properties/userInfo/properties/gender",
+                            "type": "string",
+                            "title": "The Gender Schema",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "mobile": {
+                            "$id": "#/properties/userInfo/properties/mobile",
+                            "type": "string",
+                            "title": "The Mobile Schema",
+                            "default": "",
+                            "examples": [
+                                "7999163806"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "account_type": {
+                            "$id": "#/properties/userInfo/properties/account_type",
+                            "type": "string",
+                            "title": "The Account_type Schema",
+                            "default": "",
+                            "examples": [
+                                "business"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "kycStatus": {
+                            "$id": "#/properties/userInfo/properties/kycStatus",
+                            "type": "string",
+                            "title": "The Kycstatus Schema",
+                            "default": "",
+                            "examples": [
+                                "PENDING"
+                            ],
+                            "pattern": "^(.*)$"
+                        }
+                    }
+                }
+            }
+        },
+        "card": {
+            "required": [
+                "applicant_id",
+                "card_type",
+                "name_on_card",
+                "card_number",
+                "card_cvv",
+                "card_month",
+                "card_year"
+            ],
+            "properties": {
+                "applicant_id": {
+                    "$id": "#/properties/applicant_id",
+                    "type": "integer",
+                    "title": "The Applicant_id Schema",
+                    "default": 0,
+                    "examples": [
+                        3
+                    ]
+                },
+                "card_type": {
+                    "$id": "#/properties/card_type",
+                    "type": "string",
+                    "title": "The Card_type Schema",
+                    "default": "",
+                    "examples": [
+                        "RuPey"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "name_on_card": {
+                    "$id": "#/properties/name_on_card",
+                    "type": "string",
+                    "title": "The Name_on_card Schema",
+                    "default": "",
+                    "examples": [
+                        "Sekhar Sahu"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "card_number": {
+                    "$id": "#/properties/card_number",
+                    "type": "string",
+                    "title": "The Card_number Schema",
+                    "default": "",
+                    "examples": [
+                        "1234 5678 1234 1221"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "card_cvv": {
+                    "$id": "#/properties/card_cvv",
+                    "type": "string",
+                    "title": "The Card_cvv Schema",
+                    "default": "",
+                    "examples": [
+                        "123"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "card_month": {
+                    "$id": "#/properties/card_month",
+                    "type": "integer",
+                    "title": "The Card_month Schema",
+                    "default": 0,
+                    "examples": [
+                        8
+                    ]
+                },
+                "card_year": {
+                    "$id": "#/properties/card_year",
+                    "type": "integer",
+                    "title": "The Card_year Schema",
+                    "default": 0,
+                    "examples": [
+                        2019
+                    ]
+                }
+            }
+        },
+        "cardSuccess": {
+            "required": [
+                "message",
+                "payment_cards_id",
+                "status"
+            ],
+            "properties": {
+                "message": {
+                    "$id": "#/properties/message",
+                    "type": "string",
+                    "title": "The Message Schema",
+                    "default": "",
+                    "examples": [
+                        "Card data inserted successfuly"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "payment_cards_id": {
+                    "$id": "#/properties/payment_cards_id",
+                    "type": "integer",
+                    "title": "The Payment_cards_id Schema",
+                    "default": 0,
+                    "examples": [
+                        12
+                    ]
+                },
+                "status": {
+                    "$id": "#/properties/status",
+                    "type": "integer",
+                    "title": "The Status Schema",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                }
+            }
+        },
+        "cardDetails": {},
+        "cardDetailsSuccess": {
+            "required": [
+                "message",
+                "cards",
+                "status"
+            ],
+            "properties": {
+                "message": {
+                    "$id": "#/properties/message",
+                    "type": "string",
+                    "title": "The Message Schema",
+                    "default": "",
+                    "examples": [
+                        "Card detail fetched sucesfuly"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "cards": {
+                    "$id": "#/properties/cards",
+                    "type": "array",
+                    "title": "The Cards Schema",
+                    "items": {
+                        "$id": "#/properties/cards/items",
+                        "type": "object",
+                        "title": "The Items Schema",
+                        "required": [
+                            "payment_cards_id",
+                            "card_type",
+                            "card_name",
+                            "card_number",
+                            "card_cvv",
+                            "card_month",
+                            "card_year",
+                            "status",
+                            "default_card"
+                        ],
+                        "properties": {
+                            "payment_cards_id": {
+                                "$id": "#/properties/cards/items/properties/payment_cards_id",
+                                "type": "integer",
+                                "title": "The Payment_cards_id Schema",
+                                "default": 0,
+                                "examples": [
+                                    5
+                                ]
+                            },
+                            "card_type": {
+                                "$id": "#/properties/cards/items/properties/card_type",
+                                "type": "string",
+                                "title": "The Card_type Schema",
+                                "default": "",
+                                "examples": [
+                                    "DEBIT"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "card_name": {
+                                "$id": "#/properties/cards/items/properties/card_name",
+                                "type": "string",
+                                "title": "The Card_name Schema",
+                                "default": "",
+                                "examples": [
+                                    "MASTER"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "card_number": {
+                                "$id": "#/properties/cards/items/properties/card_number",
+                                "type": "string",
+                                "title": "The Card_number Schema",
+                                "default": "",
+                                "examples": [
+                                    "1234 5678 1234 1234"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "card_cvv": {
+                                "$id": "#/properties/cards/items/properties/card_cvv",
+                                "type": "string",
+                                "title": "The Card_cvv Schema",
+                                "default": "",
+                                "examples": [
+                                    "123"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "card_month": {
+                                "$id": "#/properties/cards/items/properties/card_month",
+                                "type": "integer",
+                                "title": "The Card_month Schema",
+                                "default": 0,
+                                "examples": [
+                                    8
+                                ]
+                            },
+                            "card_year": {
+                                "$id": "#/properties/cards/items/properties/card_year",
+                                "type": "integer",
+                                "title": "The Card_year Schema",
+                                "default": 0,
+                                "examples": [
+                                    2019
+                                ]
+                            },
+                            "status": {
+                                "$id": "#/properties/cards/items/properties/status",
+                                "type": "integer",
+                                "title": "The Status Schema",
+                                "default": 0,
+                                "examples": [
+                                    0
+                                ]
+                            },
+                            "default_card": {
+                                "$id": "#/properties/cards/items/properties/default_card",
+                                "type": "integer",
+                                "title": "The Default_card Schema",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            }
+                        }
+                    }
+                },
+                "status": {
+                    "$id": "#/properties/status",
+                    "type": "integer",
+                    "title": "The Status Schema",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                }
+            }
+        }
+    }
+}

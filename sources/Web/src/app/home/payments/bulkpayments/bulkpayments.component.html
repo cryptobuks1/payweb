@@ -1,0 +1,100 @@
+<ng-template [ngIf]="true">
+   <div *ngIf="!csvPayment">
+  <div *ngIf="counterParties; else nocounterparties">
+   <div class="float_label row searchbar">
+      <div>
+         <input type="text" name="search" [(ngModel)]="searchText" class="form-control d-inline"
+         placeholder="Search by name" autocomplete="off">
+         <i class="fa fa-search pull-right search_icn fa-lg"></i>
+         <div>
+            <div class="add_itm d-flex justify-content-between">
+               <div *ngIf="isPersonal">
+               <div [routerLink]="['/personal/payments_tab/add-counterparty']"><i class="fa fa-plus"></i>Add new counterparty</div>
+               </div>
+               <div *ngIf="!isPersonal">
+                  <div [routerLink]="['/business/payments_tab/add-counterparty']"><i class="fa fa-plus"></i>Add new counterparty</div>
+                  </div>
+               <button class="btn btn-link px-0 custom-button"  (click)="csvUpload()">CSV Upload</button>
+            </div>
+         </div>
+      </div>
+   </div>
+     <div class="cntry_par" *ngIf="(counterParties | filter: {full_name: searchText, email: searchText,mobile: searchText}).length != 0">
+        Your counterparties
+     </div>
+     <table class="bulk_list_view table-responsive table-padding " style="max-height: 152px;overflow-y: auto;overflow-x: hidden;">
+        <tr style="cursor: pointer" *ngFor="let counterParty of counterParties | filter: {full_name: searchText, email: searchText,mobile: searchText}; let i = index"
+        (click)="sendUserListDetails(counterParty,i)"  [ngClass]="{'active': counterParty.selectORunselect, 'pointer-event': counterParty.is_non_payvoo_user ==1}" >
+        <td style="width:10%"><span class="itm_crcl" [class.crcle]="counterParty.selectORunselect">{{getShortName(counterParty.full_name)}}</span></td>
+        <td style="width:50%">
+           <span class="lists" [class.full_name]="counterParty == selectedRow">{{ counterParty.full_name| titlecase }}</span>
+           <!-- <div class="mrg-ngtv"><span class="fnt-sze-clr">{{ counterParty.email }} - &nbsp;</span>
+              <span class="fnt-sze-clr"> +{{ counterParty.mobile }}</span>
+           </div> -->
+           <div class="mrg-ngtv"><span class="fnt-sze-clr">{{ counterParty.email }} <span *ngIf="counterParty.email && counterParty.mobile">-</span> </span>
+            <span class="fnt-sze-clr"> {{ counterParty.mobile }}</span>
+         </div>
+        </td>
+        <td style="width:30%">
+           {{counterParty.country_name | titlecase}}
+        </td>
+        <td style="width:10%;">
+         <span *ngIf="counterParty.is_non_payvoo_user && counterParty.is_non_payvoo_user == 1" class="non" [class.active]="counterParty == selectedRow">
+            <img style="width: 80px;" src="assets/images/non_payvoo_beta1.png"></span>
+            <span *ngIf="!counterParty.is_non_payvoo_user && counterParty.is_non_payvoo_user != 1" class="non" [class.active]="counterParty == selectedRow">
+              <img style="width: 80px;" src="assets/images/PayVoo BETA_small.png"></span>
+        </td>
+        </tr>
+     </table>
+     <div *ngIf="(counterParties | filter: {full_name: searchText, email: searchText,mobile: searchText}).length === 0">
+        <h4 class="text-center mb-5 pb-3">No data found</h4>
+     </div>
+     <div class="text-center btn_counterparty">
+        <div class="form-group">
+           <button class="btn btn-primary continue" [disabled]="checkedList <= 0" (click)="next()">Continue</button>
+        </div>
+     </div>
+  </div>
+  <ng-template #nocounterparties>
+   <div class="float_label row searchbar">
+      <div>
+         <div class="add_itm d-flex justify-content-between">
+            <div [routerLink]="['/business/payments_tab/add-counterparty']"><i class="fa fa-plus"></i>Add
+            new counterparty</div>
+            <button class="btn btn-link px-0 custom-button"  (click)="csvUpload()">CSV Upload</button>
+            </div>
+
+      </div>
+   </div>
+     <div class="text-center dsply">
+        <p>Find a countryparty or add a new one.</p>
+     </div>
+  </ng-template>
+   </div>
+  <div *ngIf="csvPayment">
+      <div>
+         <div>
+            <a><p class="backToBulk" (click)="backToBulk()"><i class="fa fa-arrow-left"></i> Back</p></a>
+         </div>
+         <div class="d-flex justify-content-end mt-3 px-1">
+            <a style="margin-top: -38px; color: #2a3477;" (click)="getBulkPaymentSample()" target="_blank" download>Download Sample template</a>
+         </div>
+      </div>
+      <div class="text-center pt-3">
+         <img class="pt-4 mb-4" style="width: 100px;" src="../../../../assets/images/bulk payment.png" alt="fileicon" />
+         <h5>Use the bulk payment file option</h5>
+         <p>Create multiple payments by using the .CSV template</p>
+         <form [formGroup]="uploadForm">
+            <input  type="file" accept=".csv" (change)="handleFileSelect($event)" id="file-upload" multiple required #fileupload />
+            <label for="file-upload">Use template</label>
+            <span class="ml-2" id="file-upload-filename"> </span>
+            <button *ngIf="fileUploadName" class="btn btn-link px-2 mb-1 custom_button" (click)="clearFile()" type="reset">x</button>
+         </form>
+         <div class="text-center btn_counterparty">
+            <div class="form-group">
+               <button class="btn btn-primary continue mt-3" [disabled]="!fileUploadName" (click)="next()" >Continue</button>
+            </div>
+         </div>
+      </div>
+</div>
+</ng-template>

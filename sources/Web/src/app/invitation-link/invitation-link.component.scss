@@ -1,0 +1,97 @@
+$font-color-active: #42424c;
+.lft_bg_img {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-position: center;
+}
+.bg_img_1 {
+//  ../../assets/images/business-signup3.jpg
+  background-image: url(../../assets/images/business-signup3.jpg);
+}
+
+.logo_container {
+  width: 100%;
+  height: 0px;
+  position: relative;
+  z-index: 5;
+}
+.logo_container img {
+  position: absolute;
+  width: 400px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: -40px;
+}
+
+.invitemodal{
+  top: 15%;
+  
+}
+.modal_size {
+  max-width: 40% !important;
+}
+.header_txt{
+  color: $font-color-active;
+  
+}
+.flexborder{
+  border-top: 1px solid #dadada;
+ }
+ .itm_crcl {
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  line-height: 34px;
+  padding: 0px;
+  background: $font-color-active;
+  color: #ffffff;
+  // border: 1px solid $font-color-active;
+  border-radius: 50%;
+  display: inline-block;
+}
+.m-b-0{
+  margin-bottom: 0px;
+  color: $font-color-active;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+.kyc_process {
+  cursor: pointer;
+}
+.m-t-10{
+  margin-top: 10px;
+}
+.fontbtn{
+  width:117% !important;
+}
+@media (max-width:576px){
+  .bg_img_1 {
+    //  ../../assets/images/business-signup3.jpg
+      background-image: none;
+    }
+    .modal-con{
+      margin: 11px;
+    width: 85%;
+    padding: 18px;
+    }
+    
+    .modal-dia{
+      margin-left: 0px;
+    }
+    .m-b{
+      margin-bottom: 7px;
+    }
+    .modal_size {
+      max-width: 92% !important;
+  }
+
+}
+
+

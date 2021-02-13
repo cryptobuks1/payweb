@@ -1,0 +1,84 @@
+.main_cont_bg {
+    position: relative;
+    background: url("../../../../assets/images/sandbox.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+  .cards {
+    max-width: 520px;
+    width: 100%;
+    position: absolute;
+    border: 1px solid #dadada;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    padding: 40px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+  }
+  .cards img {
+    padding-bottom: 9px;
+  }
+  .cards p {
+    padding-top: 10px;
+  }
+  .m-b-0 {
+    margin-bottom: 0px;
+  }
+  .sanbox_button{
+  background-color: hsl(35, 90%, 52%);
+  color: #fff;
+  border: none;
+  border-radius: 4px !important;
+  padding: 0.47rem 1.5rem !important;
+  }
+  
+  .header_para {
+    font-size: 18px;
+    margin-bottom: 23px;
+    color: #545454;
+    font-weight: 500;
+    padding-top: 1px;
+  }
+.text-size{
+    color: #dc3545!important;
+    font-size: 13px !important;
+}
+
+.color
+{
+  color: #0064ff !important;
+  font-weight: bold;
+  cursor: pointer;
+}
+.click{
+  min-width:300px;
+}
+.click img{
+  display: block;
+}
+.tick_icn_cnt{
+  max-width: 112px;
+  margin: 10px auto;
+  text-align: center;
+}
+.matched{
+  color: red;
+  /* padding-top: 17px; */
+  position: relative;
+  top: 4px;
+}
+.inpt_icn {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  background: none;
+  border: none;
+  color: #777777;
+  cursor: pointer;
+}

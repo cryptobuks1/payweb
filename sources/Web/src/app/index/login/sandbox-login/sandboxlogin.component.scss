@@ -1,0 +1,63 @@
+.main_cont_bg {
+    position: relative;
+    background: url("../../../../assets/images/sandbox.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+  .cards {
+    max-width: 543px;
+    width: 100%;
+    position: absolute;
+    border: 1px solid #dadada;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    padding: 40px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+  }
+  .cards img {
+    padding-bottom: 9px;
+  }
+  .cards p {
+    padding-top: 10px;
+  }
+  .m-b-0 {
+    margin-bottom: 0px;
+  }
+  .sanbox_button{
+  background-color: hsl(35, 90%, 52%);
+  color: #fff;
+  border: none;
+  border-radius: 4px !important;
+  padding: 0.47rem 1.5rem !important;
+  }
+  
+  .header_para {
+    font-size: 18px;
+    margin-bottom: 23px;
+    color: #545454;
+    font-weight: 500;
+    padding-top: 1px;
+  }
+
+.color
+{
+  color: #0064ff !important;
+  font-weight: bold;
+  cursor: pointer;
+}
+.inpt_icn {
+  position: absolute;
+  top: 235px;
+  right: 40px;
+  background: none;
+  border: none;
+  color: #777777;
+  cursor: pointer;
+} 

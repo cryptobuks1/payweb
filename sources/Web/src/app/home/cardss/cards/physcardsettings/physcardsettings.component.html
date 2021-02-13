@@ -1,0 +1,312 @@
+<div *ngIf="closePhys">
+  <div class="pull-right d-inline m-t-10" style="margin-right: 30px;" (click)="clickBack()">
+    <a routerLink="/personal/cards"><i class="fa fa-arrow-left"></i> Back</a>
+  </div>
+  <div class="container-fluid page_container">
+    <div class="page_header">
+      <div class="header">
+        Cards
+      </div>
+      <ul>
+        <!-- <li>Accounts/cards</li> -->
+        <li>Cards/Physical cards</li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <img class="allCards" src="../../../assets/images/cards/first - front.jpg">
+      </div>
+      <div class="col-md-3">
+        <h3>Laura Johnson</h3>
+        ** 7852 &nbsp; 10/2026
+      </div>
+      <div class="col-md-2 eyeIcon" style="text-align: center;">
+        <i class="fa fa-eye" style="color: #2323a4;" aria-hidden="true"></i><br>
+        <h6 style="cursor: pointer;" data-backdrop="static" data-toggle="modal" data-target="#view">View details</h6>
+      </div>
+    </div>
+    <div class="acc_navbar">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <a data-target="#Physical" data-toggle="tab" class="nav-link active">Settings</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card add_money_card left">
+        <h3 class="card_header">Card settings</h3><br>
+        <div>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td class="float-left">Card is active
+                  <p class="subtext">Freeze your card</p>
+                </td>
+                <td (click)="swap()" id="freeze">Freeze</td>
+              </tr>
+              <tr>
+                <td class="float-left">Report lost or stolen
+                  <p class="subtext">This card will be temporarly deactivated</p>
+                </td>
+                <td *ngIf="lost1" style="color:#AAAABB;cursor: pointer;">Lost or stolen</td>
+                <td *ngIf="lost2" style="color:#2323a4;cursor: pointer;" data-backdrop="static" data-toggle="modal" data-target="#block">
+                  Lost or stolen</td>
+              </tr>
+              <tr>
+                <td class="float-left">PIN & Security
+                  <p class="subtext">Use after exceeding 3 attepts</p>
+                </td>
+                <td *ngIf="unblock1" style="color:#AAAABB;cursor: pointer;">Unblock PIN or CVV</td>
+                <td *ngIf="unblock2" style="color:#2323a4;cursor: pointer;" data-backdrop="static" data-toggle="modal"
+                  data-target="#unblockCVV">Unblock PIN or CVV</td>
+              </tr>
+              <tr>
+                <td class="float-left" style="color: red;">Remove card <br>
+                  <p class="subtext">This card will be permanently deleted</p>
+                </td>
+                <td *ngIf="remove1" style="color:#AAAABB;cursor: pointer;">Remove card</td>
+                <td *ngIf="remove2" style="color:#2323a4;cursor: pointer;" data-toggle="modal" data-target="#removeCrd">
+                  Remove card</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card add_money_card right">
+        <div>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td class="float-left">Spending limit <br>
+                  <p class="subtext">Set monthly spending amount</p>
+                </td>
+                <td *ngIf="limit1" style="color:#AAAABB;cursor: pointer;">$ 200</td>
+                <td *ngIf="limit2" style="color:#2323a4;cursor: pointer;" data-toggle="modal" data-target="#spendLimit"
+                data-backdrop="static">$ {{limit}}</td>
+              </tr>
+              <tr>
+                <td class="float-left">Name your card<br>
+                  <p class="subtext">Add custom name (optional)</p>
+                </td>
+                <td *ngIf="name1" style="color:#AAAABB;cursor: pointer;">EasyVoo</td>
+                <td *ngIf="name2" style="color:#2323a4;cursor: pointer;" data-toggle="modal" data-target="#nameCard"
+                data-backdrop="static">{{nameInput}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="cardsback">
+  <app-cards></app-cards>
+</div>
+<div class="modal hide" id="view">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <img width="240px" style="margin-top: 35px;" src="../../../assets/images/cards/first - front.jpg">
+        </div><br>
+        <p class="cardImg" align="center">Never share or take screenshots of card images</p><br><br>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="unblockCVV" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="margin-top: -140px;">
+      <div class="modal-body body_popup"><br><br><br>
+        <h5 align="center">Unblock CVV code?</h5><br><br><br>
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-outline-primary btn-block" style="padding-right: 3px;padding-left: 3px;" data-backdrop="static"
+              data-toggle="modal" data-target="#attempts3" (click)="threeTimes()">I want three more tries</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" data-toggle="modal"
+              data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="attempts3" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="margin-top: -140px;">
+      <div class="modal-body body_popup" align="center">
+        <h5 class="attempt">You have 3 more attempts for CVV code</h5>
+        <p class="view">You can view your CVV code in your PayVoo App.</p>
+        <div class="panel-footer">
+          <div class="form-group col-md-6">
+            <button class="btn btn-primary btn-block" data-dismiss="modal" data-backdrop="static">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="spendLimit">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <h4 class="spendLimit">Set spending limit</h4>
+        <div class="row">
+          <div class="form-group float_label col-md-3" style="margin-left: 35px;padding-right: 2px;">
+            <select class="form-control" formControlName="country_id"
+              id="contryname">
+              <option value="" disabled selected hidden>BGN</option>
+            </select>
+            <label for="contryname"></label>
+          </div>
+          <div class="float_label col-md-6" style="margin-top: 14px;">
+            <input type="text" #month>
+            <label>Monthly limit</label>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer" style="padding: 20px;">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <div>
+              <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="onConfirm(month.value)">Confirm</button>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <div>
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="nameCard">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <h4 class="spendLimit">Set a name for the card</h4>
+        <div class="float_label col-md-12">
+          <input type="text" #name>
+          <label style="margin-left: 87px;">Card Name</label>
+        </div>
+      </div>
+      <div class="panel-footer" style="padding: 20px;">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <div>
+              <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="onName(name.value)">Confirm</button>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <div>
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="removeCrd">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content" style="padding-left: 10px;padding-right: 10px;">
+      <div class="modal-body" align="center">
+        <img src="../../../../assets/images/icons/delete_icon.png" alt=""> <br><br>
+        <h4>Are you sure you want to<br>remove this card?</h4>
+      </div>
+      <div>
+        <p style="color:#AAAABB;" align="center">This action is irreversible. If you want to just<br>temporary disable
+          this card, you can freeze it in<br>settings.</p><br>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" data-backdrop="static" data-toggle="modal"
+                data-target="#removed" (click)="closeRemove()">Remove</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="removed">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content" align="center">
+      <div class="modal-body ">
+        <div class="text-center">
+          <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png">
+        </div><br><br>
+        <h4>Card was removed</h4><br>
+      </div>
+      <div class="panel-footer">
+        <div class="form-group col-md-4">
+          <button class="btn btn-primary btn-block" style="margin-bottom: 30px;" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="block">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content block">
+      <div class="modal-body" align="center" style="margin-top: 15px;">
+        <h4>Block your card</h4>
+      </div>
+      <div align="center">
+        <p style="color:#AAAABB;" >A representative will block your card and notify your bank immediately.</p><br><br>
+      </div>
+      <div class="panel-footer" style="padding: 20px;">
+        <div class="row">
+          <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+              <button class="btn btn-primary btn-block" data-backdrop="static" data-toggle="modal"
+                data-target="#reported" (click)="closeReport()">Report & Deactivate</button>
+            </div>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal model_top" id="reported">
+  <div class="modal-dialog" role="document" style="margin-top: 80px;">
+    <div class="modal-content" align="center">
+      <div class="modal-body ">
+        <div class="text-center">
+          <img style="width: 30%;margin-top: 40px;" src="../../../../assets/images/tick_icon.png">
+        </div><br><br>
+        <h5>Your card was reported!</h5><br>
+      </div>
+      <div class="panel-footer">
+        <div class="form-group col-md-4">
+          <button class="btn btn-primary btn-block" style="margin-bottom: 30px;" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

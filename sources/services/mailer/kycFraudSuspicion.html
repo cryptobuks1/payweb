@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style type="text/css">
+       
+        td {
+            height: 20px;
+        }
+
+        tr.buttons td {
+            height: 50px;
+        }
+        .bridge{
+      font-size:12px;
+      font-weight: 800;
+      width:330px;
+      color:#1776ba;
+    }
+    </style>
+</head>
+
+<body>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f5f5f5">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff"
+                        style="border:1px solid #e3e3e3;">
+                        <tbody>                            
+                            <tr>
+                                <td>
+                                    <center>
+                                        <img src="cid:status-logo"><br>
+                                        <!-- <p> 
+                                            <span class="bridge">Bridge the world to value of ownership</span>
+                                          </p> -->
+                                        <img src="cid:cancel">
+                                    <br>
+                                    <h4 *ngIf="status == 'FRAUD_SUSPICION'">Identity verification failed  due to documentation errors.  </h4>                                         
+                                    <!-- <h4 *ngIf="status == 'FRAUD'">Identity Verification is Fraud</h4> -->
+                                    <p >Sorry we could not verify your identity. Please contact our customer support team over live-chat.</p>
+                                    </center>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+</body>
+
+</html>

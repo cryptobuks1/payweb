@@ -1,0 +1,484 @@
+<div class="container-fluid page_container">
+  <div class="page_header">
+    <div class="header">
+      Exchange
+    </div>
+    <ul>
+      <a routerLink="/personal/accounts/getaccount" *ngIf="authService.accountMatch(['personal'])">Accounts/</a>
+      <a routerLink="/business/accounts/getaccount" *ngIf="authService.accountMatch(['business'])">Accounts/</a>
+      
+      <!-- <li>Accounts</li> -->
+      <li>Exchange</li>
+    </ul>
+  </div>
+  <div class="pull-right d-inline m-t-10" style="margin-right: 2px;" *ngIf="authService.accountMatch(['personal'])">
+    <a routerLink="/personal/accounts/getaccount"><i class="fa fa-arrow-left"></i> Back</a>
+  </div>
+  <div class="pull-right d-inline m-t-10" style="margin-right: 2px;" *ngIf="authService.accountMatch(['business'])">
+      <a routerLink="/business/accounts/getaccount"><i class="fa fa-arrow-left"></i> Back</a>
+    </div>
+  <div class="row">
+    <div class="col-lg-8 col-md-6">
+      <div class="card page_ht_crd">
+        <div class="acc_navbar"  *ngIf="authService.accountMatch(['personal'])">
+          <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/personal/exchange/rates" routerLinkActive="active">Rates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/personal/exchange/convertor" routerLinkActive="active">Convert</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/personal/exchange/action" routerLinkActive="active">Actions</a>
+            </li>
+          </ul>
+        </div>
+        <div class="acc_navbar"  *ngIf="authService.accountMatch(['business'])">
+            <ul class="nav nav-pills press" role="tablist">
+              <li class="nav-item">
+                <div class="press-logo">
+                  <a class="nav-link" routerLink="/business/exchange/rates" routerLinkActive="active">Rates</a>
+                </div>
+                
+              </li>
+              <li class="nav-item">
+                <div class="press-logo">
+                  <a class="nav-link" routerLink="/business/exchange/convertor" routerLinkActive="active">Converter</a>
+                </div>
+                
+              </li>
+              <li class="nav-item">
+                <div class="press-logo">
+                  <a class="nav-link" routerLink="/business/exchange/action" routerLinkActive="active">Actions</a>
+                </div>
+                
+              </li>
+            </ul>
+          </div>
+        <div class="tab-content">
+          <div class="container tab-pane active">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="card exhng_cnt">
+        <form [formGroup]="currencyFB">
+          <h5>Exchange currency</h5>
+          <div class="frm_acc">
+            <div class="lft_itm">
+              <div class="curr_dd_lst float_label">
+                <select formControlName="fromCurrency" [(ngModel)]="frmcurrency" class="form-control" (change)=CurrencyChange()>
+
+                  <option *ngFor="let currency of exchCurrencyType" [attr.value]="currency.currency" [ngValue]="currency">
+                    {{currency.currency}}
+                  </option>
+                </select>
+                <!-- <label>Currency</label> -->
+              </div>
+              <div class="bal">Balance: {{ frombalance }}</div>
+            </div>
+            <div class="val_inpt exchn_input">
+              <input type="text" id="myText" (keypress)="onlyNumberKey($event)" (change)="set3NumberDecimal1()" [(ngModel)]="value1" maxlength="10" style="padding-left:2px; padding-right: 2px;text-align: center;" minlength="1" size="55" class="form-control pull-right exchng"  formControlName="fromExchnCurrency" autocomplete="off" >
+            </div>
+          </div>
+          <div class="exhng_icons_cnt">
+            <div class="exc_icn" (click)="swap_currency()">
+              <i class="fa fa-exchange exhng_icon go-swap"></i>
+            </div>
+            <div class="exc_info" *ngIf="showTodayCurrency">
+               {{frmcurrency}} 1 = {{tocurrency}} {{toDayCurrnExchRate}}
+            </div>
+          </div>
+          <div class="to_acc">
+            <div class="lft_itm">
+              <div class="curr_dd_lst float_label">
+                <select formControlName="toCurrency" [(ngModel)]="tocurrency" class="form-control" (change)=CurrencyChange()>
+                  <option *ngFor="let currency of exchCurrencyType" [attr.value]="currency.currency" [attr.selected]="currency.currency == toCurrency ? true : null" [ngValue]="currency">
+                    {{currency.currency}}
+                  </option>
+                </select>
+                <!-- <label>Currency</label> -->
+              </div>
+              <div class="bal">Balance: {{ tobalance }} </div>
+            </div>
+            <div class="val_inpt exchn_input">
+              <input type="text" class="form-control pull-right" style="padding-left:2px; padding-right: 2px;text-align: center;" size="55" appDecimal readonly formControlName="toExchnAmount" autocomplete="off">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 offset-md-3 col-10 offset-1">
+              <div class="btn_exchange">
+                <button class="btn btn-primary btn-block" type="button" [disabled]="currencyFB.invalid || currencyFB.controls.fromExchnCurrency.value == 0 || sameCurrency || !frombalance"
+                (click)="exchange_currency()">Exchange</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card exhng_btnitm hide-action" (click)=autoExchangeCurrency();>
+
+        <div class="img_cnt">
+          <img src="../assets/images/auto-exchange.png" />
+        </div>
+        <div class="content_cnt">
+          <h5>Auto-exchange</h5>
+          <p>Exchange currencies when they hit a certain value</p>
+        </div>
+
+      </div>
+      <div class="card exhng_btnitm exhng_cnt" data-toggle="modal" data-target="#priceAlert">
+        <div class="img_cnt">
+          <img src="../assets/images/notifications.png" />
+        </div>
+        <div class="content_cnt">
+          <h5>Price Alert</h5>
+          <p>We'll let you know when that currency hit that value</p>
+        </div>
+      </div>
+
+      <!--autoExchange starting -->
+
+      <form [formGroup]="autoExchForm">
+        <div class="modal" id="exchange">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header modal_header row">
+                <h4 class="modal-title autoex-heading mx-auto">Set auto exchange value </h4>
+              </div>
+              <div class="modal-body modal_body">
+                <!-- <div class="col-md-12 auto_exch_modal">
+                  <div class="exhng_cnt">
+                    <div class="exhng_cur">
+                      <div class="eur_balance">
+                        <div class="floatincurrentRateg-label">
+                          <div class="float_label">
+                            <select class="form-control" id="sel1" formControlName="autoFromCurrn"
+                              (change)=currencyRate()>
+                              <option *ngFor="let currency of autoCurrencyType" [value]=currency.currency>
+                                {{currency.currency}}
+                              </option>
+                            </select>
+                            <label>Currency</label>
+                          </div>
+                          <label for="sel1">Balance: {{fromCurrencyBal}}</label>
+                        </div>
+                        <div class="form-group ml-5 val_inpt">
+                          <input type="text" appDecimal required
+                            class="balance_no_border form-control restriction pull-right" formControlName="autoFromAmnt"
+                            (keyup)="convertAmt()">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="exhng_icons_cnt">
+                      <div class="rounded-circle">
+                        <div class="exc_icn">
+                            <i class="fa fa-exchange  exhng_icon go-swap" (click)="exchang_currency()"></i>
+                        </div>
+
+                        <div class="exc_info"><span *ngIf="showCurrency">{{from_Currency}} 1=
+                            {{to_Currency}}
+                            {{toDayCurrencyRate}}</span></div>
+
+                        <span *ngIf="isSetTarget; else elseCalAmount">
+                          <button class="btn btn-default set-target" data-toggle="modal"
+                            data-target="#setTargetModal" (click)=setTargetModal() [disabled]=isetTarBtn>Set target
+                          </button>
+                        </span>
+                      </div>
+
+                    </div>
+                    <div class="usd_balance">
+                      <div class="form-group">
+                        <div class="float_label">
+                          <select class="form-control" id="sel1" formControlName="autoToCurrn" (change)=currencyRate()>
+                            <option *ngFor="let toCurrency of autoCurrencyType" [value]=toCurrency.currency>
+                              {{toCurrency.currency}}
+                            </option>
+                          </select>
+                          <label>Currency</label>
+                        </div>
+                        <label for="sel1">Balance:{{toCurrencyBal}}</label>
+                      </div>
+                      <div class="form-group ml-5 val_inpt">
+                        <input type="text" class="balance_no_border form-control pull-right" readonly
+                          formControlName="autoToAmnt">
+
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="card exhng_cnt">
+                  <form [formGroup]="autoExchForm">
+
+                    <div class="frm_acc">
+                      <div class="lft_itm">
+                        <div class="curr_dd_lst float_label">
+                          <select class="form-control" id="sel1" formControlName="autoFromCurrn"
+                            (change)=currencyRate() style="margin-right: -9%;">
+                            <option *ngFor="let currency of autoCurrencyType" [value]=currency.currency>
+                              {{currency.currency}}
+                            </option>
+                          </select>
+                          <label style="margin-top: 10px;">Currency</label>
+                        </div>
+                        <div class="bal">Balance:  {{fromCurrencyBal}} {{from_Currency}}</div>
+                      </div>
+                      <div class="val_inpt1 exchn_input1">
+                        <input type="text" (change)="set3NumberDecimal2()" [(ngModel)]="value2" maxlength="10" style="padding-left:2px; padding-right: 2px;text-align: center;" size="55" minlength="1" class="balance_no_border form-control restriction pull-right"
+                        (keyup)="convertAmt()" formControlName="autoFromAmnt" autocomplete="off">
+                      </div>
+
+                    </div>
+
+                    <div class="exhng_icons_cnt">
+                      <div class="exc_icn" (click)="exchang_currency()">
+                        <i class="fa fa-exchange exhng_icon go-swap"></i>
+                      </div>
+                       <div class="exc_info1" *ngIf="showCurrency">
+                          {{from_Currency}} 1=
+                            {{to_Currency}}
+                            {{toDayCurrencyRate}}
+                        </div>
+                        <!-- <div *ngIf="isSetTarget; else elseCalAmount">
+                          <button class="btn btn-primary" data-toggle="modal" data-target="#setTargetModal"  class="exc_info2"
+                            (click)=setTargetModal() [disabled]=isetTarBtn>Set target
+                          </button>
+                        </div> -->
+
+                      <span *ngIf="isSetTarget; else elseCalAmount">
+                        <button class="btn btn-default exc_info2" data-toggle="modal"
+                          data-target="#setTargetModal" (click)=setTargetModal() [disabled]=isetTarBtn>Set target
+                        </button>
+                      </span>
+                    </div>
+
+                    <div class="to_acc">
+                      <div class="lft_itm">
+                        <div class="curr_dd_lst float_label">
+                          <select class="form-control" id="sel2" formControlName="autoToCurrn" (change)=currencyRate()>
+                            <option *ngFor="let toCurrency of autoCurrencyType" [value]=toCurrency.currency>
+                              {{toCurrency.currency}}
+                            </option>
+                          </select>
+                          <label style="margin-top: 10px;">Currency</label>
+                        </div>
+                        <div class="bal">Balance:  {{toCurrencyBal}} {{to_Currency}} </div>
+                      </div>
+                      <div class="val_inpt1 exchn_input1">
+                        <!-- <input type="text" class="balance_no_border form-control pull-right" readonly formControlName="toExchnAmount"> -->
+                        <input type="text" style="padding-left:2px; padding-right: 2px;text-align: center;" maxlength="10" size="55" class="balance_no_border form-control pull-right" readonly
+                          formControlName="autoToAmnt" (change)="set3NumberDecimal3()" [(ngModel)]="value3" autocomplete="off">
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+                <ng-template #elseCalAmount>
+                  <!-- <button class="btn btn-default exc_info2">{{setTarPrice}}  Set target</button> -->
+                  <button class="btn btn-default exc_info2" data-toggle="modal"
+                  data-target="#setTargetModal" (click)=setTargetModal() [disabled]=isetTarBtn>Set target
+                </button>
+                </ng-template>
+
+                <div class="modal-footer modal_footer">
+                  <button style="border-radius:4px" class="btn btn-outline-primary set-radius btn-block" type="button"
+                    data-dismiss="modal">Cancel</button>
+                  <button style="border-radius:4px" class="btn btn-primary set-radius btn-block" type="button" id="autoExchangebtn"
+                    [disabled]="autoExchForm.invalid" data-dismiss="modal" (click)=autoExchange()>Auto-Exchange</button>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal" id="setTargetModal">
+          <div class="modal-dialog">
+            <div style="width: 85%;height: 20%;" class="modal-content">
+              <div class="modal-body">
+                <div class="setTargetCard">
+                  <div class="text-center">
+                    <h4 class="modal-title ">Enter target rate <br> for  1 {{from_Currency}}</h4><br>
+                    <p class="modal-text ">Current rate is 1 {{from_Currency}}={{toDayCurrencyRate}} {{to_Currency}}
+                    </p>
+                    <div class="row">
+                      <div col-5>
+                        <span>{{to_Currency}}</span>
+                      </div>
+                      <div class="form-group col-5">
+                        <input type="text" required maxlength="8" class="form-control" formControlName="autoSetTargetAmt" autocomplete="off">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <div class="setTargetButtons">
+                      <button style="border-radius:4px;width: 45%;" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                      <button style="border-radius:4px;width: 45%;" class="btn btn-primary" [disabled]=this.autoExchForm.controls.autoSetTargetAmt.invalid
+                        (click)="setTargetAmount()">Set target</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- autoExchange ending -->
+
+      <!--price alert starting-->
+
+
+      <div class="modal" data-backdrop="static" id="priceAlert" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-slideout" role="document" id="CountryDetails">
+          <div class="modal-content ov_y_auto cntry_lst_mdl">
+            <button type="button" class="close close_crcl" data-dismiss="modal" aria-label="Close" (click)="searchText=''">
+              <i class="fa fa-times"></i>
+            </button>
+            <div class="modal-title ctry_lst_title" id="exampleModalLabel">Choose a currency to add</div>
+            <div class="input-group mb-3">
+              <input type="text" style="box-shadow: none;" class="form-control bor-rem" name="key1" (keydown.space)="$event.preventDefault();" [(ngModel)]="searchText" placeholder="Search..." autocomplete="off">
+              <div class="input-group-append">
+                <button style="box-shadow: none;" class="btn btn-outline-secondary search_btn" type="button"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+            <div class="ctry_cnt">
+              <ul class="ctry_lst">
+                <li *ngFor="let country of CountryDetails | isoCurrencySearch:searchText" (click)="countryDetls(country)" id="countryDetailsModalCenter">
+                  <div class="ctry_img">
+                    <i class="flag_cont flag_cont_bulg" *ngIf="country.country_id==1"></i>
+                    <i class="flag_cont flag_cont_croatian" *ngIf="country.country_id==7"></i>
+                    <i class="flag_cont flag_cont_czech" *ngIf="country.country_id==9"></i>
+                    <i class="flag_cont flag_cont_danish" *ngIf="country.country_id==12"></i>
+                    <i class="flag_cont flag_cont_swedan " *ngIf="country.country_id==19"></i>
+                    <i class="flag_cont flag_cont_romania " *ngIf="country.country_id==31"></i>
+                    <i class="flag_cont flag_cont_euro" *ngIf="country.country_id==2"></i>
+                    <i class="flag_cont flag_cont_hungarian" *ngIf="country.country_id==21"></i>
+                    <i class="flag_cont flag_cont_polish" *ngIf="country.country_id==29"></i>
+                    <i class="flag_cont flag_cont_british" *ngIf="country.country_id==20"></i>
+                    <i class="flag_cont flag_cont_us" *ngIf="country.country_id==16"></i>
+                    <i class="flag_cont flag_cont_czech" *ngIf="country.country_id==5"></i>
+                    <i class="flag_cont flag_cont_us" *ngIf="country.country_id==35"></i>
+                    <i class="flag_cont flag_cont_swiss" *ngIf="country.country_id==37"></i>
+                    <i class="flag_cont flag_cont_iceland" *ngIf="country.country_id==38"></i>
+                    <i class="flag_cont flag_cont_norway" *ngIf="country.country_id==39"></i>
+                  </div>
+                  <div class="ctry_crncy_cnt">
+                      <div class="ctry_title">{{country.currency}}</div>
+                    <div class="ctry_crncy">{{country.country_name}}</div>
+
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal modal-fade" id="priceAlertsModal" tabindex="-1" aria-labelledby="priceAlertsModalTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document" id="examModalCenter">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="cnf_cnt">
+                  <div class="cnf_img_cnt">
+                    <i class="flag_cont2x flag_cont_bulg" *ngIf="country_id_currency==1"></i>
+                    <i class="flag_cont2x flag_cont_croatian" *ngIf="country_id_currency==7"></i>
+                    <i class="flag_cont2x flag_cont_czech" *ngIf="country_id_currency==9"></i>
+                    <i class="flag_cont2x flag_cont_danish" *ngIf="country_id_currency==12"></i>
+                    <i class="flag_cont2x flag_cont_swedan " *ngIf="country_id_currency==19"></i>
+                    <i class="flag_cont2x flag_cont_romania " *ngIf="country_id_currency==31"></i>
+                    <i class="flag_cont2x flag_cont_euro" *ngIf="country_id_currency==2"></i>
+                    <i class="flag_cont2x flag_cont_hungarian" *ngIf="country_id_currency==21"></i>
+                    <i class="flag_cont2x flag_cont_polish" *ngIf="country_id_currency==29"></i>
+                    <i class="flag_cont2x flag_cont_british" *ngIf="country_id_currency==20"></i>
+                    <i class="flag_cont2x flag_cont_us" *ngIf="country_id_currency==16"></i>
+                    <i class="flag_cont2x flag_cont_czech" *ngIf="country_id_currency==5"></i>
+                    <i class="flag_cont2x flag_cont_us" *ngIf="country_id_currency==35"></i>
+                    <i class="flag_cont2x flag_cont_iceland" *ngIf="country_id_currency==38"></i>
+                    <i class="flag_cont2x flag_cont_switzerland" *ngIf="country_id_currency==37"></i>
+                    <i class="flag_cont2x flag_cont_norway" *ngIf="country_id_currency==39"></i>
+                  </div>
+                  <form [formGroup]="targetfb">
+                    <div class="cnf_title text-center" *ngIf="selCountrydetails">
+                      Create a price alert for {{selCurrency.currency}}
+                    </div>
+                    <!-- <p>Create a price alert for</p> -->
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group float_label">
+                          <select class="form-control"  placeholder="Select currency" formControlName="target_tcurrency"
+                            (change)=priceCurrency()>
+                            <option *ngFor="let currency of CountryDetails" [ngValue]="currency.currency">
+                              {{currency.currency}}
+                            </option>
+                          </select>
+                          <div class="exc_info" *ngIf="selCurrency">
+                            {{selCurrency.currency}} 1 <span *ngIf="todayPriceCurrn">={{targettCurrency}}
+                              {{toPriceRate}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group float_label">
+                          <input type="text" appDecimal maxlength="6" minlength="1" class="form-control pull-right" formControlName="taramount"
+                            placeholder="0" id="taramount" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <button style="border-radius:4px" type="button" class="btn btn-block btn-outline-primary pricealert_btn"
+                          data-dismiss="modal" (click)="closeModal()">Cancel</button>
+                      </div>
+                      <div class="col-md-6">
+                        <button style="border-radius:4px" (click)="CreateCountry(selCurrency)" class="btn btn-primary btn-block"
+                          data-dismiss="modal" [disabled]='targetfb.invalid'>Set alert</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ending price alert-->
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="appWarn" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+    <div class="modal-content" style="margin: 20px; width: 100%; padding: 10px">
+      <div class="modal-body body_popup">
+      <div class="wip-container text-center bg-white">
+          <img class="wip-img" src="assets/images/payvoo-wip.png" />
+          <p style="color:black"><strong>We are getting this feature ready. We will notify you when it is done.</strong></p>
+          <button  style="border-radius:4px" class="btn btn-primary btn-block" data-dismiss="modal" (click)="hideOk()" >OK </button>
+          </div>
+          </div>
+        </div>
+</div>
+</div>
+
+<div class="modal modal fade" tabindex="-1" id="success" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="col-lg-12" class="text-center">
+                <!-- <img class="wip-img" src="assets/images/payvoo-wip.png" /> -->
+                <img src="assets/images/success.png" >
+                  <h5 class="modal-text"><br>{{autoExchangeMessage}}</h5><br>
+                  <div class="col-12">
+                      <button class="btn btn-block btn-primary col-8 mx-auto"
+                          style="margin-bottom: 10px;" data-dismiss="modal" >Ok</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

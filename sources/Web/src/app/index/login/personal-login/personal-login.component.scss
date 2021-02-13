@@ -1,0 +1,126 @@
+@import "../../../../variables";
+.lft_bg_img {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+.bg_wt {
+  background: #ffffff;
+}
+
+.bg_img_1 {
+  background-image: url("../../../../assets/images/analysis-banking-businesswoman-1451448.jpg");
+}
+.rt_cont {
+  padding: 50px 150px;
+  min-height: calc(100vh - 200px);
+}
+.forgot1 {
+  color: $color-secondary !important;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.header_bar {
+  position: relative;
+  margin-bottom: 30px;
+  color: #545454;
+}
+.error_msgs {
+  font-size: 14px;
+}
+.check_div {
+  margin-top: 150px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.check_div img {
+  width: 100px;
+}
+
+.header_para {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: $font-color-active;
+  font-weight: 400;
+}
+
+.m_t_200 {
+  margin-top: 200px;
+}
+.m_b_20 {
+  margin-bottom: 20px;
+}
+.m_t_20 {
+  margin-top: 20px;
+}
+.m_r_20 {
+  margin-right: 20px;
+}
+
+.logo_container_login1 {
+  width: 100%;
+  height: 0px;
+  position: relative;
+  z-index: 5;
+}
+.logo_container_login1 img {
+  position: absolute;
+  width: 22%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: -25px;
+}
+
+#user_form fieldset:not(:first-of-type) {
+  display: none;
+}
+
+$num-of-char: 6;
+$char-width: 1ch;
+$gap: 0.4 * $char-width;
+$in-w: $num-of-char * ($char-width + ($gap));
+
+.otp {
+  display: block;
+  border: none;
+  width: 11.6ch;
+  background: repeating-linear-gradient(90deg, #000 0, #000 1.3ch, transparent 0, transparent 1.8ch) 0 100%/10ch 1px
+    no-repeat;
+  font: 4.8ch droid sans mono, consolas, monospace;
+  letter-spacing: 0.74ch;
+  padding: 8px;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .lft_bg_img {
+    height: 250px;
+    min-height: auto;
+    z-index: 4;
+    position: fixed;
+    background-position: center;
+  }
+  .rt_cont {
+    padding: 10px 30px;
+  }
+  .logo_container_login1 img {
+    width: 130px;
+    top: -10px;
+    left: 50px;
+    position: fixed;
+  }
+  .m_t_200 {
+    margin-top: 150px;
+    padding-top: 130px;
+  }
+}

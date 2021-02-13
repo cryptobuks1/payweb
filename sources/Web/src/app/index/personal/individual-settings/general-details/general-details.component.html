@@ -1,0 +1,110 @@
+
+
+<!-- <div class="dropdown-content"   [style.overflow]="'auto'" [style.height.px]="'550'">
+    <h5 id="heading">Change language</h5><br>
+    <table>
+        <tr *ngFor="let eachMovie of products" [class.selected]="eachMovie===selectedMovie"
+        (click)="onSelect(eachMovie); openModal(template)">
+            <td><img src="{{eachMovie.country_flag_img_path}}"  width="70" >&nbsp;<small>{{eachMovie.country_name}}</small></td>
+        </tr>
+    </table>
+    <ng-template class="text-center"  #template>
+        <div class="my-modal" *ngIf="selectedMovie" class="details text-center">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;&nbsp;</span>
+              </button>
+            <h3 class-="modal-header">You've Selected: {{selectedMovie.country_name}}</h3>
+
+            <h4>Details:</h4>
+            <table style="width: 100%" id="heading">
+                <tr>
+                    <td>ID:</td>
+                    <td>{{selectedMovie.country_id}}</td>
+                </tr>
+                <tr>
+                    <td>Country_Name:</td>
+                    <td>{{selectedMovie.country_name}}</td>
+                </tr>
+                <tr>
+                    <td>Currency:</td>
+                    <td>{{selectedMovie.currency}}</td>
+                </tr>
+                <tr>
+                    <td>Currency_symbol:</td>
+                    <td>{{selectedMovie.currency_symbol}}</td>
+                </tr>
+
+            </table>
+        </div>
+    </ng-template> -->
+
+<!-- <a onclick="alert('Uk Language Selected')" ><img src="../../../../assets/images/country_flags/uk.png"  width="50" >&nbsp;<small>UK</small></a><br>
+    <a onclick="alert('CANADA Language Selected')" ><img src="../../../../assets/images/country_flags/canada.png"  width="50" >&nbsp;<small>CANADA</small></a><br>
+    <a onclick="alert('CHINA Language Selected')" ><img src="../../../../assets/images/country_flags/china.png"  width="50" >&nbsp;<small>CHINA</small></a><br>
+    <a onclick="alert('EUROPE Language Selected')" ><img src="../../../../assets/images/country_flags/europe.png"  width="50" >&nbsp;<small>EUROPE</small></a><br>
+    <a onclick="alert('IRELAND Language Selected')" ><img src="../../../../assets/images/country_flags/ireland.png"  width="50" >&nbsp;<small>IRELAND</small></a><br>
+    <a onclick="alert('LIBERIA Language Selected')" ><img src="../../../../assets/images/country_flags/liberia.png"  width="50" >&nbsp;<small>LIBERIA</small></a><br>
+    <a onclick="alert('Uk Language Selected')" ><img src="../../../../assets/images/country_flags/uk.png"  width="50" >&nbsp;<small>UK</small></a><br>
+    <a onclick="alert('CANADA Language Selected')" ><img src="../../../../assets/images/country_flags/canada.png"  width="50" >&nbsp;<small>CANADA</small></a><br>
+    <a onclick="alert('CHINA Language Selected')" ><img src="../../../../assets/images/country_flags/china.png"  width="50" >&nbsp;<small>CHINA</small></a><br>
+    <a onclick="alert('EUROPE Language Selected')" ><img src="../../../../assets/images/country_flags/europe.png"  width="50" >&nbsp;<small>EUROPE</small></a><br>
+    <a onclick="alert('IRELAND Language Selected')" ><img src="../../../../assets/images/country_flags/ireland.png"  width="50" >&nbsp;<small>IRELAND</small></a><br>
+    <a onclick="alert('LIBERIA Language Selected')" ><img src="../../../../assets/images/country_flags/liberia.png"  width="50" >&nbsp;<small>LIBERIA</small></a><br> -->
+
+<!-- </div>                   -->
+
+
+<div class="dropdown-content"   [style.overflow]="'auto'" [style.height.px]="'500'"><br>
+    <h5 id="heading">Change language</h5><br>
+    <div class="ctry_cnt" >
+    <table class="ctry_lst">
+        <tr   *ngFor="let item of countryData" [class.selected]="item===selectedItem" (click)="save_outage_item(item)" data-toggle="modal"
+            data-target="#exampleModalCenter" >
+            <td style="border-radius: 50px;">
+                <img src="{{item.country_flag_img_path}}" width="50" style="padding-bottom: 5px;padding-top:5px; " >&nbsp;&nbsp;&nbsp;<h6 id="heading"  style="display: inline;cursor: pointer;" [style.background-color]="getStyle()">{{item.country_name}}</h6>
+            </td>
+            <!-- <div class="ctry_crncy_cnt">
+
+                <h5 id="heading"><div class="ctry_title">{{item.country_name}}</div></h5>
+            </div> -->
+
+        </tr>
+    </table>
+</div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class=" modal-body text-center">
+                <div class="cnf_cnt">
+                    <div *ngIf="selectedItem" class="cnf_title">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        You have selected:&nbsp;<h2 ><strong>{{selectedItem.country_name}}</strong></h2><img src="{{selectedItem.country_flag_img_path}}" width="90"><br>
+                    </div>
+                    <div class="cnf_img_cnt">
+
+                    </div>
+                    <form #cfb="ngForm">
+                        <p>Would you like to change the language ?</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <button style="border-radius:4px" type="button" (click)="deSelectLanguage()" class="btn btn-block btn-outline-primary"
+                                        data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <button style="border-radius:4px" class="btn btn-primary btn-block"
+                                        data-dismiss="modal">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,385 @@
+<toastr-notification></toastr-notification>
+<!-- <div class="loading" *ngIf=apploader></div> -->
+<nav class="navbar navbar-expand-sm bg-light" *ngIf="authService.accountMatch(['personal'])">
+  <div class="bars_cnt">
+    <i class="fa fa-bars"></i>
+  </div>
+  <a class="navbar-brand" href="\"><img src="../../assets/images/payvoo_logo_beta_1.png"></a>
+  <ul class="navbar-nav ml-auto " style="display: -webkit-inline-box;">
+    <li class="nav-item">
+      <a>
+          <span class="notification_icn" [matBadge]="alertsCount" matBadgeOverlap="false" [matBadgeHidden]="alertsCount == 0">
+            <img class="img-fluid" src="../../assets/images/icons/notification.png">
+          </span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <div class="dropdown profile_dropdown">
+        <label class="hoverable" for="fileInput">
+          <img style="cursor: pointer;" [src]="url ? url : '../../assets/images/profile_img.png'"> 
+        </label>
+        <input id="fileInput" type='file' accept="image/jpeg" (change)="onSelectFile($event)" >
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" (click)="getKYCStatus()">
+            
+          <span>{{firstName}} {{lastName}}</span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="margin-left: -49px;">
+          <a class="dropdown-item">KYC Status: <span style="color: red">{{KYCStatus}}</span></a>
+          <a style="color:black" class="dropdown-item" >Profile: Personal User</a>
+          <!-- <a class="dropdown-item" routerLink="profile/personal" routerLinkActive="active">Profile</a>
+                       <ul class="float-none" style="list-style-type:none">
+                          <li><a>Personal</a></li>
+                       </ul>  -->
+          <a class="dropdown-item" (click)="logoutAction()">Logout</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+</nav>
+<div class="left_nav" *ngIf="authService.accountMatch(['personal'])">
+  <div class="close_btn">
+    <i class="fa fa-times"></i>
+  </div>
+  <ul class="left_nav_items">
+    <li class="closePopup" routerLink="active" routerLink="/personal/accounts/getaccount" [ngClass]="{'active': selectedTab == 'accounts'
+    || selectedTab == 'exchange' || selectedTab == 'add-money'}">
+      <i class="nav_icn icn_accounts"></i>Accounts
+    </li>
+    <li (click)="getApp()">
+      <i class="nav_icn icn_analytics "></i>Analytics
+    </li>
+    <li onclick="cameraIdentification()" (click)="checkKycForPayment('/personal/payments')" [ngClass]="{'active': selectedTab == 'payments'}">
+      <i class="nav_icn icn_payments"></i>Payments
+    </li>
+    <!-- <li  (click)="payments()" [ngClass]="{'active': selectedTab == 'payments'}">
+      <i class="nav_icn icn_payments"></i>Payments
+    </li> -->
+    <li (click)="getApp()">
+      <i class="nav_icn icn_cards"></i>Cards
+    </li>
+    <li class="closePopup" routerLink="active" routerLink="/personal/individual-settings" [ngClass]="{'active': selectedTab == 'settings'}">
+      <i class="nav_icn icn_settings"></i>Settings
+    </li>
+    <li (click)="getApp()" >
+      <i class="nav_icn icn_more"></i>More
+    </li>
+   <!-- <li (click)="logoutAction()" routerLinkActive="active">
+      <i class="nav_icn icn_logout"></i>Logout
+    </li>-->
+  </ul>
+</div>
+<nav class="navbar navbar-expand-sm bg-light" *ngIf="authService.accountMatch(['business'])">
+  <div class="bars_cnt">
+    <i class="fa fa-bars"></i>
+  </div>
+  <a class="navbar-brand" href="\"><img src="../../assets/images/payvoo_logo_beta_1.png"></a>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a>
+          <span class="notification_icn" [matBadge]="alertsCount" matBadgeOverlap="false" [matBadgeHidden]="alertsCount == 0">
+            <img class="img-fluid" src="../../assets/images/icons/notification.png">
+          </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <div class="dropdown profile_dropdown">
+        <label class="hoverable" for="fileInput">
+          <img style="cursor:pointer" [src]="url ? url : '../../assets/images/profile_img.png'"> 
+        </label>
+        <input id="fileInput" type='file' accept="image/jpeg" (change)="onSelectFile($event)" >
+        <button class="btn btn-secondary dropdown-toggle" type="button" (click)="getKYCStatus()" id="dropdownMenuButton" data-toggle="dropdown">
+          
+          <span [hidden]="isNull">{{firstName}} {{lastName}}</span>
+
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" style="margin-left: -49px;" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item">KYC Status: <span style="color: red">{{KYCStatus}}</span></a>
+          <a style="color:black" class="dropdown-item">Profile: Business User</a>
+          <!-- <a class="dropdown-item" >Profile</a> -->
+          <a class="dropdown-item" (click)="logoutAction()">Logout</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>
+<div class="left_nav" *ngIf="authService.accountMatch(['business'])">
+  <div class="close_btn">
+    <i class="fa fa-times"></i>
+  </div>
+  <ul class="left_nav_items">
+    <!-- <li routerLink="/home/business-application" routerLinkActive="active">
+      <i class="fa fa-file-text-o"></i>Application
+    </li> -->
+    <!-- <div class="content_card active" (click)="Activate()"></div>
+    <li *ngIf="!isCompleted" routerLink="/home/application" [ngClass]="{'active': selectedTab == 'activate'}">
+      <i class="nav_icn icn_accounts"></i>Activate
+    </li> -->
+    <div class="content_card"></div>
+    <li *ngIf="!isCompleted" (click)="getStatus()" routerLink="active" routerLink="/business/application" [ngClass]="{'active': selectedTab == 'application'}">
+      <!-- <i class="nav_icn icn_accounts"></i>-->Activate
+    </li>
+    <li class="closePopup" *ngIf="isCompleted" routerLink="active" routerLink="/business/accounts/getaccount" [ngClass]="{'active': selectedTab == 'accounts' || selectedTab == 'business-exchange'
+    || selectedTab == 'account-index' || selectedTab == 'add-money'}">
+      <i class="nav_icn icn_accounts"></i>Accounts
+    </li>
+    <li  *ngIf="isCompleted" (click)="getApp()" >
+      <i class="nav_icn icn_analytics"></i>Analytics
+    </li>    
+     <li *ngIf="isCompleted" onclick="cameraIdentification()" (click)="checkKycForPayment('/business/payments')" [ngClass]="{'active': selectedTab == 'payments'}">
+      <i class="nav_icn icn_payments"></i>Payments
+    </li>
+    <!-- <li *ngIf="isCompleted" (click)="payments()"  [ngClass]="{'active': selectedTab == 'payments'}">
+      <i class="nav_icn icn_payments"></i>Payments
+    </li>   -->
+    <!-- <li  routerLink="/home/cards">
+      <i class="nav_icn icn_cards "></i>Cards
+    </li> -->
+    <li *ngIf="isCompleted"  (click)="getApp()">
+      <i class="nav_icn icn_cards"></i>Cards
+    </li>
+    <li class="closePopup" routerLink="active" routerLink="/business/settings" [ngClass]="{'active': selectedTab == 'settings'}" >
+      <i class="nav_icn icn_settings"></i>Settings
+    </li>
+    <li  *ngIf="isCompleted"  (click)="getApp()" >
+      <i class="nav_icn icn_more"></i>More
+    </li>
+    <!-- <li *ngIf="isCompleted" (click)="logoutAction()">
+      <i class="nav_icn icn_logout"></i>Logout
+    </li> -->
+  </ul>
+</div>
+
+<!-- sandbox login -->
+
+<nav class="navbar navbar-expand-sm bg-light" *ngIf="authService.accountMatch(['sandbox'])">
+  <a class="navbar-brand" href="\"><img src="../../assets/images/payvoo_logo.png"></a>
+  <ul class="navbar-nav ml-auto">
+    <!-- <li class="nav-item">
+      <i class="notification_icn">
+        <img class="img-fluid" src="../../assets/images/icons/notification.png">
+      </i>
+    </li> -->
+
+    <li class="nav-item">
+      <div class="dropdown profile_dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+           <img src="../../assets/images/profile_img.png">
+          <span>{{firstName}} {{lastName}}</span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="margin-left: -49px;">
+          <!-- <a class="dropdown-item" (click)="getKYCStatus()">Profile</a> -->
+          <a style="color:black" class="dropdown-item" >Profile: Sandbox User</a>
+          <a class="dropdown-item" (click)="logoutAction()">Logout</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>
+<div class="left_nav" *ngIf="authService.accountMatch(['sandbox'])">
+  <ul class="left_nav_items">
+    <li routerLink="/home/sandbox" class="active cursor_pointer">
+      <i class="fa fa-th" aria-hidden="true"></i>Sandbox
+    </li>
+  </ul>
+</div>
+<div class="modal fade" id="kycwarnhome" role="dialog" style="margin-left: 10px;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content fontbtn">
+      <div class="modal-body body_popup">
+        <div class="add_money">
+          <!-- <img src="../../../../../assets/images/addicon.png" alt="path not correct" /> -->
+          <h4 style="text-align: center;">Verify your identity</h4>
+          <p style="text-align: center;">Please, verify your identity in order to be able to use the payments
+            functionalities of PayVoo</p>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block" data-dismiss="modal">I'll do it later</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block" data-dismiss="modal" onclick="cameraIdentification()" (click)="gotoProfilePage()" data-dismiss="modal">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="successChanges" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+    <div class="modal-content">
+      <div class="modal-body body_popup">
+      <div class="wip-container text-center bg-white">         
+          <p style="color:black"><strong>Registered information doesn't match with the documents. Please do KYC again </strong></p>
+          <button  class="btn btn-primary btn-block" data-dismiss="modal" (click)="hideOk()" >OK </button>
+          </div>
+          </div>
+        </div>
+</div>
+</div>
+
+<div class="modal invitemodal" id="myModal" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal_size">
+    <div class="modal-content fontbtn">
+      <div class="modal-body">
+
+        <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+          <h4 class="modal-title header_txt text-center">Please, choose how to complete your identity verification</h4>
+          <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/webcam.png"></span>
+              </div>
+              <div class="p-2" (click)="webCamera()" data-dismiss="modal">
+                <p class="m-b-0 kyc_process">Use webcam</p>
+                <small>Make sure it supports high resolution</small>
+                <div  id="demo" class="collapse">
+                  </div>
+              </div>
+              <div class="ml-auto p-2  align-self-center" data-toggle="collapse" data-target="#demo">
+                <i class="fa fa-angle-right kyc_process" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="d-flex flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/smartphone.png"></span>
+              </div>
+              <div class="p-2">
+                <p class="m-b-0 kyc_process">Use mobile camera through browser</p>
+                <small>You will receive a link on your registered e-mail</small>
+                <div  id="demo" class="collapse"> 
+                <button  (click)="KYClinkToMobile('android')" data-dismiss="modal"><img
+                  src="../../assets/images/androidicon.png" style=width:35px;;></button> or
+                 <button  (click)="KYClinkToMobile('ios')" data-dismiss="modal"><img src="../../assets/images/iosicon.png"
+                  style=width:35px;;></button>
+                 </div>
+              </div>
+              <div class="ml-auto p-2  align-self-center" data-toggle="collapse" data-target="#demo">
+                <i class="fa fa-angle-right kyc_process" style="font-size: 1.5rem;"></i>
+              </div>
+            </div>
+            <div class="d-flex   flexborder">
+              <div class="p-2  align-self-center">
+                <span class="itm_crcl"><img src="../../../../assets/images/smartphonedwnld.png"></span>
+              </div>
+              <div class="p-2 ">
+                <p class="m-b-0 kyc_process">Install PayVoo app</p>
+                <small>Think long term. Download PayVoo app now on your Android/iOS device</small>
+              </div>
+            </div>
+
+            <div class="row justify-content-center m-t-10">
+                <div style="padding-bottom: 8px;" class="col-md-6 col-sm-6">
+                  <div (mouseover)="gplay=true" *ngIf="!gplay"><button type="button" (click)="getApp()" class="btn btn-block btn-primary">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/google-play.png"></span>&nbsp;Get it on Google Play</button></div>
+                  <div (mouseout)="gplay=false" *ngIf="gplay"><button type="button"
+                      (click)="getApp()" class="btn btn-block btn-outline-primary1">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/playstore.png"></span>&nbsp;Get it on Google Play</button></div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div (mouseover)="ios=true" *ngIf="!ios"><button type="button" (click)="getApp()" class="btn btn-block btn-primary">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store.png"></span>&nbsp;Get it on App Store
+                    </button></div>
+                  <div (mouseout)="ios=false" *ngIf="ios"><button type="button" (click)="getApp()" class="btn btn-block btn-outline-primary1">
+                      <span style="margin-left: -15px;"><img style="padding-bottom: 2px;" src="../../../../assets/images/app-store_1.png"></span>&nbsp;Get it on App Store
+                    </button></div>
+
+                </div>
+              </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- <div class="modal" id="kycpopup" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">KYC Verification Steps</h4>
+            <button type="button" (click)="latestStatus()" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe *ngIf="kycIframe"  [src]="urlSafe"  allow="geolocation; microphone; camera" height='730px' width="100%"></iframe>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="modal" id="kycpopup" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">KYC Verification Steps</h4>
+            <button type="button" (click)="latestStatus()" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <iframe *ngIf="kycIframe"  [src]="urlSafe" allow="geolocation; microphone; camera" height='730px' width="100%"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="modal fade" id="appWarn" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="margin-left: 41%; margin-top: -9%">
+    <div class="modal-content" style="margin: 20px; width: 100%; padding: 10px">
+     <div class="modal-body body_popup">
+        <div class="wip-container text-center bg-white">
+          <img src="./../../assets/images/payvoo-wip.png" class="wip-img" />
+          <h5 style="text-align:center">We are getting this feature ready, will notify once done</h5>
+          <div class="col-md-6 feature">
+            <button  class="btn btn-primary btn-block" data-dismiss="modal" (click)="hideOk()" >OK </button>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="modal fade" id="appWarn" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+    <div class="modal-content">
+      <div class="modal-body body_popup">
+      <div class="wip-container text-center bg-white">
+          <img class="wip-img" src="assets/images/payvoo-wip.png" />
+          <p style="color:black"><strong>We are getting this feature ready. We will notify you when it is done.</strong></p>
+          <button  class="btn btn-primary btn-block" data-dismiss="modal" (click)="hideOk()" >OK </button>
+          </div>
+          </div>
+        </div>
+</div>
+</div>
+
+<div class="modal fade" id="kycverifywarn" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="margin-left: 38%; margin-top: -9%">
+    <div class="modal-content">
+      <div class="modal-body body_popup">
+        <div class="add_money">
+          <h4 style="text-align: center;">Alert</h4>
+          <p style="text-align: center;">Please, make sure that the person is ready with the identity document and
+            completes the KYC in next 30 minutes.</p>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block"  data-dismiss="modal">I'll do it later</button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary btn-block" (click)="KYClinkToMobile(platform_type)" data-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="main_body">
+  <router-outlet></router-outlet>
+  <div class="nav_backdrop "></div>
+</div>

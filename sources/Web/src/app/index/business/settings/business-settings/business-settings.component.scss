@@ -1,0 +1,59 @@
+@import "../../../../../variables";
+
+.page_ht_crd {
+    height: 100%;
+    padding: 20px 10px 20px 10px;
+    ul {
+      a {
+        border: none;
+      }
+    }
+  }
+  .parent_div {
+    min-height: calc(100vh - 75px);
+  }
+  .first_div {
+    background-color: #ffffff;
+  }
+  .acc_navbar {
+    border-bottom: 1px solid $color-primary;
+    background-color: #ffffff;
+
+    li.nav-item {
+      width: 50%;
+      text-align: center;
+      &:focus {
+        outline: none;
+        user-select: none;
+      }
+
+      a.nav-link {
+        border-radius: 0px;
+        &.active,
+        &:hover,
+        &:focus {
+          background: #ffffff;
+          border-bottom: 2px solid $color-secondary;
+          opacity: 1;
+          outline: none;
+        }
+      }
+      a {
+        margin-bottom: -1px;
+        color: $font-color;
+        font-weight: 600;
+        opacity: 0.6;
+        padding: 10px 30px;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        &:focus,
+        &:hover {
+          border-bottom: 2px solid $color-secondary;
+          outline: none;
+          opacity: 1;
+          background: #ffffff;
+          color: $font-color-active;
+        }
+      }
+    }
+  }

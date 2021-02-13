@@ -1,0 +1,29 @@
+.page_ht_crd1 {
+    height: 75vh;
+    width: 70%;
+    padding: 20px 30px 20px 30px;
+    margin-left: 15%;
+    margin-right: 15;
+    box-shadow: 0px 3px 6px #00000029;
+  }
+  .navimg, .drpdn{
+      display:inline;
+    }
+  *:focus{
+    outline: none !important;
+    border: none;
+  }
+  button:focus { outline: none; }
+  .box {
+    padding: 0 5px 0 5px;
+  }
+  .border {
+      padding-left: 5px;
+  }
+  .float_label .form-control,
+  .float_label select {
+    padding-left: 0px;
+  }
+  .float_label label, .float_label > span {
+    margin-left: -14px;
+  }

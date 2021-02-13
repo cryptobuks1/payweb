@@ -1,0 +1,95 @@
+<div class="card page_ht_crd2 mx-auto" *ngIf="true">
+    <div class="container">
+        <h4><span class="pay">Pay<span class="voo">Voo</span></span></h4>
+        <hr>
+        <h5>Confirm payments</h5>
+        <form [formGroup]="cardForm">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" formControlName="nameOnCard" placeholder="Name on Card">
+            </div>
+            <div class="text text-danger"
+                *ngIf="cardForm.controls['nameOnCard'].invalid && cardForm.controls['nameOnCard'].touched">
+                Name is required.
+                <!-- <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div> -->
+            </div>
+
+            <div class="form-group positionn" >
+                <input type="text" class="form-control" maxlength="23" minlength="19" [(ngModel)]='cardNumber' (keydown)="getCardType(cardNumber)" formControlName="cardNum" [dropSpecialCharacters]="false" [validation]="false"  mask="0000 0000 0000 0000 000" placeholder="Card Number">
+                <!-- <span><img src="../../../../assets/images/cards/mastercard.png" /></span> -->
+                <i *ngIf="type=='visa'" class="card_type_cnt card_visa"></i>
+                <i *ngIf="type=='mastercard'" class="card_type_cnt card_master"></i>
+                <i *ngIf="type=='jcb'" class="card_type_cnt card_jcb"></i>
+                <i *ngIf="type=='diners-club'" class="card_type_cnt card_dci"></i>
+                <i *ngIf="type=='unionpay'" class="card_type_cnt card_unionpay"></i>
+            </div>
+            <div class="text text-danger"
+                *ngIf="cardForm.controls['cardNum'].invalid && cardForm.controls['cardNum'].touched">
+                Card Number is required.
+                <!-- <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div> -->
+            </div>
+
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" formControlName="expDate" class="form-control" placeholder="MM/YY" [validation]="true"  mask="00/00" >
+                    </div>
+                    <div class="text text-danger"
+                        *ngIf="cardForm.controls['expDate'].invalid && cardForm.controls['expDate'].touched">
+                        Date is required.
+                        <!-- <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div> -->
+                       
+                    </div>
+                    <span style="color: red;" *ngIf="monthValudation">Month Should be less than 12</span>
+                </div>
+                <div class="col-4">
+                    <div class="form-group ">
+                        <input type="password" formControlName="CVV" class="form-control" maxlength="3" minlength="3" placeholder="CVV">
+                    </div>
+                    <div class="text text-danger"
+                        *ngIf="cardForm.controls['CVV'].invalid && cardForm.controls['CVV'].touched">
+                        CVV is required.
+                        <!-- <div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div> -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <div class="form-group">
+                            <button style="border-radius:4px" class="btn btn-outline-primary btn-block" routerLink="/card">Cancel</button>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-6 pull-right">
+                        <div class="form-group">
+                            <!-- <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal" -->
+                            <button style="border-radius:4px" class="btn btn-primary btn-block" [disabled]="cardForm.invalid || monthValudation" (click)="addCard(cardForm.value)">Continue
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered" style="width: 30%;">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="check_div">
+                    <img src="../../../../assets/images/tick_icon.png">
+                </div>
+                <h4>Insufficient funds in the selected account. Change card to continue</h4>
+
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <button class="btn btn-primary btn-block" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

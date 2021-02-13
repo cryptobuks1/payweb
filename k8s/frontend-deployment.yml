@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: payvoo_web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payvoo_web
+  template:
+    metadata:
+      labels:
+        app: payvoo_web
+    spec:
+      containers:
+      - name: frontend
+        image: 995966766395.dkr.ecr.us-west-2.amazonaws.com/payvoo/web:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "0.1"
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always

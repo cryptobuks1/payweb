@@ -1,0 +1,42 @@
+<div class="main_cont_bg">
+    <div style="width: 40%; height: 70%;" class="cards">
+  
+      <img src="../../../../../assets/images/payvoo_logo.png" alt="path not correct" />
+  
+      <div style=" font-weight: bold;" class="header_para">Log into Sandbox</div>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="LoginAction(loginForm.value)">
+  
+      <div class="form-group">
+        <input type="text" class="form-control" id="email" (keydown.space)="$event.preventDefault();" name="email" placeholder="Email" formControlName="userId">
+        <!-- <label for="email">Email</label> -->
+      </div>
+  
+      <div class="form-group">
+        <input type="password" class="form-control" id="password" (keydown.space)="$event.preventDefault();" name="password" placeholder="Password" formControlName="password">
+        <!-- <label for="password">Password</label> -->
+      </div>
+      <div class="input-group-append">
+  
+        <div class="inpt_icn" onclick="showPassword()"
+          (click)="showMyContainer=!showMyContainer" *ngIf="!showMyContainer">
+          <i class="fa fa-eye-slash" aria-hidden="true"></i>
+       </div>
+  
+        <div class="inpt_icn" onclick="hidePassword()"
+          (click)="showMyContainer=!showMyContainer" *ngIf="showMyContainer">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+       </div>
+  
+      </div>
+      <button  style=" font-weight: bold; border-radius: 4px; background-color:orange" class="btn btn-primary btn-block" [disabled]="loginForm.invalid || spins"><b>Log In &nbsp;</b></button>
+  
+  
+     </form>
+ 
+     <p style="margin-top: 10px; color:black" >Looking for your live environment? <a class="color" (click)=" businessAccount()"> &nbsp;Open a Business account</a></p>
+     <p style="margin-top: -20px;color:black " class="m-b-0">Don't have a Sandbox account? <a class="color" (click)="sandboxSignUp()"> &nbsp;Sign up</a></p>
+     <p  style="color:black "> Forgot password? <a class="color" (click)="forgotPassword()"> &nbsp; Click here</a></p>
+
+    </div>
+  </div>

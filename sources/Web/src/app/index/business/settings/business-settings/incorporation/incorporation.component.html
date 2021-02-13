@@ -1,0 +1,51 @@
+<!-- Incorporation details -->
+<div class="card page_ht_crd">
+        <div class="tab-content">
+            <div class="container tab-pane active">
+                    <div class="d-flex">
+                            <div class="p-2 align-self-center">
+                              <span class="itm_crcl">{{companySymbol}}</span>
+                            </div>
+                            <div class="p-2">
+                              <p class="text-clr">{{companyName}}</p>
+                              <small>{{country_of_incorporation}} - Active </small>
+                            </div>
+                          </div>
+                <!-- <div class="lft_itm ctry_img">
+                    <span class="itm_crcl">{{companySymbol}}</span>
+                </div>
+                <h3>{{companyName}}</h3>
+                <p>{{country_of_incorporation}}</p> -->
+                <div class="header">
+                        <h5 class="text-center">Incorporation details</h5>
+                    </div>
+    
+                <div class="form-group float_label">
+                    <input type="text" value={{country_of_incorporation}} disabled class="form-control"
+                    >
+                    <label for="first_name">Country of incorporation</label>
+                </div>
+                <div class="form-group float_label">
+                    <input type="text" value={{companyName}} disabled class="form-control">
+                    <label for="first_name">Legal name</label>
+    
+                </div>
+                <div class="form-group float_label">
+                    <input type="text" value={{registration_number}} disabled class="form-control">
+                    <label for="first_name">Registration number</label>
+    
+                </div>
+                <div class="form-group float_label">
+                    <input type="text" value={{incorporation_date}} disabled class="form-control">
+                    <label for="first_name">Date of incorporation</label>
+    
+                </div>
+                <div class="form-group float_label">
+                    <input type="text" value={{business_type}} disabled class="form-control">
+                    <label for="first_name">Business type</label>
+    
+                </div>
+    
+            </div>
+        </div>
+    </div>

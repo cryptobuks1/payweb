@@ -1,0 +1,221 @@
+<div class="container-fluid">
+  <!-- <div class="loading" *ngIf=apploader></div> -->
+  <div class="logo_container_business">
+    <img src="../../../../assets/images/logo_white1.png">
+  </div>
+  <div class="row">
+    <div class="col-lg-6 lft_bg_img bg_img_1">
+      &nbsp;
+    </div>
+    <div class="col-lg-6 rt_cont offset-lg-6">
+      <div class="dot_bar" *ngIf="progressBarFlag">
+        <ul>
+          <li [ngClass]="(step1==true)?value2:value1"></li>
+          <li [ngClass]="(step2==true)?value3:value1"></li>
+          <li [ngClass]="(step3==true)?value4:value1"></li>
+          <li [ngClass]="(step4==true)?value5:value1"></li>
+          <li [ngClass]="(step5==true)?value6:value1"></li>
+        </ul>
+      </div>
+      <form id="user_form" [formGroup]="perSignUpFormm">
+        <ng-template [ngIf]=emailFieldSet>
+          <fieldset>
+            <h2 class="header_bar global_font">Enter your business e-mail</h2>
+            <p class="text text-danger" *ngIf="existEmailerror">{{existEmail}}</p>
+            <div class="form-group float_label">
+              <input type="email" class="form-control" (keydown.space)="$event.preventDefault();" (keypress)="removeError()" formControlName="email" id="email"
+                name="email" placeholder="&nbsp;" autocomplete="off" (click)="noSpace()">
+              <label for="email"> E-mail</label>
+              <div class="text error_text"
+                *ngIf="perSignUpFormm.controls['email'].invalid && perSignUpFormm.controls['email'].touched">Please, enter a valid e-mail address<div class="text icon_error inpt_icn"><i class="fa fa-warning"></i></div>
+              </div>
+            </div>
+            <div>
+              <small>Already have an account? <span class="txt_link" (click)="businessLogin()">Sign in</span></small>
+            </div>
+            <div class="row">
+              <div class="col-md-6 offset-md-6">
+                <button id="step1" class="next btn btn-primary m-t-50 btn-block"
+                  [disabled]="perSignUpFormm.controls['email'].invalid" (click)="checkDuplicate()">Continue</button>
+              </div>
+            </div>
+
+          </fieldset>
+        </ng-template>
+        <ng-template [ngIf]=passwordFieldSet>
+          <fieldset>
+            <h2 class="header_bar global_font">Create a password</h2>
+            <div class="float_label">
+              <input type="password" class="form-control" maxlength="40" name="password" id="password" (keydown.space)="$event.preventDefault();" formControlName="password"
+                placeholder="&nbsp;" autocomplete="off" (click)="noSpace()">
+              <label for="password">Create a password</label>
+              <div class="text text-danger error_msgs"
+                *ngIf="perSignUpFormm.controls['password'].touched && (!perSignUpFormm.controls['password'].errors.minLength || !perSignUpFormm.controls['password'].errors.invalidPasswordAlpha || !perSignUpFormm.controls['password'].errors.invalidPasswordNumbers || perSignUpFormm.controls['password'].errors.specialChara)">
+                <span>Please, enter a valid password.</span>                
+              </div>
+              <button class="inpt_icn" type="button" onclick="showPassword()" (click)="showMyContainer=!showMyContainer"
+                *ngIf="!showMyContainer">
+                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+              </button>
+              <button class="inpt_icn" type="button" onclick="hidePassword()" (click)="showMyContainer=!showMyContainer"
+                *ngIf="showMyContainer">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+
+
+
+            <ul class="pass_checkers">
+              <li [ngClass]="{'active':perSignUpFormm.controls['password'].errors.minLength}">
+                <i class="fa fa-check"></i><span class="password_check">Minimum of 8 characters</span>
+              </li>
+              <li [ngClass]="{'active':perSignUpFormm.controls['password'].errors.invalidPasswordAlpha}">
+                <i class="fa fa-check"></i><span class="password_check">Uppercase and lowercase</span>
+              </li>
+              <li
+                [ngClass]="{'active':checkRegexForAlphaNumeric(perSignUpFormm.controls['password'].value) && !perSignUpFormm.controls['password'].errors.specialChara}">
+                <i class="fa fa-check"></i><span class="password_check">Letters and numbers</span>
+              </li>
+            </ul>
+            <div class="row m-t-50">
+              <div class="col-md-6">
+                <a [href]="" name="previous" class="previous btn btn-outline-primary btn-block" id="back1"
+                  (click)="emailFieldSetBack()" *ngIf="!btnLoad">Previous</a>
+              </div>
+              <div class="col-md-6">
+                <button id="step2" name="next" class="previous next btn btn-primary btn-block"
+                  [disabled]="!perSignUpFormm.controls['password'].errors.minLength || !perSignUpFormm.controls['password'].errors.invalidPasswordAlpha || btnLoad
+              || !perSignUpFormm.controls['password'].errors.invalidPasswordNumbers || perSignUpFormm.controls['password'].errors.specialChara" (click)="createEmailOTP()"><span
+                    class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                    *ngIf="loader"></span>&nbsp;Continue</button>
+              </div>
+            </div>
+
+
+          </fieldset>
+          <p class="m-t-50 password_check" style="color: #AAAABB;">By creating an account, you agree to our&nbsp;<a
+              [href]="" style="color:#2A3477; cursor: pointer;" (click)="businessTerms()"> Terms &amp;
+              Conditions</a></p>
+        </ng-template>
+        <ng-template [ngIf]="passwordConfirmFieldset">
+          <fieldset>
+            <h2 class="header_bar global_font">Confirm your business e-mail</h2>
+            <div class="form-group">
+              <h5 class="header_para"><span class="code_otp">A 6-digit code has been sent to&nbsp;</span><span
+                  class="blue1" (click)="backtoemail()">{{ email.value }}</span></h5>
+              <p *ngIf='emailOTPMessage' class="text error_text" style="font-size: 14px;">{{ otpFailMsg }}</p>
+              <p *ngIf='emailOTPMessage' class="text error_text" style="font-size: 14px;">{{ emailotpReason }}</p>
+              <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" id="emailconfirm" name="opt" class="otp"
+                formControlName="EmailOTP" (click)="noSpace()" minlength=6 maxlength=6 autocomplete="off">
+              <div class="m_t_20"><span class="code_otp">You can resend the code if it doesn't arrive
+                  in&nbsp;</span><span id="pageBeginCountdownText" class="timer">00:{{ timer }}s</span></div>
+              <!-- <a [href]="" id="emailResendLink" style="color: blue; cursor: pointer;" onclick="emailResendLink()"
+                (click)="resendEmailOTP()">Resend
+              </a> -->
+              <span *ngIf="!isDisabled">Resend</span>
+              <span class="txt_link"  *ngIf="isDisabled" (click)="resendEmailOTP()" >Resend</span>
+              <div class="m_t_20" *ngIf="textShow">A new confirmation code was sent to <span class="txt_link">{{ email.value }}</span></div>
+              <!-- <span class="txt_link"  [class.disabled-pointer]="isDisabled" (click)="resendEmailOTP()">Resend</span> -->
+            </div>
+            <div class="row m-t-50">
+              <div class="col-md-6 offset-md-6">
+                <button name="next" id="step3" class="next btn btn-primary btn-block" (click)="verifyEmail()"
+                  [disabled]="perSignUpFormm.controls['EmailOTP'].invalid">Continue</button>
+              </div>
+            </div>
+          </fieldset>
+        </ng-template>
+        <ng-template [ngIf]="mobileNumberFieldSet">
+          <fieldset>
+            <h2 class="header_bar global_font">Enter your mobile number</h2>
+            <p class="text text-danger" *ngIf="existMobileerror">{{existMobile}}</p>
+            <div class="form-group">
+              <div class="input-group">
+                  
+                <div class="float_label">
+                   
+                  <select class="form-control" formControlName="calling_code" id="countryid">                   
+                    <option *ngFor="let item of countryData" [attr.value]="item.calling_code" [attr.selected]="item.calling_code == '359' ? true : null" [ngValue]="item.calling_code">{{item.calling_code}}
+                    </option>
+                  </select>
+                  <label>Code</label>
+
+                  <p class="plusSign">+</p>
+                </div>
+                <span class="float_label fltlbl_lft_fx">
+                  <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" (keypress)="mobileerror()" required id="mobileno"
+                    name="mobileno" placeholder="&nbsp;" autocomplete="off" formControlName="mobile" (click)="noSpace()" minlength=7 maxlength=10>
+                    <label for="mobileno">Enter your mobile number</label>
+                  <div *ngIf="perSignUpFormm.controls['mobile'].invalid && perSignUpFormm.controls['mobile'].dirty" class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div>
+                </span>
+              </div>
+              <div class="text text-danger error_msgs" style="margin-top: -22px;"
+                *ngIf="perSignUpFormm.controls['mobile'].invalid && perSignUpFormm.controls['mobile'].dirty">
+                Please, enter a valid mobile number.
+                </div>
+            </div>
+            <div class="row m-t-50">
+              <div class="col-md-6">
+                <a [href]="" name="previous" class="previous btn btn-outline-primary btn-block" id="back1"
+                  (click)="fieldSetBack()" *ngIf="!btnLoad">Previous</a>
+              </div>
+              <div class="col-md-6 ">
+                <button class="next btn btn-primary btn-block" (click)="createMobileOTP()" id="step6"
+                  [disabled]="perSignUpFormm.controls['mobile'].invalid || perSignUpFormm.controls['calling_code'].invalid"><span
+                    class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                    *ngIf="loader"></span>&nbsp;Continue</button>
+              </div>
+            </div>
+          </fieldset>
+        </ng-template>
+        <ng-template [ngIf]="confirmMobileFeildSet">
+          <fieldset>
+            <h2 class="header_bar global_font">Confirm your mobile number</h2>
+            <div class="form-group">
+              <h6 class="header_para"><span class="code_otp">A 6-digit code has been sent to&nbsp;</span><span
+                  class="blue1" (click)="backtophone()">+{{callingCode}} {{ mobileNo }}</span></h6>
+              <p *ngIf='mobileOTPMessage' class="text error_text">{{ otpFailMsg }}</p>
+              <div *ngIf="disabledOnSuccessMobile">
+                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control" id="confirmnumber" name="otp" class="otp"
+                  formControlName="mobileOTP" minlength=6 maxlength=6 autocomplete="off">
+                <div class="m_t_20"><span class="code_otp">You can resend the code if it doesn't arrive in&nbsp;</span><span id="pageBeginCountdownText1" class="timer">00:{{ timer }}s</span></div>
+                    
+                <!-- <a [href]="" id="mobileResendLink"
+                  style="color: blue; cursor: pointer;" onclick="mobileResendLink()" (click)="resendMobileOTP()">Resend
+                </a> -->
+                <!-- <span class="txt_link" [class.disabled-pointer]="isDisabled"  (click)="resendMobileOTP()">Resend</span> -->
+                <span  *ngIf="!isDisabled">Resend</span>
+                <span class="txt_link" *ngIf="isDisabled"  (click)="resendMobileOTP()">Resend</span>
+                <div class="m_t_20" *ngIf="textShow">A new confirmation code was sent to <span class="txt_link">+{{callingCode}} {{ mobileNo }}</span></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 offset-md-6">
+                <button name="next" class="next btn btn-primary btn-block" id="step7"
+                  [disabled]="perSignUpFormm.controls['mobileOTP'].invalid"
+                  (click)="verifyOTPAndSubmit(perSignUpFormm.value)">Continue</button>
+              </div>
+            </div>
+          </fieldset>
+        </ng-template>
+        <ng-template [ngIf]="profilecompleteFeildSet">
+          <fieldset class="check_div_cntr">
+            <div class="check_div">
+              <img style="top:180px; max-width: 105px;" src="../../../../assets/images/tick_icon.png">
+              <br>
+            </div> <br>
+            <h2 style="margin-top: 50px;" class="header_bar font global_font">You have completed your <br> personal profile!</h2>
+            <div class="header_para m_b_20"><span class="code_otp">Now, let's setup your company profile</span></div>
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <button class="next btn btn-primary btn-block"  (click)="chooseBusinessPlan()">Continue</button>
+              </div>
+
+            </div>
+
+          </fieldset>
+        </ng-template>
+      </form>
+    </div>
+  </div>
+</div>

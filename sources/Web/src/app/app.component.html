@@ -1,0 +1,5 @@
+<toastr-notification></toastr-notification>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading | async"></mat-progress-bar>
+<app-session-extension *ngIf="showSessionExtension" (closeSessionExtension)="onCloseSessionExtension()">
+</app-session-extension>
+<router-outlet></router-outlet>

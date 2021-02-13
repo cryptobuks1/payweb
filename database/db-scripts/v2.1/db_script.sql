@@ -1,0 +1,1 @@
+UPDATE `country` SET `country_name` = 'Liechtenstein' WHERE (`country_id` = '40');

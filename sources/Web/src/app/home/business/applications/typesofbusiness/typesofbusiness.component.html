@@ -1,0 +1,380 @@
+<ng-template [ngIf]="typesOfBus">
+    <div class="content_card">
+      <div class="dot_bar">
+        <ul>
+          
+          <li class="current"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="header_txt">Tell us about your business</div>
+      <p class="head_desc">The more information you provide, the quicker we can process your application</p>
+      <div class="d_cont">
+        <div class="form-group float_label" style="margin-bottom: 5px;">
+          <select [(ngModel)]="business_sector_id" class="form-control" #sector="ngModel" #sector="ngModel"
+            required>
+            <option [ngValue]= "undefined" disabled selected>Choose sector</option>
+            <option *ngFor="let c of businessSectorData" [ngValue]="c.business_sector_id">{{c.business_sector_name}}
+            </option>
+          </select>
+          <label>Business Sector (SIC)
+        </label>
+        </div>
+        <div class="form-group float_label">
+            <strong class="service_goods">What range of services or goods do you offer?</strong>
+            <textarea (change)="removeSpace()" [(ngModel)]="range_of_service" class="form-control" name="service_goods" #range="ngModel" required>
+                
+                </textarea>
+          <!-- <input type="text" [(ngModel)]="range_of_service" class="form-control" name="service_goods"
+            placeholder="&nbsp;" #range="ngModel" required> -->
+          <!-- <label for="service_goods">What range of services or goods do you offer?</label> -->
+          <div style="font-size: 14px;">Where and to whom? Please, give in detailed description</div>
+        </div>
+        
+        <div class="form-group float_label">
+          <div *ngFor="let field of fieldArray; let i = index">
+            <div class="input-group" style="margin-top: 15px;">
+              <input [(ngModel)]="field.name" (keydown.space)="$event.preventDefault();" class="form-control" type="text" name="website" id="website"
+                placeholder="&nbsp;" autocomplete="off" #website="ngModel" (ngModelChange)="checkWebsitePat($event)"
+                pattern='^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'>
+              <label for="website">Website</label>
+              <div class="itm_list">
+                  <div *ngIf="i!=0" (click)="deleteFieldValue(i)">
+                    <i class="fa fa-times  float-right" aria-hidden="true"></i>
+                  </div>
+                </div>
+            </div>
+            <div *ngIf="website.errors">  
+                <p *ngIf="website.errors.pattern" style="font-size: 14px;" class="text-danger">Please, enter a valid website URL.</p>    
+            </div>
+            <div *ngIf="i==0">
+            <div style="font-size: 14px;">Social media profile, online shop link etc</div>
+            <button class="wesiteUrl" [disabled]="checkWebsiteURL" (click)="addFieldValue()">+ Add another link</button> 
+            </div>
+         
+          </div>          
+        </div>
+        <div class="row">
+          <div class="col-md-6 offset-md-6">
+            <button class="btn btn-primary btn-block" [disabled]="!business_sector_id || !range_of_service"
+              (click)="addBusType(business_sector_id,range_of_service)">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]='isBusList'>
+    <div class="content_card">
+        <div class="dot_bar">
+            <ul>
+              <li class="completed"></li>
+              <li class="current"></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+      <div class="header_txt">Please confirm that your business is<u class="txt-underline"> not in </u>the listed industries,which are not allowed</div>
+      <div class="d_cont">
+        <ul>
+          <li>Armaments, nuclear, weapons or defense manufacturers</li>
+          <li>Adult entertainment or the sale or advertising of sexual services</li>
+          <li>Art dealers, auction houses or pawnbroker</li>
+          <li>Industrial chemical or legal high companies</li>
+          <li>Client money processing firms</li>
+          <li>Cryptocurrency processing firms</li>
+          <li>FX speculators</li>
+          <li>Gambling firms or video game arcades</li>
+          <li>Nonprofit, political and religious organisations</li>
+          <li>Precious metals and stones firms</li>
+          <li>Sale of used cars or heavy industry vehicles</li>
+        </ul>
+        <hr>
+        <p>Is your business on the list ?</p>
+        <div class="form-group">
+          <div class="radio radio_alignment alignment">
+            <label><input type="radio" name="enums" value="yes" [(ngModel)]="restricted_business"
+                (click)="checkOpt($event.target.value)"> &nbsp;Yes</label>
+          </div>
+          <div class="radio alignment">
+            <label><input type="radio" name="enums" value="no" [(ngModel)]="restricted_business"
+                (click)="checkOpt($event.target.value)"> &nbsp;No</label>
+          </div>
+        </div>
+        <div class="row">
+            <div style="padding-bottom:8px;" class="col-md-6">
+                <button  class="btn btn-outline-primary btn-block" (click)="businessTemplate()">Previous</button>
+              </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" [disabled]="optionvalid"
+              (click)="optionCheck()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]='applybusiness'>
+    <div class="content_card">
+        <div class="dot_bar">
+            <ul>
+              <li class="completed"></li>
+              <li class="completed"></li>
+              <li class="current"></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+      <div class="header_txt">Please select all that apply to your business</div>
+      <div class="d_cont">
+        <ul class="lst_styl">
+          <li *ngFor="let category of insdustriesData; let i = index">
+            <input type="checkbox" name="categories{{i}}" #categories="ngModel" class="form-check-input ipt_ckbx"
+              id="categories{{i}}" value="{{category.business_industry_id}}" [(ngModel)]="category.checked"
+              (change)="getSelectedInsd(category.business_industry_id,$event.target.checked,i,category.restricted)" />
+            <label class="form-check-label" for="categories{{i}}">{{category.business_industry_name}}</label>
+          </li>
+        </ul>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-outline-primary btn-block" (click)="optionTemplate()">Previous</button>
+            </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" (click)="submitBusTypes()"
+              [disabled]='selectedIndustries?.length==0 || validationIndustries'>Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]='blockindustries'>
+    <div class="content_card">
+      <p>PayVoo business account currently isn't available for the following types of business:
+      </p>
+      <ul>
+        <li>Armaments, nuclear, weapons or defence manufacturers</li>
+        <li>Adult entertainment or the sale or advertising of sexual services</li>
+        <li>Art dealers, auction houses or pawnbroker</li>
+        <li>Industrial chemical or legal high companies</li>
+        <li>Client money processing firms</li>
+        <li>Cryptocurrency processing firms</li>
+        <li>FX speculators</li>
+        <li>Gambling firms or video game arcades</li>
+        <li>Nonprofit, political and religious organisations</li>
+        <li>Precious metals and stones firms</li>
+        <li>Sale of used cars or heavy industry vehicles</li>
+      </ul>
+      <p>
+        You cannot hold, exchange, transfer or manage client funds in a PayVoo business account. 
+        Client funds essentially just means money that belongs to your customers. For example, an 
+        investment firm’s “Client funds” is their customers money which they invest on their behalf. 
+        You would not be able to hold or manage this money in a Pay Voo business account.
+      </p>
+      <p>Please, contact Support for more information.</p>
+      <p>The user should not be allowed to proceed with Account activation.
+      </p>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="transcationinfo">
+    <div class="content_card">
+
+        <div class="dot_bar">
+            <ul>
+              
+              <li class="completed"></li>
+              <li class="completed"></li>
+              <li class="current"></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+
+      <div class="header_txt">Confirm your transactional information</div>
+      <p>This is just for indicative purposes and does not need to be precise</p>
+      <div class="d_cont">
+        <div class="form-group float_label">
+          <select [(ngModel)]="monthy_transfer_amount" class="form-control"
+            (change)="mnthlyTrnsAmt(monthy_transfer_amount)" #monthy="ngModel">
+            <option [ngValue]= "undefined" selected>Choose transfer range</option>
+            <option *ngFor="let c of MnthVolTransData" [ngValue]="c">{{c}}</option>
+          </select>
+          <label>Monthly volume of transfer</label>
+        </div>
+        <div class="form-group float_label">
+          <select [(ngModel)]="no_payments_per_month" class="form-control"
+            (change)="getPaymtPerMonth(no_payments_per_month)">
+            <option [ngValue]= "undefined" selected>Choose payments</option>
+            <option *ngFor="let c of PayntPerMonth" [ngValue]="c">{{c}}</option>
+          </select>
+          <label>Number of payments per month</label>
+        </div>
+        <div class="form-group float_label">
+          <input type="text" class="form-control" name="pay" [(ngModel)]="max_value_of_payment" placeholder="&nbsp;" readonly
+            #pay="ngModel">
+          <label for="pay">
+            Maximum single payment</label>
+        </div>
+        <div class="row">
+            <div style="padding-bottom: 8px;" class="col-md-6">
+                <button class="btn btn-outline-primary btn-block" *ngIf='restricted' (click)="restrictedIndustryList()">Previous</button>
+                <button class="btn btn-outline-primary btn-block"  *ngIf='notrestricted' (click)="industryList()">Previous</button>
+              </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block"
+              [disabled]="!monthy_transfer_amount || !no_payments_per_month || !max_value_of_payment"
+              (click)="transcationVolume()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="specialAttention">
+    <div class="content_card">
+      <div class="header_txt">These industries are treated with special attention. Our support team will additionally contact you to advise what would be the next steps for opening an account.</div>
+  </div>
+  </ng-template>
+  <ng-template [ngIf]="receivePayTempl">
+
+    <div class="content_card">
+
+        <div class="dot_bar">
+            <ul>
+              
+              <li class="completed"></li>
+              <li class="completed"></li>
+              <li class="completed"></li>
+              <li class="current"></li>
+              <li></li>
+            </ul>
+          </div>
+      <div class="header_txt">Choose countries to receive payments from</div>
+      <p>This is just for indicative purposes and does not need to be precise</p>
+      <div class="d_cont">
+
+        <div class="form-group float_label">
+        </div>
+
+        <a class="fragment" *ngFor="let country of countryFieldArray;let i = index">
+          <div>
+
+            <i *ngIf="i>=1" (click)="deletereceiveFieldValue(i)" class="fa fa-times-circle"></i>
+
+            <div class="form-group float_label">
+              <select class="form-control" [(ngModel)]="country.country_id" id="reccountry"
+               name="reccountry">
+               <option [ngValue]= "undefined" disabled selected hidden></option>
+                <option *ngFor="let item of allcountryData" [ngValue]="item.country_id">{{item.country_name}}</option>
+              </select>
+              <label for="reccountry">Choose Country</label>
+            </div>
+
+            <div class="form-group float_label">
+              <textarea type="text" class="form-control" name="lname" (click)="noSpace()" (keyup)="validateBusiness()" 
+                [(ngModel)]="country.business_description" placeholder="&nbsp;" autocomplete="off" #business_description="ngModel"
+                minlength="30" pattern="^[a-zA-Z0-9 ',-]+$" required (blur)="focusout(i)"></textarea>
+              <label style="font-size: 14px; top: -8px; left: 11px;margin-top: -5px;
+               color: #aaaabb;">What business do you have in this country</label>
+            </div>
+            
+            <!-- <p class="text text-danger errorGapOfCountires" *ngIf="(country.error && erroMessage) && !country.business_description">Please, enter at least 30
+              characters, no other than letters, numbers, hyphen, apostrophe, comma. {{country.error}}</p> -->
+              <!-- <p class="text text-danger errorGapOfCountires" style="font-size:12px; margin-top:-22px;" *ngIf="country.error">
+                Please, enter at least 30 characters, no other than letters, numbers, hyphen, apostrophe, comma.
+              </p> -->
+              <div *ngIf="business_description.errors">
+                  <p *ngIf="business_description.errors.minlength" style="font-size: 14px; margin-top:-22px;" class="text-danger">
+                    Please, enter at least 30 characters, no other than letters, numbers, hyphen, apostrophe, comma.</p>    
+              </div> 
+
+          </div> 
+        </a>
+          <!-- <a class="fragment" *ngFor="let country of newCountryAttribute;let i = index">
+            <div *ngFor = "let name of selectedCountry">    
+            <p>{{selectedCountry[0].country_name}}</p>                
+            <p>{{country.business_description}}</p>
+            </div>   
+        </a> -->
+
+
+        <div class="m_b_15"><a [href]=""  class="a_link"
+            (click)="addreceivedFieldValue('RECEIVE',1)">+ Add another country</a></div>
+            
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-outline-primary btn-block" (click)="receivePaymentTemplate()">Previous</button>
+              </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" [disabled]="invalidcountries"
+              (click)="receivePayment()">Continue</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="sendPayTempl">
+    <div class="content_card">
+        <div class="dot_bar">
+            <ul>
+              
+              <li class="completed"></li>
+              <li class="completed"></li>
+              <li class="completed"></li>
+              <li class="completed"></li>
+              <li  class="current"></li>
+            </ul>
+          </div>
+      <div class="header_txt">Choose countries to send payments to</div>
+      <p>This is just for indicative purposes and does not need to be precise</p>
+      <div class="d_cont">
+        <div class="form-group float_label">
+        </div>
+        <a class="fragment" *ngFor="let country of sendPaycountryFieldArray; let i = index">
+          <div>
+            <i *ngIf="i>=1" (click)="deletesendFieldValue(i)" class="fa fa-times-circle"></i>
+            <div class="form-group float_label">
+              <select class="form-control" [(ngModel)]="country.country_id" id="reccountry"
+               name="reccountry">
+                <option *ngFor="let item of allcountryData" [ngValue]="item.country_id">{{item.country_name}}</option>
+              </select>
+              <label for="reccountry">Choose Country</label>
+            </div>
+            <!-- <div class="form-group float_label">
+              <select class="custom-select" [(ngModel)]="country.country_id" id="sendcountry" name="sendcountry">
+                <option *ngFor="let item of allcountryData" [ngValue]="item.country_id">{{item.country_name}}</option>
+              </select>
+              <label for="sendcountry">Choose Country</label>
+            </div> -->
+            <div class="form-group float_label">
+              <textarea type="text" class="form-control" name="lname" (click)="noSpace()" (keyup)="sendPaymentCountries()"
+                [(ngModel)]="country.business_description" minlength="30" placeholder="&nbsp;" autocomplete="off" #business_des="ngModel" required (blur)="focusoutpt(i)"></textarea>
+              <label style="font-size: 14px; top: -8px; margin-top: -5px;left: 11px; color: #aaaabb;">
+                What business do you have in this country</label>
+            </div>
+            <!-- <p class="text text-danger errorGapOfCountires" *ngIf="country.error">Please, enter at least 30
+              characters, no other than letters, numbers, hyphen, apostrophe, comma.</p> -->
+              <!-- <p class="text text-danger errorGapOfCountires" *ngIf="country.error && country.focus">
+                Please, enter atleast 30 characters, no other than letters, numbers, hyphen, apostrophe, comma. </p> -->
+              <div *ngIf="business_des.errors">
+                  <p *ngIf="business_des.errors.minlength" style="font-size: 14px; margin-top:-22px;" class="text-danger">
+                    Please, enter at least 30 characters, no other than letters, numbers, hyphen, apostrophe, comma.</p>    
+              </div> 
+          </div>
+        </a>
+        <div class="m_b_15"><a [href]=""  class="a_link" (click)="addsendFieldValue()">+ Add
+            another country</a></div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-outline-primary btn-block" (click)="receivedPaymenttoFrom()">Previous</button>
+              </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" [disabled]="sendcountires"
+              (click)="sendPayment()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>

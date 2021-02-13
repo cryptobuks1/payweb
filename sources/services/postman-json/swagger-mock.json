@@ -1,0 +1,1120 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "license": {
+            "url": "https://opensource.org/licenses/sandbox"
+        }
+    },
+    "host": "13.235.50.20:5001",
+    "basePath": "/service",
+    "tags": [
+        {
+            "name": "Sandbox",
+            "description": "API for users in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/userRegistration": {
+            "post": {
+                "tags": [
+                    "userRegistration"
+                ],
+                "description": "For new Users Registration ",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "user Registration",
+                        "schema": {
+                            "$ref": "#/definitions/Registration"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "registratiton successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegistrationSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "description": "User Login",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "login user details",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "logged in success",
+                        "schema": {
+                            "$ref": "#/definitions/LoginSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/payments": {
+            "post": {
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "tags": [
+                    "payments"
+                ],
+                "description": "for insert payment details",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "payments",
+                        "schema": {
+                            "$ref": "#/definitions/paymentsAdd"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "inserted payment details successfully",
+                        "schema": {
+                            "$ref": "#/definitions/paymentsAddSuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "/getAllPayments": {
+            "get": {
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "tags": [
+                    "getAllPayments"
+                ],
+                "description": "for getAllPayments details",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "headers",
+                        "description": "getAllPayments",
+                        "schema": {
+                            "$ref": "#/definitions/getAllPaymentsDetails"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "getAllPayments details successfully",
+                        "schema": {
+                            "$ref": "#/definitions/getAllPaymentsDetailsSuccess"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "paymentsAdd": {
+            "required": [
+                "applicant_id",
+                "orderDescriptor",
+                "amount",
+                "payment_cards_id",
+                "currency"
+            ],
+            "properties": {
+                "applicant_id": {
+                    "$id": "#/properties/applicant_id",
+                    "type": "integer",
+                    "title": "The Applicant_id Schema",
+                    "default": 0,
+                    "examples": [
+                        469
+                    ]
+                },
+                "orderDescriptor": {
+                    "$id": "#/properties/orderDescriptor",
+                    "type": "string",
+                    "title": "The Orderdescriptor Schema",
+                    "default": "",
+                    "examples": [
+                        "some abcddgsgsgsg"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "amount": {
+                    "$id": "#/properties/amount",
+                    "type": "string",
+                    "title": "The Amount Schema",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "payment_cards_id": {
+                    "$id": "#/properties/payment_cards_id",
+                    "type": "integer",
+                    "title": "The Payment_cards_id Schema",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                },
+                "currency": {
+                    "$id": "#/properties/currency",
+                    "type": "string",
+                    "title": "The Currency Schema",
+                    "default": "",
+                    "examples": [
+                        "EUR"
+                    ],
+                    "pattern": "^(.*)$"
+                }
+            }
+        },
+        "paymentsHeaders": {
+            "required": [
+                "api-key"
+            ],
+            "properties": {
+                "api-key": {
+                    "$id": "#/properties/api-key",
+                    "type": "string"
+                }
+            }
+        },
+        "paymentsAddSuccess": {
+            "required": [
+                "status",
+                "message",
+                "transactionInfo",
+                "payStatus"
+            ],
+            "properties": {
+                "status": {
+                    "$id": "#/properties/status",
+                    "type": "integer",
+                    "title": "The Status Schema",
+                    "default": 0,
+                    "examples": [
+                        0
+                    ]
+                },
+                "message": {
+                    "$id": "#/properties/message",
+                    "type": "string",
+                    "title": "The Message Schema",
+                    "default": "",
+                    "examples": [
+                        " EUR not added to wallet"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "transactionInfo": {
+                    "$id": "#/properties/transactionInfo",
+                    "type": "object",
+                    "title": "The Transactioninfo Schema",
+                    "required": [
+                        "code",
+                        "description"
+                    ],
+                    "properties": {
+                        "code": {
+                            "$id": "#/properties/transactionInfo/properties/code",
+                            "type": "string",
+                            "title": "The Code Schema",
+                            "default": "",
+                            "examples": [
+                                "02233"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "description": {
+                            "$id": "#/properties/transactionInfo/properties/description",
+                            "type": "string",
+                            "title": "The Description Schema",
+                            "default": "",
+                            "examples": [
+                                "fail"
+                            ],
+                            "pattern": "^(.*)$"
+                        }
+                    }
+                },
+                "payStatus": {
+                    "$id": "#/properties/payStatus",
+                    "type": "string",
+                    "title": "The Paystatus Schema",
+                    "default": "",
+                    "examples": [
+                        "fail"
+                    ],
+                    "pattern": "^(.*)$"
+                }
+            }
+        },
+        "getAllPaymentsDetails": {},
+        "getAllPaymentsDetailsSuccess": {
+            "required": [
+                "status",
+                "message",
+                "results"
+            ],
+            "properties": {
+                "status": {
+                    "$id": "#/properties/status",
+                    "type": "integer",
+                    "title": "The Status Schema",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                },
+                "message": {
+                    "$id": "#/properties/message",
+                    "type": "string",
+                    "title": "The Message Schema",
+                    "default": "",
+                    "examples": [
+                        "Payment details fetched successfully"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "results": {
+                    "$id": "#/properties/results",
+                    "type": "array",
+                    "title": "The Results Schema",
+                    "items": {
+                        "$id": "#/properties/results/items",
+                        "type": "object",
+                        "title": "The Items Schema",
+                        "required": [
+                            "applicant_id",
+                            "paymentsid",
+                            "status",
+                            "payment_Brand",
+                            "payment_Mode",
+                            "first_Name",
+                            "last_Name",
+                            "amount",
+                            "currency",
+                            "description",
+                            "result",
+                            "card",
+                            "customer",
+                            "transaction_details",
+                            "created",
+                            "merchant_Transaction_Id",
+                            "remark",
+                            "trans_Status",
+                            "tmpl_amount",
+                            "tmpl_currency",
+                            "eci",
+                            "checksum",
+                            "order_Description",
+                            "company_Name",
+                            "merchant_contact"
+                        ],
+                        "properties": {
+                            "applicant_id": {
+                                "$id": "#/properties/results/items/properties/applicant_id",
+                                "type": "integer",
+                                "title": "The Applicant_id Schema",
+                                "default": 0,
+                                "examples": [
+                                    469
+                                ]
+                            },
+                            "paymentsid": {
+                                "$id": "#/properties/results/items/properties/paymentsid",
+                                "type": "integer",
+                                "title": "The Paymentsid Schema",
+                                "default": 0,
+                                "examples": [
+                                    75425
+                                ]
+                            },
+                            "status": {
+                                "$id": "#/properties/results/items/properties/status",
+                                "type": "string",
+                                "title": "The Status Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "payment_Brand": {
+                                "$id": "#/properties/results/items/properties/payment_Brand",
+                                "type": "string",
+                                "title": "The Payment_brand Schema",
+                                "default": "",
+                                "examples": [
+                                    "VISA"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "payment_Mode": {
+                                "$id": "#/properties/results/items/properties/payment_Mode",
+                                "type": "string",
+                                "title": "The Payment_mode Schema",
+                                "default": "",
+                                "examples": [
+                                    "CC"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "first_Name": {
+                                "$id": "#/properties/results/items/properties/first_Name",
+                                "type": "string",
+                                "title": "The First_name Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "last_Name": {
+                                "$id": "#/properties/results/items/properties/last_Name",
+                                "type": "string",
+                                "title": "The Last_name Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "amount": {
+                                "$id": "#/properties/results/items/properties/amount",
+                                "type": "integer",
+                                "title": "The Amount Schema",
+                                "default": 0,
+                                "examples": [
+                                    75
+                                ]
+                            },
+                            "currency": {
+                                "$id": "#/properties/results/items/properties/currency",
+                                "type": "string",
+                                "title": "The Currency Schema",
+                                "default": "",
+                                "examples": [
+                                    "USD"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "description": {
+                                "$id": "#/properties/results/items/properties/description",
+                                "type": "string",
+                                "title": "The Description Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "result": {
+                                "$id": "#/properties/results/items/properties/result",
+                                "type": "string",
+                                "title": "The Result Schema",
+                                "default": "",
+                                "examples": [
+                                    "{\"code\":\"11030\",\"description\":\"Format Error\"}"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "card": {
+                                "$id": "#/properties/results/items/properties/card",
+                                "type": "string",
+                                "title": "The Card Schema",
+                                "default": "",
+                                "examples": [
+                                    "{\"bin\":\"444433\",\"last4Digits\":\"1111\",\"lastFourDigits\":\"1111\",\"holder\":\"sekhar sahu\",\"expiryMonth\":\"12\",\"expiryYear\":\"2030\"}"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "customer": {
+                                "$id": "#/properties/results/items/properties/customer",
+                                "type": "string",
+                                "title": "The Customer Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "transaction_details": {
+                                "$id": "#/properties/results/items/properties/transaction_details",
+                                "type": "string",
+                                "title": "The Transaction_details Schema",
+                                "default": "",
+                                "examples": [
+                                    "{\"paymentId\":\"75425\",\"paymentType\":\"DB\",\"paymentBrand\":\"VISA\",\"paymentMode\":\"CC\",\"amount\":\"75.00\",\"currency\":\"USD\",\"result\":{\"code\":\"11030\",\"description\":\"Format Error\"},\"card\":{\"bin\":\"444433\",\"last4Digits\":\"1111\",\"lastFourDigits\":\"1111\",\"holder\":\"sekhar sahu\",\"expiryMonth\":\"12\",\"expiryYear\":\"2030\"},\"timestamp\":\"2019-08-14 17:47:45\",\"merchantTransactionId\":\"0IGF1413O34P\",\"customerId\":\"469\",\"remark\":\"Format Error\",\"transactionStatus\":\"N\",\"tmpl_amount\":\"75.00\",\"tmpl_currency\":\"USD\",\"notificationUrl\":\"www.merchantNotificationUrl.com\"}"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "created": {
+                                "$id": "#/properties/results/items/properties/created",
+                                "type": "string",
+                                "title": "The Created Schema",
+                                "default": "",
+                                "examples": [
+                                    "2019-08-14T12:17:45.000Z"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "merchant_Transaction_Id": {
+                                "$id": "#/properties/results/items/properties/merchant_Transaction_Id",
+                                "type": "string",
+                                "title": "The Merchant_transaction_id Schema",
+                                "default": "",
+                                "examples": [
+                                    "0IGF1413O34P"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "remark": {
+                                "$id": "#/properties/results/items/properties/remark",
+                                "type": "string",
+                                "title": "The Remark Schema",
+                                "default": "",
+                                "examples": [
+                                    "Format Error"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "trans_Status": {
+                                "$id": "#/properties/results/items/properties/trans_Status",
+                                "type": "string",
+                                "title": "The Trans_status Schema",
+                                "default": "",
+                                "examples": [
+                                    "N"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "tmpl_amount": {
+                                "$id": "#/properties/results/items/properties/tmpl_amount",
+                                "type": "string",
+                                "title": "The Tmpl_amount Schema",
+                                "default": "",
+                                "examples": [
+                                    "75.00"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "tmpl_currency": {
+                                "$id": "#/properties/results/items/properties/tmpl_currency",
+                                "type": "string",
+                                "title": "The Tmpl_currency Schema",
+                                "default": "",
+                                "examples": [
+                                    "USD"
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "eci": {
+                                "$id": "#/properties/results/items/properties/eci",
+                                "type": "string",
+                                "title": "The Eci Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "checksum": {
+                                "$id": "#/properties/results/items/properties/checksum",
+                                "type": "string",
+                                "title": "The Checksum Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "order_Description": {
+                                "$id": "#/properties/results/items/properties/order_Description",
+                                "type": "string",
+                                "title": "The Order_description Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "company_Name": {
+                                "$id": "#/properties/results/items/properties/company_Name",
+                                "type": "string",
+                                "title": "The Company_name Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            },
+                            "merchant_contact": {
+                                "$id": "#/properties/results/items/properties/merchant_contact",
+                                "type": "string",
+                                "title": "The Merchant_contact Schema",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ],
+                                "pattern": "^(.*)$"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Login": {
+            "required": [
+                "email",
+                "password",
+                "mpin",
+                "account_type"
+            ],
+            "properties": {
+                "email": {
+                    "$id": "#/properties/email",
+                    "type": "string",
+                    "title": "The Email Schema",
+                    "default": "",
+                    "examples": [
+                        "taranginidola@gmail.com"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "password": {
+                    "$id": "#/properties/password",
+                    "type": "string",
+                    "title": "The Password Schema",
+                    "default": "",
+                    "examples": [
+                        "tarangini@1234"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "mpin": {
+                    "$id": "#/properties/mpin",
+                    "type": "string",
+                    "title": "The Mpin Schema",
+                    "default": "",
+                    "examples": [
+                        "1234"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "account_type": {
+                    "$id": "#/properties/account_type",
+                    "type": "string",
+                    "title": "The Account_type Schema",
+                    "default": "",
+                    "examples": [
+                        "business"
+                    ],
+                    "pattern": "^(.*)$"
+                }
+            }
+        },
+        "LoginSuccess": {
+            "required": [
+                "Token",
+                "status",
+                "message",
+                "userInfo"
+            ],
+            "properties": {
+                "Token": {
+                    "$id": "#/properties/Token",
+                    "type": "string",
+                    "title": "The Token Schema",
+                    "default": "",
+                    "examples": [
+                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRhcmFuZ2luaWRvbGFAZ21haWwuY29tIiwiaWF0IjoxNTY0MjE2OTk1fQ.H5fdU6-X3ApXLUcUeeIrlt2l_X9p_OvzekbADCTA_6E"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "status": {
+                    "$id": "#/properties/status",
+                    "type": "integer",
+                    "title": "The Status Schema",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                },
+                "message": {
+                    "$id": "#/properties/message",
+                    "type": "string",
+                    "title": "The Message Schema",
+                    "default": "",
+                    "examples": [
+                        "login successfull"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "userInfo": {
+                    "$id": "#/properties/userInfo",
+                    "type": "object",
+                    "title": "The Userinfo Schema",
+                    "required": [
+                        "applicant_id",
+                        "email",
+                        "gender",
+                        "mobile",
+                        "account_type",
+                        "kycStatus",
+                        "country_id",
+                        "business_Id"
+                    ],
+                    "properties": {
+                        "applicant_id": {
+                            "$id": "#/properties/userInfo/properties/applicant_id",
+                            "type": "integer",
+                            "title": "The Applicant_id Schema",
+                            "default": 0,
+                            "examples": [
+                                57
+                            ]
+                        },
+                        "email": {
+                            "$id": "#/properties/userInfo/properties/email",
+                            "type": "string",
+                            "title": "The Email Schema",
+                            "default": "",
+                            "examples": [
+                                "taranginidola@gmail.com"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "gender": {
+                            "$id": "#/properties/userInfo/properties/gender",
+                            "type": "string",
+                            "title": "The Gender Schema",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "mobile": {
+                            "$id": "#/properties/userInfo/properties/mobile",
+                            "type": "string",
+                            "title": "The Mobile Schema",
+                            "default": "",
+                            "examples": [
+                                "79989163806"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "account_type": {
+                            "$id": "#/properties/userInfo/properties/account_type",
+                            "type": "string",
+                            "title": "The Account_type Schema",
+                            "default": "",
+                            "examples": [
+                                "business"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "kycStatus": {
+                            "type": "string",
+                            "title": "The Kycstatus Schema",
+                            "default": "",
+                            "examples": [
+                                "PENDING"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "country_id": {
+                            "$id": "#/properties/userInfo/properties/country_id",
+                            "type": "integer",
+                            "title": "The Country_id Schema",
+                            "default": 0,
+                            "examples": [
+                                2
+                            ]
+                        },
+                        "business_Id": {
+                            "$id": "#/properties/userInfo/properties/business_Id",
+                            "type": "integer",
+                            "title": "The Business_id Schema",
+                            "default": 0,
+                            "examples": [
+                                264
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Registration": {
+            "required": [
+                "account_type",
+                "next_step",
+                "first_name",
+                "middle_name",
+                "last_name",
+                "email",
+                "gender",
+                "dob",
+                "telephone",
+                "mobile",
+                "country_id",
+                "postal_code",
+                "address_line1",
+                "address_line2",
+                "city",
+                "town",
+                "region",
+                "password",
+                "passcode_pin"
+            ],
+            "properties": {
+                "account_type": {
+                    "$id": "#/properties/account_type",
+                    "type": "string",
+                    "title": "The Account_type Schema",
+                    "default": "",
+                    "examples": [
+                        "business"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "next_step": {
+                    "$id": "#/properties/next_step",
+                    "type": "string",
+                    "title": "The Next_step Schema",
+                    "default": "",
+                    "examples": [
+                        "KYC"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "first_name": {
+                    "$id": "#/properties/first_name",
+                    "type": "string",
+                    "title": "The First_name Schema",
+                    "default": "",
+                    "examples": [
+                        "nikesh"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "middle_name": {
+                    "$id": "#/properties/middle_name",
+                    "type": "string",
+                    "title": "The Middle_name Schema",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "last_name": {
+                    "$id": "#/properties/last_name",
+                    "type": "string",
+                    "title": "The Last_name Schema",
+                    "default": "",
+                    "examples": [
+                        "mortha"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "email": {
+                    "$id": "#/properties/email",
+                    "type": "string",
+                    "title": "The Email Schema",
+                    "default": "",
+                    "examples": [
+                        "tarangini.dola@gmail.com"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "gender": {
+                    "$id": "#/properties/gender",
+                    "type": "string",
+                    "title": "The Gender Schema",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "dob": {
+                    "$id": "#/properties/dob",
+                    "type": "string",
+                    "title": "The Dob Schema",
+                    "default": "",
+                    "examples": [
+                        "1994-04-26"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "telephone": {
+                    "$id": "#/properties/telephone",
+                    "type": "string",
+                    "title": "The Telephone Schema",
+                    "default": "",
+                    "examples": [
+                        ""
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "mobile": {
+                    "$id": "#/properties/mobile",
+                    "type": "string",
+                    "title": "The Mobile Schema",
+                    "default": "",
+                    "examples": [
+                        "7999163806"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "country_id": {
+                    "$id": "#/properties/country_id",
+                    "type": "string",
+                    "title": "The Country_id Schema",
+                    "default": "",
+                    "examples": [
+                        "2"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "postal_code": {
+                    "$id": "#/properties/postal_code",
+                    "type": "string",
+                    "title": "The Postal_code Schema",
+                    "default": "",
+                    "examples": [
+                        "761118"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "address_line1": {
+                    "$id": "#/properties/address_line1",
+                    "type": "string",
+                    "title": "The Address_line1 Schema",
+                    "default": "",
+                    "examples": [
+                        "ODISHA"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "address_line2": {
+                    "$id": "#/properties/address_line2",
+                    "type": "string",
+                    "title": "The Address_line2 Schema",
+                    "default": "",
+                    "examples": [
+                        "INDIA"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "city": {
+                    "$id": "#/properties/city",
+                    "type": "string",
+                    "title": "The City Schema",
+                    "default": "",
+                    "examples": [
+                        "DELHI"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "town": {
+                    "$id": "#/properties/town",
+                    "type": "string",
+                    "title": "The Town Schema",
+                    "default": "",
+                    "examples": [
+                        "HYDERABAD"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "region": {
+                    "$id": "#/properties/region",
+                    "type": "string",
+                    "title": "The Region Schema",
+                    "default": "",
+                    "examples": [
+                        "DECAN"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "password": {
+                    "$id": "#/properties/password",
+                    "type": "string",
+                    "title": "The Password Schema",
+                    "default": "",
+                    "examples": [
+                        "tarangini@1234"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "passcode_pin": {
+                    "$id": "#/properties/passcode_pin",
+                    "type": "string",
+                    "title": "The Passcode_pin Schema",
+                    "default": "",
+                    "examples": [
+                        "1234"
+                    ],
+                    "pattern": "^(.*)$"
+                }
+            }
+        },
+        "RegistrationSuccess": {
+            "required": [
+                "Token",
+                "status",
+                "message",
+                "userInfo"
+            ],
+            "properties": {
+                "Token": {
+                    "$id": "#/properties/Token",
+                    "type": "string",
+                    "title": "The Token Schema",
+                    "default": "",
+                    "examples": [
+                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRhcmFuZ2luaS5kb2xhQGdtYWlsLmNvbSIsImlhdCI6MTU2NDIxNzQzM30.8R0JTbk0f-CBgG9TSG9FnVwh4lefwi1KC8wD4lE03BE"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "status": {
+                    "$id": "#/properties/status",
+                    "type": "integer",
+                    "title": "The Status Schema",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                },
+                "message": {
+                    "$id": "#/properties/message",
+                    "type": "string",
+                    "title": "The Message Schema",
+                    "default": "",
+                    "examples": [
+                        "registratiton successfully"
+                    ],
+                    "pattern": "^(.*)$"
+                },
+                "userInfo": {
+                    "$id": "#/properties/userInfo",
+                    "type": "object",
+                    "title": "The Userinfo Schema",
+                    "required": [
+                        "applicant_id",
+                        "email",
+                        "gender",
+                        "mobile",
+                        "account_type",
+                        "kycStatus"
+                    ],
+                    "properties": {
+                        "applicant_id": {
+                            "$id": "#/properties/userInfo/properties/applicant_id",
+                            "type": "integer",
+                            "title": "The Applicant_id Schema",
+                            "default": 0,
+                            "examples": [
+                                228
+                            ]
+                        },
+                        "email": {
+                            "$id": "#/properties/userInfo/properties/email",
+                            "type": "string",
+                            "title": "The Email Schema",
+                            "default": "",
+                            "examples": [
+                                "tarangini.dola@gmail.com"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "gender": {
+                            "$id": "#/properties/userInfo/properties/gender",
+                            "type": "string",
+                            "title": "The Gender Schema",
+                            "default": "",
+                            "examples": [
+                                ""
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "mobile": {
+                            "$id": "#/properties/userInfo/properties/mobile",
+                            "type": "string",
+                            "title": "The Mobile Schema",
+                            "default": "",
+                            "examples": [
+                                "7999163806"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "account_type": {
+                            "$id": "#/properties/userInfo/properties/account_type",
+                            "type": "string",
+                            "title": "The Account_type Schema",
+                            "default": "",
+                            "examples": [
+                                "business"
+                            ],
+                            "pattern": "^(.*)$"
+                        },
+                        "kycStatus": {
+                            "$id": "#/properties/userInfo/properties/kycStatus",
+                            "type": "string",
+                            "title": "The Kycstatus Schema",
+                            "default": "",
+                            "examples": [
+                                "PENDING"
+                            ],
+                            "pattern": "^(.*)$"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

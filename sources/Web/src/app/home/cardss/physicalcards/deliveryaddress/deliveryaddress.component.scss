@@ -1,0 +1,124 @@
+@import "../../../../../variables";
+.page_header {
+  padding-top: 15px;
+  .header {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  ul {
+    list-style: none;
+    padding: 0px;
+    li {
+      font-size: 0.825rem;
+      display: inline-block;
+      opacity: 0.8;
+      &:after {
+        content: " / ";
+      }
+      &:last-child {
+        opacity: 1;
+        color: $font-color-active;
+        &:after {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+.card {
+  padding: 30px 20px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  display: block;
+  .card_header {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+.addcard {
+  color: $color-secondary;
+  padding: 15px 10px;
+  cursor: pointer;
+  .addcard_icn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $color-secondary;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 40px;
+    margin-right: 20px;
+  }
+  border-bottom: 1px solid #dadada;
+}
+
+.font-clr {
+  color: $font-color-active;
+  margin-bottom: -6px;
+}
+
+.add_money_card {
+  min-height: calc(100vh - 200px);
+}
+.flexborder {
+  border-bottom: 1px solid $font-teritary;
+}
+
+.font-wdth {
+  padding: 0px;
+}
+.btn-top {
+  padding: 20px 10px 0px 10px;
+}
+.m-btm {
+  margin-bottom: 30px;
+}
+.text-clr {
+  color: $font-color-active;
+}
+.itm_crcl_modal {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  padding: 0px;
+  background: #c9c9d2;
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 18px;
+}
+.bdr-top-btm {
+  border-top: 2px solid $font-teritary;
+  border-bottom: 2px solid $font-teritary;
+  padding: 10px;
+}
+.m-btm-10 {
+  margin-bottom: 10px;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.m-top-20 {
+  margin-top: 20px;
+}
+.activeclr{
+  color: #ffffff;
+  background-color: $color-secondary;
+  .itm_crcl{
+    background-color: #ffffff;
+    color: $color-secondary;
+  }
+  .font-clr{
+    color: #ffffff;
+  }
+}

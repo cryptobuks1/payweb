@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="additm" id="AddNew" data-toggle="modal" data-target="#createCurrency" (click)="getCountrydetails()">
+    <div class="additm_icn">
+      <i class="fa fa-plus"></i>
+    </div>
+    <span style="cursor: pointer;">Add currency</span>
+  </div>
+  <div class="cnv_cntr" *ngFor="let exchCurrR of exchanCurrencyRes;let i=index">
+
+    <div class="lft_itm ctry_img">
+      <i class="flag_cont flag_cont_bulg" *ngIf="exchCurrR.to_currency=='BGN'"></i>
+      <i class="flag_cont flag_cont_croatian" *ngIf="exchCurrR.to_currency=='HRK'"></i>
+      <i class="flag_cont flag_cont_czech" *ngIf="exchCurrR.to_currency=='CZK'"></i>
+      <i class="flag_cont flag_cont_danish" *ngIf="exchCurrR.to_currency=='DKK'"></i>
+      <i class="flag_cont flag_cont_swedan" *ngIf="exchCurrR.to_currency=='SEK'"></i>
+      <i class="flag_cont flag_cont_romania " *ngIf="exchCurrR.to_currency=='RON'"></i>
+      <i class="flag_cont flag_cont_euro" *ngIf="exchCurrR.to_currency=='EUR'"></i>
+      <i class="flag_cont flag_cont_hungarian" *ngIf="exchCurrR.to_currency=='HUF'"></i>
+      <i class="flag_cont flag_cont_polish" *ngIf="exchCurrR.to_currency=='PLN'"></i>
+      <i class="flag_cont flag_cont_british" *ngIf="exchCurrR.to_currency=='GBP'"></i>
+      <i class="flag_cont flag_cont_us" *ngIf="exchCurrR.to_currency=='USD'"></i>
+      <i class="flag_cont flag_cont_in" *ngIf="exchCurrR.to_currency=='INR'"></i>
+      <i class="flag_cont flag_cont_swiss" *ngIf="exchCurrR.to_currency=='CHF'"></i>
+      <i class="flag_cont flag_cont_iceland" *ngIf="exchCurrR.to_currency=='ISK'"></i>
+      <i class="flag_cont flag_cont_norway" *ngIf="exchCurrR.to_currency=='NOK'"></i>
+    </div>
+    <div class="data_cnt">
+      <div class="currency_dta">{{exchCurrR.to_currency}}</div>
+      <p *ngIf="exchCurrR.to_currency=='BGN'">Bulgaria</p>
+      <p *ngIf="exchCurrR.to_currency=='HRK'">Croatia</p>
+      <p *ngIf="exchCurrR.to_currency=='CZK'">Czech Republic</p>
+      <p *ngIf="exchCurrR.to_currency=='DKK'">Denmark</p>
+      <p *ngIf="exchCurrR.to_currency=='EUR'">European Union</p>
+      <p *ngIf="exchCurrR.to_currency=='HUF'">Hungary</p>
+      <p *ngIf="exchCurrR.to_currency=='INR'">India</p>
+      <p *ngIf="exchCurrR.to_currency=='PLN'">Poland</p>
+      <p *ngIf="exchCurrR.to_currency=='RON'">Romania</p>
+      <p *ngIf="exchCurrR.to_currency=='SEK'">Sweden</p>
+      <p *ngIf="exchCurrR.to_currency=='GBP'">UK</p>
+      <p *ngIf="exchCurrR.to_currency=='USD'">USA</p>
+      <p *ngIf="exchCurrR.to_currency=='ISK'">Iceland</p>
+      <p *ngIf="exchCurrR.to_currency=='CHF'">Switzerland</p>
+      <p *ngIf="exchCurrR.to_currency=='NOK'">Norway</p>
+    </div>
+    <div class="rt_itm">
+      <div class="form-group float_label" [ngClass]="{'text-success':exchCurrR.to_currency == 'EUR'}">
+        <input type="text" appDecimal minlength="1" maxlength="9" class="form-control" [(ngModel)]="exchCurrR.exchanged_amount"
+          (keydown.enter)="convertorValue(exchCurrR,$event)" (blur)="convertorValue(exchCurrR,$event)"
+          name="exchanged_amount" autocomplete="off">
+      </div>
+      <div class="del_cntr" (click)="deleteCurrency(exchCurrR.check_rates_id)" *ngIf="(exchCurrR.to_currency)!='EUR'">
+        <i class="fa fa-trash-o cursor_pointer text-danger " aria-hidden="true"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--Create currency -->
+<div class="modal fade" data-backdrop="static" id="createCurrency" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel4" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-slideout" role="document">
+    <div class="modal-content ov_y_auto cntry_lst_mdl">
+      <button type="button" class="close close_crcl" style="height: 30px; width:30px;top: 15px;" data-dismiss="modal"
+        aria-label="Close" (click)="searchText=''">
+        <i class="fa fa-times"></i>
+      </button>
+      <div class="modal-title ctry_lst_title" id="exampleModalLabel">Choose a currency to add</div>
+      <div class="input-group mb-3">
+        <input type="text" style="box-shadow: none;" class="form-control bor-rem" name="key1" (keydown.space)="$event.preventDefault();" [(ngModel)]="searchText"
+          placeholder="Search..." autocomplete="off">
+        <div class="input-group-append">
+          <button style="box-shadow: none;" class="btn btn-outline-secondary search_btn" type="button"><i
+              class="fa fa-search"></i></button>
+        </div>
+      </div>
+      <div class="ctry_cnt">
+        <ul class="ctry_lst">
+          <li *ngFor="let country of CountryDetails| isoCurrencySearch:searchText" (click)="addAccount(country)"
+            data-toggle="modal" data-target="#exampleModalCenter">
+            <div class="ctry_img">
+              <i class="flag_cont flag_cont_bulg" *ngIf="country.country_id==1"></i>
+              <i class="flag_cont flag_cont_croatian" *ngIf="country.country_id==7"></i>
+              <i class="flag_cont flag_cont_czech" *ngIf="country.country_id==9"></i>
+              <i class="flag_cont flag_cont_danish" *ngIf="country.country_id==12"></i>
+              <i class="flag_cont flag_cont_swedan " *ngIf="country.country_id==19"></i>
+              <i class="flag_cont flag_cont_romania " *ngIf="country.country_id==31"></i>
+              <i class="flag_cont flag_cont_euro" *ngIf="country.country_id==2"></i>
+              <i class="flag_cont flag_cont_hungarian" *ngIf="country.country_id==21"></i>
+              <i class="flag_cont flag_cont_polish" *ngIf="country.country_id==29"></i>
+              <i class="flag_cont flag_cont_british" *ngIf="country.country_id==20"></i>
+              <i class="flag_cont flag_cont_us" *ngIf="country.country_id==16"></i>
+              <i class="flag_cont flag_cont_czech" *ngIf="country.country_id==5"></i>
+              <i class="flag_cont flag_cont_us" *ngIf="country.country_id==35"></i>
+              <i class="flag_cont flag_cont_swiss" *ngIf="country.country_id==37"></i>
+              <i class="flag_cont flag_cont_iceland" *ngIf="country.country_id==38"></i>
+              <i class="flag_cont flag_cont_norway" *ngIf="country.country_id==39"></i>
+            </div>
+            <div class="ctry_crncy_cnt">
+              <div class="ctry_title">{{country.currency}}</div>
+              <div class="ctry_crncy">{{country.country_name}}</div>
+
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-center" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="cnf_cnt">
+            <div class="cnf_title">
+              Confirm adding account
+            </div>
+            <div class="cnf_img_cnt">
+              <i class="flag_cont2x flag_cont_bulg" *ngIf="country_id_currency==1"></i>
+              <i class="flag_cont2x flag_cont_croatian" *ngIf="country_id_currency==7"></i>
+              <i class="flag_cont2x flag_cont_czech" *ngIf="country_id_currency==9"></i>
+              <i class="flag_cont2x flag_cont_danish" *ngIf="country_id_currency==12"></i>
+              <i class="flag_cont2x flag_cont_swedan " *ngIf="country_id_currency==19"></i>
+              <i class="flag_cont2x flag_cont_romania " *ngIf="country_id_currency==31"></i>
+              <i class="flag_cont2x flag_cont_euro" *ngIf="country_id_currency==2"></i>
+              <i class="flag_cont2x flag_cont_hungarian" *ngIf="country_id_currency==21"></i>
+              <i class="flag_cont2x flag_cont_polish" *ngIf="country_id_currency==29"></i>
+              <i class="flag_cont2x flag_cont_british" *ngIf="country_id_currency==20"></i>
+              <i class="flag_cont2x flag_cont_us" *ngIf="country_id_currency==16"></i>
+              <i class="flag_cont2x flag_cont_czech" *ngIf="country_id_currency==5"></i>
+              <i class="flag_cont2x flag_cont_us" *ngIf="country_id_currency==35"></i>
+              <i class="flag_cont2x flag_cont_iceland" *ngIf="country_id_currency==38"></i>
+              <i class="flag_cont2x flag_cont_switzerland" *ngIf="country_id_currency==37"></i>
+              <i class="flag_cont2x flag_cont_norway" *ngIf="country_id_currency==39"></i>
+            </div>
+            <form #cfb="ngForm">
+              <p *ngIf="getCountrydetailsList"> Would you like to add {{getCountrydetailsList.currency}} account?</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <button style="border-radius:4px" type="button" class="btn btn-block btn-outline-primary close_btn" (click)="searchText=''"
+                    data-dismiss="modal">Cancel</button>
+                </div>
+                <div class="col-md-6">
+                  <button style="border-radius:4px" (click)="CreateConverts(getCountrydetailsList)" class="btn btn-primary btn-block"
+                    data-dismiss="modal">Confirm</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

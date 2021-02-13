@@ -1,0 +1,255 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: payvoo_service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payvoo_service
+  template:
+    metadata:
+      labels:
+        app: payvoo_service
+    spec:
+      containers:
+      - name: backend
+        image: 995966766395.dkr.ecr.us-west-2.amazonaws.com/payvoo/service:latest
+        volumeMounts:
+        - mountPath: "/data"
+          name: external
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "0.1"
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: Always
+        env:
+          - name: MAIL_USER
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: MAIL_USER
+          - name: MAIL_PASSWORD
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config
+                  key: MAIL_PASSWORD 
+          - name: PORT
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config
+                  key: PORT
+          - name: MAIL_GMAIL_PORT
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config
+                  key: MAIL_GMAIL_PORT
+          - name: SERVICE
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: SERVICE
+          - name: PASSWORD_CONFIG
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: PASSWORD_CONFIG 
+          - name: PASSWORD_CONFIG1
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: PASSWORD_CONFIG1
+          - name: CLIENT_ID
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: CLIENT_ID
+          - name: PI_KEY
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: PI_KEY
+          - name: FORGOT_PASSWORD_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: FORGOT_PASSWORD_URL 
+          - name: COUNTRYCODE
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: COUNTRYCODE
+          - name: DBHOST
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: DBHOST
+          - name: DBUSER
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: DBUSER
+          - name: DBPORT
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: DBPORT 
+          - name: DBPASSWORD
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: DBPASSWORD
+          - name: WEBADDRESS
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: WEBADDRESS
+          - name: DB
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: DB
+          - name: DBCONNECTIONLIMIT
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: DBCONNECTIONLIMIT 
+          - name: CONNECTTIMEOUT
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: CONNECTTIMEOUT
+          - name: GATEWAY_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: GATEWAY_URL
+          - name: GATEWAY_PORT
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: GATEWAY_PORT
+          - name: PAYVOOLINK
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: PAYVOOLINK
+          - name: MUSE_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: MUSE_URL 
+          - name: MUSE_SECRET
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: MUSE_SECRET 
+          - name: CM_PRODUCT_TOKEN
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: CM_PRODUCT_TOKEN
+          - name: CURRENCY_EXCHANGE
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: CURRENCY_EXCHANGE 
+          - name: SANDBOX_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: SANDBOX_URL 
+          - name: SANDBOX_API_DOC_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: SANDBOX_API_DOC_URL
+          - name: MOBICAUSER
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: MOBICAUSER
+          - name: MOBICAPASS
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: MOBICAPASS
+          - name: WEB_LOGIN_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: WEB_LOGIN_URL 
+          - name: WEB_DOC_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: WEB_DOC_URL
+          - name: TOKEN_EXP_TIME
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: TOKEN_EXP_TIME
+          - name: MERCHANT_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: MERCHANT_URL
+          - name: MERCHANT_API_DOC_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: MERCHANT_API_DOC_URL
+          - name: MERCHANT_REDIRECT_URL
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: MERCHANT_REDIRECT_URL 
+          - name: SANDBOX_CLIENT_ID
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: SANDBOX_CLIENT_ID
+          - name: SANDBOX_API_KEY
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: SANDBOX_API_KEY
+          - name: CRON_AUTOEXCHANGE
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key:  CRON_AUTOEXCHANGE
+          - name: CRON_KYCCHECKANDUPDATE
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key:  CRON_KYCCHECKANDUPDATE
+          - name: CRON_SCHEDULEDPAYMENTS
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: CRON_SCHEDULEDPAYMENTS 
+          - name: PAYVOO_API_KEY
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key:  PAYVOO_API_KEY
+          - name: FILE_UPLOAD_LOCATION
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key:  FILE_UPLOAD_LOCATION
+          - name: SEPA_KYC_ENVIRONMENT
+            valueFrom:
+                configMapKeyRef:
+                  name: payvoo-config                
+                  key: SEPA_KYC_ENVIRONMENT
+      volumes:
+      - name: external 
+        persistentVolumeClaim:
+          claimName: backend-aws-pvc

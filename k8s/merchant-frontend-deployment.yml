@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: merchantfrontend
+  labels:
+    app: payvoo_merchant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payvoo_merchant
+  template:
+    metadata:
+      labels:
+        app: payvoo_merchant
+    spec:
+      containers:
+      - name: merchantfrontend
+        image: 995966766395.dkr.ecr.us-west-2.amazonaws.com/payvoo/merchant:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "0.1"
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always

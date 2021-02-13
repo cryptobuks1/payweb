@@ -1,0 +1,166 @@
+<div class="sandboxes">
+
+  <div class="container"><br>
+    <h6>Member ID:</h6>
+    <div class="copies">
+      <input type="text" class="copied" [(ngModel)]="memberuser" #member readonly>
+    </div>
+  </div><br><br>
+  <div class="container ">
+    <div class="card panel panel-info">
+
+      <div class="card-body" style="cursor: pointer;" id="demo">
+
+        <div class="panel-heading collapsed" data-toggle="collapse" data-target="#bar">
+
+          <div class="rt_itm pull-right">
+            <i class="fa fa-fw fa-chevron-down"></i>
+            <i class="fa fa-fw fa-chevron-right"></i>
+          </div>
+          <h6>Production API</h6>
+        </div>
+        <div class="panel-body">
+          <!-- The inside div eliminates the 'jumping' animation. -->
+          <div class="collapse" id="bar">
+
+
+            <form [formGroup]="userProfile">
+              <p class="share" data-toggle="modal" data-target="#sendemail"> <i
+                  class="fa fa-share-alt"></i>&nbsp;&nbsp;Share</p>
+              <h6>URL:</h6><br>
+              <div class="copies">
+                <input type="text" class="copied" formControlName="url" #input readonly>
+                <div value="click to copy" (click)="copyInputMessage(input)">Copy</div>
+              </div>
+              <h6>API KEY:</h6>
+              <div class="copies">
+                <input type="text" class="copied" formControlName="apikey" #second readonly>
+                <div value="click to copy" (click)="copyInputMessage(second)">Copy</div>
+              </div>
+              <h6>IP Whitelist*:</h6>
+            </form>
+            <form class="example" action="">
+              <input type="text" style="text-align: left;" placeholder="Type your IP here" name="search">
+              <button type="submit"><i class="fa fa-check"></i></button>
+              <small>*Production API request will only be allowed if made from the above IP address or addresses. And
+                several
+                IP addresses by a comma(e.g. 168.0.1.0. 168.0.1.5) or add a range using a forward slash (e.g.
+                168.0.2.1/5).
+              </small>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><br>
+  <!-- <div class="container">
+      <div class="card">     
+    <div id="accordion" class="accordion addcard1">
+      <div class="card accordcard">
+          <div class="card-header sandbox" data-toggle="collapse"
+              href="#collapseExample">           
+              <p class="sandbox_title">Sandbox</p>
+              <p class="share" data-toggle="modal" data-target="#sendemail"> <i class="fa fa-share-alt"></i>&nbsp;Share</p>
+              <div class="rt_itm pull-right">
+                <i class="fa fa-angle-right angle_right"></i>
+            </div>
+          </div>
+      </div>
+    </div>
+  <div class="dropdown">
+    <div class="page_ht_crd1 collapse" id="collapseExample" data-parent="#accordion">
+      <div class="card-body" id="demo"> 
+        <form [formGroup]="userProfile">
+            <p>URL:</p>
+            <div class="copies">
+                  <input type="text" class="copied" formControlName="url" #input readonly>
+                  <div value="click to copy" (click)="copyInputMessage(input)">Copy</div>
+            </div>     
+       
+       
+            <p>API KEY:</p>
+          <div class="copies">
+              <input type="text" class="copied" formControlName="apikey"  #second readonly>
+              <div value="click to copy" (click)="copyInputMessage(second)">Copy</div>
+          </div>    
+        
+       
+            <p>DOCUMENTATION:</p> 
+            <div class="copies">
+              <input type="text" class="copied"  formControlName="support" #documentation readonly>
+              <div value="click to copy" (click)="copyInputMessage(documentation)">Copy</div>
+            </div> 
+    
+    </form>
+    </div>
+    </div>
+    </div>
+  </div>
+    </div> -->
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header prod-api" >
+        
+        <!-- <input type="button" onclick="location.href='https://documenter.getpostman.com/view/10197369/SWTD7cCV';" value="API documentation" /> -->
+        <div class="rt_itm pull-right">
+          <a href="https://documenter.getpostman.com/view/10670567/SzYUZMCT" target="_blank"> <i class="fa fa-fw fa-chevron-right"></i></a>
+        </div>
+        <h6>API documentation</h6>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <!-- <div>
+      <div class="container">
+        <div class="card">
+          <div class="card-header prod-api"> -->
+  <!-- <h4>Sandbox documentation</h4> -->
+  <!-- <input type="button" onclick="location.href='https://documenter.getpostman.com/view/10197369/SWTD7cCV';" value="Sandbox Documentation" />
+             <div class="rt_itm pull-right">
+              <i class="fa fa-angle-right angle_right"></i>
+          </div>         
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+<div class="modal fade" id="sendemail" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="email_send">          
+          <img src="../../../../assets/images/email.png" alt="path not correct" />
+          <p>You would like to share Sandbox details?</p>
+          <p>Please, type in receiver's email.</p>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" [(ngModel)]="uservalue" #user="ngModel"
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required>
+          </div>
+          <button class="btn btn-primary btn-block" (click)="sendEmail()"
+            [disabled]="user.errors?.pattern || user.errors?.required">Send Email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="success" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="email_send">
+          <img src="../../../../assets/images/tick_icon.png" alt="path not correct" />
+          <p>Email has been sent successfully</p>
+          <button class="btn btn-primary btn-block" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

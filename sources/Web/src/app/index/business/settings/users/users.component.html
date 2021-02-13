@@ -1,0 +1,285 @@
+<div class="title_cnt">
+  <div class="title">
+    Users
+  </div>
+  <div class="d-flex flex-row rt_cnt">
+    <div>
+      <span data-toggle="modal" data-target="#invitemodal" class="invitelink" style="cursor: pointer; text-decoration: underline;">Invite new user</span>
+    </div>
+    <div class="pull-right srch_cnt">
+      <input type="text" [(ngModel)]="term" name="key" class="form-control" size="25" placeholder="Search...">
+    </div>
+    <div class="pull-right"><i class="fa fa-search search_open"></i></div>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width:20%; color:#717184">Name</th>
+        <th style="width:20%; color:#717184">Permissions</th>
+        <th style="width:50%; color:#717184">E-mail</th>
+        <th style="width:10%; color:#717184">Status</th>
+      </tr>
+    </thead>
+    <tbody class="mrgn-btm" >
+      <tr *ngFor = "let users of userdetails | filter:term">
+        <td>
+          {{users.first_name}} {{users.last_name}}
+        </td>
+        <td>Permissions set</td>
+        <td>{{users.email}}</td>
+        <td>{{users.status == 1 ? 'Invited': ''}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal invitemodal" id="invitemodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body ">
+        <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal"
+           (click)="clearpermissionsForm()">&times;</button>
+          <h4 class="modal-title header_txt text-center title"><span>Invite new user</span></h4><br>
+
+          <form [formGroup] = "permissionsForm" >
+            <div class="form-group float_label">
+              <input type="text" class="form-control" (click)="noSpace()" name="fname" placeholder="&nbsp;" formControlName = "first_name">
+              <label for="fname">First name</label>
+
+            </div>
+            <div class="form-group float_label">
+              <input type="text" class="form-control" (click)="noSpace()" name="lname" placeholder="&nbsp;" formControlName = "last_name">
+              <label for="lname">Last name</label>
+
+            </div>
+            <div class="form-group float_label">
+              <input type="email" class="form-control" (keydown.space)="$event.preventDefault();" name="email" placeholder="&nbsp;" formControlName = "email">
+              <label for="email">E-mail</label>
+
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-block btn-outline-primary" style="margin-bottom: 10px;border-radius:4px"
+                  data-dismiss="modal"  (click)="clearpermissionsForm()">Cancel</button>
+              </div>
+              <div class="col-md-6">
+                <button type="button" class="btn btn-block btn-primary" style="margin-bottom: 10px;border-radius:4px"
+                  data-dismiss="modal" (click)="permissionsModal(permissionsForm.value)" data-target="#permissions" [disabled] = "permissionsForm.invalid">Continue</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal permissions" id="permissions">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body ">
+        <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="text-center"><br>
+            <h4 class="modal-title header_txt text-center">Set up permissions for {{fullName}}<br></h4>
+            <span>{{userMail}}</span>
+          </div><br>
+          <div id="accordion" class="accordion">
+
+            <div class="card-header collapsed" (click)="roleDropDownCollapsed = !roleDropDownCollapsed">
+              <p class="ipttxt"><span style="color:#717184">Role</span><span class="pull-right">{{selected_role_title}} &nbsp;<i class="fa fa-chevron-down"
+                    aria-hidden="true"></i></span></p>
+            </div>
+
+          </div>
+
+
+          <div class="dropdown collapsedropdown">
+            <div class="page_ht_crd1 collapse" [ngClass]="{'show': !roleDropDownCollapsed}" id="collapseExample" data-parent="#accordion">
+              <div class="cnv_cntr">
+                <div class="data_cnt" (click)="createRole()">
+                  <div><span class="itm_crcl"><i class="fa fa-plus"></i></span>Create new role</div>
+                </div>
+              </div>
+              <div *ngFor="let role of businessRoles" class="cnv_cntr" style="cursor: pointer;" (click)="selectRole(role)">
+                <div class="data_cnt">
+                  <div class="role_name">{{role.role_name}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div *ngIf="aclForm">
+          <div class="border-line">
+            <div class="d-flex ">
+                <div class="p-2 flex-grow-1 main_colr mb-0" style="margin-bottom: 0px;">Business Mangement</div>
+                <div class="p-2 ">View</div>
+                <div class="p-2 ">Manage</div>
+              </div>
+              <div  class="d-flex ">
+                <div class="p-2 w-100 flex-grow-1" style="color:#717184">Business profile and billing</div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.business_management.business_profile_billing.can_view" #can_view_business_profile_billing><i
+                    [ngClass]="{'eye_colr': can_view_business_profile_billing.checked}" class="fa fa-eye" aria-hidden="true" (click)="can_view_business_profile_billing.click()"></i></div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.business_management.business_profile_billing.can_manage" #can_manage_business_profile_billing><i [ngClass]="{'pencil_colr': can_manage_business_profile_billing.checked}" class="fa fa-pencil"
+                    aria-hidden="true" (click)="can_manage_business_profile_billing.click()"></i></div>
+              </div>
+              <div class="d-flex ">
+                <div class="p-2 w-100 flex-grow-1" style="color:#717184">User mangement</div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.business_management.user_management.can_view" #can_view_user_management><i [ngClass]="{'eye_colr': can_view_user_management.checked}" class="fa fa-eye"
+                    aria-hidden="true" (click)="can_view_user_management.click()"></i></div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.business_management.user_management.can_manage" #can_manage_user_management><i [ngClass]="{'pencil_colr': can_manage_user_management.checked}" class="fa fa-pencil"
+                    aria-hidden="true" (click)="can_manage_user_management.click()"></i></div>
+              </div>
+            </div>
+
+            <div class="border-line">
+              <div class="d-flex ">
+                <div class="p-2 w-100 flex-grow-1 main_colr">Accounts and statements</div>
+              </div>
+              <div class="d-flex ">
+                <div class="p-2 w-100 flex-grow-1" style="color:#717184">Accounts</div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.accounts_statements.accounts.can_view" #can_view_accounts><i [ngClass]="{'eye_colr': can_view_accounts.checked}" class="fa fa-eye"
+                    aria-hidden="true" (click)="can_view_accounts.click()"></i></div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.accounts_statements.accounts.can_manage" #can_manage_accounts><i [ngClass]="{'pencil_colr': can_manage_accounts.checked}" class="fa fa-pencil" aria-hidden="true"
+                    (click)="can_manage_accounts.click()"></i></div>
+              </div>
+              <div class="d-flex">
+                <div class="p-2 w-100 flex-grow-1" style="color:#717184">Transactions</div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.accounts_statements.transactions.can_view" #can_view_transactions><i [ngClass]="{'eye_colr': can_view_transactions.checked}" class="fa fa-eye"
+                    aria-hidden="true" (click)="can_view_transactions.click()"></i></div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.accounts_statements.transactions.can_manage" #can_manage_transactions><i [ngClass]="{'pencil_colr': can_manage_transactions.checked}" class="fa fa-pencil"
+                    aria-hidden="true" (click)="can_manage_transactions.click()"></i></div>
+              </div>
+            </div>
+
+            <div class="border-line">
+              <div class="d-flex ">
+                <div class="p-2 w-100 flex-grow-1 main_colr">Operations with funds</div>
+              </div>
+              <div class="d-flex ">
+                <div class="p-2 w-100 flex-grow-1" style="color:#717184">Exchange</div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.operations_with_funds.exchanges.can_view" #can_view_exchanges><i [ngClass]="{'eye_colr': can_view_exchanges.checked}" class="fa fa-eye"
+                    aria-hidden="true" (click)="can_view_exchanges.click()"></i></div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.operations_with_funds.exchanges.can_manage" #can_manage_exchanges><i [ngClass]="{'pencil_colr': can_manage_exchanges.checked}" class="fa fa-pencil" aria-hidden="true"
+                    (click)="can_manage_exchanges.click()"></i></div>
+              </div>
+              <div class="d-flex ">
+                <div class="p-2 w-100 flex-grow-1" style="color:#717184">Payments</div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.operations_with_funds.payments.can_view" #can_view_payments><i [ngClass]="{'eye_colr': can_view_payments.checked}" class="fa fa-eye"
+                    aria-hidden="true" (click)="can_view_payments.click()"></i></div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.operations_with_funds.payments.can_manage" #can_manage_payments><i [ngClass]="{'pencil_colr': can_manage_payments.checked}" class="fa fa-pencil" aria-hidden="true"
+                    (click)="can_manage_payments.click()"></i></div>
+              </div>
+              <div class="d-flex ">
+                <div class="p-2 w-100 flex-grow-1" style="color:#717184">Counterparties</div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.operations_with_funds.counterparties.can_view" #can_view_counterparties><i [ngClass]="{'eye_colr': can_view_counterparties.checked}" class="fa fa-eye"
+                    aria-hidden="true" (click)="can_view_counterparties.click()"></i></div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.operations_with_funds.counterparties.can_manage" #can_manage_counterparties><i [ngClass]="{'pencil_colr': can_manage_counterparties.checked}" class="fa fa-pencil"
+                    aria-hidden="true" (click)="can_manage_counterparties.click()"></i></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="d-flex">
+                <div class="p-2 w-100 flex-grow-1 main_colr">Cards and employess</div>
+              </div>
+              <div class="d-flex">
+                <div class="p-2 w-100 flex-grow-1" style="color:#717184">Physical cards</div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.cards_employees.physical_cards.can_view" #can_view_physicalcards><i [ngClass]="{'eye_colr': can_view_physicalcards.checked}" class="fa fa-eye"
+                    aria-hidden="true" (click)="can_view_physicalcards.click()"></i></div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.cards_employees.physical_cards.can_manage" #can_manage_physicalcards><i [ngClass]="{'pencil_colr': can_manage_physicalcards.checked}" class="fa fa-pencil"
+                    aria-hidden="true" (click)="can_manage_physicalcards.click()"></i></div>
+              </div>
+              <div class="d-flex ">
+                <div class="p-2 w-100 flex-grow-1" style="color:#717184">Virtual cards</div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.cards_employees.virtual_cards.can_view" #can_viewvirtualcards><i [ngClass]="{'eye_colr': can_viewvirtualcards.checked}" class="fa fa-eye"
+                    aria-hidden="true" (click)="can_viewvirtualcards.click()"></i></div>
+                <div class="p-2 flex-fill">
+                  <input type="checkbox" class="visibility-hidden" [(ngModel)]="aclForm.cards_employees.virtual_cards.can_manage" #can_managevirtualcards><i [ngClass]="{'pencil_colr': can_managevirtualcards.checked}" class="fa fa-pencil"
+                    aria-hidden="true" (click)="can_managevirtualcards.click()"></i></div>
+              </div><br><br>
+            </div>
+        </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-block btn-outline-primary" style="margin-bottom: 10px;border-radius:4px"
+                  data-dismiss="modal" (click)="clearAclForm()">Cancel</button>
+              </div>  
+              <div class="col-md-6">
+                <button type="button" class="btn btn-block btn-primary" style="margin-bottom: 10px;border-radius:4px"
+                  data-dismiss="modal" (click)="mapUserToBusiness()">Continue</button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="modal invitemodal" id="newrolemodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body ">
+        <div class="col-lg-12"> <button type="button" class="close" data-dismiss="modal" (click)="clearaddRoleForm()">&times;</button>
+          <h4 class="modal-title header_txt text-center">Create new role</h4>
+
+          <form [formGroup] = "addNewRole">
+            <div class="form-group float_label" style="margin-top: 40px;">
+              <input type="text" class="form-control" name="newrole" placeholder="&nbsp;" formControlName = "role_name" required>
+              <label for="newrole">New role name</label>
+
+            </div>
+            <div class="row" style="margin-top: 20px;">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-block btn-outline-primary" style="margin-bottom: 10px;border-radius:4px"
+                  data-dismiss="modal" (click)="clearaddRoleForm()">Cancel</button>
+              </div>
+              <div class="col-md-6">
+                <button type="button" class="btn btn-block btn-primary" style="margin-bottom: 10px;border-radius:4px"
+                  data-dismiss="modal" (click)="addRole(addNewRole.value)" [disabled] ="!addNewRole.valid" >Continue</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal invitemodal" id="successmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="check_div">
+          <img src="../../../../assets/images/tick_icon.png">
+        </div>
+        <h4>Invitation for {{fullName}} sent to {{userMail}}</h4><br>
+        <button class="btn btn-primary col-6" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>

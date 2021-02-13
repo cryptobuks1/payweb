@@ -1,0 +1,191 @@
+<div class="pull-right d-inline back_btn">
+   <div *ngIf="!isPersonal">
+      <a routerLink="/business/payments"><i class="fa fa-arrow-left"></i> Back</a>
+      </div>
+   <div *ngIf="isPersonal">
+      <a routerLink="/personal/payments"><i class="fa fa-arrow-left"></i> Back</a>
+      </div>
+ </div>
+<div class="container-fluid">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="row ">
+     <div class="col-md-6 col-sm-12 card1-height pt-3">
+        <div class="content">
+           <div class="form-group float_label">
+              <select formControlName="selectedOption" class="form-control" (change)="changeAcc($event)">
+                 <option *ngFor="let acc of accountData">{{acc.currency}}</option>
+              </select>
+              <label><u>From</u></label>
+              <span class="mt-5 pt-3" *ngIf="!bankCurrency">Balance: {{euroCurrency}}  {{euroBalance}}</span>
+              <span class="mt-5 pt-3" *ngIf="bankCurrency">Balance: {{bankCurrency}}  {{bankBalance}}</span>
+           </div>
+        </div>
+        <div class="bulk_content1">
+           <div class="form-group text-center">
+              <div *ngIf="!csvPayment">
+              <input  readonly type="text" formControlName="balance" class="form-control input_element_bulk"  placeholder="0" [value]="totalBalance">
+             </div>
+             <!-- <div *ngIf="csvPayment">
+              <input  readonly type="text" formControlName="balance" class="form-control input_element_bulk"  placeholder="0" [value]="csvTotalAmount">
+              </div> -->
+              <!-- <p>No fee</p> -->
+           </div>
+        </div>
+     </div>
+     <div class="col-md-6 col-sm-12 card2-height">
+        <div class="eclipse">
+           <img src="../../../assets/images/eclipse.png">
+           <img src="../../../assets/images/right-arrow-center.png" class="right_arrow">
+        </div>
+        <div class="bulk_content1 text-center">
+           <img src="../../../assets/images/Group 1795.png" class="bulk_img_element">
+           <p class="mb-0 mt-2"><span *ngIf="!csvPayment">{{bulkPaymentList?.length}}</span><span *ngIf="csvPayment">{{csvBulkData?.length}}</span> payments</p>
+           <button *ngIf="!csvPayment" style="font-size: 14px; color: #2a3477" type="submit" class="btn-link btn py-1" (click)="editPayment()">Edit</button>
+        </div>
+     </div>
+     <div class="col-12">
+           <button [disabled]="userForm.invalid && (userForm.dirty || userForm.touched)" class="btn btn-primary continue_btn" (click)="paymentDetailsModal(template)">Continue</button>
+     </div>
+  </div>
+  </form>
+</div>
+<ng-template #template>
+  <div class="modal-body pb-4">
+     <div class="alin">
+       <div class='fnt_color mb-3'>
+         <h5 class="mb-1">
+           <span *ngIf="bankCurrency">{{bankCurrency}}</span>
+           <span *ngIf="!bankCurrency">{{euroCurrency}}</span>-<span *ngIf="!csvPayment">{{totalBalance}}</span>
+           <!-- <span *ngIf="csvPayment">{{csvTotalAmount}}</span> -->
+          </h5>
+         <p>
+           <span *ngIf="!csvPayment">{{bulkPaymentList.length}} Payments</span>
+           <span *ngIf="csvPayment">{{csvBulkData.length}} Payments</span>
+         </p>
+       </div>
+       <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+         <div class="my-4" *ngIf="scheduledPaymentsEnabled">
+           <p class="inpt_color mb-0" (click)="scheduleinput()">
+             <span><i class="fa fa-calendar mr-2" aria-hidden="true"></i></span>
+             <span *ngIf="!this.scheduleForm.controls['dateYMD'].value">Schedule</span>
+             <span *ngIf="this.scheduleForm.controls['dateYMD'].value">{{this.scheduleForm.controls['dateYMD'].value | date : "EEE, d MMMM"}}</span>
+           </p>
+
+           <div *ngIf="hideschedule">
+             <div class="form-group float_label text-center">
+               <input type="date" class="form-control  datepicker" formControlName="dateYMD" placeholder="YYYY-MM-DD"
+                 [min]="MinimunDate" [max]="MaximumDate" (change)="dateVal($event)">
+             </div>
+           </div>
+           <div *ngIf="this.scheduleForm.controls['dateYMD'].value != ''">
+             <p class="text-danger" *ngIf="validDate">
+               Please, select a date within next 30 days for schedule transfer.
+             </p>
+           </div>
+           <div *ngIf="insufficientBal">
+             <p class="text-danger mb-0 mt-3">
+               Insufficient funds in
+               <span *ngIf="!bankCurrency">{{euroCurrency}}</span>
+               <span *ngIf="bankCurrency">{{bankCurrency}}</span>
+             </p>
+             <p>To proceed, schedule this payment and add funds later</p>
+           </div>
+           <div *ngIf="!insufficientBal">
+             <p class="marginTop">You can schedule this payment and add funds later</p>
+           </div>
+         </div>
+         <div class="form-check form-check-inline">
+           <input type="checkbox" class="form-check-input checkbox-custom" formControlName="notify">
+           <label class="form-check-label inpt_color m-l-1">Notify recipient</label>
+         </div>
+       </form>
+     </div>
+
+     <div style="padding: 30px 30px 0px 30px; background-color: #fafafa; margin-left:-15px; margin-right:-15px">
+        <p class="prsn mb-3"> From
+           <span *ngIf="bankCurrency">{{bankCurrency}}</span><span *ngIf="!bankCurrency">{{euroCurrency}}</span>
+           <span class="pull-right bal">Balance:
+           <span *ngIf="!bankCurrency"> {{euroCurrency}}  {{euroBalance}}</span>
+           <span *ngIf="bankCurrency"> {{bankCurrency}} {{bankBalance}}</span>
+           </span>
+        </p>
+        <p class="prsn">To</p>
+        <table class="modal_list_view" style=" display: block; max-height: 130px; overflow-y: auto; margin-top: 0px;">
+         <ng-container *ngIf="!csvPayment">
+         <tr *ngFor="let paymentlist of bulkPaymentList">
+              <td style="width: 10%;"> <span class="itm_crcl" style="margin:12px 0">{{getShortName(paymentlist.full_name)}}</span></td>
+              <td style="width:50%">
+                 <span class="lists">{{paymentlist.full_name | titlecase}}</span>
+                 <p class="para1">{{paymentlist.currency}}</p>
+              </td>
+              <td style="width:0%">
+              </td>
+              <td style="width: 40%;"> <span class="dark pull-right">{{paymentlist.currency}}  {{paymentlist.balance}}</span> </td>
+           </tr>
+         </ng-container>
+         <ng-container *ngIf="csvPayment">
+           <tr *ngFor="let bulk of csvBulkData">
+            <td style="width: 10%;"> <span class="itm_crcl" style="margin:12px 0">{{getShortName(bulk['Name of counterparty'])}}</span></td>
+            <td style="width:50%">
+               <span class="lists">{{bulk['Name of counterparty'] | titlecase}}</span>
+               <p class="para1">{{bulk['Recipient account currency']}}</p>
+            </td>
+            <td style="width:0%">
+            </td>
+            <td style="width: 40%;"> <span class="dark pull-right">{{bulk['Source account currency']}}  {{bulk['Amount']}}</span> </td>
+         </tr>
+      </ng-container>
+        </table>
+        <div *ngIf="!csvPayment">
+        <p>Amount<span class="pull-right text_clr dark"><span *ngIf="!csvPayment">{{totalBalance}}</span><span *ngIf="csvPayment">{{csvTotalAmount}}</span></span></p>
+        <p>Transfer fee<span class="pull-right text_clr dark">No fee</span></p>
+        <p>Total<span class="pull-right text_clr dark"><span *ngIf="!csvPayment">{{totalBalance}}</span><span *ngIf="csvPayment">{{csvTotalAmount}}</span></span></p>
+        </div>
+        <div class="row py-2">
+           <div  style="border-radius:4px"  class="col-6 "><button (click)="modalRef.hide()" class="btn btn-outline-primary btn-block"
+              data-dismiss="modal">Cancel</button></div>
+           <div class="col-6">
+              <button *ngIf="!insufficientBal && !hideschedule || removeVal"  [disabled]="(validDate && !removeVal) || sendFundsButton" (click)="bulkTransfer(amount)" class="btn btn-primary btn-block">
+              Send funds</button>
+              <button *ngIf="!insufficientBal && hideschedule && !removeVal" [disabled]="!disabledform || validDate" (click)="bulkTransfer(scheduled)" class="btn btn-primary btn-block">
+               Schedule payment</button>
+              <button *ngIf="insufficientBal" [disabled]="!disabledform || validDate" (click)="bulkTransfer(scheduled)" class="btn btn-primary btn-block">
+              Schedule payment</button>
+           </div>
+        </div>
+     </div>
+  </div>
+  <!-- <div class="loading" *ngIf=apploader></div> -->
+</ng-template>
+<ng-template #amount>
+  <div class="modal-body modal_size">
+     <div class="check_div">
+        <img src="../../../../assets/images/tick_icon.png">
+     </div>
+     <h2 class="header_bar">Successfully sent</h2>
+     <div *ngIf="!csvPayment" class="header_para m_b_20 dark">{{bulkPaymentList?.length}} payments for a total of <span *ngIf="bankCurrency">{{bankCurrency}}</span><span *ngIf="!bankCurrency">{{euroCurrency}}</span> {{totalBalance}}</div>
+     <div *ngIf="csvPayment" class="header_para m_b_20 dark">{{csvBulkData?.length}} payments for a total of <span *ngIf="bankCurrency">{{bankCurrency}}</span><span *ngIf="!bankCurrency">{{euroCurrency}}</span> {{csvTotalAmount}}</div>
+     <div style="text-align: center;">
+        <button class="btn btn-primary w-50" (click)="continue()">Done</button>
+     </div>
+  </div>
+</ng-template>
+<ng-template #scheduled>
+  <div class="modal-content">
+     <div class="modal-body modal_size moda-to">
+        <div class="check_div">
+           <img src="../../../../assets/images/tick_icon.png">
+        </div>
+        <h4 class="header_bar">Payment created</h4>
+        <div class="header_para dark">
+           <span>{{successTransactions}}</span> payments for a total of
+           <span *ngIf="bankCurrency">{{bankCurrency}}</span><span *ngIf="!bankCurrency">{{euroCurrency}}</span> <span *ngIf="!csvPayment"> {{totalBalance}}</span><span *ngIf="csvPayment"> {{csvTotalAmount}}</span>
+           <span> scheduled for</span><br />
+           <span>{{this.scheduleForm.controls['dateYMD'].value | date : "EEE, MMM d, y"}}</span>
+        </div>
+        <div style="text-align: center;">
+           <button class="btn btn-primary w-50" (click)="continue()">Got it</button>
+        </div>
+     </div>
+  </div>
+</ng-template>

@@ -1,0 +1,99 @@
+<div class="main_cont_bg">
+
+    <ng-template [ngIf]="sandboxforgot">
+  
+      <div class="cards">
+  
+        <img  src="../../../../../assets/images/payvoo_logo.png" alt="path not correct" />
+  
+        <div style=" font-weight: bold;color:black" class="header_para">Reset Password</div>
+  
+        <form [formGroup]="forgotForm" (ngSubmit)="forgotAction()">
+  
+          <div class="form-group">
+            <input type="text" [(ngModel)]="email" (keydown.space)="$event.preventDefault();" class="form-control" id="email" name="email" placeholder="Email" formControlName="email">
+            <!-- <label for="email">Email</label> -->
+          </div>
+  
+          <button style=" background-color:orange" class="btn btn-primary btn-block" (keydown.space)="$event.preventDefault();" [disabled]="forgotForm.invalid">Reset Password</button>
+  
+        </form><br>
+  
+        <p style=" font-weight: bold;color:black">Sign in into Sandbox account? <a class="color" (click)="chooselogin()">&nbsp;Sign in</a></p>
+  
+      </div>
+  
+    </ng-template>
+  
+  
+    <div *ngIf="sandboxreset">
+  
+      <div class="cards">
+  
+        <img src="../../../../../assets/images/payvoo_logo.png" alt="path not correct" />
+  
+        <div class="header_para">Reset Password</div>
+  
+        <form [formGroup]="resetpwd">
+  
+          <div class="form-group">
+            <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Enter new password"
+            (keydown.space)="$event.preventDefault();" formControlName="newpassword">
+            <!-- <label for="newpassword">Enter new password</label> -->
+            <div class="text text-danger text-left text-size"
+            *ngIf="resetpwd.controls['newpassword'].invalid && resetpwd.controls['newpassword'].dirty"> The password should contain 8 characters which combine upper &amp; lowercase
+            letters and numbers.<div class="text text-danger inpt_icn"><i class="fa fa-warning"></i></div></div>
+          </div>
+  
+          <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Confirm password<"
+            (keydown.space)="$event.preventDefault();" formControlName="confirmpassword">
+            <!-- <label for="forgotpassword">Confirm password</label> -->
+            <div class="text text-danger text-left text-size" *ngIf="checkPassword">The password does not match</div>
+            <div class="input-group-append">
+  
+              <div class="inpt_icn" onclick="showPassword()"
+                (click)="showMyContainer=!showMyContainer" *ngIf="!showMyContainer">
+                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+             </div>
+  
+              <div class="inpt_icn" onclick="hidePassword()"
+                (click)="showMyContainer=!showMyContainer" *ngIf="showMyContainer">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+             </div>
+  
+            </div>
+          </div>
+          
+          <button style="color:orange" class="btn btn-primary btn-block" [disabled]="resetpwd.invalid || checkPassword" (click)="chcekpwd()">Reset password</button>
+  
+        </form>
+  
+        <p>Sign in into Sandbox account? <a class="color" (click)="chooselogin()"> &nbsp;Sign in</a></p>
+  
+      </div>
+  
+    </div>
+  
+    <div *ngIf="confirm">
+  
+      <div class="cards">
+        <div>
+          <img src="../../../../../assets/images/payvoo_logo.png" class="img-fluid" />
+        </div>
+        <div class="tick_icn_cnt">
+          <img src="../../../../assets/images/tick_icon.png" class="img-fluid"/>
+        </div>
+        <p>Password has been reset successfully</p>
+  
+        <button class="btn btn-primary sanbox_button" (click)="chooselogin()">Sign in</button>
+  
+      </div>
+  
+    </div>
+  
+  
+  
+  
+  
+  </div>

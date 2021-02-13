@@ -1,0 +1,87 @@
+<div style="padding-right: 50px;" class="pull-right d-inline back_btn">
+  <div *ngIf="isPersonal">
+  <a routerLink="/personal/payments"><i class="fa fa-arrow-left"></i> Back</a>
+  </div>
+  <div *ngIf="!isPersonal">
+    <a routerLink="/business/payments"><i class="fa fa-arrow-left"></i> Back</a>
+    </div>
+</div>
+<div *ngIf="test" class="container card page_ht_crd">
+  <form [formGroup]="sendSmsForm">
+    <fieldset class="text-center">
+      <h4 class="header_bar">Please enter code from the SMS</h4>
+      <div class="form-group">
+        <h5 class="header_para">A confirmation code was sent to <span class="txt_link"><strong>+{{ mobile }}</strong></span></h5>
+        <span class="text-danger">{{ OtpError }}</span>
+        <div class="">
+            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control nubmers" id="emailconfirm" name="opt" class="otp"
+            formControlName="sms" minlength=6 maxlength=6 autofocus="autofocus" autocomplete="off">
+        </div>
+        <div class="m_t_20 spac">You can resend the code if it doesn't arrive in <span>00:{{ timer }}</span>s</div>
+        <div *ngIf="isDisabled">
+          <span class="txt_link" (click)="mobileResendLink()"><strong>Resend</strong></span>
+        </div>
+        <div class="m_t_20" *ngIf="textShow">A new confirmation code was sent to <span class="txt_link"> +{{ mobile }}</span></div>
+        <!-- <span class="txt_link"  [class.disabled-pointer]="isDisabled" (click)="mobileResendLink()">Resend</span> -->
+      </div>
+      <div class="row mrgin_btm">
+        <div class="col-md-6 mx-auto" *ngIf="name == 'counterParty'">
+            <button name="next" (click)="verifyOTPAndSubmit(sendSmsForm.controls['sms'].value, busamount)"
+             [disabled]="sendSmsForm.controls['sms'].invalid" class="next btn btn-primary btn-block m-t-50">Continue</button>
+          </div>
+            <div class="col-md-6 mx-auto" *ngIf="name == 'single'">
+              <button (click)="verifyOTPAndSubmit(sendSmsForm.controls['sms'].value, busamount)"
+               [disabled]="sendSmsForm.controls['sms'].invalid" name="next" class="next btn btn-primary btn-block m-t-50">Continue</button>
+            </div>
+            <div class="col-md-6 mx-auto" *ngIf="name == 'bulk'">
+              <button (click)="verifyOTPAndSubmit(sendSmsForm.controls['sms'].value, busamount)"
+               [disabled]="sendSmsForm.controls['sms'].invalid" name="next" class="next btn btn-primary btn-block m-t-50">Continue</button>
+            </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<ng-template #busamount>
+  <div class="modal-content">
+     <div class="modal-body modal_size moda-to">
+        <div class="check_div">
+           <img src="../../../../assets/images/tick_icon.png">
+        </div>
+        <h4 class="header_bar">{{transferMessage}}</h4>
+        <div class="header_para dark">
+          <div *ngIf="amountSent">
+            <span *ngIf="bankCurrency">{{bankCurrency}} {{amountSent}} to {{counterPartyMember.full_name | titlecase}}</span>
+           <span *ngIf="!bankCurrency">{{euroCurrency}} {{amountSent}} to {{counterPartyMember.full_name | titlecase}}</span>
+          </div>
+           <div *ngIf="totalBalance || csvTotalAmount">
+            <div *ngIf="!csvPayment" class="header_para m_b_20 dark">{{bulkPaymentList?.length}} payments for a total of <span *ngIf="bankCurrency">{{bankCurrency}}</span><span *ngIf="!bankCurrency">{{euroCurrency}}</span> {{totalBalance}}</div>
+          <div *ngIf="csvPayment" class="header_para m_b_20 dark">{{csvBulkData?.length}} payments</div>
+           </div>
+           
+           
+        </div>
+        <div style="text-align: center;">
+           <button class="btn btn-primary w-50" (click)="continue()">Done</button>
+        </div>
+     </div>
+  </div>
+</ng-template>
+<div class="modal fade" id="sentNonPayvooUser" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" style="margin-left: 31%; margin-top: -3%">
+    <div class="modal-content" style="margin: 20px; width: 100%; padding: 10px">
+      <div class="modal-body body_popup">
+        <div class="wip-container text-center bg-white">
+          <img class="wip-img" src="assets/images/payvoo-wip.png" />
+          <p style="color:black"><strong>
+            Send this link to {{ counterPartyMember.full_name }} and the counterparty can receive {{bankCurrency}} {{ amountSent }} from it.
+          </strong></p>
+          <p>
+            <a href="{{uniqueLinkToPayNonPayvooUser}}" target="_blank">{{uniqueLinkToPayNonPayvooUser}}</a>
+          </p>
+          <button class="btn btn-primary btn-block" data-dismiss="modal" (click)="hideOk()">Send link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

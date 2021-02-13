@@ -1,0 +1,333 @@
+<header id="header">
+    <div class="container">
+            <div class="menu_otpn_cnt">
+                    <div id="nav-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+        <a class="main-logo" href="index.html">
+            <img src="../../../assets/images/payvoo_logo_beta_2.png" alt="">
+        </a>
+        <div class="menu_items">
+            <div class="switcher">
+                <ul>
+                    <li><a [href]="" class="anchor cursor_pointer" (click)="personalPayvoo()">Individual</a></li>
+                    <li class="active"><a [href]="" class="anchor cursor_pointer">Business</a>
+                    </li>
+                </ul>
+            </div>
+
+        <!-- <div class="switcher">
+            <ul>
+                <li><a [href]="" class="anchor cursor_pointer" (click)="personalPayvoo()">Individual</a></li>
+                <li class="active"><a [href]="" class="anchor cursor_pointer">Business</a>
+                </li>
+            </ul>
+        </div> -->
+
+        <nav class="main-menu">
+            <ul>
+                <!-- <li><a [href]="" class="anchor cursor_pointer" (click)=businessLoginPage()>Sign In</a></li>
+                <li><a [href]="" class="anchor cursor_pointer" (click)=businessSignupPage()>Sign Up</a></li> -->
+                <!-- <li><a href="#choose-card" class="anchor">Cards</a></li> -->
+                <li class="dropdown remove_cursor">
+                    <a href="#">EN</a>
+                    <!-- <ul class="sub-menu">
+                        <li><a href="">PL</a></li>
+                        <li><a href="">RU</a></li>
+                    </ul> -->
+                </li>
+                <li>
+                    <button type="button" class=" btn btn-outline-primary" (click)=businessLoginPage() >Log in</button>
+                </li>
+                <li>
+                    <button type="button" class=" btn btn-primary" (click)=businessSignupPage() >Create account</button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    </div>
+</header>
+
+<section id="intro" class="business">
+    <div class="container">
+        <h1>Bridge the world <br /> to value of ownership</h1>
+
+        <!-- <a href="#" class="btn btn--normal btn__tangerine mrg-t-24 anchor">Learn more</a> -->
+
+        <!-- <a (click)="sandboxRegister()" class="btn learnmore mrg-t-24">Try the Sandbox</a> -->
+
+        <!-- <a href="" class="btn btn__scrolldown anchor">Scroll down</a> -->
+    </div>
+</section>
+
+<section id="default">
+    <div class="container">
+
+        <div class="content">
+            <div class="images">
+                <img src="../../../assets/images/business-woman.png" alt="">
+            </div>
+
+            <div class="description">
+                <h2 class="mrg-b-24">Pay or get paid <br /> the easiest way</h2>
+                <p>PayVoo Business gives you a new, flexible and secure way of managing and spending the corporate
+                    funds.
+                    Opening a company account does not require bank visits and waiting in queues anymore.
+                    Use your time smartly and create a PayVoo business account through
+                    the sign up process on this website or through our mobile app.<br /><br />
+
+                    If you own a webshop, you can offer payment flexibility to your customers by easily integrating the
+                    PayVoo API.
+                    Test the service by registering for free for our Sandbox.</p>
+                <a class="btn btn--normal btn__orange mrg-t-32  anchor account_color"
+                    (click)="businessSignupPage()">Create an account</a>
+                <a (click)="sandboxRegister()" class="btn learnmore mrg-t-32">Sign up for sandbox</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="your-way-to-pay">
+    <div class="container">
+
+        <div class="content">
+            <div class="description">
+                <h2>Your way to get paid</h2>
+
+                <div class="payment-methods">
+                    <div class="item">
+                        <span class="icon business">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <h4>Multi-functional</h4>
+                        <p>Convert and hold funds, receive and make multi-value payments, and manage your business with
+                            PayVoo.</p>
+                    </div>
+
+                    <div class="item">
+                        <span class="icon business">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <h4>Customer centered</h4>
+                        <p>PayVoo web tools help you gaining new customers as well as building great relations with
+                            them.
+                        </p>
+                    </div>
+
+                    <div class="item">
+                        <span class="icon business">
+                            <i class="fa fa-check"></i>
+                        </span>
+                        <h4>Safe</h4>
+                        <p>PayVoo uses tokenization as a security measure.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="images">
+                <img src="../../../assets/images/business-man.png" alt="">
+
+                <div class="title">
+                    <h2>Explore the free world of tailored payments</h2>
+                    <span class="submenu">both for individual and business purposes.</span>
+                </div>
+
+                <div class="tabs">
+                    <a (click)="personalPayvoo()" class="item">
+                        <span class="radio"></span>
+                        <div class="name">
+                            <span>PayVoo for</span>
+                            <h3>Individuals</h3>
+                        </div>
+                    </a>
+                    <a  href="business.html" class="item active">
+                        <span class="radio"></span>
+                        <div class="name">
+                            <span>PayVoo for</span>
+                            <h3>Business</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="slider">
+    <div class="container">
+
+        <div class="title">
+            <h2>Explore the free world of tailored payments</h2>
+        </div>
+
+        <div class="slider-container">
+
+            <div class="slider-content">
+                <div class="item">
+                    <div class="block">
+                        <div class="images">
+                            <img src="../../../assets/images/slider/business/img-01.png" alt="">
+                        </div>
+                        <div class="description">
+                            <h4>Effortless & fast</h4>
+                            <p>It’s all easy and convenient but most of all - fast. You will create your account without
+                                leaving an office and going anywhere. You only have to prepare certain documents and
+                                confirm your identity. We will do the rest.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="block">
+                        <div class="images">
+                            <img src="../../../assets/images/slider/business/img-02.png" alt="">
+                        </div>
+                        <div class="description">
+                            <h4>Card tailored to your needs</h4>
+                            <p>Get the BusinessVoo card with your business account and explore the world of
+                                possibilities. Travel to develop your projects and pay easily with funds held especially
+                                for this kind of occasions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="block">
+                        <div class="images">
+                            <img src="../../../assets/images/slider/business/img-03.png" alt="">
+                        </div>
+                        <div class="description">
+                            <h4>Multi-currency transactions</h4>
+                            <p>With PayVoo you will be always prepared for your foreign customers and suppliers. Send
+                                and receive payments in 11 currencies and convert your funds limitless.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="block">
+                        <div class="images">
+                            <img src="../../../assets/images/slider/business/img-04.png" alt="">
+                        </div>
+                        <div class="description">
+                            <h4>Secure</h4>
+                            <p>PayVoo uses new technologies so you can make sure your business is secured. Transactions
+                                and your data are protected by a process of tokenization, so you can focus on your
+                                goals.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="block">
+                        <div class="images">
+                            <img src="../../../assets/images/slider/business/img-05.png" alt="">
+                        </div>
+                        <div class="description">
+                            <h4>Retailers’ choice for payments</h4>
+                            <p>Your customers are important to you? So they are to us. Integrate PayVoo as a payment
+                                method on your website and let your customers spend quickly and securely for the
+                                products they like. Don’t wait, register for a free sandbox account now and test our
+                                service.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="easy-steps" class="business">
+    <div class="container">
+
+        <h2>Easy steps to better business</h2>
+
+        <div class="easy-step-content">
+            <div class="item">
+                <span class="label">Step 1</span>
+                <img src="../../../assets/images/steps/business/step-01_1.svg" alt="">
+                <p>Prepare a bunch of documents for your <br /> business account registration. This will <br /> save you
+                    time. </p>
+            </div>
+            <div class="item">
+                <span class="label">Step 2</span>
+                <img src="../../../assets/images/steps/business/step-02_1.svg" alt="">
+                <p>Create an account without going <br /> anywhere with a simple online <br /> verification process.</p>
+            </div>
+            <div class="item">
+                <span class="label">Step 3</span>
+                <img src="../../../assets/images/steps/business/step-03_1.svg" alt="">
+                <p>If you own an online shop, integrate <br /> PayVoo as a payment method. For this <br /> use our API.
+                    You can give
+                    it a try by <br /> opening a free sandbox account.</p>
+            </div>
+            <div class="item">
+                <span class="label">Step 4</span>
+                <img src="../../../assets/images/steps/business/step-04_1.svg" alt="">
+                <p>Start benefiting by using Pay Voo.</p>
+            </div>
+        </div>
+
+        <!--            <div class="button">-->
+        <!--                <a class="btn btn&#45;&#45;normal btn__orange" href="">Create Account</a>-->
+        <!--            </div>-->
+
+    </div>
+</section>
+
+<section id="choose-card" class="business">
+    <div class="container">
+
+        <h2>The best card for your profession</h2>
+
+        <img src="../../../assets/images/cards/golden.svg" alt="">
+
+        <!--            <div class="button">-->
+        <!--                <a class="bt btn&#45;&#45;normal btn__orange" href="">Create Account</a>-->
+        <!--            </div>-->
+
+    </div>
+</section>
+
+
+<footer id="footer">
+    <div class="container">
+
+        <div class="footer__content">
+            <div class="footer--logo">
+                <a class="logo" href="index.html">
+                    <img src="../../../assets/images/footer-logo.png" alt="">
+                </a>
+                <!--                    <a class="mail" href="mailto:info@payvoo.com">info@payvoo.com</a>-->
+            </div>
+            <div class="footer--address">
+                <p>
+                    Pay Voo UAB<br />
+                    305190898<br />
+                    Vilniaus m. sav. Vilniaus<br />
+                    m. Didzioji g. 18<br />
+                    Lithuania
+                </p>
+            </div>
+            <div class="footer--menu">
+                <ul>
+                    <!-- <li><a [href]="" class="anchor cursor_pointer" (click)="businessLoginPage()">Sign In</a></li>
+                    <li><a [href]="" class="anchor cursor_pointer" (click)="businessSignupPage()">Sign Up</a></li> -->
+                    <li><a href="#" class="anchor remove_cursor">Cards</a></li>
+                    <!--                        <li><a href="">Contact</a></li>-->
+                    <li><button id='btnIntoLink' (click)="termsofPolicy()">Privacy policy</button></li>
+                </ul>
+            </div>
+            <div class="footer--social">
+                <ul>
+                    <li><a class="social social--instagram" href="https://www.instagram.com/pay_voo/"
+                            target="_blank"></a></li>
+                    <li><a class="social social--facebook remove_cursor" href="#" target="_blank"></a>
+                    </li>
+                    <li><a class="social social--twitter" href="https://twitter.com/pay_voo" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</footer>
