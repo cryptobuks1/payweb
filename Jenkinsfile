@@ -55,7 +55,7 @@ pipeline
                     npm cache clean --force
                     npm install
                     npm run build
-                    npm install -g @angular/cli
+                   
                     
                     '''
                     docker.build("$IMAGEA","./sources/Web")
